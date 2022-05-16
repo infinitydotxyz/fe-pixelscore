@@ -4,7 +4,7 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="bg-slate-300">
         <div>Hello world</div>
       </header>
     </div>
