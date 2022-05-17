@@ -11,14 +11,16 @@ interface Props {
 
 // simplifies NextJS/Links and not confused with the react-router Link
 // Use for local routing in NextJS.
-export const NextLink = ({ children, className = '', href, title }: Props) => {
+export const NextLink = ({ children, className = '', href }: Props) => {
   if (!href) {
     return <></>;
   }
 
   return (
-    <div className={twMerge('whitespace-nowrap cursor-pointer', className)} title={title ?? ''}>
-      <Link to={href}>{children}</Link>
+    <div>
+      <Link to={href} className={twMerge('whitespace-nowrap cursor-pointer', className)}>
+        {children}
+      </Link>
     </div>
   );
 };

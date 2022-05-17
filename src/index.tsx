@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppContextProvider } from 'utils/context/AppContext';
 import { ConnectPage } from 'pages/connect';
 import { PixelScore } from 'pages/home';
+import 'flowbite';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
