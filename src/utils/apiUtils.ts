@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
-import useSWR, { SWRConfiguration } from 'swr';
 import { stringify } from 'query-string';
 import { API_BASE } from './constants';
 import { ProviderManager } from './providers/ProviderManager';
@@ -24,11 +23,6 @@ const axiosApi: AxiosInstance = axios.create({
 
 export const sleep = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
-export const dummyFetch = async (mockData = []) => {
-  await sleep(1000);
-  return mockData;
 };
 
 // eslint-disable-next-line
@@ -145,34 +139,4 @@ export const apiDelete = async (path: string, params?: ApiParams): Promise<ApiRe
     const { error, status } = catchError(err);
     return { error, status };
   }
-};
-
-// helper fn for 'useFetch'
-export const swrFetch = async (path: string) => {
-  const { result, error } = await apiGet(path);
-  if (error) {
-    throw new Error('Error completing request');
-  }
-  return result;
-};
-
-// useFetch - example: const { result, error, isLoading } = useFetch<{ data: User[] }>(`https://fakerapi.it/api/v1/persons`);
-interface useFetchParams {
-  query?: unknown;
-  swrOptions?: SWRConfiguration<unknown> | undefined;
-  [key: string]: unknown;
-}
-export const useFetch = <T>(path: string | null, params: useFetchParams = {}) => {
-  const queryStr = buildQueryString(params?.query);
-  const options = {
-    errorRetryCount: 3,
-    ...params?.swrOptions
-  };
-  const { data, error } = useSWR(path ? `${path}${queryStr}` : null, swrFetch, options);
-  return {
-    result: error ? null : (data as T),
-    isLoading: !error && !data,
-    isError: !!error,
-    error
-  };
 };

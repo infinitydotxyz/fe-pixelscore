@@ -267,6 +267,7 @@ export class ProviderManager implements Omit<Optional<Provider, 'type'>, 'init'>
     const preferredWallet = localStorage.getItem(StorageKeys.Wallet);
     const authSignature = localStorage.getItem(StorageKeys.AuthSignature);
     const authMessage = localStorage.getItem(StorageKeys.AuthMessage);
+
     if (
       preferredWallet === WalletType.MetaMask ||
       preferredWallet === WalletType.WalletLink ||
@@ -278,6 +279,7 @@ export class ProviderManager implements Omit<Optional<Provider, 'type'>, 'init'>
       } catch (err) {
         console.error(err);
       }
+
       if (
         parsedSignature &&
         'r' in parsedSignature &&

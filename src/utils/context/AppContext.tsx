@@ -3,10 +3,9 @@ import { getCustomExceptionMsg } from 'utils/commonUtils';
 import { ProviderEvents, WalletType } from 'utils/providers/AbstractProvider';
 import { UserRejectException } from 'utils/providers/UserRejectException';
 import { ProviderManager } from 'utils/providers/ProviderManager';
-import { Toaster, toastWarning } from 'components/common';
-import { apiGet } from '../apiUtils';
+import { Toaster } from 'components/common';
 import { UserProfileDto } from 'components/user/user-profile-dto';
-import { PleaseConnectMsg } from '..';
+import { apiGet } from 'utils/apiUtils';
 
 export type User = {
   address: string;
@@ -21,7 +20,6 @@ export type FollowingCollection = {
 export type AppContextType = {
   user?: User;
   signOut: () => void;
-  checkSignedIn: () => boolean;
   userReady: boolean;
   chainId: string;
   showAppError: (msg: string) => void;
@@ -183,18 +181,9 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
     window.location.reload();
   };
 
-  const checkSignedIn = () => {
-    if (!user?.address) {
-      toastWarning(<PleaseConnectMsg />);
-      return false;
-    }
-    return true;
-  };
-
   const value: AppContextType = {
     user,
     signOut,
-    checkSignedIn,
     userReady,
     chainId,
     showAppError,

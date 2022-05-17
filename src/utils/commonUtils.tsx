@@ -1,30 +1,8 @@
 import { ReactNode } from 'react';
 import { getAddress } from '@ethersproject/address';
 import { ETHEREUM_CHAIN_SCANNER_BASE, POLYGON_CHAIN_SCANNER_BASE, trimLowerCase } from '@infinityxyz/lib/utils';
-import { NextLink } from 'components/common';
 
-// OpenSea's EventType
-export enum EventType {
-  // Transactions and signature requests
-  TransactionCreated = 'TransactionCreated',
-  TransactionConfirmed = 'TransactionConfirmed',
-  TransactionDenied = 'TransactionDenied',
-  TransactionFailed = 'TransactionFailed',
-
-  // Basic actions: matching orders, creating orders, and cancelling orders
-  MatchOrders = 'MatchOrders',
-  CancelOrder = 'CancelOrder',
-  ApproveOrder = 'ApproveOrder',
-  CreateOrder = 'CreateOrder',
-  // When the signature request for an order is denied
-  OrderDenied = 'OrderDenied',
-
-  ApproveCurrency = 'ApproveCurrency'
-}
-
-export const isServer = () => typeof window === 'undefined';
-
-export const isLocalhost = () => !isServer() && (window?.location?.host || '').indexOf('localhost') >= 0;
+export const isLocalhost = () => (window?.location?.host || '').indexOf('localhost') >= 0;
 
 export const toChecksumAddress = (address?: string): string => {
   if (address) {
@@ -157,16 +135,6 @@ export const getChainScannerBase = (chainId?: string): string | null => {
   }
   return null;
 };
-
-export const PleaseConnectMsg = () => (
-  <>
-    Please click{' '}
-    <NextLink href="/connect" className="font-bold">
-      Connect
-    </NextLink>{' '}
-    to sign in.
-  </>
-);
 
 export const truncateDecimals = (numStr: string) => {
   return ((numStr ?? '') + ' ').slice(0, numStr.indexOf('.'));
