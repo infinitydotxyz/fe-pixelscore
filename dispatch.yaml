@@ -1,0 +1,7 @@
+dispatch:
+
+- url: "sv.pixelrank.xyz/*"
+  service: sv
+
+- url: "*/.*"
+  service: default
