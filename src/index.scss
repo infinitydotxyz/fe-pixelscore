@@ -10,6 +10,63 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+// --------------------------------------------------------
+// custom scrollbars
+
+::-webkit-scrollbar {
+  width: 5px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(20, 20, 20, 0.27);
+  border-left: solid 4px white;
+
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  background-color: #5e5e5e;
+  border-radius: 100px;
+}
+
+// --------------------------------------------------------
+// tailwind
+
+// https://v1.tailwindcss.com/docs/adding-new-utilities
+@layer utilities {
+  // simple hover over menu (see currency input)
+  .nft-dropdown:hover .nft-dropdown-menu {
+    display: block;
+  }
+
+  // text-shadow
+  .text-shadow {
+    text-shadow: 1px 1px 2px black;
+  }
+  .text-shadow-md {
+    text-shadow: 2px 2px 4px black;
+  }
+  .text-shadow-lg {
+    text-shadow: 15px 15px 30px black;
+  }
+  .text-shadow-none {
+    text-shadow: none;
+  }
+}
+
+// --------------------------------------------------------
+// remove updown arrows from html number input
+
+// Chrome, Safari, Edge, Opera
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// Firefox
+input[type='number'] {
+  -moz-appearance: textfield;
 }
