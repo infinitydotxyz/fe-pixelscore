@@ -13,5 +13,5 @@ export const useAsync = <T>(asyncFn: () => Promise<T>, onSuccess: (data: T) => v
     return () => {
       isActive = false;
     };
-  }, [asyncFn, onSuccess]);
+  }, []);
 };

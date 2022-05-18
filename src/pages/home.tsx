@@ -11,7 +11,7 @@ import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/a
 import { useAppContext } from 'utils/context/AppContext';
 import { useCardSelection } from 'components/astra/useCardSelection';
 
-export const PixelScore = () => {
+export const HomePage = () => {
   const [collection, setCollection] = useState<BaseCollection>();
   const [chainId, setChainId] = useState<string>();
 

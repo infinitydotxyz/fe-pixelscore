@@ -17,11 +17,9 @@ export const NextLink = ({ children, className = '', href }: Props) => {
   }
 
   return (
-    <div>
-      <Link to={href} className={twMerge('whitespace-nowrap cursor-pointer', className)}>
-        {children}
-      </Link>
-    </div>
+    <Link to={href} className={twMerge('whitespace-nowrap cursor-pointer', className)}>
+      {children}
+    </Link>
   );
 };
 

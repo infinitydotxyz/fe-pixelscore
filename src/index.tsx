@@ -1,23 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './global.scss';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { reportWebVitals } from './reportWebVitals';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppContextProvider } from 'utils/context/AppContext';
 import { ConnectPage } from 'pages/connect';
-import { PixelScore } from 'pages/home';
+import { HomePage } from 'pages/home';
 import 'flowbite';
+import { PasswordPage } from 'pages/password';
+import { SecurityContextProvider, useSecurityContext } from 'utils/context/SecurityContext';
+
+const AppRoutes = () => {
+  const { allowed, ready } = useSecurityContext();
+
+  let routes = <Route path="*" element={<></>} />;
+  if (ready) {
+    if (allowed) {
+      routes = (
+        <>
+          <Route path="/" element={<HomePage />} />
+          <Route path="connect" element={<ConnectPage />} />
+          <Route path="*" element={<Navigate to={'/'} replace />} />
+        </>
+      );
+    } else {
+      routes = (
+        <>
+          <Route path="/" element={<PasswordPage />} />;
+          <Route path="*" element={<Navigate to={'/'} replace />} />;
+        </>
+      );
+    }
+  }
+
+  return (
+    <BrowserRouter>
+      <Routes>{routes}</Routes>
+    </BrowserRouter>
+  );
+};
+
+// ================================================================
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <AppContextProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<PixelScore />} />
-          <Route path="connect" element={<ConnectPage />} />
-        </Routes>
-      </BrowserRouter>
+      <SecurityContextProvider>
+        <AppRoutes />
+      </SecurityContextProvider>
     </AppContextProvider>
   </React.StrictMode>
 );
