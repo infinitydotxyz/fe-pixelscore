@@ -29,6 +29,7 @@ export const SecurityContextProvider = ({ children }: Props) => {
   const [password, setPassword] = useState<string>('');
   const [allowed, setAllowed] = useState<boolean>(false);
   const [ready, setReady] = useState<boolean>(false);
+  const [didReadPassword, setDidReadPassword] = useState<boolean>(false);
 
   useEffect(() => {
     if (password === 'pixel') {
@@ -36,14 +37,15 @@ export const SecurityContextProvider = ({ children }: Props) => {
       setAllowed(true);
     }
 
-    if (password) {
+    if (didReadPassword) {
       setReady(true);
     }
-  }, [password]);
+  }, [password, didReadPassword]);
 
   // load password from localstorage async
   useAsync<string>(loadPassword, (data) => {
     setPassword(data);
+    setDidReadPassword(true);
   });
 
   const value: SecurityContextType = {
