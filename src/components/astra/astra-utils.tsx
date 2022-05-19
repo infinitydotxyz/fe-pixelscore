@@ -1,5 +1,6 @@
 import { BaseToken, CardData } from '@infinityxyz/lib/types/core';
-import { DEFAULT_LIMIT, apiGet, ApiResponse, LARGE_LIMIT, apiPost } from 'utils';
+import axios from 'axios';
+import { DEFAULT_LIMIT, apiGet, getAuthHeaders, ApiResponse, LARGE_LIMIT, apiPost } from 'utils';
 import { Filter } from 'utils/context/FilterContext';
 import { RevealOrder, UpdateRankVisibility } from './be-types';
 
@@ -161,11 +162,6 @@ export const setReveals = async (
 
 // ======================================================
 
-// app.get('/u/:user/reveals', async (req: Request, res: Response) => {
-//   const user = trimLowerCase(req.params.user);
-//   console.log('Fetching reveals for user', user);
-//   const startAfterTimestamp = parseInt(String(req.query.startAfterTimestamp)) ?? Date.now();
-
 export const getReveals = async (user: string, startAfterTimestamp?: number): Promise<ApiResponse> => {
   const response = await apiGet(`/u/${user}/reveals`, {
     query: {
@@ -174,4 +170,78 @@ export const getReveals = async (user: string, startAfterTimestamp?: number): Pr
   });
 
   return response;
+};
+
+export const httpGet = async (path: string, params: object): Promise<ApiResponse> => {
+  try {
+    const userEndpointRegex = /\/(u|user)\//;
+    const publicUserEndpoint = /\/p\/u\//;
+    const requiresAuth = userEndpointRegex.test(path) && !publicUserEndpoint.test(path);
+
+    let authHeaders = {};
+    if (requiresAuth) {
+      authHeaders = await getAuthHeaders();
+    }
+
+    const response = await axios.get(path, { headers: authHeaders, params });
+
+    return { status: response.status, error: '', result: response.data };
+  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const err: any = error;
+    let status = 551;
+    let message = '';
+
+    if (err.response) {
+      message = err.response.data;
+      status = err.response.status;
+      console.log(err.response.headers);
+    } else if (err.request) {
+      console.log(err.request);
+      message = 'request error';
+    } else {
+      message = err.message;
+    }
+    console.log(err.config);
+
+    return { status: status, error: message };
+  }
+};
+
+// ===================================================================
+
+export const httpPost = async (path: string, params: object): Promise<ApiResponse> => {
+  try {
+    const userEndpointRegex = /\/(u|user)\//;
+    const publicUserEndpoint = /\/p\/u\//;
+    const requiresAuth = userEndpointRegex.test(path) && !publicUserEndpoint.test(path);
+
+    let authHeaders = {};
+    if (requiresAuth) {
+      authHeaders = await getAuthHeaders();
+    }
+
+    const response = await axios.post(path, { headers: authHeaders, params });
+
+    return { status: response.status, error: '', result: response.data };
+  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const err: any = error;
+    let status = 551;
+    let message = '';
+
+    if (err.response) {
+      message = err.response.data;
+      status = err.response.status;
+      console.log(err.response.headers);
+    } else if (err.request) {
+      console.log(err.request);
+      message = 'request error';
+    } else {
+      message = err.message;
+    }
+    console.log(err.config);
+
+    return { status: status, error: message };
+  }
 };

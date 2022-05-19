@@ -183,7 +183,7 @@ export const HomePage = () => {
     />
   );
 
-  const footer = <AstraFooter name={name} numTokens={numTokens} />;
+  const footer = <AstraFooter user={user} name={name} numTokens={numTokens} />;
 
   const contents = gridTemplate(navBar, sidebar, tokensGrid, cart, footer);
 
