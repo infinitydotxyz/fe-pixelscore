@@ -5,7 +5,7 @@ import { UserRejectException } from 'utils/providers/UserRejectException';
 import { ProviderManager } from 'utils/providers/ProviderManager';
 import { Toaster } from 'components/common';
 import { UserProfileDto } from 'components/user/user-profile-dto';
-import { apiGet } from 'utils/apiUtils';
+import { httpGet } from 'utils/apiUtils';
 
 export type User = {
   address: string;
@@ -49,7 +49,7 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
 
   const fetchFollowingCollections = async () => {
     if (user?.address) {
-      const { result, error } = await apiGet(`/user/${chainId}:${user?.address}/followingCollections`);
+      const { result, error } = await httpGet(`/user/${chainId}:${user?.address}/followingCollections`);
       if (!error) {
         setFollowingCollections(result.data);
       }
@@ -113,7 +113,7 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
   };
 
   const fetchUserInfo = async (userAddress: string) => {
-    const { result, error } = await apiGet(`/user/${userAddress}`);
+    const { result, error } = await httpGet(`/user/${userAddress}`);
     if (!error) {
       const userInfo = result as UserProfileDto;
       const _user = { address: userAddress, username: userInfo.username };

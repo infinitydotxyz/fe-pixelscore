@@ -36,7 +36,7 @@ export const CollectionList = ({ query, className = '', onClick, selectedCollect
     }
 
     if (response.error) {
-      setError(response.error);
+      setError(response.error?.length > 0);
       setCollections([]);
       setCursor('');
       setHasNextPage(false);

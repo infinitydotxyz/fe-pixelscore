@@ -1,42 +1,13 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
-import { stringify } from 'query-string';
+import axios, { AxiosRequestHeaders } from 'axios';
 import { API_BASE } from './constants';
 import { ProviderManager } from './providers/ProviderManager';
-
-const HTTP_UNAUTHORIZED = 401;
-const HTTP_TOO_MANY_REQUESTS = 429;
-
-const errorToast = (message: string) => {
-  console.error(message);
-};
 
 export const isStatusOK = (response: ApiResponse) => {
   return response.status >= 200 && response.status < 300;
 };
 
-// eslint-disable-next-line
-const buildQueryString = (queryObj: any) => (queryObj ? '?' + stringify(queryObj) : '');
-
-const axiosApi: AxiosInstance = axios.create({
-  headers: {}
-});
-
 export const sleep = (ms: number) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
-// eslint-disable-next-line
-const catchError = (err: any) => {
-  const errorObj = err as Error | AxiosError;
-  const errorData = { message: typeof err === 'object' ? err?.message : err, errorResponse: '' };
-
-  if (axios.isAxiosError(errorObj)) {
-    // some APIs return response when an error occurred (status !== 200)
-    // NOTE: added <string> to get around lint errors, not tested, not sure if it works
-    errorData.errorResponse = (errorObj as AxiosError<string>).response?.data ?? '';
-  }
-  console.error('catchError', err, err?.response);
-  return { error: errorData, status: err?.response?.status };
 };
 
 export const getAuthHeaders = async (attemptLogin = true) => {
@@ -45,98 +16,71 @@ export const getAuthHeaders = async (attemptLogin = true) => {
   return authHeaders;
 };
 
-interface ApiParams {
-  query?: unknown; // query object - will be converted to query string (?param1=value1&param2=value2...).
-  data?: unknown; // data (payload) for Post, Put, Delete
-  options?: AxiosRequestConfig;
-  doNotAttemptLogin?: boolean;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ApiError = any;
-
 export interface ApiResponse {
-  error?: ApiError;
+  error?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   result?: any;
   status: number;
 }
 
-// example: const { result, error, status } = await apiGet(`/api/path`, { query: { page: 1 } });
-export const apiGet = async (path: string, params?: ApiParams): Promise<ApiResponse> => {
-  const queryStr = buildQueryString(params?.query);
-
+export const httpGet = async (path: string, params?: object): Promise<ApiResponse> => {
   try {
-    const userEndpointRegex = /\/(u|user)\//;
-    const publicUserEndpoint = /\/p\/u\//;
-    const requiresAuth = userEndpointRegex.test(path) && !publicUserEndpoint.test(path);
+    const headers = await authHeaders(path);
+    const response = await axios.get(`${API_BASE}${path}`, { headers, params });
 
-    let authHeaders = {};
-    if (requiresAuth) {
-      const attemptLogin = !params?.doNotAttemptLogin;
-      authHeaders = await getAuthHeaders(attemptLogin);
-    }
-
-    const { data, status } = await axiosApi({
-      url: path.startsWith('http') ? path : `${API_BASE}${path}${queryStr}`,
-      method: 'GET',
-      headers: authHeaders,
-      ...params?.options
-    });
-    return { result: data, status };
-  } catch (err) {
-    const { error, status } = catchError(err);
-    if (status === HTTP_UNAUTHORIZED) {
-      errorToast('Unauthorized');
-      return { error: new Error('Unauthorized'), status };
-    }
-    return { error, status };
+    return { status: response.status, error: '', result: response.data };
+  } catch (error) {
+    return httpErrorResponse(error);
   }
 };
 
-// example: const { result, error, status } = await apiPost(`/api/path`, { data: { somekey: 'somevalue' } });
-export const apiPost = async (path: string, params?: ApiParams): Promise<ApiResponse> => {
-  const queryStr = buildQueryString(params?.query);
-  const headers = await getAuthHeaders();
+// ===================================================================
+
+export const httpPost = async (path: string, body: object): Promise<ApiResponse> => {
   try {
-    const { data, status } = await axiosApi({
-      url: `${API_BASE}${path}${queryStr}`,
-      method: 'POST',
-      headers,
-      data: params?.data,
-      ...params?.options
-    });
+    const headers = await authHeaders(path);
+    const response = await axios.post(`${API_BASE}${path}`, body, { headers });
 
-    return { result: data, status };
-  } catch (err) {
-    const { error, status } = catchError(err);
-
-    if (status === HTTP_TOO_MANY_REQUESTS) {
-      errorToast("You've been rate limited, please try again in a few minutes");
-    }
-    return { error, status };
+    return { status: response.status, error: '', result: response.data };
+  } catch (error) {
+    return httpErrorResponse(error);
   }
 };
 
-// same as apiPost but with PUT method.
-export const apiPut = (path: string, params?: ApiParams) => {
-  return apiPost(path, { ...params, options: { ...params?.options, method: 'PUT' } });
+// ===================================================================
+
+export const authHeaders = async (path: string): Promise<AxiosRequestHeaders> => {
+  const userEndpointRegex = /\/(u|user)\//;
+  const publicUserEndpoint = /\/p\/u\//;
+  const requiresAuth = userEndpointRegex.test(path) && !publicUserEndpoint.test(path);
+
+  let authHeaders = {};
+  if (requiresAuth) {
+    authHeaders = await getAuthHeaders();
+  }
+
+  return authHeaders;
 };
 
-export const apiDelete = async (path: string, params?: ApiParams): Promise<ApiResponse> => {
-  const queryStr = buildQueryString(params?.query);
-  const headers = await getAuthHeaders();
-  try {
-    const { data, status } = await axiosApi({
-      url: `${API_BASE}${path}${queryStr}`,
-      method: 'DELETE',
-      headers,
-      data: params?.data,
-      ...params?.options
-    });
-    return { result: data, status };
-  } catch (err: Error | unknown) {
-    const { error, status } = catchError(err);
-    return { error, status };
+// ===================================================================
+
+export const httpErrorResponse = (error: unknown) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const err: any = error;
+  let status = 551;
+  let message = '';
+
+  if (err.response) {
+    message = err.response.data;
+    status = err.response.status;
+    console.log(err.response.headers);
+  } else if (err.request) {
+    console.log(err.request);
+    message = 'request error';
+  } else {
+    message = err.message;
   }
+  console.log(err.config);
+
+  return { status: status, error: message };
 };

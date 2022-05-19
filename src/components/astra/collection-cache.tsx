@@ -1,5 +1,5 @@
 import { BaseCollection } from '@infinityxyz/lib/types/core';
-import { apiGet } from 'utils';
+import { httpGet } from 'utils';
 import { CollectionSearchDto } from 'utils/types/collection-types';
 
 export class CollectionCache {
@@ -27,7 +27,7 @@ export class CollectionCache {
       return cached;
     }
 
-    const { result } = await apiGet(`/collections/${collection.chainId}:${collection.address}`);
+    const { result } = await httpGet(`/collections/${collection.chainId}:${collection.address}`);
 
     const baseCollection = result as BaseCollection;
     this.cache.set(key, baseCollection);
