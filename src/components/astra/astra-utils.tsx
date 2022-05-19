@@ -1,6 +1,7 @@
 import { BaseToken, CardData } from '@infinityxyz/lib/types/core';
-import { DEFAULT_LIMIT, apiGet, ApiResponse, LARGE_LIMIT } from 'utils';
+import { DEFAULT_LIMIT, apiGet, ApiResponse, LARGE_LIMIT, apiPost } from 'utils';
 import { Filter } from 'utils/context/FilterContext';
+import { RevealOrder, UpdateRankVisibility } from './be-types';
 
 export const fetchTokens = async (
   collectionAddress: string,
@@ -76,4 +77,101 @@ export const tokensToCardData = (tokens: BaseToken[]): CardData[] => {
   cardData = cardData.filter((x) => x.tokenAddress);
 
   return cardData;
+};
+
+// ======================================================
+
+export const refresh = async (user: string, txnHash: string, chainId: string): Promise<string> => {
+  try {
+    const body = {
+      txnHash,
+      chainId
+    };
+
+    const response = await apiPost(`/u/${user}/refresh`, {
+      data: body
+    });
+    return response.result as string;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+// ======================================================
+
+export const updateRankVisibility = async (
+  user: string,
+  tokenId: string,
+  collectionAddress: string,
+  chainId: string,
+  pixelRankVisible: boolean
+): Promise<string> => {
+  try {
+    const body: UpdateRankVisibility = {
+      chainId,
+      collectionAddress,
+      tokenId,
+      pixelRankVisible
+    };
+
+    const response = await apiPost(`/u/${user}/rankVisibility`, {
+      data: body
+    });
+    return response.result as string;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+// ======================================================
+
+export const setReveals = async (
+  user: string,
+  txnHash: string,
+  numItems: number,
+  pricePerItem: number,
+  totalPrice: number,
+  revealer: string,
+  chainId: string
+): Promise<string> => {
+  try {
+    const body: RevealOrder = {
+      chainId,
+      revealer,
+      numItems,
+      pricePerItem,
+      totalPrice,
+      txnHash,
+      timestamp: 0,
+      txnStatus: 'pending', // | 'success' | 'error';
+      revealItems: [] // TokenInfo
+    };
+
+    const response = await apiPost(`/u/${user}/reveals`, {
+      data: body
+    });
+    return response.result as string;
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+};
+
+// ======================================================
+
+// app.get('/u/:user/reveals', async (req: Request, res: Response) => {
+//   const user = trimLowerCase(req.params.user);
+//   console.log('Fetching reveals for user', user);
+//   const startAfterTimestamp = parseInt(String(req.query.startAfterTimestamp)) ?? Date.now();
+
+export const getReveals = async (user: string, startAfterTimestamp?: number): Promise<ApiResponse> => {
+  const response = await apiGet(`/u/${user}/reveals`, {
+    query: {
+      startAfterTimestamp
+    }
+  });
+
+  return response;
 };
