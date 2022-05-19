@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
+import { useIsMounted } from './useIsMounted';
 
 export const useAsync = <T>(asyncFn: () => Promise<T>, onSuccess: (data: T) => void) => {
-  useEffect(() => {
-    let isActive = true;
+  const isMounted = useIsMounted();
 
+  useEffect(() => {
     void asyncFn().then((data) => {
-      if (isActive) {
+      if (isMounted()) {
         onSuccess(data);
       }
     });
-
-    return () => {
-      isActive = false;
-    };
   }, []);
 };
