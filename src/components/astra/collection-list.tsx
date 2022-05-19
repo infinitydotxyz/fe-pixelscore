@@ -70,7 +70,7 @@ export const CollectionList = ({ query, className = '', onClick, selectedCollect
       <div className="flex flex-col space-y-3 pt-4">
         {collections.map((collection) => (
           <CollectionListItem
-            key={collection.slug}
+            key={collection.address}
             collection={collection}
             onClick={onClick}
             selected={collection.address === selectedCollection?.address}

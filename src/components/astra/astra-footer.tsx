@@ -12,7 +12,7 @@ interface Props {
 
 export const AstraFooter = ({ user, name, numTokens }: Props) => {
   return (
-    <div className={twMerge(inputBorderColor, 'px-6 py-1 flex justify-center border-t bg-slate-200')}>
+    <div className={twMerge(inputBorderColor, 'px-6 py-1 flex items-center border-t bg-slate-200')}>
       <div className="text-lg"> {name}</div>
       <Spacer />
       {user && (
