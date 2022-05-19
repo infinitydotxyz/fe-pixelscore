@@ -31,6 +31,5 @@ export * from 'components/common/toaster';
 export * from 'components/common/spinner';
 export * from 'components/common/modal';
 export * from 'components/common/simple-table';
-export * from 'components/common/collection-card';
 export * from 'components/common/image-uploader';
 export * from 'components/common/image-uploader-button-ref';
