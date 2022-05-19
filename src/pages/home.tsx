@@ -10,6 +10,7 @@ import { inputBorderColor } from 'utils/ui-constants';
 import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/astra/token-fetcher';
 import { useAppContext } from 'utils/context/AppContext';
 import { useCardSelection } from 'components/astra/useCardSelection';
+import { AstraFooter } from 'components/astra/astra-footer';
 
 export const HomePage = () => {
   const [collection, setCollection] = useState<BaseCollection>();
@@ -182,13 +183,7 @@ export const HomePage = () => {
     />
   );
 
-  const footer = (
-    <div className={twMerge(inputBorderColor, 'px-6 py-1 flex justify-center border-t bg-slate-200')}>
-      <div className="text-lg"> {name}</div>
-      <Spacer />
-      <div className="text-lg">{numTokens} items</div>
-    </div>
-  );
+  const footer = <AstraFooter name={name} numTokens={numTokens} />;
 
   const contents = gridTemplate(navBar, sidebar, tokensGrid, cart, footer);
 
