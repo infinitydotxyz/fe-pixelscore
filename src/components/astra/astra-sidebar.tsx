@@ -47,7 +47,7 @@ export const AstraSidebar = ({ onClick, selectedCollection }: Props) => {
         />
       </div>
 
-      <div className={twMerge(inputBorderColor, 'overflow-y-scroll overflow-x-hidden w-full px-4 border-t')}>
+      <div className={twMerge(inputBorderColor, 'overflow-y-scroll h-full overflow-x-hidden w-full px-4 border-t')}>
         {collectionsList}
       </div>
     </div>
