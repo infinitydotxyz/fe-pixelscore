@@ -4,7 +4,6 @@ import { ProviderEvents, WalletType } from 'utils/providers/AbstractProvider';
 import { UserRejectException } from 'utils/providers/UserRejectException';
 import { ProviderManager } from 'utils/providers/ProviderManager';
 import { Toaster } from 'components/common';
-import { UserProfileDto } from 'components/user/user-profile-dto';
 import { httpGet } from 'utils/apiUtils';
 
 export type User = {
@@ -70,7 +69,7 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
             setUser({ address });
             const chainIdNew = providerManagerInstance.chainId ?? 1;
             setChainId(`${chainIdNew}`);
-            await fetchUserInfo(address);
+            setUser({ address: address });
           })
           .catch((err) => {
             console.error(err);
@@ -109,15 +108,6 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
       }
     } else {
       console.log(`Provider not ready yet`);
-    }
-  };
-
-  const fetchUserInfo = async (userAddress: string) => {
-    const { result, error } = await httpGet(`/user/${userAddress}`);
-    if (!error) {
-      const userInfo = result as UserProfileDto;
-      const _user = { address: userAddress, username: userInfo.username };
-      setUser(_user);
     }
   };
 
