@@ -19,7 +19,7 @@ export const Switch = ({ title, checked, className = '', onChange }: Props) => {
           {checked ? (
             <>
               <div className={twMerge(inputBorderColor, 'block border w-14 h-8 rounded-full bg-black')}></div>
-              <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+              <div className="dot absolute right-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
             </>
           ) : (
             <>

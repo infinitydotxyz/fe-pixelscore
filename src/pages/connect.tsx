@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppContext } from 'utils/context/AppContext';
 import { WalletType } from 'utils/providers/AbstractProvider';
-import { SVG } from 'components/common';
+import { PageBox, SVG } from 'components/common';
 import { twMerge } from 'tailwind-merge';
 import { iconButtonStyle } from 'utils/ui-constants';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +29,7 @@ export const ConnectPage = () => {
   };
 
   return (
-    <div className="w-[100vw] h-[100vh] overflow-hidden grid place-content-center">
+    <PageBox className="grid place-content-center">
       <div className="flex flex-col gap-2 items-center">
         <div className="drop-shadow-2xl bg-white rounded-3xl flex flex-col items-center mx-0 my-4 p-8">
           <SVG.miniLogo className="h-16 w-16" />
@@ -56,7 +56,7 @@ export const ConnectPage = () => {
           />
         </div>
       </div>
-    </div>
+    </PageBox>
   );
 };
 

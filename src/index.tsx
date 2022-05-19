@@ -9,6 +9,7 @@ import { HomePage } from 'pages/home';
 import 'flowbite';
 import { PasswordPage } from 'pages/password';
 import { SecurityContextProvider, useSecurityContext } from 'utils/context/SecurityContext';
+import { SandboxPage } from 'pages/sandbox';
 
 const AppRoutes = () => {
   const { allowed, ready } = useSecurityContext();
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <>
           <Route path="/" element={<HomePage />} />
           <Route path="connect" element={<ConnectPage />} />
+          <Route path="sandbox" element={<SandboxPage />} />
           <Route path="*" element={<Navigate to={'/'} replace />} />
         </>
       );
