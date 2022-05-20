@@ -13,7 +13,7 @@ export const fetchTokens = async (
   filterState.orderBy = 'rarityRank'; // set defaults
   filterState.orderDirection = 'asc';
 
-  const response = await httpGet(`/collections/${chainId}:${collectionAddress}/nfts`, {
+  const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts`, {
     limit: LARGE_LIMIT,
     cursor,
     ...filterState

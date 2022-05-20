@@ -27,7 +27,7 @@ export class CollectionCache {
       return cached;
     }
 
-    const { result } = await httpGet(`/collections/${collection.chainId}:${collection.address}`);
+    const { result } = await httpGet(`/collections/${collection.chainId}/${collection.address}`);
 
     const baseCollection = result as BaseCollection;
     this.cache.set(key, baseCollection);
