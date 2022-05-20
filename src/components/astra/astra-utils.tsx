@@ -10,7 +10,7 @@ export const fetchTokens = async (
 ): Promise<ApiResponse> => {
   const filterState: Filter = {};
 
-  filterState.orderBy = 'rarityRank'; // set defaults
+  filterState.orderBy = 'tokenId';
   filterState.orderDirection = 'asc';
 
   const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts`, {

@@ -15,6 +15,6 @@ export type Filter = {
   minPrice?: string;
   maxPrice?: string;
   sortByPrice?: 'ASC' | 'DESC' | '';
-  orderBy?: 'rarityRank' | 'price' | '';
+  orderBy?: 'tokenId' | '';
   orderDirection?: 'asc' | 'desc' | '';
 };
