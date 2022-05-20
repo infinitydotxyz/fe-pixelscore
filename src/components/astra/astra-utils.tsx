@@ -57,7 +57,7 @@ export const tokensToCardData = (tokens: BaseToken[]): CardData[] => {
       collectionName: collectionName,
       title: collectionName,
       description: token.metadata.description,
-      image: token.image.url,
+      image: token.image.url || token.image.originalUrl,
       price: 0,
       chainId: token.chainId,
       tokenAddress: token.collectionAddress,
