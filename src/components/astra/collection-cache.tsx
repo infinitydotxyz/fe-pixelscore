@@ -19,7 +19,7 @@ export class CollectionCache {
     this.cache = new Map<string, BaseCollection>();
   }
 
-  async collection(collection: CollectionSearchDto): Promise<BaseCollection> {
+  async collection(collection: CollectionSearchDto): Promise<BaseCollection | undefined> {
     const key = `${collection.address}:${collection.chainId}`;
     const cached = this.cache.get(key);
 
@@ -27,11 +27,15 @@ export class CollectionCache {
       return cached;
     }
 
-    const { result } = await httpGet(`/collections/${collection.chainId}/${collection.address}`);
+    const { result, error } = await httpGet(`/collections/${collection.chainId}/${collection.address}`);
 
-    const baseCollection = result as BaseCollection;
-    this.cache.set(key, baseCollection);
+    if (!error) {
+      const baseCollection = result as BaseCollection;
+      this.cache.set(key, baseCollection);
 
-    return baseCollection;
+      return baseCollection;
+    } else {
+      console.log(`collection failed: ${error}`);
+    }
   }
 }

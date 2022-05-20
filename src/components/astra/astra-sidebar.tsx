@@ -1,7 +1,7 @@
 import { BaseCollection } from '@infinityxyz/lib/types/core';
 import { useState } from 'react';
 import { CollectionList } from 'components/astra/collection-list';
-import { DebouncedTextField } from 'components/common';
+import { DebouncedTextField, toastError } from 'components/common';
 import { CollectionSearchDto } from 'utils/types/collection-types';
 import { inputBorderColor } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
@@ -18,7 +18,11 @@ export const AstraSidebar = ({ onClick, selectedCollection }: Props) => {
   const handleClick = async (collection: CollectionSearchDto) => {
     const result = await CollectionCache.shared().collection(collection);
 
-    onClick(result);
+    if (result) {
+      onClick(result);
+    } else {
+      toastError('Collection invalid');
+    }
   };
 
   const collectionsList = (
