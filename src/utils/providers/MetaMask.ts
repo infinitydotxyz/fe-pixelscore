@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { splitSignature, Signature } from '@ethersproject/bytes';
+import { utils, Signature } from 'ethers';
 import { AbstractProvider, WalletType } from './AbstractProvider';
 import { JSONRPCRequestPayload, JSONRPCResponsePayload } from './Provider';
 import { UserRejectException } from './UserRejectException';
@@ -74,7 +74,7 @@ export class MetaMask extends AbstractProvider {
         method: 'personal_sign',
         params
       });
-      const signature = splitSignature(response);
+      const signature = utils.splitSignature(response);
       return signature;
     } catch (err: Error | any) {
       if (err?.code === 4001) {

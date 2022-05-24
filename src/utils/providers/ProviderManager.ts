@@ -1,6 +1,4 @@
-import { Signature } from '@ethersproject/bytes';
-import { verifyMessage } from '@ethersproject/wallet';
-import { Web3Provider } from '@ethersproject/providers';
+import { Signature, utils, providers } from 'ethers';
 import { LOGIN_MESSAGE } from '../constants';
 import { Optional } from '../typeUtils';
 import { ProviderEvents, WalletType } from './AbstractProvider';
@@ -121,7 +119,7 @@ export class ProviderManager implements Omit<Optional<Provider, 'type'>, 'init'>
   }
 
   getEthersProvider = () => {
-    return new Web3Provider(this.jsonRpcFetchFunc.bind(this));
+    return new providers.Web3Provider(this.jsonRpcFetchFunc.bind(this));
   };
 
   request(request: JSONRPCRequestPayload) {
@@ -208,7 +206,7 @@ export class ProviderManager implements Omit<Optional<Provider, 'type'>, 'init'>
     const currentUser = this.account.toLowerCase();
     if (currentUser && this.authMessage && this.authSignature) {
       try {
-        const signer = verifyMessage(this.authMessage, this.authSignature).toLowerCase();
+        const signer = utils.verifyMessage(this.authMessage, this.authSignature).toLowerCase();
         if (currentUser === signer) {
           return true;
         }

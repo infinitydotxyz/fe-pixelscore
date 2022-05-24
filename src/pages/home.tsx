@@ -12,6 +12,40 @@ import { useAppContext } from 'utils/context/AppContext';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
 
+// import ethers, { utils } from 'ethers';
+
+const sendEth = (userAddress: string) => {
+  console.log(userAddress);
+
+  // const network = 'main';
+  // const provider = ethers.getDefaultProvider(network);
+  // const { showAppError, providerManager } = useAppContext();
+  // const receiverAddress = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
+  // const amountInEther = '0.0001';
+  // if (!utils.isAddress(userAddress)) {
+  //   showAppError(`Invalid user address: ${userAddress}.`);
+  //   return;
+  // }
+  // if (!utils.isAddress(receiverAddress)) {
+  //   showAppError(`Invalid transfer to address: ${receiverAddress}.`);
+  //   return;
+  // }
+  // if (userAddress === receiverAddress) {
+  //   showAppError('From address is the same as to address.');
+  //   return;
+  // }
+  // const tx = {
+  //   to: receiverAddress,
+  //   // Convert currency unit from ether to wei
+  //   value: ethers.utils.parseEther(amountInEther)
+  // };
+  // let wallet = new ethers.Wallet('privateKey', providerManager?.getEthersProvider());
+  // wallet.sendTransaction(tx).then((txObj) => {
+  //   console.log('txHash', txObj.hash);
+  // });
+};
+// ====================================================================
+
 export const HomePage = () => {
   const [collection, setCollection] = useState<BaseCollection>();
   const [chainId, setChainId] = useState<string>();
@@ -114,9 +148,13 @@ export const HomePage = () => {
   }
 
   const handleCheckout = () => {
-    clearSelection();
+    if (user) {
+      clearSelection();
 
-    toastSuccess('Success', 'Your Pixel Scores has been calculated');
+      sendEth(user?.address);
+
+      toastSuccess('Success', 'Your Pixel Scores has been calculated');
+    }
   };
 
   const gridTemplate = (

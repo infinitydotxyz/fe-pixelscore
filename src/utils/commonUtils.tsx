@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { getAddress } from '@ethersproject/address';
+import { utils } from 'ethers';
+
 import { ETHEREUM_CHAIN_SCANNER_BASE, POLYGON_CHAIN_SCANNER_BASE, trimLowerCase } from '@infinityxyz/lib/utils';
 
 export const isLocalhost = () => (window?.location?.host || '').indexOf('localhost') >= 0;
@@ -10,7 +11,7 @@ export const toChecksumAddress = (address?: string): string => {
 
     try {
       // this crashes if the address isn't valid
-      result = getAddress(address);
+      result = utils.getAddress(address);
     } catch (err) {
       // do nothing
     }
