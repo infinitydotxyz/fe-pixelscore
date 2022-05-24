@@ -13,7 +13,7 @@ interface Props {
 
 export const RevealOrderCard = ({ data, height, onClick, selected }: Props): JSX.Element => {
   const title = data?.txnHash ?? '';
-  const tokenId = data?.revealer ?? '';
+  const tokenId = data?.txnStatus ?? '';
 
   const heightStyle = `${height}px`;
 

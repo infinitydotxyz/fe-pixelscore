@@ -25,7 +25,7 @@ export const fetchTokens = async (
 // ======================================================
 
 export const fetchUserTokens = async (userAddress: string, cursor?: string): Promise<ApiResponse> => {
-  const response = await httpGet(`/user/${userAddress}/nfts`, {
+  const response = await httpGet(`/u/${userAddress}/nfts`, {
     limit: LARGE_LIMIT,
     cursor
   });
