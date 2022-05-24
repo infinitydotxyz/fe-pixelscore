@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { utils } from 'ethers';
 
 import { ETHEREUM_CHAIN_SCANNER_BASE, POLYGON_CHAIN_SCANNER_BASE, trimLowerCase } from '@infinityxyz/lib/utils';
@@ -74,17 +73,6 @@ export const stringToFloat = (numStr?: string, defaultValue = 0) => {
     console.error(e);
   }
   return num;
-};
-
-export const getCustomExceptionMsg = (msg: ReactNode) => {
-  let customMsg = msg;
-  if (typeof msg === 'string' && msg.indexOf('err: insufficient funds for gas * price + value') > 0) {
-    customMsg = 'Insufficient funds for gas * price + value';
-  }
-  if (typeof msg === 'string' && msg.indexOf('User denied transaction signature.') > 0) {
-    customMsg = 'MetaMask: User denied transaction signature';
-  }
-  return customMsg;
 };
 
 // makes number strings from strings or numbers

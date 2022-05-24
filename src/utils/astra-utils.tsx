@@ -1,7 +1,7 @@
 import { BaseToken, CardData } from '@infinityxyz/lib/types/core';
 import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'utils';
 import { Filter } from 'utils/context/FilterContext';
-import { RevealOrder, UpdateRankVisibility } from './be-types';
+import { RevealOrder, TokenInfo, UpdateRankVisibility } from './types/be-types';
 
 export const fetchTokens = async (
   collectionAddress: string,
@@ -51,20 +51,27 @@ export const tokensToCardData = (tokens: BaseToken[]): CardData[] => {
   let cardData = tokens.map((token) => {
     const collectionName = token.collectionName ?? 'Unknown';
 
-    return {
+    const result: CardData = {
       id: token.collectionAddress + '_' + token.tokenId,
       name: token.metadata?.name,
       collectionName: collectionName,
       title: collectionName,
       description: token.metadata.description,
       image: token.image.url || token.image.originalUrl,
-      price: 0,
+      price: token.mintPrice,
       chainId: token.chainId,
       tokenAddress: token.collectionAddress,
       tokenId: token.tokenId,
       rarityRank: token.rarityRank,
-      orderSnippet: token.ordersSnippet
-    } as CardData;
+      orderSnippet: token.ordersSnippet,
+      collectionSlug: token.collectionSlug,
+      hasBlueCheck: token.hasBlueCheck,
+      address: token.collectionAddress,
+      cardImage: token.image.url || token.image.originalUrl,
+      imagePreview: token.image.url || token.image.originalUrl
+    };
+
+    return result;
   });
 
   // remove any without tokenAddress (seeing bad NFTs in my profile)
@@ -124,7 +131,8 @@ export const setReveals = async (
   pricePerItem: number,
   totalPrice: number,
   revealer: string,
-  chainId: string
+  chainId: string,
+  revealItems: TokenInfo[]
 ): Promise<string> => {
   try {
     const body: RevealOrder = {
@@ -136,7 +144,7 @@ export const setReveals = async (
       txnHash,
       timestamp: 0,
       txnStatus: 'pending', // | 'success' | 'error';
-      revealItems: [] // TokenInfo
+      revealItems: revealItems // TokenInfo
     };
 
     const response = await httpPost(`/u/${user}/reveals`, body);
@@ -149,10 +157,14 @@ export const setReveals = async (
 
 // ======================================================
 
-export const getReveals = async (user: string, startAfterTimestamp?: number): Promise<ApiResponse> => {
+export const getReveals = async (user: string, startAfterTimestamp = 0): Promise<ApiResponse> => {
   const response = await httpGet(`/u/${user}/reveals`, {
     startAfterTimestamp
   });
+
+  console.log(response.status);
+  console.log(response.result);
+  console.log(response.error);
 
   return response;
 };

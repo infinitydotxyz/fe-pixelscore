@@ -1,7 +1,7 @@
 import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
 import { ApiResponse } from 'utils';
 import { NFTArray } from '../../utils/types/collection-types';
-import { fetchTokens, fetchUserTokens, tokensToCardData } from './astra-utils';
+import { fetchTokens, fetchUserTokens, tokensToCardData } from 'utils/astra-utils';
 
 export interface TokenFetcherResult {
   ferror: boolean;

@@ -10,7 +10,6 @@ import {
   Switch,
   ToggleTab,
   useToggleTab,
-  Toaster,
   toastError,
   toastSuccess,
   toastWarning,
@@ -221,8 +220,6 @@ export const SandboxPage = () => {
         <Button onClick={() => toastSuccess('Success', 'Content (optional)')}>Success</Button>
         <Button onClick={() => toastError('Error', 'Content (optional)')}>Error</Button>
         <Button onClick={() => toastWarning('Warning', 'Content (optional)')}>Warning</Button>
-
-        <Toaster />
       </div>
 
       <SBHeader># Modal</SBHeader>

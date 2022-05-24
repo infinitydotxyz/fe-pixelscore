@@ -1,7 +1,7 @@
 import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
 import { useEffect, useRef, useState } from 'react';
 import { TokensGrid } from 'components/astra/token-grid';
-import { BGImage, CenteredContent, ReadMoreText, Spacer, Toaster, toastSuccess } from 'components/common';
+import { BGImage, CenteredContent, ReadMoreText, Spacer, toastError, toastSuccess } from 'components/common';
 import { twMerge } from 'tailwind-merge';
 import { AstraNavbar, AstraNavTab } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
@@ -12,39 +12,9 @@ import { useAppContext } from 'utils/context/AppContext';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
 
-// import ethers, { utils } from 'ethers';
-
-const sendEth = (userAddress: string) => {
-  console.log(userAddress);
-
-  // const network = 'main';
-  // const provider = ethers.getDefaultProvider(network);
-  // const { showAppError, providerManager } = useAppContext();
-  // const receiverAddress = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
-  // const amountInEther = '0.0001';
-  // if (!utils.isAddress(userAddress)) {
-  //   showAppError(`Invalid user address: ${userAddress}.`);
-  //   return;
-  // }
-  // if (!utils.isAddress(receiverAddress)) {
-  //   showAppError(`Invalid transfer to address: ${receiverAddress}.`);
-  //   return;
-  // }
-  // if (userAddress === receiverAddress) {
-  //   showAppError('From address is the same as to address.');
-  //   return;
-  // }
-  // const tx = {
-  //   to: receiverAddress,
-  //   // Convert currency unit from ether to wei
-  //   value: ethers.utils.parseEther(amountInEther)
-  // };
-  // let wallet = new ethers.Wallet('privateKey', providerManager?.getEthersProvider());
-  // wallet.sendTransaction(tx).then((txObj) => {
-  //   console.log('txHash', txObj.hash);
-  // });
-};
-// ====================================================================
+import { utils } from 'ethers';
+import { setReveals } from 'utils/astra-utils';
+import { TokenInfo } from '../utils/types/be-types';
 
 export const HomePage = () => {
   const [collection, setCollection] = useState<BaseCollection>();
@@ -59,7 +29,7 @@ export const HomePage = () => {
     useCardSelection();
 
   const ref = useRef<HTMLDivElement>(null);
-  const { user } = useAppContext();
+  const { user, providerManager } = useAppContext();
 
   useEffect(() => {
     setShowCart(hasSelection);
@@ -147,13 +117,88 @@ export const HomePage = () => {
     tokensGrid = <CenteredContent>{emptyMessage}</CenteredContent>;
   }
 
-  const handleCheckout = () => {
+  const sendEth = async (userAddress: string, amountInEther: string): Promise<string | undefined> => {
+    const receiverAddress = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
+
+    if (!utils.isAddress(userAddress)) {
+      toastError(`Invalid user address: ${userAddress}.`);
+      return;
+    }
+    if (!utils.isAddress(receiverAddress)) {
+      toastError(`Invalid transfer to address: ${receiverAddress}.`);
+      return;
+    }
+    if (userAddress === receiverAddress) {
+      toastError('From address is the same as to address.');
+      return;
+    }
+
+    // send transaction
+    const tx = {
+      to: receiverAddress,
+      value: utils.parseEther(amountInEther)
+    };
+
+    const rpcSigner = providerManager?.getEthersProvider().getSigner();
+    const txObj = await rpcSigner?.sendTransaction(tx);
+
+    if (txObj) {
+      console.log('txHash', txObj.hash);
+
+      return txObj.hash;
+    }
+
+    return;
+  };
+
+  const handleCheckout = async () => {
     if (user) {
-      clearSelection();
+      const pricePerTokenInEther = 0.0001;
+      const dataList = selectedCards();
 
-      sendEth(user?.address);
+      const amountInEth = dataList.length * pricePerTokenInEther;
+      const txnHash = await sendEth(user?.address, amountInEth.toFixed(12).toString());
 
-      toastSuccess('Success', 'Your Pixel Scores has been calculated');
+      if (txnHash) {
+        const tokenInfo: TokenInfo[] = [];
+
+        for (const cardData of dataList) {
+          console.log(cardData);
+          console.log(JSON.stringify(cardData, null, '  '));
+
+          const token: TokenInfo = {
+            chainId: cardData.chainId ?? '',
+            collectionAddress: cardData.tokenAddress ?? '',
+            tokenId: cardData.tokenId ?? '',
+            collectionSlug: cardData.collectionSlug ?? '',
+            imageUrl: cardData.image ?? ''
+          };
+
+          console.log('token');
+          console.log(JSON.stringify(token, null, '  '));
+
+          tokenInfo.push(token);
+        }
+
+        const duh = await setReveals(
+          user.address,
+          txnHash,
+          dataList.length,
+          pricePerTokenInEther,
+          amountInEth,
+          user.address, // revealer? I don't think this is used
+          chainId ?? '',
+          tokenInfo
+        );
+
+        console.log(duh);
+
+        clearSelection();
+
+        toastSuccess('Success', 'Your Pixel Scores has been calculated');
+      } else {
+        toastSuccess('Success', 'Your Pixel Scores has been calculated');
+      }
     }
   };
 
@@ -225,10 +270,5 @@ export const HomePage = () => {
 
   const contents = gridTemplate(navBar, sidebar, tokensGrid, cart, footer);
 
-  return (
-    <div>
-      {contents}
-      <Toaster />
-    </div>
-  );
+  return <div>{contents}</div>;
 };

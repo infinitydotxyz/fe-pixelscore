@@ -1,7 +1,7 @@
 import { inputBorderColor } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { Button, Spacer } from 'components/common';
-import { getReveals } from './astra-utils';
+import { getReveals } from 'utils/astra-utils';
 import { User } from 'utils/context/AppContext';
 
 interface Props {

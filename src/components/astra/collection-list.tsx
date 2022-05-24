@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CollectionSearchArrayDto, CollectionSearchDto } from '../../utils/types/collection-types';
 import { BaseCollection } from '@infinityxyz/lib/types/core';
 import { CollectionListItem } from './collection-list-item';
-import { fetchCollections } from './astra-utils';
+import { fetchCollections } from 'utils/astra-utils';
 import { ScrollLoader } from '../common';
 import { useIsMounted } from 'hooks/useIsMounted';
 

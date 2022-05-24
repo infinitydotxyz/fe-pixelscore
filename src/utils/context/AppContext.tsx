@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { getCustomExceptionMsg } from 'utils/commonUtils';
 import { ProviderEvents, WalletType } from 'utils/providers/AbstractProvider';
 import { UserRejectException } from 'utils/providers/UserRejectException';
 import { ProviderManager } from 'utils/providers/ProviderManager';
-import { Toaster } from 'components/common';
+import { Toaster, toastError } from 'components/common';
 
 export type User = {
   address: string;
@@ -20,8 +19,6 @@ export type AppContextType = {
   signOut: () => void;
   userReady: boolean;
   chainId: string;
-  showAppError: (msg: string) => void;
-  showAppMessage: (msg: string) => void;
   headerPosition: number;
   setHeaderPosition: (bottom: number) => void;
   connectWallet: (walletType: WalletType) => Promise<void>;
@@ -35,12 +32,7 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
   const [userReady, setUserReady] = React.useState(false);
   const [chainId, setChainId] = React.useState('1');
   const [headerPosition, setHeaderPosition] = React.useState(0);
-  const showAppError = (message: React.ReactNode) => {
-    getCustomExceptionMsg(message);
-  };
   const [providerManager, setProviderManager] = React.useState<ProviderManager | undefined>();
-
-  const showAppMessage = (message: React.ReactNode) => message;
 
   React.useEffect(() => {
     // check & set logged in user:
@@ -83,7 +75,7 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
       } catch (err: Error | unknown) {
         console.error(err);
         if (err instanceof UserRejectException) {
-          showAppError(err.message);
+          toastError(err.message);
         }
 
         setUserReady(true);
@@ -113,7 +105,7 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
               setChainId(`${chainIdNew}`);
             } catch (err) {
               if (err instanceof UserRejectException) {
-                showAppError(err.message);
+                toastError(err.message);
                 return;
               }
               console.error(err);
@@ -158,8 +150,6 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
     signOut,
     userReady,
     chainId,
-    showAppError,
-    showAppMessage,
     headerPosition,
     setHeaderPosition,
     connectWallet,
