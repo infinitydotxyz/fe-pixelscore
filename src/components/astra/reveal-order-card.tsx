@@ -1,20 +1,33 @@
-import { CardData } from '@infinityxyz/lib/types/core';
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { BGImage } from '../common';
+import { RevealOrder } from 'utils/types/be-types';
+import { ReactNode } from 'react';
 
 interface Props {
-  data: CardData;
+  data: RevealOrder;
   height: number;
   selected: boolean;
-  onClick: (data: CardData) => void;
+  onClick: (data: RevealOrder) => void;
 }
 
-export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Element => {
-  const title = data?.title ?? '';
-  const tokenId = data?.tokenId ?? '';
+export const RevealOrderCard = ({ data, height, onClick, selected }: Props): JSX.Element => {
+  const title = data?.txnHash ?? '';
+  const tokenId = data?.revealer ?? '';
 
   const heightStyle = `${height}px`;
+
+  const tokens = (): ReactNode => {
+    const tokes = data.revealItems.map((e) => {
+      return (
+        <div key={e.collectionAddress + e.tokenId} className="flex-1 m-2 overflow-clip">
+          <BGImage src={e?.imageUrl} className="hover:scale-110 transition-all" />
+        </div>
+      );
+    });
+
+    return tokes;
+  };
 
   return (
     <div
@@ -28,13 +41,7 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
       onClick={() => onClick(data)}
     >
       <div className="h-full flex flex-col">
-        <div className="flex-1  overflow-clip">
-          <BGImage src={data?.image} className="hover:scale-110 transition-all" />
-        </div>
-
-        {data?.rarityRank && (
-          <div className="absolute bg-gray-100 top-3 right-3 py-1 px-3 rounded-3xl">{Math.round(data?.rarityRank)}</div>
-        )}
+        {tokens()}
 
         <div className="mt-3 mb-4 mx-3">
           <div className="font-bold truncate">{title}</div>

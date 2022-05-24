@@ -162,9 +162,5 @@ export const getReveals = async (user: string, startAfterTimestamp = 0): Promise
     startAfterTimestamp
   });
 
-  console.log(response.status);
-  console.log(response.result);
-  console.log(response.error);
-
   return response;
 };

@@ -14,7 +14,9 @@ import { AstraFooter } from 'components/astra/astra-footer';
 
 import { utils } from 'ethers';
 import { setReveals } from 'utils/astra-utils';
-import { TokenInfo } from '../utils/types/be-types';
+import { RevealOrder, TokenInfo } from '../utils/types/be-types';
+import { RevealOrderCache, RevealOrderFetcher } from 'components/astra/reveal-order-fetcher';
+import { RevealOrderGrid } from 'components/astra/reveal-order-grid';
 
 export const HomePage = () => {
   const [collection, setCollection] = useState<BaseCollection>();
@@ -23,7 +25,8 @@ export const HomePage = () => {
   const [currentTab, setCurrentTab] = useState<AstraNavTab>(AstraNavTab.All);
   const [showCart, setShowCart] = useState(false);
   const [numTokens, setNumTokens] = useState(0);
-  const [tokenFetcher, setTokenFetcher] = useState<TokenFetcher>();
+  const [tokenFetcher, setTokenFetcher] = useState<TokenFetcher | undefined>();
+  const [orderFetcher, setOrderFetcher] = useState<RevealOrderFetcher | undefined>();
 
   const { selectedCards, isSelected, toggleSelection, clearSelection, removeFromSelection, hasSelection } =
     useCardSelection();
@@ -42,17 +45,26 @@ export const HomePage = () => {
   useEffect(() => {
     if (currentTab === AstraNavTab.All && collection && chainId) {
       setTokenFetcher(CollectionTokenCache.shared().fetcher(collection, chainId));
+      setOrderFetcher(undefined);
     }
   }, [currentTab, collection, chainId]);
 
   useEffect(() => {
     if (currentTab === AstraNavTab.MyNFTs && user) {
       setTokenFetcher(UserTokenCache.shared().fetcher(user.address));
+      setOrderFetcher(undefined);
+    } else if (currentTab === AstraNavTab.Pending && user) {
+      setOrderFetcher(RevealOrderCache.shared().fetcher(user.address));
+      setTokenFetcher(undefined);
     }
   }, [currentTab, user]);
 
   const onCardClick = (data: CardData) => {
     toggleSelection(data);
+  };
+
+  const onRevealOrderClick = (data: RevealOrder) => {
+    console.log(data);
   };
 
   let tokensGrid;
@@ -108,6 +120,21 @@ export const HomePage = () => {
           onClick={onCardClick}
           isSelected={(data) => {
             return isSelected(data);
+          }}
+          onLoad={(value) => setNumTokens(value)}
+        />
+      </div>
+    );
+  } else if (orderFetcher) {
+    tokensGrid = (
+      <div className="flex flex-col h-full w-full">
+        <RevealOrderGrid
+          orderFetcher={orderFetcher}
+          className="px-8 py-6"
+          onClick={onRevealOrderClick}
+          isSelected={(data) => {
+            console.log(data);
+            return false; // isSelected(data);
           }}
           onLoad={(value) => setNumTokens(value)}
         />
@@ -266,7 +293,7 @@ export const HomePage = () => {
     />
   );
 
-  const footer = <AstraFooter user={user} name={name} numTokens={numTokens} />;
+  const footer = <AstraFooter name={name} numTokens={numTokens} />;
 
   const contents = gridTemplate(navBar, sidebar, tokensGrid, cart, footer);
 
