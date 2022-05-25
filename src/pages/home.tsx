@@ -218,9 +218,9 @@ export const HomePage = () => {
 
         clearSelection();
 
-        toastSuccess('Success', 'Your Pixel Scores has been calculated');
+        toastSuccess('Success', 'Your order has been submitted');
       } else {
-        toastSuccess('Success', 'Your Pixel Scores has been calculated');
+        toastError('Error', 'Something went wrong');
       }
     }
   };
