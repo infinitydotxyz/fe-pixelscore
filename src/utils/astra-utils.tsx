@@ -52,9 +52,6 @@ export const tokensToCardData = (tokens: BaseToken[], collectionName: string): C
     // token doesn't have a collectionName, remove from BaseToken or fix BE
     // const collectionName = token.collectionName ?? 'Unknown';
 
-    console.log('token');
-    console.log(JSON.stringify(token, null, '  '));
-
     const result: CardData = {
       id: token.collectionAddress + '_' + token.tokenId,
       name: token.metadata?.name,
