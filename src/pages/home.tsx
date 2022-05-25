@@ -43,21 +43,21 @@ export const HomePage = () => {
   }, [collection]);
 
   useEffect(() => {
+    updateFetchers();
+  }, [currentTab, collection, chainId, user]);
+
+  const updateFetchers = () => {
     if (currentTab === AstraNavTab.All && collection && chainId) {
       setTokenFetcher(CollectionTokenCache.shared().fetcher(collection, chainId));
       setOrderFetcher(undefined);
-    }
-  }, [currentTab, collection, chainId]);
-
-  useEffect(() => {
-    if (currentTab === AstraNavTab.MyNFTs && user) {
+    } else if (currentTab === AstraNavTab.MyNFTs && user) {
       setTokenFetcher(UserTokenCache.shared().fetcher(user.address));
       setOrderFetcher(undefined);
     } else if (currentTab === AstraNavTab.Pending && user) {
       setOrderFetcher(RevealOrderCache.shared().fetcher(user.address));
       setTokenFetcher(undefined);
     }
-  }, [currentTab, user]);
+  };
 
   const onCardClick = (data: CardData) => {
     toggleSelection(data);
@@ -147,7 +147,12 @@ export const HomePage = () => {
   }
 
   const onRefresh = () => {
-    // sdf
+    CollectionTokenCache.shared().refresh();
+    UserTokenCache.shared().refresh();
+    RevealOrderCache.shared().refresh();
+
+    // updating fetchers triggers rebuild
+    updateFetchers();
   };
 
   const sendEth = async (userAddress: string, amountInEther: string): Promise<string | undefined> => {

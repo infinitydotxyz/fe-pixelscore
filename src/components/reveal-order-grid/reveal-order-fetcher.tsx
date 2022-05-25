@@ -88,6 +88,10 @@ export class RevealOrderCache {
     this.cache = new Map<string, RevealOrderFetcher>();
   }
 
+  refresh = () => {
+    this.cache = new Map<string, RevealOrderFetcher>();
+  };
+
   fetcher(userAddress: string): RevealOrderFetcher {
     const cached = this.cache.get(userAddress);
 

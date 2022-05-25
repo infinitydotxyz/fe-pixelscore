@@ -75,6 +75,10 @@ export class CollectionTokenCache {
     this.cache = new Map<string, TokenFetcher>();
   }
 
+  refresh = () => {
+    this.cache = new Map<string, TokenFetcher>();
+  };
+
   fetcher(collection: BaseCollection, chainId: string): TokenFetcher {
     const key = `${collection.address}:${chainId}`;
     const cached = this.cache.get(key);
@@ -131,6 +135,11 @@ export class UserTokenCache {
     this.cachedFetcher = undefined;
     this.cachedAddress = '';
   }
+
+  refresh = () => {
+    this.cachedFetcher = undefined;
+    this.cachedAddress = '';
+  };
 
   fetcher(userAddress: string): TokenFetcher {
     if (userAddress === this.cachedAddress && this.cachedFetcher) {
