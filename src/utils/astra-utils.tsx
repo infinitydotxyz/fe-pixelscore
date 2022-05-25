@@ -90,6 +90,16 @@ export const refreshReveal = async (user: string, txnHash: string, chainId: stri
     };
 
     const response = await httpPost(`/u/${user}/refresh`, body);
+
+    // result is a string or RevealOrder
+    if (typeof response.result === 'string') {
+      return response.result as string;
+    } else {
+      const order = response.result as RevealOrder;
+
+      return `Transaction: ${order.txnStatus}`;
+    }
+
     return response.result as string;
   } catch (err) {
     console.error(err);

@@ -133,7 +133,9 @@ export const HomePage = () => {
           className="px-8 py-6"
           onClick={onRevealOrderClick}
           isSelected={(data) => {
-            console.log(data);
+            if (data) {
+              return false;
+            }
             return false; // isSelected(data);
           }}
           onLoad={(value) => setNumTokens(value)}

@@ -39,10 +39,6 @@ export class RevealOrderFetcher {
       } else {
         const results = response.result as RevealOrder[];
 
-        for (const r of results) {
-          console.log(r);
-        }
-
         let lastItem: RevealOrder | undefined;
         if (results.length > 0) {
           lastItem = results[results.length - 1];
