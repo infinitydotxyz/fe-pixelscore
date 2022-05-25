@@ -79,6 +79,7 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
           {revealOrders.map((data) => {
             return (
               <RevealOrderCard
+                userAddress={orderFetcher.userAddress}
                 height={cardHeight}
                 key={data.txnHash + data.timestamp}
                 data={data}

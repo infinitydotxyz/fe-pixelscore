@@ -82,7 +82,7 @@ export const tokensToCardData = (tokens: BaseToken[]): CardData[] => {
 
 // ======================================================
 
-export const refresh = async (user: string, txnHash: string, chainId: string): Promise<string> => {
+export const refreshReveal = async (user: string, txnHash: string, chainId: string): Promise<string> => {
   try {
     const body = {
       txnHash,

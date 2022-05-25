@@ -80,16 +80,16 @@ export const HomePage = () => {
       description = collection?.metadata.description ?? '';
       emptyMessage = 'Select a Collection';
       break;
+    case AstraNavTab.Pending:
     case AstraNavTab.MyNFTs:
       name = currentTab;
       emptyMessage = currentTab;
 
       if (!user) {
-        emptyMessage = 'Click Connect to sign in';
+        emptyMessage = 'Click "Connect" to sign in';
       }
       break;
     case AstraNavTab.Hot:
-    case AstraNavTab.Pending:
     case AstraNavTab.Top100:
       name = currentTab;
       emptyMessage = currentTab;

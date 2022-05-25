@@ -1,21 +1,36 @@
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage } from '../common';
+import { BGImage, Button, toastError, toastSuccess } from '../common';
 import { RevealOrder } from 'utils/types/be-types';
 import { ReactNode } from 'react';
+import { refreshReveal } from 'utils/astra-utils';
+import { httpErrorResponse } from 'utils';
 
 interface Props {
+  userAddress: string;
   data: RevealOrder;
   height: number;
   selected: boolean;
   onClick: (data: RevealOrder) => void;
 }
 
-export const RevealOrderCard = ({ data, height, onClick, selected }: Props): JSX.Element => {
+export const RevealOrderCard = ({ userAddress, data, height, onClick, selected }: Props): JSX.Element => {
   const title = data?.txnHash ?? '';
   const tokenId = data?.txnStatus ?? '';
 
   const heightStyle = `${height}px`;
+
+  const refreshClick = async () => {
+    try {
+      const result = await refreshReveal(userAddress, data.txnHash, data.chainId);
+
+      toastSuccess(result);
+    } catch (err) {
+      const errStr = httpErrorResponse(err);
+
+      toastError(`Error: ${errStr.status} ${errStr.error}`);
+    }
+  };
 
   const tokens = (): ReactNode => {
     const tokes = data.revealItems.map((e) => {
@@ -43,9 +58,13 @@ export const RevealOrderCard = ({ data, height, onClick, selected }: Props): JSX
       <div className="h-full flex flex-col">
         {tokens()}
 
-        <div className="mt-3 mb-4 mx-3">
+        <div className="mt-3 mb-4 mx-3 flex flex-col ">
           <div className="font-bold truncate">{title}</div>
           <div className="text-secondary font-heading truncate">{tokenId}</div>
+
+          <div className=" mx-3 mt-2 flex flex-col ">
+            <Button onClick={refreshClick}>Refresh</Button>
+          </div>
         </div>
       </div>
     </div>
