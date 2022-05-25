@@ -82,7 +82,7 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
                 userAddress={orderFetcher.userAddress}
                 height={cardHeight}
                 key={data.txnHash + data.timestamp}
-                data={data}
+                revealOrder={data}
                 selected={isSelected(data)}
                 onClick={(data) => {
                   if (onClick) {

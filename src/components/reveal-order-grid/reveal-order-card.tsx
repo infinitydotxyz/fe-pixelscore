@@ -8,21 +8,24 @@ import { httpErrorResponse } from 'utils';
 
 interface Props {
   userAddress: string;
-  data: RevealOrder;
+  revealOrder: RevealOrder;
   height: number;
   selected: boolean;
   onClick: (data: RevealOrder) => void;
 }
 
-export const RevealOrderCard = ({ userAddress, data, height, onClick, selected }: Props): JSX.Element => {
-  const title = data?.txnHash ?? '';
-  const tokenId = data?.txnStatus ?? '';
+export const RevealOrderCard = ({ userAddress, revealOrder, height, onClick, selected }: Props): JSX.Element => {
+  const title = revealOrder?.txnHash ?? '';
+  const tokenId = revealOrder?.txnStatus ?? '';
 
   const heightStyle = `${height}px`;
 
   const refreshClick = async () => {
+    // console.log('cards revealOrder');
+    // console.log(JSON.stringify(revealOrder, null, '  '));
+
     try {
-      const result = await refreshReveal(userAddress, data.txnHash, data.chainId);
+      const result = await refreshReveal(userAddress, revealOrder.txnHash, revealOrder.chainId);
 
       toastSuccess(result);
     } catch (err) {
@@ -33,7 +36,7 @@ export const RevealOrderCard = ({ userAddress, data, height, onClick, selected }
   };
 
   const tokens = (): ReactNode => {
-    const tokes = data.revealItems.map((e) => {
+    const tokes = revealOrder.revealItems.map((e) => {
       return (
         <div key={e.collectionAddress + e.tokenId} className="flex-1 m-2 overflow-clip">
           <BGImage src={e?.imageUrl} className="hover:scale-110 transition-all" />
@@ -53,7 +56,7 @@ export const RevealOrderCard = ({ userAddress, data, height, onClick, selected }
         selected ? selectionOutline : ''
       )}
       style={{ height: heightStyle }}
-      onClick={() => onClick(data)}
+      onClick={() => onClick(revealOrder)}
     >
       <div className="h-full flex flex-col">
         {tokens()}

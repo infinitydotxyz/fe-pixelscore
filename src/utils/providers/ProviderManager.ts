@@ -1,6 +1,6 @@
 import { Signature, utils, providers } from 'ethers';
 import { LOGIN_MESSAGE } from '../constants';
-import { Optional } from '../typeUtils';
+import { Optional } from 'utils/types/typeUtils';
 import { ProviderEvents, WalletType } from './AbstractProvider';
 import { MetaMask } from './MetaMask';
 import { JSONRPCRequestPayload, Provider } from './Provider';

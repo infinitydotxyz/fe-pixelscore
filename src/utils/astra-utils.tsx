@@ -47,15 +47,19 @@ export const fetchCollections = async (query: string, cursor?: string): Promise<
 
 // ======================================================
 
-export const tokensToCardData = (tokens: BaseToken[]): CardData[] => {
+export const tokensToCardData = (tokens: BaseToken[], collectionName: string): CardData[] => {
   let cardData = tokens.map((token) => {
-    const collectionName = token.collectionName ?? 'Unknown';
+    // token doesn't have a collectionName, remove from BaseToken or fix BE
+    // const collectionName = token.collectionName ?? 'Unknown';
+
+    console.log('token');
+    console.log(JSON.stringify(token, null, '  '));
 
     const result: CardData = {
       id: token.collectionAddress + '_' + token.tokenId,
       name: token.metadata?.name,
       collectionName: collectionName,
-      title: collectionName,
+      title: collectionName ?? 'Unknown',
       description: token.metadata.description,
       image: token.image.url || token.image.originalUrl,
       price: token.mintPrice,
@@ -95,9 +99,12 @@ export const refreshReveal = async (user: string, txnHash: string, chainId: stri
     if (typeof response.result === 'string') {
       return response.result as string;
     } else {
-      const order = response.result as RevealOrder;
+      const revealOrder = response.result as RevealOrder;
 
-      return `Transaction: ${order.txnStatus}`;
+      // console.log('refresh revealOrder');
+      // console.log(JSON.stringify(revealOrder, null, '  '));
+
+      return `Transaction: ${revealOrder.txnStatus}`;
     }
 
     return response.result as string;

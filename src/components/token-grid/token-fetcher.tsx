@@ -13,6 +13,7 @@ export interface TokenFetcherResult {
 export class TokenFetcher {
   error = false;
   cursor = '';
+  collectionName = '';
   hasNextPage = false;
   cardData: CardData[] = [];
 
@@ -35,7 +36,7 @@ export class TokenFetcher {
       } else {
         const result = response.result as NFTArray;
 
-        let newCards = tokensToCardData(result.data);
+        let newCards = tokensToCardData(result.data, this.collectionName);
         if (loadMore) {
           newCards = [...this.cardData, ...newCards];
         }
@@ -100,6 +101,9 @@ class CollectionTokenFetcher extends TokenFetcher {
 
     this.collection = collection;
     this.chainId = chainId;
+
+    // BaseToken doesn't have a collection name from server, so setting it here
+    this.collectionName = collection.metadata.name ?? 'Unknown';
   }
 
   // override
@@ -148,6 +152,9 @@ class UserTokenFetcher extends TokenFetcher {
   constructor(userAddress: string) {
     super();
     this.userAddress = userAddress;
+
+    // BaseToken doesn't have a collection name from server, so setting it here
+    this.collectionName = 'Unknown';
   }
 
   // override
