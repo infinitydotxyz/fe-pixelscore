@@ -192,9 +192,6 @@ export const HomePage = () => {
         const tokenInfo: TokenInfo[] = [];
 
         for (const cardData of dataList) {
-          console.log(cardData);
-          console.log(JSON.stringify(cardData, null, '  '));
-
           const token: TokenInfo = {
             chainId: cardData.chainId ?? '',
             collectionAddress: cardData.tokenAddress ?? '',
@@ -202,9 +199,6 @@ export const HomePage = () => {
             collectionSlug: cardData.collectionSlug ?? '',
             imageUrl: cardData.image ?? ''
           };
-
-          console.log('token');
-          console.log(JSON.stringify(token, null, '  '));
 
           tokenInfo.push(token);
         }

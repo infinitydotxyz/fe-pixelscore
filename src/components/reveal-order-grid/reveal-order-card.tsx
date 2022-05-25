@@ -36,15 +36,15 @@ export const RevealOrderCard = ({ userAddress, revealOrder, height, onClick, sel
   };
 
   const tokens = (): ReactNode => {
-    const tokes = revealOrder.revealItems.map((e) => {
+    const result = revealOrder.revealItems.map((e) => {
       return (
-        <div key={e.collectionAddress + e.tokenId} className="flex-1 m-2 overflow-clip">
-          <BGImage src={e?.imageUrl} className="hover:scale-110 transition-all" />
+        <div key={e.collectionAddress + e.tokenId} className="flex-1 mb-1 min-h-[60px] overflow-clip">
+          <BGImage src={e?.imageUrl} className="hover:scale-110 transition-all  " />
         </div>
       );
     });
 
-    return tokes;
+    return <div className="flex flex-col overflow-y-auto overflow-x-clip h-full w-full">{result}</div>;
   };
 
   return (
