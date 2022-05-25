@@ -6,22 +6,17 @@ import { MdRefresh } from 'react-icons/md';
 interface Props {
   name: string;
   numTokens: number;
+  onRefresh: () => void;
 }
 
-export const AstraFooter = ({ name, numTokens }: Props) => {
+export const AstraFooter = ({ name, numTokens, onRefresh }: Props) => {
   return (
     <div className={twMerge(inputBorderColor, 'px-6 py-1 flex items-center border-t bg-slate-200')}>
       <div className="text-lg"> {name}</div>
 
       <Spacer />
 
-      <Button
-        onClick={() => {
-          console.log('jlkjsdf');
-        }}
-        size="plain"
-        variant="round"
-      >
+      <Button onClick={onRefresh} size="plain" variant="round">
         <MdRefresh className="h-6 w-6" />
       </Button>
 

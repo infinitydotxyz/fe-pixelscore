@@ -146,6 +146,10 @@ export const HomePage = () => {
     tokensGrid = <CenteredContent>{emptyMessage}</CenteredContent>;
   }
 
+  const onRefresh = () => {
+    // sdf
+  };
+
   const sendEth = async (userAddress: string, amountInEther: string): Promise<string | undefined> => {
     const receiverAddress = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
 
@@ -289,7 +293,7 @@ export const HomePage = () => {
     />
   );
 
-  const footer = <AstraFooter name={name} numTokens={numTokens} />;
+  const footer = <AstraFooter name={name} numTokens={numTokens} onRefresh={onRefresh} />;
 
   const contents = gridTemplate(navBar, sidebar, tokensGrid, cart, footer);
 
