@@ -1,6 +1,7 @@
 import { inputBorderColor } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { Spacer } from 'components/common';
+import { Button, Spacer } from 'components/common';
+import { MdRefresh } from 'react-icons/md';
 
 interface Props {
   name: string;
@@ -13,7 +14,18 @@ export const AstraFooter = ({ name, numTokens }: Props) => {
       <div className="text-lg"> {name}</div>
 
       <Spacer />
-      <div className="text-lg">{numTokens} items</div>
+
+      <Button
+        onClick={() => {
+          console.log('jlkjsdf');
+        }}
+        size="plain"
+        variant="round"
+      >
+        <MdRefresh className="h-6 w-6" />
+      </Button>
+
+      <div className="ml-4 text-lg">{numTokens} items</div>
     </div>
   );
 };
