@@ -1,30 +1,29 @@
+import { CardData } from '@infinityxyz/lib/types/core';
 import { useState, useEffect } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import { ScrollLoader } from 'components/common';
 import { useIsMounted } from 'hooks/useIsMounted';
 import { twMerge } from 'tailwind-merge';
-import { ErrorOrLoading } from './error-or-loading';
-import { RevealOrder } from 'utils/types/be-types';
-import { RevealOrderFetcher } from './reveal-order-fetcher';
-import { RevealOrderCard } from './reveal-order-card';
+import { TokenCard } from './token-card';
+import { TokenFetcher } from './token-fetcher';
+import { ErrorOrLoading } from '../astra/error-or-loading';
 
 interface Props {
+  tokenFetcher: TokenFetcher;
   className?: string;
-  onClick?: (data: RevealOrder) => void;
-  isSelected: (data: RevealOrder) => boolean;
+  onClick?: (data: CardData) => void;
+  isSelected: (data: CardData) => boolean;
   onLoad: (numItems: number) => void;
-  orderFetcher: RevealOrderFetcher;
 }
 
-export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
-  const [revealOrders, setRevealOrders] = useState<RevealOrder[]>([]);
+export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
+  const [cardData, setCardData] = useState<CardData[]>([]);
   const [error, setError] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { width, ref } = useResizeDetector();
-
   const isMounted = useIsMounted();
 
   useEffect(() => {
@@ -32,31 +31,29 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
   }, [width]);
 
   useEffect(() => {
-    setRevealOrders([]);
+    setCardData([]);
     setLoading(true);
     handleFetch(false);
-  }, [orderFetcher]);
+  }, [tokenFetcher]);
 
   const handleFetch = async (loadMore: boolean) => {
-    if (orderFetcher) {
-      const { fhasNextPage, frevealOrders, ferror } = await orderFetcher.fetch(loadMore);
+    const { fhasNextPage, fcardData, ferror } = await tokenFetcher.fetch(loadMore);
 
-      // can't update react state after unmount
-      if (!isMounted()) {
-        return;
-      }
-
-      setHasNextPage(fhasNextPage);
-      setError(ferror);
-
-      if (!ferror) {
-        setRevealOrders(frevealOrders);
-
-        onLoad(frevealOrders.length);
-      }
-
-      setLoading(false);
+    // can't update react state after unmount
+    if (!isMounted()) {
+      return;
     }
+
+    setHasNextPage(fhasNextPage);
+    setError(ferror);
+
+    if (!ferror) {
+      setCardData(fcardData);
+
+      onLoad(fcardData.length);
+    }
+
+    setLoading(false);
   };
 
   let contents;
@@ -76,12 +73,11 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
     contents = (
       <>
         <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
-          {revealOrders.map((data) => {
+          {cardData.map((data) => {
             return (
-              <RevealOrderCard
-                userAddress={orderFetcher.userAddress}
+              <TokenCard
                 height={cardHeight}
-                key={data.txnHash + data.timestamp}
+                key={data.id}
                 data={data}
                 selected={isSelected(data)}
                 onClick={(data) => {

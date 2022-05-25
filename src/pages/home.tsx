@@ -1,13 +1,12 @@
 import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
 import { useEffect, useRef, useState } from 'react';
-import { TokensGrid } from 'components/astra/token-grid';
 import { BGImage, CenteredContent, ReadMoreText, Spacer, toastError, toastSuccess } from 'components/common';
 import { twMerge } from 'tailwind-merge';
 import { AstraNavbar, AstraNavTab } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
 import { AstraCart } from 'components/astra/astra-cart';
 import { inputBorderColor } from 'utils/ui-constants';
-import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/astra/token-fetcher';
+import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/token-grid/token-fetcher';
 import { useAppContext } from 'utils/context/AppContext';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
@@ -15,8 +14,9 @@ import { AstraFooter } from 'components/astra/astra-footer';
 import { utils } from 'ethers';
 import { setReveals } from 'utils/astra-utils';
 import { RevealOrder, TokenInfo } from '../utils/types/be-types';
-import { RevealOrderCache, RevealOrderFetcher } from 'components/astra/reveal-order-fetcher';
-import { RevealOrderGrid } from 'components/astra/reveal-order-grid';
+import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
+import { TokensGrid } from 'components/token-grid/token-grid';
+import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
 
 export const HomePage = () => {
   const [collection, setCollection] = useState<BaseCollection>();
