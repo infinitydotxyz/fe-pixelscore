@@ -21,9 +21,16 @@ export interface SimpleTableItem {
 interface Props {
   items: SimpleTableItem[];
   className?: string;
+  compact?: boolean;
 }
 
-export const SimpleTable = ({ items, className = '' }: Props) => {
+export const SimpleTable = ({ items, className = '', compact = false }: Props) => {
+  let spacing = 'space-y-2';
+
+  if (compact) {
+    spacing = 'space-y-1';
+  }
+
   const table = items.map((item) => {
     return (
       <div key={Math.random()} className="flex w-full">
@@ -34,5 +41,5 @@ export const SimpleTable = ({ items, className = '' }: Props) => {
     );
   });
 
-  return <div className={twMerge(className, 'space-y-2')}>{table}</div>;
+  return <div className={twMerge(className, spacing)}>{table}</div>;
 };

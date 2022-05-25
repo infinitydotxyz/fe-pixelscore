@@ -63,14 +63,14 @@ export const RevealOrderCard = ({ userAddress, revealOrder, height, onClick, sel
   tableItems.push({ title: 'numItems', value: <div className="font-bold">{revealOrder.numItems}</div> });
   tableItems.push({ title: 'totalPrice', value: <div className="font-bold">{revealOrder.totalPrice}</div> });
   tableItems.push({
-    title: 'totalPrice',
+    title: 'Date',
     value: <div className="font-bold">{shortDateWithTime(new Date(revealOrder.timestamp))}</div>
   });
 
   return (
     <div
       className={twMerge(
-        'overflow-clip border',
+        'overflow-clip border shadow-md',
         inputBorderColor,
         'rounded-2xl w-full relative flex flex-col',
         selected ? selectionOutline : ''
@@ -81,10 +81,10 @@ export const RevealOrderCard = ({ userAddress, revealOrder, height, onClick, sel
       <div className="h-full flex flex-col">
         {tokens()}
 
-        <div className="mt-3 mb-4 mx-3 flex flex-col ">
-          <SimpleTable items={tableItems} className="w-full" />
+        <div className="mt-3 mb-4 mx-5 flex flex-col ">
+          <SimpleTable compact={true} items={tableItems} className="w-full" />
 
-          <div className="mx-3 mt-2 flex flex-col ">
+          <div className="mx-3 mt-4 flex flex-col ">
             <Button onClick={refreshClick}>Refresh</Button>
           </div>
         </div>
