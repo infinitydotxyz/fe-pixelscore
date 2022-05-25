@@ -104,6 +104,8 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
   return (
     <div ref={ref} className={twMerge('h-full w-full', className)}>
       {contents}
+
+      <div className="h-1/3" />
     </div>
   );
 };

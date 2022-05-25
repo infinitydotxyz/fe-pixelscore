@@ -15,7 +15,7 @@ export const PageBox = ({ children, className = '', extraScrollHeight = true }: 
         <Navbar />
         <div className={twMerge('flex-1 mx-12', className)}>{children}</div>
 
-        {extraScrollHeight && <div className="h-[300px]"></div>}
+        {extraScrollHeight && <div className="h-[300px]" />}
       </div>
     </>
   );

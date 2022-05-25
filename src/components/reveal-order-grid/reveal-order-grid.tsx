@@ -108,6 +108,8 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
   return (
     <div ref={ref} className={twMerge('h-full w-full', className)}>
       {contents}
+
+      <div className="h-1/3" />
     </div>
   );
 };
