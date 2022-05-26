@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppContext } from 'utils/context/AppContext';
 import { BiCopyAlt, BiCheck } from 'react-icons/bi';
 import { Dropdown } from './dropdown';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from './button';
 import { ellipsisAddress } from 'utils';
 
@@ -11,6 +11,7 @@ export const ConnectButton = () => {
   const connected = user?.address ? true : false;
   const address = user?.address;
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [copied, setCopied] = React.useState(false);
 
@@ -55,7 +56,9 @@ export const ConnectButton = () => {
   return (
     <>
       {connected && <Dropdown label={`${ellipsisAddress(address)}`} items={menuItems} />}
-      {!connected && <Button onClick={() => navigate('/connect')}>Connect</Button>}
+      {!connected && (
+        <Button onClick={() => navigate('/connect', { state: { fromPath: location.pathname } })}>Connect</Button>
+      )}
     </>
   );
 };

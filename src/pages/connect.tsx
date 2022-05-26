@@ -4,17 +4,30 @@ import { WalletType } from 'utils/providers/AbstractProvider';
 import { PageBox, SVG } from 'components/common';
 import { twMerge } from 'tailwind-merge';
 import { iconButtonStyle } from 'utils/ui-constants';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const ConnectPage = () => {
   const navigate = useNavigate();
-  const { connectWallet, user, userReady } = useAppContext();
+  const { connectWallet, user } = useAppContext();
+  const { state } = useLocation();
+
+  let fromPath = '';
+  if (state) {
+    const s = state as { fromPath: string };
+    fromPath = s.fromPath;
+  }
 
   useEffect(() => {
-    if (user?.address && userReady) {
-      navigate(-1);
+    if (user?.address) {
+      if (fromPath) {
+        navigate(fromPath);
+      } else {
+        // we don't know if our site is one back, but mostly works
+        // navigate(-1);
+        navigate('/');
+      }
     }
-  }, [userReady, user]);
+  }, [user]);
 
   const connectCoinbase = async () => {
     await connectWallet?.(WalletType.WalletLink);

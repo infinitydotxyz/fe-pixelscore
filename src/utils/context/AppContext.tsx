@@ -17,7 +17,6 @@ export type FollowingCollection = {
 export type AppContextType = {
   user?: User;
   signOut: () => void;
-  userReady: boolean;
   chainId: string;
   headerPosition: number;
   setHeaderPosition: (bottom: number) => void;
@@ -29,7 +28,6 @@ const AppContext = React.createContext<AppContextType | null>(null);
 
 export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
   const [user, setUser] = React.useState<User | undefined>();
-  const [userReady, setUserReady] = React.useState(false);
   const [chainId, setChainId] = React.useState('1');
   const [headerPosition, setHeaderPosition] = React.useState(0);
   const [providerManager, setProviderManager] = React.useState<ProviderManager | undefined>();
@@ -52,9 +50,6 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
           })
           .catch((err) => {
             console.error(err);
-          })
-          .finally(() => {
-            setUserReady(true);
           });
       }
     });
@@ -71,14 +66,11 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
         setUser({ address: providerManager.account ?? '' });
         const chainIdNew = providerManager.chainId ?? 1;
         setChainId(`${chainIdNew}`);
-        setUserReady(true);
       } catch (err: Error | unknown) {
         console.error(err);
         if (err instanceof UserRejectException) {
           toastError(err.message);
         }
-
-        setUserReady(true);
       }
     } else {
       console.log(`Provider not ready yet`);
@@ -148,7 +140,6 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
   const value: AppContextType = {
     user,
     signOut,
-    userReady,
     chainId,
     headerPosition,
     setHeaderPosition,
