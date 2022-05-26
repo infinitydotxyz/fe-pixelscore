@@ -1,4 +1,5 @@
 import { BaseToken } from '@infinityxyz/lib/types/core';
+import { RankInfo } from './be-types';
 
 // SNG why type not in the lib?
 
@@ -24,6 +25,12 @@ export interface CollectionSearchArrayDto {
 // NFTArrayDto
 export interface NFTArray {
   data: BaseToken[];
+  cursor: string;
+  hasNextPage: boolean;
+}
+
+export interface RankInfoArray {
+  data: RankInfo[];
   cursor: string;
   hasNextPage: boolean;
 }

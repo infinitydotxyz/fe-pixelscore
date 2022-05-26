@@ -1,7 +1,7 @@
 import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
 import { ApiResponse } from 'utils';
-import { NFTArray } from '../../utils/types/collection-types';
-import { fetchTokens, fetchUserTokens, tokensToCardData } from 'utils/astra-utils';
+import { RankInfoArray } from '../../utils/types/collection-types';
+import { fetchTokens, fetchUserTokens, rankInfosToCardData } from 'utils/astra-utils';
 
 export interface TokenFetcherResult {
   ferror: boolean;
@@ -34,9 +34,12 @@ export class TokenFetcher {
         this.error = response.error !== null;
         console.error(response.error);
       } else {
-        const result = response.result as NFTArray;
+        // const result = response.result as NFTArray;
+        // let newCards = tokensToCardData(result.data, this.collectionName);
 
-        let newCards = tokensToCardData(result.data, this.collectionName);
+        const result = response.result as RankInfoArray;
+        let newCards = rankInfosToCardData(result.data, this.collectionName);
+
         if (loadMore) {
           newCards = [...this.cardData, ...newCards];
         }

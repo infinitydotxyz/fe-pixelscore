@@ -34,3 +34,14 @@ export interface UpdateRankVisibility {
   tokenId: string;
   pixelRankVisible: boolean;
 }
+
+export interface RankInfo {
+  chainId: string;
+  collectionAddress: string;
+  imageUrl: string;
+  inCollectionPixelRank?: number;
+  pixelRank?: number;
+  pixelRankBucket?: number;
+  pixelScore?: number;
+  tokenId: string;
+}

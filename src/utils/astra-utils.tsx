@@ -1,7 +1,7 @@
 import { BaseToken, CardData } from '@infinityxyz/lib/types/core';
 import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'utils';
 import { Filter } from 'utils/context/FilterContext';
-import { RevealOrder, TokenInfo, UpdateRankVisibility } from './types/be-types';
+import { RankInfo, RevealOrder, TokenInfo, UpdateRankVisibility } from './types/be-types';
 
 export const fetchTokens = async (
   collectionAddress: string,
@@ -70,6 +70,48 @@ export const tokensToCardData = (tokens: BaseToken[], collectionName: string): C
       address: token.collectionAddress,
       cardImage: token.image.url || token.image.originalUrl,
       imagePreview: token.image.url || token.image.originalUrl
+    };
+
+    return result;
+  });
+
+  // remove any without tokenAddress (seeing bad NFTs in my profile)
+  cardData = cardData.filter((x) => x.tokenAddress);
+
+  return cardData;
+};
+
+export const rankInfosToCardData = (tokens: RankInfo[], collectionName: string): CardData[] => {
+  let cardData = tokens.map((token) => {
+    // token doesn't have a collectionName, remove from BaseToken or fix BE
+    // const collectionName = token.collectionName ?? 'Unknown';
+
+    const result: CardData = {
+      id: token.collectionAddress + '_' + token.tokenId,
+      collectionName: collectionName,
+      title: collectionName ?? 'Unknown',
+      chainId: token.chainId,
+      tokenAddress: token.collectionAddress,
+      tokenId: token.tokenId,
+      address: token.collectionAddress,
+
+      image: token.imageUrl,
+
+      inCollectionPixelRank: token.inCollectionPixelRank,
+      pixelRank: token.pixelRank,
+      pixelRankBucket: token.pixelRankBucket,
+      pixelScore: token.pixelScore
+
+      // rarityRank: token.rarityRank,
+      // orderSnippet: token.ordersSnippet,
+      // collectionSlug: token.collectionSlug,
+      // hasBlueCheck: token.hasBlueCheck,
+      // description: token.metadata.description,
+      // image: token.image.url || token.image.originalUrl,
+      // price: token.mintPrice,
+      // cardImage: token.image.url || token.image.originalUrl,
+      // imagePreview: token.image.url || token.image.originalUrl
+      // name: token.metadata?.name,
     };
 
     return result;
