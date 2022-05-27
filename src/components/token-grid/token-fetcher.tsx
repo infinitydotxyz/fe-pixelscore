@@ -1,7 +1,14 @@
-import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
+import { BaseCollection, BaseToken, CardData } from '@infinityxyz/lib/types/core';
 import { ApiResponse } from 'utils';
-import { RankInfoArray } from '../../utils/types/collection-types';
-import { fetchTokens, fetchTokensByRank, fetchUserTokens, rankInfosToCardData } from 'utils/astra-utils';
+import { NFTArrayResult } from '../../utils/types/collection-types';
+import {
+  fetchTokens,
+  fetchTokensByRank,
+  fetchUserTokens,
+  rankInfosToCardData,
+  tokensToCardData
+} from 'utils/astra-utils';
+import { RankInfo } from 'utils/types/be-types';
 
 export interface TokenFetcherResult {
   ferror: boolean;
@@ -34,11 +41,8 @@ export class TokenFetcher {
         this.error = response.error !== null;
         console.error(response.error);
       } else {
-        // const result = response.result as NFTArray;
-        // let newCards = tokensToCardData(result.data, this.collectionName);
-
-        const result = response.result as RankInfoArray;
-        let newCards = rankInfosToCardData(result.data, this.collectionName);
+        const result = response.result as NFTArrayResult<unknown>;
+        let newCards = this.toCardData(result);
 
         if (loadMore) {
           newCards = [...this.cardData, ...newCards];
@@ -56,6 +60,12 @@ export class TokenFetcher {
   // override this
   protected doFetch = async (): Promise<ApiResponse> => {
     return { status: 0 };
+  };
+
+  // override this
+  protected toCardData = (data: NFTArrayResult<unknown>): CardData[] => {
+    const result = data as NFTArrayResult<RankInfo>;
+    return rankInfosToCardData(result.data, this.collectionName);
   };
 }
 
@@ -172,6 +182,12 @@ class UserTokenFetcher extends TokenFetcher {
   // override
   protected doFetch = async (): Promise<ApiResponse> => {
     return fetchUserTokens(this.userAddress, this.cursor);
+  };
+
+  // override
+  protected toCardData = (data: NFTArrayResult<unknown>): CardData[] => {
+    const result = data as NFTArrayResult<BaseToken>;
+    return tokensToCardData(result.data, 'Unknown');
   };
 }
 

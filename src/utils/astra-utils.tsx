@@ -74,6 +74,9 @@ export const tokensToCardData = (tokens: BaseToken[], collectionName: string): C
       title: collectionName ?? 'Unknown',
       description: token.metadata.description,
       image: token.image.url || token.image.originalUrl,
+      // cardImage: token.image.url || token.image.originalUrl,
+      // imagePreview: token.image.url || token.image.originalUrl,
+
       price: token.mintPrice,
       chainId: token.chainId,
       tokenAddress: token.collectionAddress,
@@ -82,9 +85,12 @@ export const tokensToCardData = (tokens: BaseToken[], collectionName: string): C
       orderSnippet: token.ordersSnippet,
       collectionSlug: token.collectionSlug,
       hasBlueCheck: token.hasBlueCheck,
-      address: token.collectionAddress,
-      cardImage: token.image.url || token.image.originalUrl,
-      imagePreview: token.image.url || token.image.originalUrl
+      address: token.collectionAddress
+
+      // inCollectionPixelRank: token.inCollectionPixelRank,
+      // pixelRank: token.pixelRank,
+      // pixelRankBucket: token.pixelRankBucket,
+      // pixelScore: token.pixelScore
     };
 
     return result;
