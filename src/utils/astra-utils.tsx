@@ -13,7 +13,7 @@ export const fetchTokens = async (
   filterState.orderBy = 'tokenId';
   filterState.orderDirection = 'asc';
 
-  const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts`, {
+  const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts99`, {
     limit: LARGE_LIMIT,
     cursor,
     ...filterState
@@ -94,24 +94,11 @@ export const rankInfosToCardData = (tokens: RankInfo[], collectionName: string):
       tokenAddress: token.collectionAddress,
       tokenId: token.tokenId,
       address: token.collectionAddress,
-
       image: token.imageUrl,
-
       inCollectionPixelRank: token.inCollectionPixelRank,
       pixelRank: token.pixelRank,
       pixelRankBucket: token.pixelRankBucket,
       pixelScore: token.pixelScore
-
-      // rarityRank: token.rarityRank,
-      // orderSnippet: token.ordersSnippet,
-      // collectionSlug: token.collectionSlug,
-      // hasBlueCheck: token.hasBlueCheck,
-      // description: token.metadata.description,
-      // image: token.image.url || token.image.originalUrl,
-      // price: token.mintPrice,
-      // cardImage: token.image.url || token.image.originalUrl,
-      // imagePreview: token.image.url || token.image.originalUrl
-      // name: token.metadata?.name,
     };
 
     return result;

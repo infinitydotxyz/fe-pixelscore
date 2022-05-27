@@ -72,6 +72,7 @@ export const HomePage = () => {
   let name = '';
   let description = '';
   let emptyMessage = '';
+  let numNfts = numTokens;
 
   switch (currentTab) {
     case AstraNavTab.All:
@@ -79,6 +80,7 @@ export const HomePage = () => {
       name = collection?.metadata.name ?? '';
       description = collection?.metadata.description ?? '';
       emptyMessage = 'Select a Collection';
+      numNfts = collection?.numNfts ?? numTokens;
       break;
     case AstraNavTab.Pending:
     case AstraNavTab.MyNFTs:
@@ -107,7 +109,7 @@ export const HomePage = () => {
           </div>
         </div>
         <Spacer />
-        <div className="text-lg whitespace-nowrap ml-3">{numTokens} items</div>
+        <div className="text-lg whitespace-nowrap ml-3">{numNfts} Nfts</div>
       </div>
     );
 

@@ -16,6 +16,14 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
 
   const heightStyle = `${height}px`;
 
+  const badgeItem = (val: number | string | undefined, className = 'top-1 left-1') => {
+    if (val) {
+      return (
+        <div className={twMerge(className, 'absolute bg-white font-bold rounded-full px-3 shadow-lg ')}>{val}</div>
+      );
+    }
+  };
+
   return (
     <div
       className={twMerge(
@@ -28,8 +36,12 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
       onClick={() => onClick(data)}
     >
       <div className="h-full flex flex-col">
-        <div className="flex-1  overflow-clip">
+        <div className="relative flex-1  overflow-clip">
           <BGImage src={data?.image} className="hover:scale-110 transition-all" />
+
+          {badgeItem(data.pixelRank)}
+          {badgeItem(data.pixelScore, 'bottom-1 left-1')}
+          {badgeItem(data.pixelRankBucket, 'top-1 right-1')}
         </div>
 
         {data?.rarityRank && (
