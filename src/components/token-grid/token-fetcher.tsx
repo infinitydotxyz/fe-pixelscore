@@ -1,4 +1,4 @@
-import { BaseCollection, BaseToken, CardData } from '@infinityxyz/lib/types/core';
+import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
 import { ApiResponse } from 'utils';
 import { NFTArrayResult } from '../../utils/types/collection-types';
 import {
@@ -8,7 +8,7 @@ import {
   rankInfosToCardData,
   tokensToCardData
 } from 'utils/astra-utils';
-import { RankInfo } from 'utils/types/be-types';
+import { NFTToken, RankInfo } from 'utils/types/be-types';
 
 export interface TokenFetcherResult {
   ferror: boolean;
@@ -119,7 +119,7 @@ class CollectionTokenFetcher extends TokenFetcher {
     this.collection = collection;
     this.chainId = chainId;
 
-    // BaseToken doesn't have a collection name from server, so setting it here
+    // NFTToken doesn't have a collection name from server, so setting it here
     this.collectionName = collection.metadata.name ?? 'Unknown';
   }
 
@@ -175,7 +175,7 @@ class UserTokenFetcher extends TokenFetcher {
     super();
     this.userAddress = userAddress;
 
-    // BaseToken doesn't have a collection name from server, so setting it here
+    // NFTToken doesn't have a collection name from server, so setting it here
     this.collectionName = 'Unknown';
   }
 
@@ -186,7 +186,7 @@ class UserTokenFetcher extends TokenFetcher {
 
   // override
   protected toCardData = (data: NFTArrayResult<unknown>): CardData[] => {
-    const result = data as NFTArrayResult<BaseToken>;
+    const result = data as NFTArrayResult<NFTToken>;
     return tokensToCardData(result.data, 'Unknown');
   };
 }

@@ -1,7 +1,7 @@
-import { BaseToken, CardData } from '@infinityxyz/lib/types/core';
+import { CardData } from '@infinityxyz/lib/types/core';
 import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'utils';
 import { Filter } from 'utils/context/FilterContext';
-import { RankInfo, RevealOrder, TokenInfo, UpdateRankVisibility } from './types/be-types';
+import { NFTToken, RankInfo, RevealOrder, TokenInfo, UpdateRankVisibility } from './types/be-types';
 
 export const fetchTokens = async (
   collectionAddress: string,
@@ -62,9 +62,9 @@ export const fetchCollections = async (query: string, cursor?: string): Promise<
 
 // ======================================================
 
-export const tokensToCardData = (tokens: BaseToken[], collectionName: string): CardData[] => {
+export const tokensToCardData = (tokens: NFTToken[], collectionName: string): CardData[] => {
   let cardData = tokens.map((token) => {
-    // token doesn't have a collectionName, remove from BaseToken or fix BE
+    // token doesn't have a collectionName, remove from NFTToken or fix BE
     // const collectionName = token.collectionName ?? 'Unknown';
 
     const result: CardData = {
@@ -85,12 +85,11 @@ export const tokensToCardData = (tokens: BaseToken[], collectionName: string): C
       orderSnippet: token.ordersSnippet,
       collectionSlug: token.collectionSlug,
       hasBlueCheck: token.hasBlueCheck,
-      address: token.collectionAddress
-
-      // inCollectionPixelRank: token.inCollectionPixelRank,
-      // pixelRank: token.pixelRank,
-      // pixelRankBucket: token.pixelRankBucket,
-      // pixelScore: token.pixelScore
+      address: token.collectionAddress,
+      inCollectionPixelRank: token.inCollectionPixelRank,
+      pixelRank: token.pixelRank,
+      pixelRankBucket: token.pixelRankBucket,
+      pixelScore: token.pixelScore
     };
 
     return result;
@@ -104,7 +103,7 @@ export const tokensToCardData = (tokens: BaseToken[], collectionName: string): C
 
 export const rankInfosToCardData = (tokens: RankInfo[], collectionName: string): CardData[] => {
   let cardData = tokens.map((token) => {
-    // token doesn't have a collectionName, remove from BaseToken or fix BE
+    // token doesn't have a collectionName, remove from NFTToken or fix BE
     // const collectionName = token.collectionName ?? 'Unknown';
 
     const result: CardData = {

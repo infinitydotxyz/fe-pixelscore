@@ -1,3 +1,5 @@
+import { BaseToken } from '@infinityxyz/lib/types/core';
+
 export interface RevealOrder {
   chainId: string;
   revealer: string;
@@ -44,4 +46,11 @@ export interface RankInfo {
   pixelRankBucket?: number;
   pixelScore?: number;
   tokenId: string;
+}
+
+export interface NFTToken extends BaseToken {
+  inCollectionPixelRank?: number;
+  pixelRank?: number;
+  pixelRankBucket?: number;
+  pixelScore?: number;
 }
