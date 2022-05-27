@@ -13,10 +13,25 @@ export const fetchTokens = async (
   filterState.orderBy = 'tokenId';
   filterState.orderDirection = 'asc';
 
-  const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts99`, {
+  const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts-bottom`, {
     limit: LARGE_LIMIT,
     cursor,
     ...filterState
+  });
+
+  return response;
+};
+
+// ======================================================
+
+export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor?: string): Promise<ApiResponse> => {
+  const response = await httpGet(`/collections/nfts-rank`, {
+    limit: LARGE_LIMIT,
+    cursor,
+    orderBy: 'tokenId',
+    orderDirection: 'asc',
+    minRank: minRank,
+    maxRank: maxRank
   });
 
   return response;

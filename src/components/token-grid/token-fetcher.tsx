@@ -1,7 +1,7 @@
 import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
 import { ApiResponse } from 'utils';
 import { RankInfoArray } from '../../utils/types/collection-types';
-import { fetchTokens, fetchUserTokens, rankInfosToCardData } from 'utils/astra-utils';
+import { fetchTokens, fetchTokensByRank, fetchUserTokens, rankInfosToCardData } from 'utils/astra-utils';
 
 export interface TokenFetcherResult {
   ferror: boolean;
@@ -172,5 +172,64 @@ class UserTokenFetcher extends TokenFetcher {
   // override
   protected doFetch = async (): Promise<ApiResponse> => {
     return fetchUserTokens(this.userAddress, this.cursor);
+  };
+}
+
+// ========================================================================
+
+export class RankTokenCache {
+  private static instance: RankTokenCache;
+
+  private cache: Map<string, TokenFetcher>;
+
+  public static shared() {
+    if (!this.instance) {
+      this.instance = new this();
+    }
+
+    return this.instance;
+  }
+
+  private constructor() {
+    this.cache = new Map<string, TokenFetcher>();
+  }
+
+  refresh = () => {
+    this.cache = new Map<string, TokenFetcher>();
+  };
+
+  fetcher(minRank: number, maxRank: number): TokenFetcher {
+    const key = `${minRank}:${maxRank}`;
+    const cached = this.cache.get(key);
+
+    if (cached) {
+      return cached;
+    }
+
+    const result = new RankTokenFetcher(minRank, maxRank);
+    this.cache.set(key, result);
+
+    return result;
+  }
+}
+
+// ========================================================================
+
+class RankTokenFetcher extends TokenFetcher {
+  private minRank: number;
+  private maxRank: number;
+
+  constructor(minRank: number, maxRank: number) {
+    super();
+
+    this.minRank = minRank;
+    this.maxRank = maxRank;
+
+    this.collectionName = 'Unknown';
+  }
+
+  // override
+  protected doFetch = async (): Promise<ApiResponse> => {
+    return await fetchTokensByRank(this.minRank, this.maxRank, this.cursor);
   };
 }

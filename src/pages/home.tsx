@@ -6,7 +6,12 @@ import { AstraNavbar, AstraNavTab } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
 import { AstraCart } from 'components/astra/astra-cart';
 import { inputBorderColor } from 'utils/ui-constants';
-import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/token-grid/token-fetcher';
+import {
+  CollectionTokenCache,
+  RankTokenCache,
+  TokenFetcher,
+  UserTokenCache
+} from 'components/token-grid/token-fetcher';
 import { useAppContext } from 'utils/context/AppContext';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
@@ -52,6 +57,12 @@ export const HomePage = () => {
       setOrderFetcher(undefined);
     } else if (currentTab === AstraNavTab.MyNFTs && user) {
       setTokenFetcher(UserTokenCache.shared().fetcher(user.address));
+      setOrderFetcher(undefined);
+    } else if (currentTab === AstraNavTab.Top100 && user) {
+      setTokenFetcher(RankTokenCache.shared().fetcher(10, 10));
+      setOrderFetcher(undefined);
+    } else if (currentTab === AstraNavTab.Hot && user) {
+      setTokenFetcher(RankTokenCache.shared().fetcher(7, 9));
       setOrderFetcher(undefined);
     } else if (currentTab === AstraNavTab.Pending && user) {
       setOrderFetcher(RevealOrderCache.shared().fetcher(user.address));
