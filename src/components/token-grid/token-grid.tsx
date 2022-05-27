@@ -22,6 +22,7 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
   const [gridWidth, setGridWidth] = useState(0);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [noData, setNoData] = useState(false);
 
   const { width, ref } = useResizeDetector();
   const isMounted = useIsMounted();
@@ -50,6 +51,8 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
     if (!ferror) {
       setCardData(fcardData);
 
+      setNoData(fcardData.length === 0);
+
       onLoad(fcardData.length);
     }
 
@@ -59,8 +62,8 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
   let contents;
   let cardHeight = 290;
 
-  if (error || loading) {
-    contents = <ErrorOrLoading error={error} />;
+  if (error || loading || noData) {
+    contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
     let gridColumns = 'grid-cols-2';
     if (gridWidth > 0) {

@@ -19,6 +19,7 @@ interface Props {
 export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
   const [revealOrders, setRevealOrders] = useState<RevealOrder[]>([]);
   const [error, setError] = useState(false);
+  const [noData, setNoData] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -52,6 +53,8 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
       if (!ferror) {
         setRevealOrders(frevealOrders);
 
+        setNoData(frevealOrders.length === 0);
+
         onLoad(frevealOrders.length);
       }
 
@@ -62,8 +65,8 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
   let contents;
   let cardHeight = 290;
 
-  if (error || loading) {
-    contents = <ErrorOrLoading error={error} />;
+  if (error || loading || noData) {
+    contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
     let gridColumns = 'grid-cols-2';
     if (gridWidth > 0) {
