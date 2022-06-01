@@ -37,20 +37,12 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
 
   const setupProvider = async () => {
     if (providerManager) {
-      // console.log('got alread');
-      // console.log(providerManager.account);
-      // console.log(providerManager.chainId);
-      // console.log(await providerManager.getAccounts());
-      // console.log(await providerManager.isConnected);
-
       return;
     }
 
     const pm = await ProviderManager.getInstance();
     if (isMounted()) {
       setProviderManager(pm);
-
-      console.log('got provider');
 
       pm.signIn()
         .then(async () => {
@@ -74,7 +66,7 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
   const connectWallet = async (walletType: WalletType) => {
     await setupProvider();
 
-    if (providerManager?.connectWallet) {
+    if (providerManager) {
       try {
         await providerManager.connectWallet(walletType);
         await providerManager.signIn();
