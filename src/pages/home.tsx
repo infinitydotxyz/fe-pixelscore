@@ -17,8 +17,8 @@ import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
 
 import { utils } from 'ethers';
-import { setReveals } from 'utils/astra-utils';
-import { NFTCard, RevealOrder, TokenInfo } from '../utils/types/be-types';
+import { getPortfolioScore, setReveals } from 'utils/astra-utils';
+import { NFTCard, PortfolioScore, RevealOrder, TokenInfo } from '../utils/types/be-types';
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { TokensGrid } from 'components/token-grid/token-grid';
 import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
@@ -32,6 +32,7 @@ export const HomePage = () => {
   const [numTokens, setNumTokens] = useState(0);
   const [tokenFetcher, setTokenFetcher] = useState<TokenFetcher | undefined>();
   const [orderFetcher, setOrderFetcher] = useState<RevealOrderFetcher | undefined>();
+  const [portfolioScore, setPortfolioScore] = useState<PortfolioScore | undefined>();
 
   const { selectedCards, isSelected, toggleSelection, clearSelection, removeFromSelection, hasSelection } =
     useCardSelection();
@@ -49,7 +50,16 @@ export const HomePage = () => {
 
   useEffect(() => {
     updateFetchers();
+    updatePortfolioScore();
   }, [currentTab, collection, chainId, user]);
+
+  const updatePortfolioScore = async () => {
+    if (currentTab === AstraNavTab.MyNFTs && user) {
+      const scoreInfo = await getPortfolioScore(user.address);
+
+      setPortfolioScore(scoreInfo);
+    }
+  };
 
   const updateFetchers = () => {
     if (currentTab === AstraNavTab.All && collection && chainId) {
@@ -83,6 +93,7 @@ export const HomePage = () => {
   let name = '';
   let description = '';
   let emptyMessage = '';
+  let scoreText = '';
   let numNfts = numTokens;
 
   switch (currentTab) {
@@ -101,6 +112,9 @@ export const HomePage = () => {
       if (!user) {
         emptyMessage = 'Click "Connect" to sign in';
       }
+      if (portfolioScore) {
+        scoreText = `Portfolio Score: ${portfolioScore.score / portfolioScore.count}`;
+      }
       break;
     case AstraNavTab.Hot:
     case AstraNavTab.Top100:
@@ -113,14 +127,18 @@ export const HomePage = () => {
     const header = (
       <div className={twMerge(inputBorderColor, 'flex items-center bg-gray-100 border-b px-8 py-3')}>
         <BGImage src={avatarUrl} className="mr-6 h-16 w-36 rounded-xl" />
-        <div className="flex flex-col items-start bg-gray-100">
+        <div className="flex flex-col items-start">
           <div className="tracking-tight text-theme-light-800 font-bold text-xl text-center  ">{name}</div>
           <div className="max-w-3xl">
             <ReadMoreText text={description} min={50} ideal={160} max={10000} />
           </div>
         </div>
         <Spacer />
-        <div className="text-lg whitespace-nowrap ml-3">{numNfts} Nfts</div>
+        <div className="flex flex-col items-end">
+          <div className="text-lg whitespace-nowrap ml-3">{numNfts} Nfts</div>
+
+          {scoreText && <div className="text-lg whitespace-nowrap ml-3">{scoreText}</div>}
+        </div>
       </div>
     );
 

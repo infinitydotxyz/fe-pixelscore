@@ -1,6 +1,14 @@
 import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'utils';
 import { Filter } from 'utils/context/FilterContext';
-import { NFTCard, NFTToken, RankInfo, RevealOrder, TokenInfo, UpdateRankVisibility } from './types/be-types';
+import {
+  NFTCard,
+  NFTToken,
+  PortfolioScore,
+  RankInfo,
+  RevealOrder,
+  TokenInfo,
+  UpdateRankVisibility
+} from './types/be-types';
 
 export const fetchTokens = async (
   collectionAddress: string,
@@ -225,4 +233,16 @@ export const getReveals = async (user: string, startAfterTimestamp = 0): Promise
   });
 
   return response;
+};
+
+// ======================================================
+
+export const getPortfolioScore = async (user: string): Promise<PortfolioScore> => {
+  const response = await httpGet(`/u/${user}/portfolio-score`, {});
+
+  if (response.result) {
+    return response.result as PortfolioScore;
+  }
+
+  return { score: 0, count: 0 };
 };

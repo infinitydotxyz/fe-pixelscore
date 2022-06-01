@@ -61,3 +61,8 @@ export interface NFTCard extends CardData {
   pixelRankBucket?: number;
   pixelScore?: number;
 }
+
+export interface PortfolioScore {
+  score: number;
+  count: number;
+}
