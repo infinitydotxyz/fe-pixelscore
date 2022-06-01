@@ -4,11 +4,12 @@ import { twMerge } from 'tailwind-merge';
 
 interface Props {
   children?: React.ReactNode;
+  footer?: JSX.Element;
   className?: string;
   extraScrollHeight?: boolean; // set to false if you want to center the contents (connect page)
 }
 
-export const PageBox = ({ children, className = '', extraScrollHeight = true }: Props): JSX.Element => {
+export const PageBox = ({ children, className = '', extraScrollHeight = true, footer }: Props): JSX.Element => {
   return (
     <>
       <div className="w-full min-h-screen flex flex-col">
@@ -16,6 +17,8 @@ export const PageBox = ({ children, className = '', extraScrollHeight = true }: 
         <div className={twMerge('flex-1 mx-12', className)}>{children}</div>
 
         {extraScrollHeight && <div className="h-[300px]" />}
+
+        {footer}
       </div>
     </>
   );
