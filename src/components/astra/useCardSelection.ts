@@ -1,19 +1,19 @@
-import { CardData } from '@infinityxyz/lib/types/core';
 import { useState } from 'react';
+import { NFTCard } from 'utils/types/be-types';
 
 interface CardSelectionResult {
-  toggleSelection: (data: CardData) => void;
-  isSelected: (data: CardData) => boolean;
-  removeFromSelection: (data: CardData) => void;
+  toggleSelection: (data: NFTCard) => void;
+  isSelected: (data: NFTCard) => boolean;
+  removeFromSelection: (data: NFTCard) => void;
   hasSelection: () => boolean;
-  selectedCards: () => CardData[];
+  selectedCards: () => NFTCard[];
   clearSelection: () => void;
 }
 
 export const useCardSelection = (): CardSelectionResult => {
-  const [selection, setSelection] = useState<CardData[]>([]);
+  const [selection, setSelection] = useState<NFTCard[]>([]);
 
-  const toggleSelection = (data: CardData) => {
+  const toggleSelection = (data: NFTCard) => {
     const i = indexOfSelection(data);
 
     if (i === -1) {
@@ -23,7 +23,7 @@ export const useCardSelection = (): CardSelectionResult => {
     }
   };
 
-  const indexOfSelection = (value: CardData): number => {
+  const indexOfSelection = (value: NFTCard): number => {
     const i = selection.findIndex((token) => {
       return value.id === token.id;
     });
@@ -31,7 +31,7 @@ export const useCardSelection = (): CardSelectionResult => {
     return i;
   };
 
-  const removeFromSelection = (value: CardData) => {
+  const removeFromSelection = (value: NFTCard) => {
     const i = indexOfSelection(value);
 
     if (i !== -1) {
@@ -46,11 +46,11 @@ export const useCardSelection = (): CardSelectionResult => {
     return selection.length > 0;
   };
 
-  const selectedCards = (): CardData[] => {
+  const selectedCards = (): NFTCard[] => {
     return selection;
   };
 
-  const isSelected = (value: CardData): boolean => {
+  const isSelected = (value: NFTCard): boolean => {
     return indexOfSelection(value) !== -1;
   };
 

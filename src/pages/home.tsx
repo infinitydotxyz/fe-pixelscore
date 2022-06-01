@@ -1,4 +1,4 @@
-import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
+import { BaseCollection } from '@infinityxyz/lib/types/core';
 import { useEffect, useRef, useState } from 'react';
 import { BGImage, CenteredContent, ReadMoreText, Spacer, toastError, toastSuccess } from 'components/common';
 import { twMerge } from 'tailwind-merge';
@@ -18,7 +18,7 @@ import { AstraFooter } from 'components/astra/astra-footer';
 
 import { utils } from 'ethers';
 import { setReveals } from 'utils/astra-utils';
-import { RevealOrder, TokenInfo } from '../utils/types/be-types';
+import { NFTCard, RevealOrder, TokenInfo } from '../utils/types/be-types';
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { TokensGrid } from 'components/token-grid/token-grid';
 import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
@@ -70,7 +70,7 @@ export const HomePage = () => {
     }
   };
 
-  const onCardClick = (data: CardData) => {
+  const onCardClick = (data: NFTCard) => {
     toggleSelection(data);
   };
 

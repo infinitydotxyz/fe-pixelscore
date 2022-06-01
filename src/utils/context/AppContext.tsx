@@ -3,6 +3,7 @@ import { ProviderEvents, WalletType } from 'utils/providers/AbstractProvider';
 import { UserRejectException } from 'utils/providers/UserRejectException';
 import { ProviderManager } from 'utils/providers/ProviderManager';
 import { Toaster, toastError } from 'components/common';
+import { useIsMounted } from 'hooks/useIsMounted';
 
 export type User = {
   address: string;
@@ -32,33 +33,47 @@ export const AppContextProvider = (props: React.PropsWithChildren<unknown>) => {
   const [headerPosition, setHeaderPosition] = React.useState(0);
   const [providerManager, setProviderManager] = React.useState<ProviderManager | undefined>();
 
+  const isMounted = useIsMounted();
+
+  const setupProvider = async () => {
+    if (providerManager) {
+      // console.log('got alread');
+      // console.log(providerManager.account);
+      // console.log(providerManager.chainId);
+      // console.log(await providerManager.getAccounts());
+      // console.log(await providerManager.isConnected);
+
+      return;
+    }
+
+    const pm = await ProviderManager.getInstance();
+    if (isMounted()) {
+      setProviderManager(pm);
+
+      console.log('got provider');
+
+      pm.signIn()
+        .then(async () => {
+          const address = pm.account;
+          setUser({ address });
+          const chainIdNew = pm.chainId ?? 1;
+          setChainId(`${chainIdNew}`);
+          setUser({ address: address });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
   React.useEffect(() => {
     // check & set logged in user:
-    let isActive = true;
-    ProviderManager.getInstance().then((providerManagerInstance) => {
-      if (isActive) {
-        setProviderManager(providerManagerInstance);
-
-        providerManagerInstance
-          .signIn()
-          .then(async () => {
-            const address = providerManagerInstance.account;
-            setUser({ address });
-            const chainIdNew = providerManagerInstance.chainId ?? 1;
-            setChainId(`${chainIdNew}`);
-            setUser({ address: address });
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      }
-    });
-    return () => {
-      isActive = false;
-    };
+    setupProvider();
   }, []);
 
   const connectWallet = async (walletType: WalletType) => {
+    await setupProvider();
+
     if (providerManager?.connectWallet) {
       try {
         await providerManager.connectWallet(walletType);

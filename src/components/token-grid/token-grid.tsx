@@ -1,4 +1,3 @@
-import { CardData } from '@infinityxyz/lib/types/core';
 import { useState, useEffect } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import { ScrollLoader } from 'components/common';
@@ -7,17 +6,18 @@ import { twMerge } from 'tailwind-merge';
 import { TokenCard } from './token-card';
 import { TokenFetcher } from './token-fetcher';
 import { ErrorOrLoading } from '../astra/error-or-loading';
+import { NFTCard } from 'utils/types/be-types';
 
 interface Props {
   tokenFetcher: TokenFetcher;
   className?: string;
-  onClick?: (data: CardData) => void;
-  isSelected: (data: CardData) => boolean;
+  onClick?: (data: NFTCard) => void;
+  isSelected: (data: NFTCard) => boolean;
   onLoad: (numItems: number) => void;
 }
 
 export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
-  const [cardData, setCardData] = useState<CardData[]>([]);
+  const [cardData, setCardData] = useState<NFTCard[]>([]);
   const [error, setError] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
   const [hasNextPage, setHasNextPage] = useState(false);

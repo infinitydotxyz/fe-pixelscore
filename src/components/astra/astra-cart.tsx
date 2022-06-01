@@ -1,18 +1,18 @@
-import { CardData } from '@infinityxyz/lib/types/core';
 import { BGImage, Button, Spacer } from 'components/common';
 import { iconButtonStyle, largeIconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { XIcon } from '@heroicons/react/outline';
 import { ReactNode } from 'react';
+import { NFTCard } from 'utils/types/be-types';
 
 interface Props {
-  cardData: CardData[];
-  onRemove: (token: CardData) => void;
+  cardData: NFTCard[];
+  onRemove: (token: NFTCard) => void;
   onCheckout: () => void;
 }
 
 export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
-  const map = new Map<string, CardData[]>();
+  const map = new Map<string, NFTCard[]>();
 
   for (const token of cardData) {
     const tkns = map.get(token.tokenAddress ?? '') ?? [];
@@ -53,9 +53,9 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
 // ====================================================================
 
 interface Props2 {
-  token: CardData;
+  token: NFTCard;
   index: number;
-  onRemove: (token: CardData) => void;
+  onRemove: (token: NFTCard) => void;
 }
 
 export const AstraCartItem = ({ token, index, onRemove }: Props2) => {

@@ -1,4 +1,4 @@
-import { BaseToken } from '@infinityxyz/lib/types/core';
+import { BaseToken, CardData } from '@infinityxyz/lib/types/core';
 
 export interface RevealOrder {
   chainId: string;
@@ -49,6 +49,13 @@ export interface RankInfo {
 }
 
 export interface NFTToken extends BaseToken {
+  inCollectionPixelRank?: number;
+  pixelRank?: number;
+  pixelRankBucket?: number;
+  pixelScore?: number;
+}
+
+export interface NFTCard extends CardData {
   inCollectionPixelRank?: number;
   pixelRank?: number;
   pixelRankBucket?: number;

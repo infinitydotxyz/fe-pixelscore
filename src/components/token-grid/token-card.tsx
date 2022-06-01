@@ -1,13 +1,13 @@
-import { CardData } from '@infinityxyz/lib/types/core';
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { BGImage } from '../common';
+import { NFTCard } from 'utils/types/be-types';
 
 interface Props {
-  data: CardData;
+  data: NFTCard;
   height: number;
   selected: boolean;
-  onClick: (data: CardData) => void;
+  onClick: (data: NFTCard) => void;
 }
 
 export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Element => {

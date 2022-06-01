@@ -1,4 +1,4 @@
-import { BaseCollection, CardData } from '@infinityxyz/lib/types/core';
+import { BaseCollection } from '@infinityxyz/lib/types/core';
 import { ApiResponse } from 'utils';
 import { NFTArrayResult } from '../../utils/types/collection-types';
 import {
@@ -8,11 +8,11 @@ import {
   rankInfosToCardData,
   tokensToCardData
 } from 'utils/astra-utils';
-import { NFTToken, RankInfo } from 'utils/types/be-types';
+import { NFTCard, NFTToken, RankInfo } from 'utils/types/be-types';
 
 export interface TokenFetcherResult {
   ferror: boolean;
-  fcardData: CardData[];
+  fcardData: NFTCard[];
   fcursor: string;
   fhasNextPage: boolean;
 }
@@ -22,7 +22,7 @@ export class TokenFetcher {
   cursor = '';
   collectionName = '';
   hasNextPage = false;
-  cardData: CardData[] = [];
+  cardData: NFTCard[] = [];
 
   fetch = async (loadMore: boolean): Promise<TokenFetcherResult> => {
     let callFetch = true;
@@ -63,7 +63,7 @@ export class TokenFetcher {
   };
 
   // override this
-  protected toCardData = (data: NFTArrayResult<unknown>): CardData[] => {
+  protected toCardData = (data: NFTArrayResult<unknown>): NFTCard[] => {
     const result = data as NFTArrayResult<RankInfo>;
     return rankInfosToCardData(result.data, this.collectionName);
   };
@@ -185,7 +185,7 @@ class UserTokenFetcher extends TokenFetcher {
   };
 
   // override
-  protected toCardData = (data: NFTArrayResult<unknown>): CardData[] => {
+  protected toCardData = (data: NFTArrayResult<unknown>): NFTCard[] => {
     const result = data as NFTArrayResult<NFTToken>;
     return tokensToCardData(result.data, 'Unknown');
   };

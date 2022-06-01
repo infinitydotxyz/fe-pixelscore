@@ -1,7 +1,6 @@
-import { CardData } from '@infinityxyz/lib/types/core';
 import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'utils';
 import { Filter } from 'utils/context/FilterContext';
-import { NFTToken, RankInfo, RevealOrder, TokenInfo, UpdateRankVisibility } from './types/be-types';
+import { NFTCard, NFTToken, RankInfo, RevealOrder, TokenInfo, UpdateRankVisibility } from './types/be-types';
 
 export const fetchTokens = async (
   collectionAddress: string,
@@ -62,12 +61,12 @@ export const fetchCollections = async (query: string, cursor?: string): Promise<
 
 // ======================================================
 
-export const tokensToCardData = (tokens: NFTToken[], collectionName: string): CardData[] => {
+export const tokensToCardData = (tokens: NFTToken[], collectionName: string): NFTCard[] => {
   let cardData = tokens.map((token) => {
     // token doesn't have a collectionName, remove from NFTToken or fix BE
     // const collectionName = token.collectionName ?? 'Unknown';
 
-    const result: CardData = {
+    const result: NFTCard = {
       id: token.collectionAddress + '_' + token.tokenId,
       name: token.metadata?.name,
       collectionName: collectionName,
@@ -101,12 +100,12 @@ export const tokensToCardData = (tokens: NFTToken[], collectionName: string): Ca
   return cardData;
 };
 
-export const rankInfosToCardData = (tokens: RankInfo[], collectionName: string): CardData[] => {
+export const rankInfosToCardData = (tokens: RankInfo[], collectionName: string): NFTCard[] => {
   let cardData = tokens.map((token) => {
     // token doesn't have a collectionName, remove from NFTToken or fix BE
     // const collectionName = token.collectionName ?? 'Unknown';
 
-    const result: CardData = {
+    const result: NFTCard = {
       id: token.collectionAddress + '_' + token.tokenId,
       collectionName: collectionName,
       title: collectionName ?? 'Unknown',
