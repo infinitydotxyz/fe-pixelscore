@@ -66,3 +66,9 @@ export interface PortfolioScore {
   score: number;
   count: number;
 }
+
+export interface UserRecord {
+  address: string;
+  name: string;
+  portfolioScore: number;
+}

@@ -7,7 +7,8 @@ import {
   RankInfo,
   RevealOrder,
   TokenInfo,
-  UpdateRankVisibility
+  UpdateRankVisibility,
+  UserRecord
 } from './types/be-types';
 
 export const fetchTokens = async (
@@ -245,4 +246,16 @@ export const getPortfolioScore = async (user: string): Promise<PortfolioScore> =
   }
 
   return { score: 0, count: 0 };
+};
+
+// ======================================================
+
+export const getUserRecord = async (user: string): Promise<UserRecord> => {
+  const response = await httpGet(`/u/${user}`, {});
+
+  if (response.result) {
+    return response.result as UserRecord;
+  }
+
+  return { name: '', portfolioScore: -1, address: user };
 };

@@ -17,8 +17,8 @@ import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
 
 import { utils } from 'ethers';
-import { getPortfolioScore, setReveals } from 'utils/astra-utils';
-import { NFTCard, PortfolioScore, RevealOrder, TokenInfo } from '../utils/types/be-types';
+import { getUserRecord, setReveals } from 'utils/astra-utils';
+import { NFTCard, RevealOrder, TokenInfo, UserRecord } from '../utils/types/be-types';
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { TokensGrid } from 'components/token-grid/token-grid';
 import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
@@ -32,7 +32,7 @@ export const DashboardPage = () => {
   const [numTokens, setNumTokens] = useState(0);
   const [tokenFetcher, setTokenFetcher] = useState<TokenFetcher | undefined>();
   const [orderFetcher, setOrderFetcher] = useState<RevealOrderFetcher | undefined>();
-  const [portfolioScore, setPortfolioScore] = useState<PortfolioScore | undefined>();
+  const [userRecord, setUserRecord] = useState<UserRecord | undefined>();
 
   const { selectedCards, isSelected, toggleSelection, clearSelection, removeFromSelection, hasSelection } =
     useCardSelection();
@@ -55,9 +55,9 @@ export const DashboardPage = () => {
 
   const updatePortfolioScore = async () => {
     if (currentTab === AstraNavTab.MyNFTs && user) {
-      const scoreInfo = await getPortfolioScore(user.address);
+      const userRec = await getUserRecord(user.address);
 
-      setPortfolioScore(scoreInfo);
+      setUserRecord(userRec);
     }
   };
 
@@ -112,8 +112,8 @@ export const DashboardPage = () => {
       if (!user) {
         emptyMessage = 'Click "Connect" to sign in';
       }
-      if (portfolioScore) {
-        scoreText = `Portfolio Score: ${portfolioScore.score / portfolioScore.count}`;
+      if (userRecord && userRecord.portfolioScore !== -1) {
+        scoreText = `Portfolio Score: ${userRecord.portfolioScore}`;
       }
       break;
     case AstraNavTab.Hot:
