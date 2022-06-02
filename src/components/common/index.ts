@@ -16,7 +16,7 @@ export * from 'components/common/checkbox';
 export * from 'components/common/next-link';
 export * from 'components/common/page-box';
 export * from 'components/common/debounced-text-field';
-export * from 'components/common/tool-tip';
+export * from 'components/common/tool-tipper';
 export * from 'components/common/centered-content';
 export * from 'components/common/scroll-loader';
 export * from 'components/common/bg-image';

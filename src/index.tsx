@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './global.scss';
+import 'flowbite';
 import { reportWebVitals } from './reportWebVitals';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppContextProvider } from 'utils/context/AppContext';
 import { ConnectPage } from 'pages/connect';
 import { HomePage } from 'pages/home';
-import 'flowbite';
 import { PasswordPage } from 'pages/password';
 import { SecurityContextProvider, useSecurityContext } from 'utils/context/SecurityContext';
 import { SandboxPage } from 'pages/sandbox';

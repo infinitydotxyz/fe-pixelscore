@@ -1,9 +1,8 @@
 import React, { ReactElement, ReactNode, useState } from 'react';
-import { DatePicker } from 'components/common';
+import { DatePicker, Tooltipper, TooltipIcon, TooltipSpec, TooltipWrapper } from 'components/common';
 import { ComboBox, ComboBoxBaseType } from './combo-box';
 import { CalendarIcon } from '@heroicons/react/outline';
 import { EthSymbol } from './eth-price';
-import { Tooltip, TooltipIcon, TooltipSpec, TooltipWrapper } from './tool-tip';
 import { twMerge } from 'tailwind-merge';
 import { inputBorderColor } from '../../utils/ui-constants';
 
@@ -34,12 +33,12 @@ export const InputBox = ({ tooltip, label, children, icon, renderRightIcon, isFu
             <div className="flex items-center w-full">{children}</div>
 
             {tooltip && (
-              <Tooltip
+              <Tooltipper
                 className="absolute top-0 bottom-0 right-4 flex flex-col justify-center"
                 setShow={setShowTooltip}
               >
                 <TooltipIcon />
-              </Tooltip>
+              </Tooltipper>
             )}
 
             {renderRightIcon && (

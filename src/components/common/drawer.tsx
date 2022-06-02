@@ -1,8 +1,7 @@
 import { Fragment, ReactNode, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
-import { Button } from 'components/common';
-import { Tooltip, TooltipIcon, TooltipSpec, TooltipWrapper } from './tool-tip';
+import { Button, Tooltipper, TooltipIcon, TooltipSpec, TooltipWrapper } from 'components/common';
 import { iconButtonStyle } from 'utils/ui-constants';
 
 interface Props {
@@ -26,9 +25,9 @@ export const Drawer = ({ open, tooltip, subtitle, divide, onClose, title, childr
             <div className="flex items-center">
               <div className="mr-2 text-2xl font-bold text-black">{title}</div>
               {tooltip && (
-                <Tooltip setShow={setShowTooltip}>
+                <Tooltipper setShow={setShowTooltip}>
                   <TooltipIcon />
-                </Tooltip>
+                </Tooltipper>
               )}
             </div>
             {subtitle && <div className="mt-3 text-sm text-gray-600">{subtitle}</div>}

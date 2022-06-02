@@ -18,7 +18,7 @@ interface Props {
   className?: string;
 }
 
-export const Tooltip = ({ setShow, children, className = '' }: Props) => {
+export const Tooltipper = ({ setShow, children, className = '' }: Props) => {
   let timeout: NodeJS.Timeout | undefined;
 
   const cancelTimeout = () => {
