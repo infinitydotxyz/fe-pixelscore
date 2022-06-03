@@ -11,10 +11,10 @@ import { PasswordPage } from 'pages/password';
 import { SecurityContextProvider, useSecurityContext } from 'utils/context/SecurityContext';
 import { SandboxPage } from 'pages/sandbox';
 import { DashboardPage } from 'pages/dashboard';
-import { DashboardAll } from 'components/astra/tabs/dashboard-all';
-import { DashboardTop } from 'components/astra/tabs/dashboard-top';
-import { DashboardMyNFTs } from 'components/astra/tabs/dashboard-my-nfts';
-import { DashboardHot } from 'components/astra/tabs/dashboard-hot';
+import { DashboardAll } from 'components/astra/dashboard/dashboard-all';
+import { DashboardTop } from 'components/astra/dashboard/dashboard-top';
+import { DashboardMyNFTs } from 'components/astra/dashboard/dashboard-my-nfts';
+import { DashboardHot } from 'components/astra/dashboard/dashboard-hot';
 import { DashboardContextProvider } from 'utils/context/DashboardContext';
 
 const AppRoutes = () => {
