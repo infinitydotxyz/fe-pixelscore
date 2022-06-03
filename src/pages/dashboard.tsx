@@ -22,10 +22,12 @@ import { NFTCard, RevealOrder, TokenInfo, UserRecord } from '../utils/types/be-t
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { TokensGrid } from 'components/token-grid/token-grid';
 import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
+import { useResizeDetector } from 'react-resize-detector';
 
 export const DashboardPage = () => {
   const [collection, setCollection] = useState<BaseCollection>();
   const [chainId, setChainId] = useState<string>();
+  const [cartWidth, setCartWidth] = useState<number>(0);
 
   const [currentTab, setCurrentTab] = useState<AstraNavTab>(AstraNavTab.All);
   const [showCart, setShowCart] = useState(false);
@@ -39,6 +41,12 @@ export const DashboardPage = () => {
 
   const ref = useRef<HTMLDivElement>(null);
   const { user, providerManager } = useAppContext();
+
+  const { width, ref: resizeRef } = useResizeDetector();
+
+  useEffect(() => {
+    setCartWidth(resizeRef.current ? resizeRef.current.offsetWidth : 0);
+  }, [width]);
 
   useEffect(() => {
     setShowCart(hasSelection);
@@ -149,6 +157,7 @@ export const DashboardPage = () => {
           tokenFetcher={tokenFetcher}
           className="px-8 py-6"
           onClick={onCardClick}
+          extraWidth={cartWidth}
           isSelected={(data) => {
             return isSelected(data);
           }}
@@ -283,7 +292,9 @@ export const DashboardPage = () => {
         </div>
 
         <div className="row-span-3 col-span-1 overflow-y-auto overflow-x-hidden">
-          <div className={twMerge(showCart ? 'w-64' : 'w-0', 'transition-width duration-500 h-full')}>{cart}</div>
+          <div ref={resizeRef} className={twMerge(showCart ? 'w-64' : 'w-0', 'transition-width duration-300 h-full')}>
+            {cart}
+          </div>
         </div>
 
         <div className="col-start-2 col-span-1">{footer}</div>

@@ -11,12 +11,13 @@ import { NFTCard } from 'utils/types/be-types';
 interface Props {
   tokenFetcher: TokenFetcher;
   className?: string;
+  extraWidth?: number;
   onClick?: (data: NFTCard) => void;
   isSelected: (data: NFTCard) => boolean;
   onLoad: (numItems: number) => void;
 }
 
-export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
+export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSelected, extraWidth = 0 }: Props) => {
   const [cardData, setCardData] = useState<NFTCard[]>([]);
   const [error, setError] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
@@ -67,10 +68,13 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
   } else {
     let gridColumns = 'grid-cols-2';
     if (gridWidth > 0) {
-      const cols = Math.round(gridWidth / 290);
+      // extraWidth is used to pageinate the same when cart is opened
+      const width = gridWidth + extraWidth;
+
+      const cols = Math.round(width / 290);
       gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
-      cardHeight = gridWidth / cols;
+      cardHeight = width / cols;
     }
 
     contents = (
