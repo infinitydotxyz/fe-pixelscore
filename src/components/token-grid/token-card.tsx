@@ -30,6 +30,8 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
     >
       <div className="h-full flex flex-col">
         <div className="relative flex-1">
+          {/* we can't overflow clip the whole card or the tooltips get clipped
+          so we do this absolute image below the pillbadges */}
           <div className="absolute top-0 bottom-0 left-0 right-0 rounded-t-2xl overflow-clip">
             <BGImage src={data?.image} className="hover:scale-110 transition-all" />
           </div>
@@ -37,11 +39,8 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
           <PillBadge val={data.pixelRank} tooltip="Pixel rank" />
           <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-1 left-1" />
           <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-1 right-1" />
+          <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-1" />
         </div>
-
-        {data?.rarityRank && (
-          <div className="absolute bg-gray-100 top-3 right-3 py-1 px-3 rounded-3xl">{Math.round(data?.rarityRank)}</div>
-        )}
 
         <div className="mt-3 mb-4 mx-3">
           <div className="font-bold truncate">{title}</div>
