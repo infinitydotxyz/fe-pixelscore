@@ -2,6 +2,7 @@ import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { BGImage } from '../common';
 import { NFTCard } from 'utils/types/be-types';
+import { PillBadge } from './pill-badge';
 
 interface Props {
   data: NFTCard;
@@ -15,14 +16,6 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
   const tokenId = data?.tokenId ?? '';
 
   const heightStyle = `${height}px`;
-
-  const badgeItem = (val: number | string | undefined, className = 'top-1 left-1') => {
-    if (val) {
-      return (
-        <div className={twMerge(className, 'absolute bg-white font-bold rounded-full px-3 shadow-lg ')}>{val}</div>
-      );
-    }
-  };
 
   return (
     <div
@@ -39,9 +32,9 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
         <div className="relative flex-1  overflow-clip">
           <BGImage src={data?.image} className="hover:scale-110 transition-all" />
 
-          {badgeItem(data.pixelRank)}
-          {badgeItem(data.pixelScore, 'bottom-1 left-1')}
-          {badgeItem(data.pixelRankBucket, 'top-1 right-1')}
+          <PillBadge val={data.pixelRank} tooltip="Pixel rank" />
+          <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-1 left-1" />
+          <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-1 right-1" />
         </div>
 
         {data?.rarityRank && (

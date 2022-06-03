@@ -5,6 +5,7 @@ import { RevealOrder } from 'utils/types/be-types';
 import { ReactNode } from 'react';
 import { refreshReveal } from 'utils/astra-utils';
 import { ellipsisString, httpErrorResponse, shortDateWithTime } from 'utils';
+import { PillBadge } from 'components/token-grid/pill-badge';
 
 interface Props {
   userAddress: string;
@@ -32,23 +33,16 @@ export const RevealOrderCard = ({ userAddress, revealOrder, height, onClick, sel
     }
   };
 
-  const tokenItem = (val: number | string | undefined, className = 'top-1 left-1') => {
-    if (val) {
-      return (
-        <div className={twMerge(className, 'absolute bg-white font-bold rounded-full px-3 shadow-lg ')}>{val}</div>
-      );
-    }
-  };
-
   const tokens = (): ReactNode => {
     const result = revealOrder.revealItems.map((e) => {
       return (
         <div key={e.collectionAddress + e.tokenId} className="flex-1 relative mb-1 min-h-[80px] overflow-clip">
           <BGImage src={e?.imageUrl} className="hover:scale-110 transition-all  " />
 
-          {tokenItem(e.pixelRank)}
-          {tokenItem(e.pixelScore, 'bottom-1 left-1')}
-          {tokenItem(e.tokenId, 'top-1 right-1')}
+          <PillBadge val={e.pixelRank} tooltip="Pixel rank" />
+          <PillBadge val={e.pixelScore} tooltip="Pixel score" className="bottom-1 left-1" />
+          <PillBadge val={e.tokenId} tooltip="Token id" className="top-1 right-1" />
+
           <div>{e.pixelRank}</div>
         </div>
       );
