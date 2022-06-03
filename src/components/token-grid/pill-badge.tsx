@@ -10,9 +10,9 @@ interface Props {
 export const PillBadge = ({ val, tooltip, className = 'top-1 left-1' }: Props) => {
   if (val) {
     return (
-      <div className="">
-        <Tooltip content={tooltip}>
-          <div className={twMerge(className, 'absolute bg-white font-bold rounded-full px-3 shadow-lg ')}>{val}</div>
+      <div className={twMerge(className, 'absolute')}>
+        <Tooltip content={tooltip} className="z-50">
+          <div className="bg-white font-bold rounded-full px-3 shadow-lg">{val}</div>
         </Tooltip>
       </div>
     );
