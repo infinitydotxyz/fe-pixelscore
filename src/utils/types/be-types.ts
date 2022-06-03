@@ -1,4 +1,4 @@
-import { BaseToken, CardData } from '@infinityxyz/lib/types/core';
+import { ListingType, BaseToken, CardData } from '@infinityxyz/lib/types/core';
 
 export interface RevealOrder {
   chainId: string;
@@ -72,3 +72,22 @@ export interface UserRecord {
   name: string;
   portfolioScore: number;
 }
+
+export enum OrderType {
+  Listing = 'listing',
+  Offer = 'offer'
+}
+
+export type Filter = {
+  chainId?: string;
+  listingType?: ListingType | '';
+  orderType?: OrderType | '';
+  traitTypes?: string[];
+  traitValues?: string[];
+  collectionAddresses?: string[];
+  minPrice?: string;
+  maxPrice?: string;
+  sortByPrice?: 'ASC' | 'DESC' | '';
+  orderBy?: 'tokenId' | '';
+  orderDirection?: 'asc' | 'desc' | '';
+};

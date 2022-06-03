@@ -11,6 +11,11 @@ import { PasswordPage } from 'pages/password';
 import { SecurityContextProvider, useSecurityContext } from 'utils/context/SecurityContext';
 import { SandboxPage } from 'pages/sandbox';
 import { DashboardPage } from 'pages/dashboard';
+import { DashboardAll } from 'components/astra/tabs/dashboard-all';
+import { DashboardTop } from 'components/astra/tabs/dashboard-top';
+import { DashboardMyNFTs } from 'components/astra/tabs/dashboard-my-nfts';
+import { DashboardHot } from 'components/astra/tabs/dashboard-hot';
+import { DashboardContextProvider } from 'utils/context/DashboardContext';
 
 const AppRoutes = () => {
   const { allowed, ready } = useSecurityContext();
@@ -20,10 +25,17 @@ const AppRoutes = () => {
     if (allowed) {
       routes = (
         <>
-          <Route path="/" element={<HomePage />} />
+          <Route index element={<HomePage />} />
+          <Route path="home" element={<HomePage />} />
           <Route path="connect" element={<ConnectPage />} />
           <Route path="sandbox" element={<SandboxPage />} />
-          <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="dashboard" element={<DashboardPage />}>
+            <Route index element={<DashboardAll />} />
+            <Route path="all" element={<DashboardAll />} />
+            <Route path="top" element={<DashboardTop />} />
+            <Route path="nfts" element={<DashboardMyNFTs />} />
+            <Route path="hot" element={<DashboardHot />} />
+          </Route>
           <Route path="*" element={<Navigate to={'/'} replace />} />
         </>
       );
@@ -51,7 +63,9 @@ root.render(
   <React.StrictMode>
     <AppContextProvider>
       <SecurityContextProvider>
-        <AppRoutes />
+        <DashboardContextProvider>
+          <AppRoutes />
+        </DashboardContextProvider>
       </SecurityContextProvider>
     </AppContextProvider>
   </React.StrictMode>
