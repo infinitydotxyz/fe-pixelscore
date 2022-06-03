@@ -20,7 +20,7 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
   return (
     <div
       className={twMerge(
-        'overflow-clip border',
+        'border',
         inputBorderColor,
         'rounded-2xl w-full relative flex flex-col',
         selected ? selectionOutline : ''
@@ -29,8 +29,10 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
       onClick={() => onClick(data)}
     >
       <div className="h-full flex flex-col">
-        <div className="relative flex-1  overflow-clip">
-          <BGImage src={data?.image} className="hover:scale-110 transition-all" />
+        <div className="relative flex-1">
+          <div className="absolute top-0 bottom-0 left-0 right-0 rounded-t-2xl overflow-clip">
+            <BGImage src={data?.image} className="hover:scale-110 transition-all" />
+          </div>
 
           <PillBadge val={data.pixelRank} tooltip="Pixel rank" />
           <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-1 left-1" />
