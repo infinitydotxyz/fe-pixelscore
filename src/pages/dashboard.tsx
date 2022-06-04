@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { AstraNavbar } from 'components/astra/astra-navbar';
+import { AstraNavbar, AstraNavTab, TabUtils } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
 import { AstraCart } from 'components/astra/astra-cart';
 import { AstraFooter } from 'components/astra/astra-footer';
 import { useResizeDetector } from 'react-resize-detector';
 import { gridTemplate } from 'components/astra/dashboard/grid-template';
 import { useDashboardContext } from 'utils/context/DashboardContext';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 export const DashboardPage = () => {
   const {
@@ -20,53 +20,34 @@ export const DashboardPage = () => {
     displayName,
     selection,
     clearSelection,
-    removeFromSelection
+    removeFromSelection,
+    setShowCart
   } = useDashboardContext();
 
   const gridRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const { width: cartWidth, ref: cartRef } = useResizeDetector();
-
   console.log(cartWidth);
+
+  const location = useLocation();
+  useEffect(() => {
+    switch (TabUtils.routeToTab(location.pathname)) {
+      case AstraNavTab.All:
+      case AstraNavTab.Top100:
+      case AstraNavTab.Hot:
+        setShowCart(true);
+        break;
+      case AstraNavTab.MyNFTs:
+      case AstraNavTab.Pending:
+        setShowCart(false);
+        break;
+    }
+  }, [location]);
 
   useEffect(() => {
     gridRef.current?.scrollTo({ left: 0, top: 0 });
   }, [collection]);
-
-  // let avatarUrl;
-  // let name = '';
-  // let description = '';
-  // let emptyMessage = '';
-  // let scoreText = '';
-  // let numNfts = numTokens;
-
-  // switch (currentTab) {
-  //   case AstraNavTab.All:
-  //     avatarUrl = collection?.metadata.bannerImage;
-  //     name = collection?.metadata.name ?? '';
-  //     description = collection?.metadata.description ?? '';
-  //     emptyMessage = 'Select a Collection';
-  //     numNfts = collection?.numNfts ?? numTokens;
-  //     break;
-  //   case AstraNavTab.Pending:
-  //   case AstraNavTab.MyNFTs:
-  //     name = currentTab;
-  //     emptyMessage = currentTab;
-
-  //     if (!user) {
-  //       emptyMessage = 'Click "Connect" to sign in';
-  //     }
-  //     if (userRecord && userRecord.portfolioScore !== -1) {
-  //       scoreText = `Portfolio Score: ${userRecord.portfolioScore}`;
-  //     }
-  //     break;
-  //   case AstraNavTab.Hot:
-  //   case AstraNavTab.Top100:
-  //     name = currentTab;
-  //     emptyMessage = currentTab;
-  //     break;
-  // }
 
   const navBar = <AstraNavbar />;
 

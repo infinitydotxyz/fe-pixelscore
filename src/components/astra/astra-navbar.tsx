@@ -25,7 +25,6 @@ export const AstraNavbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(location.pathname);
     setCurrentTab(TabUtils.routeToTab(location.pathname));
   }, [location]);
 

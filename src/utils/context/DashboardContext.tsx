@@ -2,7 +2,7 @@ import { BaseCollection } from '@infinityxyz/lib/types/core';
 import { toastError, toastSuccess } from 'components/common';
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/token-grid/token-fetcher';
-import React, { ReactNode, useContext, useEffect, useState } from 'react';
+import React, { ReactNode, useContext, useState } from 'react';
 import { NFTCard, TokenInfo, UserRecord } from 'utils/types/be-types';
 import { utils } from 'ethers';
 import { useAppContext } from './AppContext';
@@ -65,9 +65,9 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const { user, providerManager } = useAppContext();
   const { isSelected, toggleSelection, clearSelection, selection, removeFromSelection } = useCardSelection();
 
-  useEffect(() => {
-    setShowCart(selection.length > 0);
-  }, [selection]);
+  // useEffect(() => {
+  //   setShowCart(selection.length > 0);
+  // }, [selection]);
 
   const sendEth = async (userAddress: string, amountInEther: string): Promise<string | undefined> => {
     const receiverAddress = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
