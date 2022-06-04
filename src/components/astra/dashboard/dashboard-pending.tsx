@@ -2,13 +2,11 @@ import { RevealOrderCache } from 'components/reveal-order-grid/reveal-order-fetc
 import { useEffect } from 'react';
 import { useAppContext } from 'utils/context/AppContext';
 import { useDashboardContext } from 'utils/context/DashboardContext';
-import { useCardSelection } from '../useCardSelection';
 import { DashboardBase } from './dashboard-base';
 
 export const DashboardPending = () => {
   const { setTokenFetcher, setOrderFetcher, refreshTrigger, setDisplayName } = useDashboardContext();
   const { user } = useAppContext();
-  const { isSelected, toggleSelection } = useCardSelection();
 
   useEffect(() => {
     if (user) {
@@ -19,5 +17,5 @@ export const DashboardPending = () => {
     }
   }, [user, refreshTrigger]);
 
-  return <DashboardBase tokensMode={false} isSelected={isSelected} toggleSelection={toggleSelection} />;
+  return <DashboardBase tokensMode={false} />;
 };

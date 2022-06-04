@@ -3,13 +3,11 @@ import { useEffect } from 'react';
 import { getUserRecord } from 'utils/astra-utils';
 import { useAppContext } from 'utils/context/AppContext';
 import { useDashboardContext } from 'utils/context/DashboardContext';
-import { useCardSelection } from '../useCardSelection';
 import { DashboardBase } from './dashboard-base';
 
 export const DashboardMyNFTs = () => {
   const { setTokenFetcher, setOrderFetcher, refreshTrigger, setUserRecord, setDisplayName } = useDashboardContext();
   const { user } = useAppContext();
-  const { isSelected, toggleSelection } = useCardSelection();
 
   useEffect(() => {
     if (user) {
@@ -38,5 +36,5 @@ export const DashboardMyNFTs = () => {
     }
   };
 
-  return <DashboardBase tokensMode={true} isSelected={isSelected} toggleSelection={toggleSelection} />;
+  return <DashboardBase tokensMode={true} />;
 };

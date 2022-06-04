@@ -10,13 +10,14 @@ TODO:
 8. pending cards ugly
 9. set tab to current route
 10. selection broken
+11. cart animation and relayout
 
-11) loop over the rankings collection in pixeldb - has 10M docs, so you can fetch maybe 1000 at a time and paginate
-12) for each <rankingsdoc>, read the collectionAddress
+12) loop over the rankings collection in pixeldb - has 10M docs, so you can fetch maybe 1000 at a time and paginate
+13) for each <rankingsdoc>, read the collectionAddress
     2.1) check if pixeldb already has data for this address in collections collection (initially it won't have it)
     2.2) If not do step 3. If yes, do step 4
-13) Do const collectionInfo = await getCollectionInfo(collection) from collectMetadata.ts. Dump this in collections collection with a doc id <1:$collectionAddress>. Also merge this to the <rankingsdoc> above
-14) Fetch this data and merge this to the <rankingsdoc> above
+14) Do const collectionInfo = await getCollectionInfo(collection) from collectMetadata.ts. Dump this in collections collection with a doc id <1:$collectionAddress>. Also merge this to the <rankingsdoc> above
+15) Fetch this data and merge this to the <rankingsdoc> above
 
 So in the end, you will have a new collections collection which you can use for list and search
 You will also have the ranking docs enhanced with collection data so the 'unknowns' we are seeing now won't be there

@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { AstraNavbar, AstraNavTab } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
 import { AstraCart } from 'components/astra/astra-cart';
-import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
 import { useResizeDetector } from 'react-resize-detector';
 import { gridTemplate } from 'components/astra/dashboard/grid-template';
@@ -19,23 +18,19 @@ export const DashboardPage = () => {
     setCollection,
     setChainId,
     showCart,
-    setShowCart,
     handleCheckout,
     refreshData,
-    displayName
+    displayName,
+    selection,
+    clearSelection,
+    removeFromSelection
   } = useDashboardContext();
-
-  const { selection, clearSelection, removeFromSelection } = useCardSelection();
 
   const gridRef = useRef<HTMLDivElement>(null);
 
   const { width: cartWidth, ref: cartRef } = useResizeDetector();
 
   console.log(cartWidth);
-
-  useEffect(() => {
-    setShowCart(selection.length > 0);
-  }, [selection]);
 
   useEffect(() => {
     gridRef.current?.scrollTo({ left: 0, top: 0 });

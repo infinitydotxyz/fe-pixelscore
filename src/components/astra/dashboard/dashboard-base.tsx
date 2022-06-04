@@ -9,13 +9,11 @@ import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid'
 
 interface Props {
   tokensMode: boolean;
-
-  toggleSelection: (data: NFTCard) => void;
-  isSelected: (data: NFTCard) => boolean;
 }
 
-export const DashboardBase = ({ tokensMode, toggleSelection, isSelected }: Props) => {
-  const { numTokens, setNumTokens, tokenFetcher, orderFetcher, collection } = useDashboardContext();
+export const DashboardBase = ({ tokensMode }: Props) => {
+  const { numTokens, setNumTokens, tokenFetcher, orderFetcher, collection, isSelected, toggleSelection } =
+    useDashboardContext();
 
   const extraWidth = 0;
 

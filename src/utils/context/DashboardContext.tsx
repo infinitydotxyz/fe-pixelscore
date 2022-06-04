@@ -3,11 +3,12 @@ import { AstraNavTab } from 'components/astra/astra-navbar';
 import { toastError, toastSuccess } from 'components/common';
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/token-grid/token-fetcher';
-import React, { ReactNode, useContext, useState } from 'react';
+import React, { ReactNode, useContext, useEffect, useState } from 'react';
 import { NFTCard, TokenInfo, UserRecord } from 'utils/types/be-types';
 import { utils } from 'ethers';
 import { useAppContext } from './AppContext';
 import { setReveals } from 'utils/astra-utils';
+import { useCardSelection } from 'components/astra/useCardSelection';
 
 export type DashboardContextType = {
   collection: BaseCollection | undefined;
@@ -40,6 +41,12 @@ export type DashboardContextType = {
   handleCheckout: (selection: NFTCard[]) => void;
   refreshData: () => void;
   refreshTrigger: number;
+
+  toggleSelection: (data: NFTCard) => void;
+  isSelected: (data: NFTCard) => boolean;
+  removeFromSelection: (data: NFTCard) => void;
+  selection: NFTCard[];
+  clearSelection: () => void;
 };
 
 const DashboardContext = React.createContext<DashboardContextType | null>(null);
@@ -61,6 +68,11 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const [displayName, setDisplayName] = useState<string>('');
 
   const { user, providerManager } = useAppContext();
+  const { isSelected, toggleSelection, clearSelection, selection, removeFromSelection } = useCardSelection();
+
+  useEffect(() => {
+    setShowCart(selection.length > 0);
+  }, [selection]);
 
   const sendEth = async (userAddress: string, amountInEther: string): Promise<string | undefined> => {
     const receiverAddress = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
@@ -180,7 +192,13 @@ export const DashboardContextProvider = ({ children }: Props) => {
 
     // collection name, my nfts, pending etc
     setDisplayName,
-    displayName
+    displayName,
+
+    isSelected,
+    toggleSelection,
+    clearSelection,
+    selection,
+    removeFromSelection
   };
 
   return <DashboardContext.Provider value={value}>{children}</DashboardContext.Provider>;
