@@ -16,6 +16,9 @@ export type DashboardContextType = {
   chainId: string | undefined;
   setChainId: (value: string | undefined) => void;
 
+  displayName: string;
+  setDisplayName: (value: string) => void;
+
   currentTab: AstraNavTab;
   setCurrentTab: (value: AstraNavTab) => void;
 
@@ -55,6 +58,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const [orderFetcher, setOrderFetcher] = useState<RevealOrderFetcher | undefined>();
   const [userRecord, setUserRecord] = useState<UserRecord | undefined>();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [displayName, setDisplayName] = useState<string>('');
 
   const { user, providerManager } = useAppContext();
 
@@ -172,7 +176,11 @@ export const DashboardContextProvider = ({ children }: Props) => {
 
     handleCheckout,
     refreshData,
-    refreshTrigger
+    refreshTrigger,
+
+    // collection name, my nfts, pending etc
+    setDisplayName,
+    displayName
   };
 
   return <DashboardContext.Provider value={value}>{children}</DashboardContext.Provider>;

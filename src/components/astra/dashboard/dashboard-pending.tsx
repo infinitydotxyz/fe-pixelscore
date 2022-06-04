@@ -6,7 +6,7 @@ import { useCardSelection } from '../useCardSelection';
 import { DashboardBase } from './dashboard-base';
 
 export const DashboardPending = () => {
-  const { setTokenFetcher, setOrderFetcher, refreshTrigger } = useDashboardContext();
+  const { setTokenFetcher, setOrderFetcher, refreshTrigger, setDisplayName } = useDashboardContext();
   const { user } = useAppContext();
   const { isSelected, toggleSelection } = useCardSelection();
 
@@ -14,6 +14,8 @@ export const DashboardPending = () => {
     if (user) {
       setOrderFetcher(RevealOrderCache.shared().fetcher(user.address));
       setTokenFetcher(undefined);
+
+      setDisplayName('Pending');
     }
   }, [user, refreshTrigger]);
 
