@@ -46,7 +46,7 @@ export const GridHeader = ({ route, vertical }: Props) => {
     if (route !== AstraNavTab.Pending) {
       return (
         <div className={twMerge(inputBorderColor, 'flex-col items-center bg-gray-100 border-b px-8 py-3')}>
-          <BGImage src={avatarUrl} className="mr-6 h-16 w-full rounded-xl" />
+          <BGImage src={avatarUrl} className="mr-6 h-20 w-full rounded-xl" />
           <div className="my-2 tracking-tight text-theme-light-800 font-bold text-xl text-center">{name}</div>
 
           <div className="flex flex-col items-start">

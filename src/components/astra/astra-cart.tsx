@@ -26,23 +26,36 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
     map.set(token.tokenAddress ?? '', tkns);
   }
 
-  const divList: ReactNode[] = [];
-  let index = 0;
-  map.forEach((tokenArray) => {
-    const first = tokenArray[0];
+  let listComponent;
 
-    divList.push(
-      <div className="w-full rounded-md bg-slate-100 py-2 px-4 font-bold truncate" key={`header-${first.id}`}>
-        {first.collectionName}
+  if (map.size > 0) {
+    const divList: ReactNode[] = [];
+    let index = 0;
+    map.forEach((tokenArray) => {
+      const first = tokenArray[0];
+
+      divList.push(
+        <div className="w-full rounded-md bg-slate-100 py-2 px-4 font-bold truncate" key={`header-${first.id}`}>
+          {first.collectionName}
+        </div>
+      );
+
+      for (const t of tokenArray) {
+        divList.push(<AstraCartItem key={t.id} token={t} index={index++} onRemove={onRemove} />);
+      }
+
+      divList.push(<div key={Math.random()} className="h-1" />);
+    });
+
+    // min-w-0 is important. otherwise text doesn't truncate
+    listComponent = <div className="min-w-0 flex p-6 flex-col space-y-2 items-start flex-1">{divList}</div>;
+  } else {
+    listComponent = (
+      <div key={Math.random()} className="flex items-center justify-center text-sm text-gray-400 uppercase flex-1">
+        <div>Cart empty</div>
       </div>
     );
-
-    for (const t of tokenArray) {
-      divList.push(<AstraCartItem key={t.id} token={t} index={index++} onRemove={onRemove} />);
-    }
-
-    divList.push(<div key={Math.random()} className="h-1" />);
-  });
+  }
 
   return (
     <div className="h-full flex flex-col">
@@ -50,8 +63,7 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
         <GridHeader route={route} vertical={true} />
       </div>
 
-      {/* min-w-0 is important. otherwise text doesn't truncate */}
-      <div className="min-w-0 flex p-6 flex-col space-y-2 items-start flex-1">{divList}</div>
+      {listComponent}
 
       <div className="m-4 flex flex-col">
         <Button disabled={cardData.length === 0} onClick={onCheckout}>
