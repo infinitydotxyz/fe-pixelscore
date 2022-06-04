@@ -4,6 +4,9 @@ import { twMerge } from 'tailwind-merge';
 import { XIcon } from '@heroicons/react/outline';
 import { ReactNode } from 'react';
 import { NFTCard } from 'utils/types/be-types';
+import { GridHeader } from './dashboard/grid-header';
+import { TabUtils } from './astra-navbar';
+import { useLocation } from 'react-router-dom';
 
 interface Props {
   cardData: NFTCard[];
@@ -12,6 +15,9 @@ interface Props {
 }
 
 export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
+  const location = useLocation();
+  const route = TabUtils.routeToTab(location.pathname);
+
   const map = new Map<string, NFTCard[]>();
 
   for (const token of cardData) {
@@ -20,31 +26,49 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
     map.set(token.tokenAddress ?? '', tkns);
   }
 
-  const divList: ReactNode[] = [];
-  let index = 0;
-  map.forEach((tokenArray) => {
-    const first = tokenArray[0];
+  let listComponent;
 
-    divList.push(
-      <div className="w-full rounded-md bg-slate-100 py-2 px-4 font-bold truncate" key={`header-${first.id}`}>
-        {first.collectionName}
+  if (map.size > 0) {
+    const divList: ReactNode[] = [];
+    let index = 0;
+    map.forEach((tokenArray) => {
+      const first = tokenArray[0];
+
+      divList.push(
+        <div className="w-full rounded-md bg-slate-100 py-2 px-4 font-bold truncate" key={`header-${first.id}`}>
+          {first.collectionName}
+        </div>
+      );
+
+      for (const t of tokenArray) {
+        divList.push(<AstraCartItem key={t.id} token={t} index={index++} onRemove={onRemove} />);
+      }
+
+      divList.push(<div key={Math.random()} className="h-1" />);
+    });
+
+    // min-w-0 is important. otherwise text doesn't truncate
+    listComponent = <div className="min-w-0 flex p-6 flex-col space-y-2 items-start flex-1">{divList}</div>;
+  } else {
+    listComponent = (
+      <div key={Math.random()} className="flex items-center justify-center text-sm text-gray-400 uppercase flex-1">
+        <div>Cart empty</div>
       </div>
     );
-
-    for (const t of tokenArray) {
-      divList.push(<AstraCartItem key={t.id} token={t} index={index++} onRemove={onRemove} />);
-    }
-
-    divList.push(<div key={Math.random()} className="h-1" />);
-  });
+  }
 
   return (
-    <div className="h-full p-6 grid grid-rows-[1fr_auto] grid-cols-[1fr]">
-      {/* min-w-0 is important. otherwise text doesn't truncate */}
-      <div className="min-w-0 row-span-1 col-span-1 flex flex-col space-y-2 items-start flex-1">{divList}</div>
+    <div className="h-full flex flex-col">
+      <div className="mb-2">
+        <GridHeader route={route} vertical={true} />
+      </div>
 
-      <div className="row-span-1 col-span-2 flex flex-col">
-        <Button onClick={onCheckout}>Checkout</Button>
+      {listComponent}
+
+      <div className="m-4 flex flex-col">
+        <Button disabled={cardData.length === 0} onClick={onCheckout}>
+          Checkout
+        </Button>
       </div>
     </div>
   );

@@ -66,46 +66,45 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
   if (error || loading || noData) {
     contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
-    let gridColumns = 'grid-cols-2';
     if (gridWidth > 0) {
       // extraWidth is used to pageinate the same when cart is opened
       const width = gridWidth + extraWidth;
 
       const cols = Math.round(width / 290);
-      gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
+      const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
       cardHeight = width / cols;
+
+      contents = (
+        <>
+          <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
+            {cardData.map((data) => {
+              return (
+                <TokenCard
+                  height={cardHeight}
+                  key={data.id}
+                  data={data}
+                  selected={isSelected(data)}
+                  onClick={(data) => {
+                    if (onClick) {
+                      return onClick(data);
+                    }
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          {hasNextPage && (
+            <ScrollLoader
+              onFetchMore={async () => {
+                handleFetch(true);
+              }}
+            />
+          )}
+        </>
+      );
     }
-
-    contents = (
-      <>
-        <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
-          {cardData.map((data) => {
-            return (
-              <TokenCard
-                height={cardHeight}
-                key={data.id}
-                data={data}
-                selected={isSelected(data)}
-                onClick={(data) => {
-                  if (onClick) {
-                    return onClick(data);
-                  }
-                }}
-              />
-            );
-          })}
-        </div>
-
-        {hasNextPage && (
-          <ScrollLoader
-            onFetchMore={async () => {
-              handleFetch(true);
-            }}
-          />
-        )}
-      </>
-    );
   }
 
   return (

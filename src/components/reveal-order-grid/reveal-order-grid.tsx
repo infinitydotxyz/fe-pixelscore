@@ -68,44 +68,43 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
   if (error || loading || noData) {
     contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
-    let gridColumns = 'grid-cols-2';
     if (gridWidth > 0) {
       const cols = Math.round(gridWidth / 500);
-      gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
+      const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
       cardHeight = gridWidth / cols;
+
+      contents = (
+        <>
+          <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
+            {revealOrders.map((data) => {
+              return (
+                <RevealOrderCard
+                  userAddress={orderFetcher.userAddress}
+                  height={cardHeight}
+                  key={data.txnHash + data.timestamp}
+                  revealOrder={data}
+                  selected={isSelected(data)}
+                  onClick={(data) => {
+                    if (onClick) {
+                      return onClick(data);
+                    }
+                  }}
+                />
+              );
+            })}
+          </div>
+
+          {hasNextPage && (
+            <ScrollLoader
+              onFetchMore={async () => {
+                handleFetch(true);
+              }}
+            />
+          )}
+        </>
+      );
     }
-
-    contents = (
-      <>
-        <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
-          {revealOrders.map((data) => {
-            return (
-              <RevealOrderCard
-                userAddress={orderFetcher.userAddress}
-                height={cardHeight}
-                key={data.txnHash + data.timestamp}
-                revealOrder={data}
-                selected={isSelected(data)}
-                onClick={(data) => {
-                  if (onClick) {
-                    return onClick(data);
-                  }
-                }}
-              />
-            );
-          })}
-        </div>
-
-        {hasNextPage && (
-          <ScrollLoader
-            onFetchMore={async () => {
-              handleFetch(true);
-            }}
-          />
-        )}
-      </>
-    );
   }
 
   return (

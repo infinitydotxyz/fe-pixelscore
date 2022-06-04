@@ -1,6 +1,6 @@
 import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'utils';
-import { Filter } from 'utils/context/FilterContext';
 import {
+  Filter,
   NFTCard,
   NFTToken,
   PortfolioScore,

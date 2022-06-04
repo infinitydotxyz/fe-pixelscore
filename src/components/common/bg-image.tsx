@@ -43,7 +43,7 @@ export const BGImage = ({ src, center = true, className = '' }: Props) => {
         className={twMerge(
           center ? 'bg-center' : 'bg-top',
           loaded ? 'opacity-100' : 'opacity-0',
-          'transition-opacity duration-500 w-full h-full bg-cover bg-no-repeat',
+          'transition-opacity duration-400 w-full h-full bg-cover bg-no-repeat',
           className
         )}
         style={{ backgroundImage: `url(${src})` }}

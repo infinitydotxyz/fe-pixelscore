@@ -5,8 +5,7 @@ interface CardSelectionResult {
   toggleSelection: (data: NFTCard) => void;
   isSelected: (data: NFTCard) => boolean;
   removeFromSelection: (data: NFTCard) => void;
-  hasSelection: () => boolean;
-  selectedCards: () => NFTCard[];
+  selection: NFTCard[];
   clearSelection: () => void;
 }
 
@@ -42,14 +41,6 @@ export const useCardSelection = (): CardSelectionResult => {
     }
   };
 
-  const hasSelection = () => {
-    return selection.length > 0;
-  };
-
-  const selectedCards = (): NFTCard[] => {
-    return selection;
-  };
-
   const isSelected = (value: NFTCard): boolean => {
     return indexOfSelection(value) !== -1;
   };
@@ -58,5 +49,5 @@ export const useCardSelection = (): CardSelectionResult => {
     setSelection([]);
   };
 
-  return { selectedCards, isSelected, clearSelection, toggleSelection, removeFromSelection, hasSelection };
+  return { selection, isSelected, clearSelection, toggleSelection, removeFromSelection };
 };

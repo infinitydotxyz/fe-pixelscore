@@ -1,11 +1,9 @@
 import { ConnectButton, NextLink, Spacer, SVG, ToggleTab, useToggleTab } from 'components/common';
 import { inputBorderColor, largeIconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-
-interface Props {
-  onTabChange: (value: AstraNavTab) => void;
-  currentTab: AstraNavTab;
-}
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDashboardContext } from 'utils/context/DashboardContext';
 
 export enum AstraNavTab {
   All = 'All',
@@ -15,11 +13,20 @@ export enum AstraNavTab {
   MyNFTs = 'My NFTs'
 }
 
-export const AstraNavbar = ({ onTabChange, currentTab }: Props) => {
-  const { options, onChange, selected } = useToggleTab(
+export const AstraNavbar = () => {
+  const [currentTab, setCurrentTab] = useState(AstraNavTab.All);
+  const { setTokenFetcher, setOrderFetcher } = useDashboardContext();
+
+  const { options, selected } = useToggleTab(
     [AstraNavTab.All, AstraNavTab.Top100, AstraNavTab.Hot, AstraNavTab.MyNFTs, AstraNavTab.Pending],
     currentTab
   );
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    setCurrentTab(TabUtils.routeToTab(location.pathname));
+  }, [location]);
 
   const tabBar = (
     <div className={twMerge(inputBorderColor, 'flex justify-center')}>
@@ -27,8 +34,11 @@ export const AstraNavbar = ({ onTabChange, currentTab }: Props) => {
         options={options}
         selected={selected}
         onChange={(value) => {
-          onTabChange(value as AstraNavTab);
-          onChange(value);
+          // clear out on click so cards will be blank before loading
+          setTokenFetcher(undefined);
+          setOrderFetcher(undefined);
+
+          navigate(TabUtils.tabToRoute(value as AstraNavTab));
         }}
         altStyle={true}
         equalWidths={false}
@@ -51,3 +61,39 @@ export const AstraNavbar = ({ onTabChange, currentTab }: Props) => {
     </div>
   );
 };
+
+// =========================================================
+
+export class TabUtils {
+  static tabToRoute = (tab: AstraNavTab): string => {
+    switch (tab) {
+      case AstraNavTab.All:
+        return '/dashboard/all';
+      case AstraNavTab.Pending:
+        return '/dashboard/pending';
+      case AstraNavTab.MyNFTs:
+        return '/dashboard/nfts';
+      case AstraNavTab.Hot:
+        return '/dashboard/hot';
+      case AstraNavTab.Top100:
+        return '/dashboard/top';
+    }
+  };
+
+  static routeToTab = (route: string): AstraNavTab => {
+    switch (route) {
+      case '/dashboard/all':
+        return AstraNavTab.All;
+      case '/dashboard/pending':
+        return AstraNavTab.Pending;
+      case '/dashboard/nfts':
+        return AstraNavTab.MyNFTs;
+      case '/dashboard/hot':
+        return AstraNavTab.Hot;
+      case '/dashboard/top':
+        return AstraNavTab.Top100;
+    }
+
+    return AstraNavTab.All;
+  };
+}
