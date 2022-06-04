@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { BGImage, CenteredContent, ReadMoreText, Spacer, toastError, toastSuccess } from 'components/common';
+import { BGImage, CenteredContent, ReadMoreText, Spacer } from 'components/common';
 import { twMerge } from 'tailwind-merge';
 import { AstraNavbar, AstraNavTab } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
@@ -10,15 +10,15 @@ import { useAppContext } from 'utils/context/AppContext';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
 
-import { utils } from 'ethers';
-import { getUserRecord, setReveals } from 'utils/astra-utils';
-import { NFTCard, RevealOrder, TokenInfo } from '../utils/types/be-types';
+import { getUserRecord } from 'utils/astra-utils';
+import { NFTCard, RevealOrder } from '../utils/types/be-types';
 import { RevealOrderCache } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { TokensGrid } from 'components/token-grid/token-grid';
 import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
 import { useResizeDetector } from 'react-resize-detector';
 import { gridTemplate } from 'components/astra/dashboard/grid-template';
 import { useDashboardContext } from 'utils/context/DashboardContext';
+import { Outlet } from 'react-router-dom';
 
 export const DashboardPage = () => {
   const {
@@ -37,13 +37,15 @@ export const DashboardPage = () => {
     chainId,
     setChainId,
     showCart,
-    setShowCart
+    setShowCart,
+    handleCheckout,
+    refreshData
   } = useDashboardContext();
 
   const { selection, isSelected, toggleSelection, clearSelection, removeFromSelection } = useCardSelection();
 
   const gridRef = useRef<HTMLDivElement>(null);
-  const { user, providerManager } = useAppContext();
+  const { user } = useAppContext();
 
   const { width: cartWidth, ref: cartRef } = useResizeDetector();
 
@@ -185,93 +187,6 @@ export const DashboardPage = () => {
     tokensGrid = <CenteredContent>{emptyMessage}</CenteredContent>;
   }
 
-  const onRefresh = () => {
-    CollectionTokenCache.shared().refresh();
-    UserTokenCache.shared().refresh();
-    RevealOrderCache.shared().refresh();
-
-    // updating fetchers triggers rebuild
-    updateFetchers();
-  };
-
-  const sendEth = async (userAddress: string, amountInEther: string): Promise<string | undefined> => {
-    const receiverAddress = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
-
-    if (!utils.isAddress(userAddress)) {
-      toastError(`Invalid user address: ${userAddress}.`);
-      return;
-    }
-    if (!utils.isAddress(receiverAddress)) {
-      toastError(`Invalid transfer to address: ${receiverAddress}.`);
-      return;
-    }
-    if (userAddress === receiverAddress) {
-      toastError('From address is the same as to address.');
-      return;
-    }
-
-    // send transaction
-    const tx = {
-      to: receiverAddress,
-      value: utils.parseEther(amountInEther)
-    };
-
-    const rpcSigner = providerManager?.getEthersProvider().getSigner();
-    const txObj = await rpcSigner?.sendTransaction(tx);
-
-    if (txObj) {
-      console.log('txHash', txObj.hash);
-
-      return txObj.hash;
-    }
-
-    return;
-  };
-
-  const handleCheckout = async () => {
-    if (user) {
-      const pricePerTokenInEther = 0.0001;
-
-      const amountInEth = selection.length * pricePerTokenInEther;
-      const txnHash = await sendEth(user?.address, amountInEth.toFixed(12).toString());
-
-      if (txnHash) {
-        const tokenInfo: TokenInfo[] = [];
-
-        for (const cardData of selection) {
-          const token: TokenInfo = {
-            chainId: cardData.chainId ?? '',
-            collectionAddress: cardData.tokenAddress ?? '',
-            tokenId: cardData.tokenId ?? '',
-            collectionSlug: cardData.collectionSlug ?? '',
-            imageUrl: cardData.image ?? ''
-          };
-
-          tokenInfo.push(token);
-        }
-
-        const duh = await setReveals(
-          user.address,
-          txnHash,
-          selection.length,
-          pricePerTokenInEther,
-          amountInEth,
-          user.address, // revealer? I don't think this is used
-          chainId ?? '',
-          tokenInfo
-        );
-
-        console.log(duh);
-
-        clearSelection();
-
-        toastSuccess('Success', 'Your order has been submitted');
-      } else {
-        toastError('Error', 'Something went wrong');
-      }
-    }
-  };
-
   const navBar = (
     <AstraNavbar
       currentTab={currentTab}
@@ -303,14 +218,19 @@ export const DashboardPage = () => {
   const cart = (
     <AstraCart
       cardData={selection}
-      onCheckout={handleCheckout}
+      onCheckout={() => {
+        clearSelection();
+        handleCheckout(selection);
+      }}
       onRemove={(value) => {
         removeFromSelection(value);
       }}
     />
   );
 
-  const footer = <AstraFooter name={name} numTokens={numTokens} onRefresh={onRefresh} />;
+  const footer = <AstraFooter name={name} numTokens={numTokens} onRefresh={refreshData} />;
+
+  tokensGrid = <Outlet />;
 
   const contents = gridTemplate(navBar, sidebar, tokensGrid, cart, footer, gridRef, cartRef, showCart);
 

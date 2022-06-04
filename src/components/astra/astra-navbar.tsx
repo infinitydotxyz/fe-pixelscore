@@ -1,7 +1,7 @@
 import { ConnectButton, NextLink, Spacer, SVG, ToggleTab, useToggleTab } from 'components/common';
 import { inputBorderColor, largeIconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   onTabChange: (value: AstraNavTab) => void;
@@ -21,7 +21,7 @@ export const AstraNavbar = ({ onTabChange, currentTab }: Props) => {
     [AstraNavTab.All, AstraNavTab.Top100, AstraNavTab.Hot, AstraNavTab.MyNFTs, AstraNavTab.Pending],
     currentTab
   );
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const tabBar = (
     <div className={twMerge(inputBorderColor, 'flex justify-center')}>
@@ -29,7 +29,23 @@ export const AstraNavbar = ({ onTabChange, currentTab }: Props) => {
         options={options}
         selected={selected}
         onChange={(value) => {
-          // navigate('all');
+          switch (value) {
+            case AstraNavTab.All:
+              navigate('all');
+              break;
+            case AstraNavTab.Pending:
+              navigate('pending');
+              break;
+            case AstraNavTab.MyNFTs:
+              navigate('nfts');
+              break;
+            case AstraNavTab.Hot:
+              navigate('hot');
+              break;
+            case AstraNavTab.Top100:
+              navigate('top');
+              break;
+          }
 
           onTabChange(value as AstraNavTab);
           onChange(value);

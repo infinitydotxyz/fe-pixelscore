@@ -1,21 +1,21 @@
-import { UserTokenCache } from 'components/token-grid/token-fetcher';
+import { RevealOrderCache } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { useEffect } from 'react';
 import { useAppContext } from 'utils/context/AppContext';
 import { useDashboardContext } from 'utils/context/DashboardContext';
 import { useCardSelection } from '../useCardSelection';
 import { DashboardBase } from './dashboard-base';
 
-export const DashboardMyNFTs = () => {
+export const DashboardPending = () => {
   const { setTokenFetcher, setOrderFetcher, refreshTrigger } = useDashboardContext();
   const { user } = useAppContext();
   const { isSelected, toggleSelection } = useCardSelection();
 
   useEffect(() => {
     if (user) {
-      setTokenFetcher(UserTokenCache.shared().fetcher(user.address));
-      setOrderFetcher(undefined);
+      setOrderFetcher(RevealOrderCache.shared().fetcher(user.address));
+      setTokenFetcher(undefined);
     }
   }, [user, refreshTrigger]);
 
-  return <DashboardBase tokensMode={true} isSelected={isSelected} toggleSelection={toggleSelection} />;
+  return <DashboardBase tokensMode={false} isSelected={isSelected} toggleSelection={toggleSelection} />;
 };

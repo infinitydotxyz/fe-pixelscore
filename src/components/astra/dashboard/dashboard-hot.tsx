@@ -1,9 +1,17 @@
-// =============================================================
+import { RankTokenCache } from 'components/token-grid/token-fetcher';
+import { useEffect } from 'react';
+import { useDashboardContext } from 'utils/context/DashboardContext';
+import { useCardSelection } from '../useCardSelection';
+import { DashboardBase } from './dashboard-base';
 
 export const DashboardHot = () => {
-  return (
-    <div className="w-full h-full">
-      <h3>Dashboard hot</h3>
-    </div>
-  );
+  const { setTokenFetcher, setOrderFetcher, refreshTrigger } = useDashboardContext();
+  const { isSelected, toggleSelection } = useCardSelection();
+
+  useEffect(() => {
+    setTokenFetcher(RankTokenCache.shared().fetcher(7, 9));
+    setOrderFetcher(undefined);
+  }, [refreshTrigger]);
+
+  return <DashboardBase tokensMode={true} isSelected={isSelected} toggleSelection={toggleSelection} />;
 };
