@@ -1,42 +1,46 @@
-import { BaseCollection } from '@infinityxyz/lib/types/core';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { BGImage, CenteredContent, ReadMoreText, Spacer, toastError, toastSuccess } from 'components/common';
 import { twMerge } from 'tailwind-merge';
 import { AstraNavbar, AstraNavTab } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
 import { AstraCart } from 'components/astra/astra-cart';
 import { inputBorderColor } from 'utils/ui-constants';
-import {
-  CollectionTokenCache,
-  RankTokenCache,
-  TokenFetcher,
-  UserTokenCache
-} from 'components/token-grid/token-fetcher';
+import { CollectionTokenCache, RankTokenCache, UserTokenCache } from 'components/token-grid/token-fetcher';
 import { useAppContext } from 'utils/context/AppContext';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { AstraFooter } from 'components/astra/astra-footer';
 
 import { utils } from 'ethers';
 import { getUserRecord, setReveals } from 'utils/astra-utils';
-import { NFTCard, RevealOrder, TokenInfo, UserRecord } from '../utils/types/be-types';
-import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
+import { NFTCard, RevealOrder, TokenInfo } from '../utils/types/be-types';
+import { RevealOrderCache } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { TokensGrid } from 'components/token-grid/token-grid';
 import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
 import { useResizeDetector } from 'react-resize-detector';
 import { gridTemplate } from 'components/astra/dashboard/grid-template';
+import { useDashboardContext } from 'utils/context/DashboardContext';
 
 export const DashboardPage = () => {
-  const [collection, setCollection] = useState<BaseCollection>();
-  const [chainId, setChainId] = useState<string>();
-  const [currentTab, setCurrentTab] = useState<AstraNavTab>(AstraNavTab.All);
-  const [showCart, setShowCart] = useState(false);
-  const [numTokens, setNumTokens] = useState(0);
-  const [tokenFetcher, setTokenFetcher] = useState<TokenFetcher | undefined>();
-  const [orderFetcher, setOrderFetcher] = useState<RevealOrderFetcher | undefined>();
-  const [userRecord, setUserRecord] = useState<UserRecord | undefined>();
+  const {
+    currentTab,
+    setCurrentTab,
+    numTokens,
+    setNumTokens,
+    tokenFetcher,
+    setTokenFetcher,
+    orderFetcher,
+    setOrderFetcher,
+    userRecord,
+    setUserRecord,
+    collection,
+    setCollection,
+    chainId,
+    setChainId,
+    showCart,
+    setShowCart
+  } = useDashboardContext();
 
-  const { selectedCards, isSelected, toggleSelection, clearSelection, removeFromSelection, hasSelection } =
-    useCardSelection();
+  const { selection, isSelected, toggleSelection, clearSelection, removeFromSelection } = useCardSelection();
 
   const gridRef = useRef<HTMLDivElement>(null);
   const { user, providerManager } = useAppContext();
@@ -44,8 +48,8 @@ export const DashboardPage = () => {
   const { width: cartWidth, ref: cartRef } = useResizeDetector();
 
   useEffect(() => {
-    setShowCart(hasSelection);
-  }, [hasSelection]);
+    setShowCart(selection.length > 0);
+  }, [selection]);
 
   useEffect(() => {
     gridRef.current?.scrollTo({ left: 0, top: 0 });
@@ -227,15 +231,14 @@ export const DashboardPage = () => {
   const handleCheckout = async () => {
     if (user) {
       const pricePerTokenInEther = 0.0001;
-      const dataList = selectedCards();
 
-      const amountInEth = dataList.length * pricePerTokenInEther;
+      const amountInEth = selection.length * pricePerTokenInEther;
       const txnHash = await sendEth(user?.address, amountInEth.toFixed(12).toString());
 
       if (txnHash) {
         const tokenInfo: TokenInfo[] = [];
 
-        for (const cardData of dataList) {
+        for (const cardData of selection) {
           const token: TokenInfo = {
             chainId: cardData.chainId ?? '',
             collectionAddress: cardData.tokenAddress ?? '',
@@ -250,7 +253,7 @@ export const DashboardPage = () => {
         const duh = await setReveals(
           user.address,
           txnHash,
-          dataList.length,
+          selection.length,
           pricePerTokenInEther,
           amountInEth,
           user.address, // revealer? I don't think this is used
@@ -299,7 +302,7 @@ export const DashboardPage = () => {
 
   const cart = (
     <AstraCart
-      cardData={selectedCards()}
+      cardData={selection}
       onCheckout={handleCheckout}
       onRemove={(value) => {
         removeFromSelection(value);
