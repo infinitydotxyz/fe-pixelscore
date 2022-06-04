@@ -1,19 +1,16 @@
 import { useEffect, useRef } from 'react';
-import { AstraNavbar, AstraNavTab } from 'components/astra/astra-navbar';
+import { AstraNavbar } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
 import { AstraCart } from 'components/astra/astra-cart';
 import { AstraFooter } from 'components/astra/astra-footer';
 import { useResizeDetector } from 'react-resize-detector';
 import { gridTemplate } from 'components/astra/dashboard/grid-template';
 import { useDashboardContext } from 'utils/context/DashboardContext';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export const DashboardPage = () => {
   const {
-    currentTab,
-    setCurrentTab,
     numTokens,
-    setTokenFetcher,
     collection,
     setCollection,
     setChainId,
@@ -27,6 +24,7 @@ export const DashboardPage = () => {
   } = useDashboardContext();
 
   const gridRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const { width: cartWidth, ref: cartRef } = useResizeDetector();
 
@@ -70,18 +68,7 @@ export const DashboardPage = () => {
   //     break;
   // }
 
-  const navBar = (
-    <AstraNavbar
-      currentTab={currentTab}
-      onTabChange={(value) => {
-        // blanks out the cards
-        setTokenFetcher(undefined);
-
-        // set tab so new cards will load
-        setCurrentTab(value);
-      }}
-    />
-  );
+  const navBar = <AstraNavbar />;
 
   const sidebar = (
     <AstraSidebar
@@ -93,7 +80,13 @@ export const DashboardPage = () => {
           setChainId(value.chainId);
         }
 
-        setCurrentTab(AstraNavTab.All);
+        navigate('all');
+      }}
+      onLoad={(value) => {
+        if (value.address !== collection?.address) {
+          setCollection(value);
+          setChainId(value.chainId);
+        }
       }}
     />
   );

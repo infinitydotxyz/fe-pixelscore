@@ -3,16 +3,16 @@ import { useEffect } from 'react';
 import { getUserRecord } from 'utils/astra-utils';
 import { useAppContext } from 'utils/context/AppContext';
 import { useDashboardContext } from 'utils/context/DashboardContext';
+import { AstraNavTab } from '../astra-navbar';
 import { DashboardBase } from './dashboard-base';
 
 export const DashboardMyNFTs = () => {
-  const { setTokenFetcher, setOrderFetcher, refreshTrigger, setUserRecord, setDisplayName } = useDashboardContext();
+  const { setTokenFetcher, refreshTrigger, setUserRecord, setDisplayName } = useDashboardContext();
   const { user } = useAppContext();
 
   useEffect(() => {
     if (user) {
       setTokenFetcher(UserTokenCache.shared().fetcher(user.address));
-      setOrderFetcher(undefined);
 
       setDisplayName('');
 
@@ -36,5 +36,5 @@ export const DashboardMyNFTs = () => {
     }
   };
 
-  return <DashboardBase tokensMode={true} />;
+  return <DashboardBase route={AstraNavTab.MyNFTs} />;
 };

@@ -9,17 +9,22 @@ import { CollectionCache } from './collection-cache';
 
 interface Props {
   onClick: (value: BaseCollection) => void;
+  onLoad: (value: BaseCollection) => void;
   selectedCollection?: BaseCollection;
 }
 
-export const AstraSidebar = ({ onClick, selectedCollection }: Props) => {
+export const AstraSidebar = ({ onClick, onLoad, selectedCollection }: Props) => {
   const [query, setQuery] = useState('');
 
-  const handleClick = async (collection: CollectionSearchDto) => {
+  const handleClick = async (collection: CollectionSearchDto, sendOnLoad: boolean) => {
     const result = await CollectionCache.shared().collection(collection);
 
     if (result) {
-      onClick(result);
+      if (sendOnLoad) {
+        onLoad(result);
+      } else {
+        onClick(result);
+      }
     } else {
       toastError('Collection invalid');
     }
@@ -29,11 +34,11 @@ export const AstraSidebar = ({ onClick, selectedCollection }: Props) => {
     <CollectionList
       query={query}
       selectedCollection={selectedCollection}
-      onClick={handleClick}
+      onClick={(c) => handleClick(c, false)}
       onLoad={(collections) => {
         // select first collection
         if (collections.length > 0) {
-          handleClick(collections[0]);
+          handleClick(collections[0], true);
         }
       }}
     />

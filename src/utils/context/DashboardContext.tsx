@@ -1,5 +1,4 @@
 import { BaseCollection } from '@infinityxyz/lib/types/core';
-import { AstraNavTab } from 'components/astra/astra-navbar';
 import { toastError, toastSuccess } from 'components/common';
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/token-grid/token-fetcher';
@@ -19,9 +18,6 @@ export type DashboardContextType = {
 
   displayName: string;
   setDisplayName: (value: string) => void;
-
-  currentTab: AstraNavTab;
-  setCurrentTab: (value: AstraNavTab) => void;
 
   showCart: boolean;
   setShowCart: (value: boolean) => void;
@@ -58,7 +54,6 @@ interface Props {
 export const DashboardContextProvider = ({ children }: Props) => {
   const [collection, setCollection] = useState<BaseCollection>();
   const [chainId, setChainId] = useState<string>();
-  const [currentTab, setCurrentTab] = useState<AstraNavTab>(AstraNavTab.All);
   const [showCart, setShowCart] = useState(false);
   const [numTokens, setNumTokens] = useState(0);
   const [tokenFetcher, setTokenFetcher] = useState<TokenFetcher | undefined>();
@@ -167,9 +162,6 @@ export const DashboardContextProvider = ({ children }: Props) => {
 
     chainId,
     setChainId,
-
-    currentTab,
-    setCurrentTab,
 
     showCart,
     setShowCart,
