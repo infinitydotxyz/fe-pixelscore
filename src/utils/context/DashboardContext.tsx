@@ -122,6 +122,9 @@ export const DashboardContextProvider = ({ children }: Props) => {
           const token: TokenInfo = {
             chainId: cardData.chainId ?? '',
             collectionAddress: cardData.tokenAddress ?? '',
+            collectionName: cardData.collectionName,
+            collectionBannerImage: cardData.collectionBannerImage ?? '',
+            collectionProfileImage: cardData.collectionProfileImage ?? '',
             tokenId: cardData.tokenId ?? '',
             collectionSlug: cardData.collectionSlug ?? '',
             imageUrl: cardData.image ?? ''

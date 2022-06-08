@@ -1,4 +1,11 @@
-import { ListingType, BaseToken, CardData } from '@infinityxyz/lib/types/core';
+import {
+  RefreshTokenFlow,
+  RefreshTokenErrorJson,
+  Erc721Metadata,
+  ListingType,
+  CardData,
+  TokenStandard
+} from '@infinityxyz/lib/types/core';
 
 export interface RevealOrder {
   chainId: string;
@@ -41,7 +48,46 @@ export interface UpdateRankVisibility {
   pixelRankVisible: boolean;
 }
 
-export interface NFTToken extends BaseToken {
+export interface NftImage {
+  url: string;
+  originalUrl: string;
+  updatedAt: number;
+}
+
+interface NftStateMetadataDto {
+  step: RefreshTokenFlow;
+  error?: RefreshTokenErrorJson;
+}
+
+export interface NftStateDto {
+  metadata: NftStateMetadataDto;
+}
+
+export interface NFTToken {
+  collectionAddress?: string;
+  collectionSlug?: string;
+  collectionName?: string;
+  collectionBannerImage?: string;
+  collectionProfileImage?: string;
+  hasBlueCheck?: boolean;
+  chainId: string;
+  slug: string;
+  tokenId: string;
+  minter: string;
+  mintedAt: number;
+  mintTxHash: string;
+  mintPrice: number;
+  destroyedAt?: number;
+  metadata: Erc721Metadata;
+  numTraitTypes: number;
+  updatedAt: number;
+  tokenUri: string;
+  rarityRank: number;
+  rarityScore: number;
+  image: NftImage;
+  state?: NftStateDto;
+  tokenStandard: TokenStandard;
+  owner?: string;
   inCollectionPixelRank?: number;
   pixelRank?: number;
   pixelRankBucket?: number;
@@ -49,6 +95,9 @@ export interface NFTToken extends BaseToken {
 }
 
 export interface NFTCard extends CardData {
+  collectionBannerImage?: string;
+  collectionProfileImage?: string;
+
   inCollectionPixelRank?: number;
   pixelRank?: number;
   pixelRankBucket?: number;
