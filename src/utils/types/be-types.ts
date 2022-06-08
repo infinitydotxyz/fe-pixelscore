@@ -15,7 +15,10 @@ export interface RevealOrder {
 export interface TokenInfo {
   chainId: string;
   collectionAddress: string;
-  collectionSlug: string;
+  collectionName?: string;
+  collectionBannerImage?: string;
+  collectionProfileImage?: string;
+  collectionSlug?: string;
   tokenId: string;
   imageUrl: string;
   rarityScore?: number;
@@ -24,6 +27,7 @@ export interface TokenInfo {
   inCollectionPixelRank?: number;
   pixelScore?: number;
   pixelRank?: number;
+  pixelRankBucket?: number;
   pixelRankRevealed?: boolean;
   pixelRankVisible?: boolean;
   pixelRankRevealer?: string;
@@ -35,17 +39,6 @@ export interface UpdateRankVisibility {
   collectionAddress: string;
   tokenId: string;
   pixelRankVisible: boolean;
-}
-
-export interface RankInfo {
-  chainId: string;
-  collectionAddress: string;
-  imageUrl: string;
-  inCollectionPixelRank?: number;
-  pixelRank?: number;
-  pixelRankBucket?: number;
-  pixelScore?: number;
-  tokenId: string;
 }
 
 export interface NFTToken extends BaseToken {

@@ -4,7 +4,6 @@ import {
   NFTCard,
   NFTToken,
   PortfolioScore,
-  RankInfo,
   RevealOrder,
   TokenInfo,
   UpdateRankVisibility,
@@ -70,7 +69,7 @@ export const fetchCollections = async (query: string, cursor?: string): Promise<
 
 // ======================================================
 
-export const tokensToCardData = (tokens: NFTToken[], collectionName: string): NFTCard[] => {
+export const tokensToCardData = (tokens: NFTToken[]): NFTCard[] => {
   let cardData = tokens.map((token) => {
     // token doesn't have a collectionName, remove from NFTToken or fix BE
     // const collectionName = token.collectionName ?? 'Unknown';
@@ -78,8 +77,8 @@ export const tokensToCardData = (tokens: NFTToken[], collectionName: string): NF
     const result: NFTCard = {
       id: token.collectionAddress + '_' + token.tokenId,
       name: token.metadata?.name,
-      collectionName: collectionName,
-      title: collectionName ?? 'Unknown',
+      collectionName: token.collectionName,
+      title: token.collectionName ?? 'Unknown',
       description: token.metadata.description,
       image: token.image.url || token.image.originalUrl,
       // cardImage: token.image.url || token.image.originalUrl,
@@ -109,15 +108,15 @@ export const tokensToCardData = (tokens: NFTToken[], collectionName: string): NF
   return cardData;
 };
 
-export const rankInfosToCardData = (tokens: RankInfo[], collectionName: string): NFTCard[] => {
+export const rankInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
   let cardData = tokens.map((token) => {
     // token doesn't have a collectionName, remove from NFTToken or fix BE
     // const collectionName = token.collectionName ?? 'Unknown';
 
     const result: NFTCard = {
       id: token.collectionAddress + '_' + token.tokenId,
-      collectionName: collectionName,
-      title: collectionName ?? 'Unknown',
+      collectionName: token.collectionName,
+      title: token.collectionName ?? 'Unknown',
       chainId: token.chainId,
       tokenAddress: token.collectionAddress,
       tokenId: token.tokenId,

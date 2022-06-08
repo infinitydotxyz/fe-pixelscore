@@ -7,7 +7,7 @@ import {
   rankInfosToCardData,
   tokensToCardData
 } from 'utils/astra-utils';
-import { NFTCard, NFTToken, RankInfo } from 'utils/types/be-types';
+import { NFTCard, NFTToken, TokenInfo } from 'utils/types/be-types';
 
 export interface TokenFetcherResult {
   ferror: boolean;
@@ -63,8 +63,8 @@ export class TokenFetcher {
 
   // override this
   protected toCardData = (data: NFTArrayResult<unknown>): NFTCard[] => {
-    const result = data as NFTArrayResult<RankInfo>;
-    return rankInfosToCardData(result.data, this.collectionName);
+    const result = data as NFTArrayResult<TokenInfo>;
+    return rankInfosToCardData(result.data);
   };
 }
 
@@ -186,7 +186,7 @@ class UserTokenFetcher extends TokenFetcher {
   // override
   protected toCardData = (data: NFTArrayResult<unknown>): NFTCard[] => {
     const result = data as NFTArrayResult<NFTToken>;
-    return tokensToCardData(result.data, 'Unknown');
+    return tokensToCardData(result.data);
   };
 }
 
