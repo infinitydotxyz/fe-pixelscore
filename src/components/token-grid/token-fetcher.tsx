@@ -4,7 +4,7 @@ import {
   fetchTokens,
   fetchTokensByRank,
   fetchUserTokens,
-  rankInfosToCardData,
+  tokenInfosToCardData,
   tokensToCardData
 } from 'utils/astra-utils';
 import { NFTCard, NFTToken, TokenInfo } from 'utils/types/be-types';
@@ -64,7 +64,7 @@ export class TokenFetcher {
   // override this
   protected toCardData = (data: NFTArrayResult<unknown>): NFTCard[] => {
     const result = data as NFTArrayResult<TokenInfo>;
-    return rankInfosToCardData(result.data);
+    return tokenInfosToCardData(result.data);
   };
 }
 

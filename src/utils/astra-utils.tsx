@@ -58,7 +58,7 @@ export const fetchUserTokens = async (userAddress: string, cursor?: string): Pro
 // ======================================================
 
 export const fetchCollections = async (query: string, cursor?: string): Promise<ApiResponse> => {
-  const response = await httpGet('/collections', {
+  const response = await httpGet('/collections/search', {
     query,
     limit: DEFAULT_LIMIT,
     cursor
@@ -108,7 +108,7 @@ export const tokensToCardData = (tokens: NFTToken[]): NFTCard[] => {
   return cardData;
 };
 
-export const rankInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
+export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
   let cardData = tokens.map((token) => {
     // token doesn't have a collectionName, remove from NFTToken or fix BE
     // const collectionName = token.collectionName ?? 'Unknown';
