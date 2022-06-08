@@ -36,7 +36,7 @@ export const BGImage = ({ src, center = true, className = '' }: Props) => {
   }, [src]);
 
   return (
-    <div className={twMerge('w-full h-full', className, 'bg-gray-300')}>
+    <div className={twMerge('w-full h-full', className, 'bg-slate-400')}>
       {src && (
         <div
           className={twMerge(

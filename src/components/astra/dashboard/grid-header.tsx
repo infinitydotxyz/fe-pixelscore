@@ -85,7 +85,7 @@ export const GridHeader = ({ route, vertical }: Props) => {
           <BGImage src={avatarUrl} className="mr-6 h-16 w-36 rounded-xl" />
           <div className="flex flex-col items-start">
             <div className="tracking-tight text-theme-light-800 font-bold text-xl text-center">{name}</div>
-            <div className="max-w-3xl">
+            <div className="max-w-2xl">
               <ReadMoreText text={description} min={50} ideal={160} max={10000} />
             </div>
           </div>
