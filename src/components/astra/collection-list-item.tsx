@@ -1,14 +1,14 @@
 import React from 'react';
 import { BGImage } from 'components/common';
 import { BLANK_IMAGE_URL } from 'utils';
-import { CollectionSearchDto } from '../../utils/types/collection-types';
+import { CollectionInfo } from '../../utils/types/collection-types';
 import { twMerge } from 'tailwind-merge';
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 
 interface Props2 {
-  collection: CollectionSearchDto;
+  collection: CollectionInfo;
   selected: boolean;
-  onClick: (collection: CollectionSearchDto) => void;
+  onClick: (collection: CollectionInfo) => void;
 }
 
 export const CollectionListItem = ({ collection, onClick, selected }: Props2) => {

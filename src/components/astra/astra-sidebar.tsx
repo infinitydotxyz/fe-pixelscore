@@ -1,32 +1,24 @@
-import { BaseCollection } from '@infinityxyz/lib/types/core';
 import { useState } from 'react';
 import { CollectionList } from 'components/astra/collection-list';
-import { DebouncedTextField, toastError } from 'components/common';
-import { CollectionSearchDto } from 'utils/types/collection-types';
+import { DebouncedTextField } from 'components/common';
+import { CollectionInfo } from 'utils/types/collection-types';
 import { inputBorderColor } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { CollectionCache } from './collection-cache';
 
 interface Props {
-  onClick: (value: BaseCollection) => void;
-  onLoad: (value: BaseCollection) => void;
-  selectedCollection?: BaseCollection;
+  onClick: (value: CollectionInfo) => void;
+  onLoad: (value: CollectionInfo) => void;
+  selectedCollection?: CollectionInfo;
 }
 
 export const AstraSidebar = ({ onClick, onLoad, selectedCollection }: Props) => {
   const [query, setQuery] = useState('');
 
-  const handleClick = async (collection: CollectionSearchDto, sendOnLoad: boolean) => {
-    const result = await CollectionCache.shared().collection(collection);
-
-    if (result) {
-      if (sendOnLoad) {
-        onLoad(result);
-      } else {
-        onClick(result);
-      }
+  const handleClick = async (collection: CollectionInfo, sendOnLoad: boolean) => {
+    if (sendOnLoad) {
+      onLoad(collection);
     } else {
-      toastError('Collection invalid');
+      onClick(collection);
     }
   };
 

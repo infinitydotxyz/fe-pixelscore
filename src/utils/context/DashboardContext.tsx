@@ -1,4 +1,3 @@
-import { BaseCollection } from '@infinityxyz/lib/types/core';
 import { toastError, toastSuccess } from 'components/common';
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/token-grid/token-fetcher';
@@ -8,10 +7,11 @@ import { utils } from 'ethers';
 import { useAppContext } from './AppContext';
 import { setReveals } from 'utils/astra-utils';
 import { useCardSelection } from 'components/astra/useCardSelection';
+import { CollectionInfo } from 'utils/types/collection-types';
 
 export type DashboardContextType = {
-  collection: BaseCollection | undefined;
-  setCollection: (value: BaseCollection) => void;
+  collection: CollectionInfo | undefined;
+  setCollection: (value: CollectionInfo) => void;
 
   gridWidth: number;
   setGridWidth: (value: number) => void;
@@ -55,7 +55,7 @@ interface Props {
 }
 
 export const DashboardContextProvider = ({ children }: Props) => {
-  const [collection, setCollection] = useState<BaseCollection>();
+  const [collection, setCollection] = useState<CollectionInfo>();
   const [chainId, setChainId] = useState<string>();
   const [showCart, setShowCart] = useState(false);
   const [numTokens, setNumTokens] = useState(0);

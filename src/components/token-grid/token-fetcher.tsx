@@ -1,6 +1,5 @@
-import { BaseCollection } from '@infinityxyz/lib/types/core';
 import { ApiResponse } from 'utils';
-import { NFTArrayResult } from '../../utils/types/collection-types';
+import { CollectionInfo, NFTArrayResult } from '../../utils/types/collection-types';
 import {
   fetchTokens,
   fetchTokensByRank,
@@ -92,7 +91,7 @@ export class CollectionTokenCache {
     this.cache = new Map<string, TokenFetcher>();
   };
 
-  fetcher(collection: BaseCollection, chainId: string): TokenFetcher {
+  fetcher(collection: CollectionInfo, chainId: string): TokenFetcher {
     const key = `${collection.address}:${chainId}`;
     const cached = this.cache.get(key);
 
@@ -110,17 +109,17 @@ export class CollectionTokenCache {
 // ========================================================================
 
 class CollectionTokenFetcher extends TokenFetcher {
-  private collection: BaseCollection;
+  private collection: CollectionInfo;
   private chainId: string;
 
-  constructor(collection: BaseCollection, chainId: string) {
+  constructor(collection: CollectionInfo, chainId: string) {
     super();
 
     this.collection = collection;
     this.chainId = chainId;
 
     // NFTToken doesn't have a collection name from server, so setting it here
-    this.collectionName = collection.metadata.name ?? 'Unknown';
+    this.collectionName = collection.name ?? 'Unknown';
   }
 
   // override

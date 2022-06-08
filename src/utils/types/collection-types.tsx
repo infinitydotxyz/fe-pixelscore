@@ -1,18 +1,23 @@
-// CollectionSearchDto
-export interface CollectionSearchDto {
-  description: string;
+export interface CollectionInfo {
   address: string;
   chainId: string;
-  profileImage: string;
-  hasBlueCheck: boolean;
-  bannerImage: string;
+  tokenStandard: string;
   slug: string;
   name: string;
+  symbol: string;
+  description: string;
+  profileImage: string;
+  bannerImage: string;
+  cardDisplaytype?: string;
+  twitter?: string;
+  discord?: string;
+  external?: string;
 }
 
 // CollectionSearchArrayDto
-export interface CollectionSearchArrayDto {
-  data: CollectionSearchDto[];
+
+export interface CollectionInfoArrayDto {
+  data: CollectionInfo[];
   cursor: string;
   hasNextPage: boolean;
 }

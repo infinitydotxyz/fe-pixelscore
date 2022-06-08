@@ -11,7 +11,7 @@ export const DashboardAll = () => {
     if (collection && chainId) {
       setTokenFetcher(CollectionTokenCache.shared().fetcher(collection, chainId));
 
-      setDisplayName(collection?.metadata.name ?? '');
+      setDisplayName(collection?.name ?? '');
     }
   }, [collection, chainId, refreshTrigger]);
 

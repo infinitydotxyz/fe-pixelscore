@@ -20,10 +20,10 @@ export const GridHeader = ({ route, vertical }: Props) => {
 
   switch (route) {
     case AstraNavTab.All:
-      avatarUrl = collection?.metadata.bannerImage;
-      name = collection?.metadata.name ?? '';
-      description = collection?.metadata.description ?? '';
-      numNfts = collection?.numNfts ?? numTokens;
+      avatarUrl = collection?.bannerImage;
+      name = collection?.name ?? '';
+      description = collection?.description ?? '';
+      numNfts = numTokens;
       break;
     case AstraNavTab.Pending:
       name = route;

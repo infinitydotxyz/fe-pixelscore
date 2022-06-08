@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { CollectionSearchArrayDto, CollectionSearchDto } from '../../utils/types/collection-types';
-import { BaseCollection } from '@infinityxyz/lib/types/core';
+import { useState, useEffect } from 'react';
+import { CollectionInfo, CollectionInfoArrayDto } from '../../utils/types/collection-types';
 import { CollectionListItem } from './collection-list-item';
 import { fetchCollections } from 'utils/astra-utils';
 import { ScrollLoader } from '../common';
@@ -8,15 +7,15 @@ import { useIsMounted } from 'hooks/useIsMounted';
 
 interface Props {
   query: string;
-  selectedCollection?: BaseCollection;
+  selectedCollection?: CollectionInfo;
   className?: string;
-  onClick: (collection: CollectionSearchDto) => void;
+  onClick: (collection: CollectionInfo) => void;
   // called on first load so the we can select the first collection to display
-  onLoad: (collections: CollectionSearchDto[]) => void;
+  onLoad: (collections: CollectionInfo[]) => void;
 }
 
 export const CollectionList = ({ query, className = '', onClick, selectedCollection, onLoad }: Props) => {
-  const [collections, setCollections] = useState<CollectionSearchDto[]>([]);
+  const [collections, setCollections] = useState<CollectionInfo[]>([]);
   const [error, setError] = useState(false);
   const [cursor, setCursor] = useState<string>('');
   const [hasNextPage, setHasNextPage] = useState(false);
@@ -41,7 +40,7 @@ export const CollectionList = ({ query, className = '', onClick, selectedCollect
       setCursor('');
       setHasNextPage(false);
     } else {
-      const result = response.result as CollectionSearchArrayDto;
+      const result = response.result as CollectionInfoArrayDto;
       if (passedCursor) {
         setCollections([...collections, ...result.data]);
       } else {

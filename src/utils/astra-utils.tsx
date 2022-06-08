@@ -59,7 +59,7 @@ export const fetchUserTokens = async (userAddress: string, cursor?: string): Pro
 // ======================================================
 
 export const fetchCollections = async (query: string, cursor?: string): Promise<ApiResponse> => {
-  const response = await httpGet('/collections/search', {
+  const response = await httpGet('/collections', {
     query,
     limit: DEFAULT_LIMIT,
     cursor
