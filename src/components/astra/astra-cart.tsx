@@ -4,9 +4,6 @@ import { twMerge } from 'tailwind-merge';
 import { XIcon } from '@heroicons/react/outline';
 import { ReactNode } from 'react';
 import { NFTCard } from 'utils/types/be-types';
-import { GridHeader } from './dashboard/grid-header';
-import { TabUtils } from './astra-navbar';
-import { useLocation } from 'react-router-dom';
 
 interface Props {
   cardData: NFTCard[];
@@ -15,9 +12,6 @@ interface Props {
 }
 
 export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
-  const location = useLocation();
-  const route = TabUtils.routeToTab(location.pathname);
-
   const map = new Map<string, NFTCard[]>();
 
   for (const token of cardData) {
@@ -61,7 +55,9 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
     // setting to w-64 so it doen't shrink and expand while animating
     <div className="h-full flex flex-col w-64">
       <div className="mb-2">
-        <GridHeader route={route} vertical={true} />
+        {/* <GridHeader route={route} vertical={true} /> */}
+
+        <div className="text-2xl m-4">My Cart</div>
       </div>
 
       {listComponent}

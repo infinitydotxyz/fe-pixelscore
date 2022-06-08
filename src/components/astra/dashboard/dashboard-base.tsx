@@ -5,6 +5,7 @@ import { useDashboardContext } from 'utils/context/DashboardContext';
 import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
 import { AstraNavTab } from '../astra-navbar';
 import { useAppContext } from 'utils/context/AppContext';
+import { GridHeader } from './grid-header';
 // import { GridHeader } from './grid-header';
 
 interface Props {
@@ -49,7 +50,7 @@ export const DashboardBase = ({ route }: Props) => {
   if (tokenFetcher && route !== AstraNavTab.Pending) {
     tokensGrid = (
       <div className="flex flex-col h-full w-full">
-        {/* <GridHeader route={route} vertical={false} /> */}
+        <GridHeader route={route} vertical={false} />
         <TokensGrid
           tokenFetcher={tokenFetcher}
           className="px-8 py-6"
