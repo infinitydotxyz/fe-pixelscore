@@ -9,8 +9,10 @@ interface Props {
 
 export const BGImage = ({ src, center = true, className = '' }: Props) => {
   const [loaded, setLoaded] = useState(false);
+
   // todo: src.replace hack to handle changed opensea image url
   src = src?.replace('storage.opensea.io', 'openseauserdata.com');
+
   useEffect(() => {
     const img = new Image();
     let deleted = false;
@@ -33,21 +35,19 @@ export const BGImage = ({ src, center = true, className = '' }: Props) => {
     };
   }, [src]);
 
-  if (!src) {
-    return <></>;
-  }
-
   return (
-    <div className={twMerge('w-full h-full', className, 'bg-gray-100')}>
-      <div
-        className={twMerge(
-          center ? 'bg-center' : 'bg-top',
-          loaded ? 'opacity-100' : 'opacity-0',
-          'transition-opacity duration-400 w-full h-full bg-cover bg-no-repeat',
-          className
-        )}
-        style={{ backgroundImage: `url(${src})` }}
-      />
+    <div className={twMerge('w-full h-full', className, 'bg-gray-300')}>
+      {src && (
+        <div
+          className={twMerge(
+            center ? 'bg-center' : 'bg-top',
+            loaded ? 'opacity-100' : 'opacity-0',
+            'transition-opacity duration-400 w-full h-full bg-cover bg-no-repeat',
+            className
+          )}
+          style={{ backgroundImage: `url(${src})` }}
+        />
+      )}
     </div>
   );
 };

@@ -7,5 +7,3 @@ TODO:
 5. dark home page, https://pixelverse.ai/, https://nft-avatars.webflow.io/
 6. in the checkout flow, if someone tries to checkout NFTs whose ranks are already revealed (all NFTs whose pixel rank bucket < 10 and the ones with bucket 10 but pixelRankRevealed = true), checkout should show an error to remove already revealed items from cart (edited)
 7. pending cards ugly
-8. cart animation and relayout
-9. missing image feature on BGImage

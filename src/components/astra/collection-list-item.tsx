@@ -1,6 +1,5 @@
 import React from 'react';
 import { BGImage } from 'components/common';
-import { BLANK_IMAGE_URL } from 'utils';
 import { CollectionInfo } from '../../utils/types/collection-types';
 import { twMerge } from 'tailwind-merge';
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
@@ -12,7 +11,7 @@ interface Props2 {
 }
 
 export const CollectionListItem = ({ collection, onClick, selected }: Props2) => {
-  const avatarUrl = collection.bannerImage || BLANK_IMAGE_URL;
+  const avatarUrl = collection.bannerImage || collection.profileImage;
 
   return (
     <div className="relative">
@@ -26,8 +25,10 @@ export const CollectionListItem = ({ collection, onClick, selected }: Props2) =>
       >
         <BGImage src={avatarUrl} />
 
-        <div className="absolute top-0 left-0 bottom-0 right-0 flex flex-col items-center justify-center">
-          <div className=" text-center tracking-tight text-2xl font-bold text-white text-shadow">{collection.name}</div>
+        <div className="absolute top-2 left-2 bottom-2 right-2 flex flex-col items-center justify-center">
+          <div className=" text-center tracking-tight leading-6 text-2xl font-bold text-white text-shadow">
+            {collection.name}
+          </div>
         </div>
       </div>
     </div>
