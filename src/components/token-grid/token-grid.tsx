@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useResizeDetector } from 'react-resize-detector';
 import { ScrollLoader } from 'components/common';
 import { useIsMounted } from 'hooks/useIsMounted';
 import { twMerge } from 'tailwind-merge';
@@ -11,26 +10,20 @@ import { NFTCard } from 'utils/types/be-types';
 interface Props {
   tokenFetcher: TokenFetcher;
   className?: string;
-  extraWidth?: number;
+  wrapWidth?: number;
   onClick?: (data: NFTCard) => void;
   isSelected: (data: NFTCard) => boolean;
   onLoad: (numItems: number) => void;
 }
 
-export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSelected, extraWidth = 0 }: Props) => {
+export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSelected, wrapWidth = 0 }: Props) => {
   const [cardData, setCardData] = useState<NFTCard[]>([]);
   const [error, setError] = useState(false);
-  const [gridWidth, setGridWidth] = useState(0);
   const [hasNextPage, setHasNextPage] = useState(false);
   const [loading, setLoading] = useState(false);
   const [noData, setNoData] = useState(false);
 
-  const { width, ref } = useResizeDetector();
   const isMounted = useIsMounted();
-
-  useEffect(() => {
-    setGridWidth(ref.current ? ref.current.offsetWidth : 0);
-  }, [width]);
 
   useEffect(() => {
     setCardData([]);
@@ -66,14 +59,11 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
   if (error || loading || noData) {
     contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
-    if (gridWidth > 0) {
-      // extraWidth is used to pageinate the same when cart is opened
-      const width = gridWidth + extraWidth;
-
-      const cols = Math.round(width / 290);
+    if (wrapWidth > 0) {
+      const cols = Math.round(wrapWidth / 360);
       const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
-      cardHeight = width / cols;
+      cardHeight = wrapWidth / cols;
 
       contents = (
         <>
@@ -108,7 +98,7 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
   }
 
   return (
-    <div ref={ref} className={twMerge('h-full w-full', className)}>
+    <div className={twMerge('h-full w-full', className)}>
       {contents}
 
       <div className="h-1/3" />

@@ -13,6 +13,9 @@ export type DashboardContextType = {
   collection: BaseCollection | undefined;
   setCollection: (value: BaseCollection) => void;
 
+  gridWidth: number;
+  setGridWidth: (value: number) => void;
+
   chainId: string | undefined;
   setChainId: (value: string | undefined) => void;
 
@@ -60,6 +63,8 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const [orderFetcher, setOrderFetcher] = useState<RevealOrderFetcher | undefined>();
   const [userRecord, setUserRecord] = useState<UserRecord | undefined>();
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [gridWidth, setGridWidth] = useState(0);
+
   const [displayName, setDisplayName] = useState<string>('');
 
   const { user, providerManager } = useAppContext();
@@ -159,6 +164,9 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const value: DashboardContextType = {
     collection,
     setCollection,
+
+    gridWidth,
+    setGridWidth,
 
     chainId,
     setChainId,

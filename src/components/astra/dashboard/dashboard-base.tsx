@@ -12,10 +12,9 @@ interface Props {
 }
 
 export const DashboardBase = ({ route }: Props) => {
-  const { setNumTokens, tokenFetcher, orderFetcher, isSelected, toggleSelection } = useDashboardContext();
+  const { setNumTokens, tokenFetcher, orderFetcher, isSelected, toggleSelection, gridWidth } = useDashboardContext();
 
   const { user } = useAppContext();
-  const extraWidth = 0;
 
   const onCardClick = (data: NFTCard) => {
     toggleSelection(data);
@@ -55,7 +54,7 @@ export const DashboardBase = ({ route }: Props) => {
           tokenFetcher={tokenFetcher}
           className="px-8 py-6"
           onClick={onCardClick}
-          extraWidth={extraWidth}
+          wrapWidth={gridWidth}
           isSelected={(data) => {
             return isSelected(data);
           }}

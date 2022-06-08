@@ -58,7 +58,8 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
   }
 
   return (
-    <div className="h-full flex flex-col">
+    // setting to w-64 so it doen't shrink and expand while animating
+    <div className="h-full flex flex-col w-64">
       <div className="mb-2">
         <GridHeader route={route} vertical={true} />
       </div>
