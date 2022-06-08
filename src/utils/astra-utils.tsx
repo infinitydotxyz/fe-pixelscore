@@ -33,7 +33,7 @@ export const fetchTokens = async (
 // ======================================================
 
 export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor?: string): Promise<ApiResponse> => {
-  const response = await httpGet(`/collections/nfts-rank`, {
+  const response = await httpGet(`/collections/nfts`, {
     limit: LARGE_LIMIT,
     cursor,
     orderBy: 'tokenId',
