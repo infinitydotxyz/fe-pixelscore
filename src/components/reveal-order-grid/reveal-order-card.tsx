@@ -56,7 +56,7 @@ export const RevealOrderCard = ({ userAddress, revealOrder, height, onClick, sel
       <div className="h-full flex flex-col">
         <TokenSwiper tokens={revealOrder.revealItems} />
 
-        <div className="h-full mt-3 mb-4 mx-5 flex flex-col ">
+        <div className="mt-3 mb-4 mx-5 flex flex-col ">
           <SimpleTable compact={true} items={tableItems} className="w-full" />
 
           <Spacer />

@@ -83,6 +83,18 @@ export class SVG {
     </svg>
   );
 
+  static rightArrow = ({ ...props }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
+      <path d="M4 0  L20 10 L4 20" />
+    </svg>
+  );
+
+  static leftArrow = ({ ...props }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
+      <path d="M0 10  L16 0 L16 20" />
+    </svg>
+  );
+
   static cart = ({ ...props }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path d="M0 0h24v24H0V0z" fill="none" />

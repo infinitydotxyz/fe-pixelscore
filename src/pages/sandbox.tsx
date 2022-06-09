@@ -57,19 +57,27 @@ export const SandboxPage = () => {
 
       <SBHeader># Button</SBHeader>
       <div className="flex space-x-4 items-center">
-        <Button variant="primary">Primary</Button>
-        <Button variant="primary">Secondary</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="outline">
+        <Button variant="primary" onClick={() => console.log('click')}>
+          Primary
+        </Button>
+        <Button variant="primary" onClick={() => console.log('click')}>
+          Secondary
+        </Button>
+        <Button variant="outline" onClick={() => console.log('click')}>
+          Outline
+        </Button>
+        <Button variant="outline" onClick={() => console.log('click')}>
           <div className="flex items-center space-x-2">
             <FaEdit />
             <div>With Icon</div>
           </div>
         </Button>
-        <Button variant="plain" size="plain">
+        <Button variant="plain" size="plain" onClick={() => console.log('click')}>
           Unstyled (plain)
         </Button>
-        <Button variant="ghost">Ghost</Button>
+        <Button variant="ghost" onClick={() => console.log('click')}>
+          Ghost
+        </Button>
       </div>
 
       <SBHeader># Chip</SBHeader>
@@ -239,7 +247,7 @@ export const SandboxPage = () => {
 
       <SBHeader># HelpTip</SBHeader>
       <HelpTip content="HelpTip content">
-        <Button>Default tooltip</Button>
+        <Button onClick={() => console.log('click')}>Default tooltip</Button>
       </HelpTip>
     </PageBox>
   );
