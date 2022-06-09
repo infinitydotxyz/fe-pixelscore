@@ -72,7 +72,7 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
       const cols = Math.round(gridWidth / 400);
       const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
-      cardHeight = gridWidth / cols;
+      cardHeight = gridWidth / (cols - 1);
 
       contents = (
         <>
