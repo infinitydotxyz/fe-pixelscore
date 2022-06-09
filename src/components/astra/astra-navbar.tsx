@@ -1,4 +1,4 @@
-import { ConnectButton, NextLink, Spacer, SVG, ToggleTab, useToggleTab } from 'components/common';
+import { ConnectButton, NextLink, RoundButton, Spacer, SVG, ToggleTab, useToggleTab } from 'components/common';
 import { inputBorderColor, largeIconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ export enum AstraNavTab {
 
 export const AstraNavbar = () => {
   const [currentTab, setCurrentTab] = useState(AstraNavTab.All);
-  const { setTokenFetcher, setOrderFetcher } = useDashboardContext();
+  const { setTokenFetcher, setOrderFetcher, showCart, setShowCart } = useDashboardContext();
 
   const { options, selected } = useToggleTab(
     [AstraNavTab.All, AstraNavTab.Top100, AstraNavTab.Hot, AstraNavTab.MyNFTs, AstraNavTab.Pending],
@@ -58,6 +58,14 @@ export const AstraNavbar = () => {
       {tabBar}
       <Spacer />
       <ConnectButton />
+      <RoundButton
+        className="ml-4"
+        onClick={() => {
+          setShowCart(!showCart);
+        }}
+      >
+        <SVG.cart className={largeIconButtonStyle} />
+      </RoundButton>
     </div>
   );
 };

@@ -20,7 +20,7 @@ const classes = {
     secondary: 'border rounded-full border-gray-100 bg-black text-white',
     outline: twMerge(inputBorderColor, 'border rounded-full text-gray-900'),
     danger: 'bg-red-500 hover:bg-red-800 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-white',
-    round: 'rounded-full p-1' // use plain size
+    round: 'rounded-full p-2' // use plain size
   }
 };
 
@@ -68,5 +68,15 @@ export const Button = ({
     >
       <div className="whitespace-nowrap">{children}</div>
     </button>
+  );
+};
+
+// ======================================================
+
+export const RoundButton = ({ disabled = false, children, className = '', onClick }: Props): JSX.Element => {
+  return (
+    <Button size="plain" variant="round" disabled={disabled} className={className} onClick={onClick}>
+      {children}
+    </Button>
   );
 };

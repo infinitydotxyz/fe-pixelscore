@@ -7,8 +7,6 @@ TODO:
 5. in the checkout flow, if someone tries to checkout NFTs whose ranks are already revealed (all NFTs whose pixel rank bucket < 10 and the ones with bucket 10 but pixelRankRevealed = true), checkout should show an error to remove already revealed items from cart (edited)
 6. pending cards ugly
 7. reveals tab
-8. backfill nft data that is missing. collection name etc.
-9. cart button
-10. make left side cards nice
-11. aspect ratio
-12. Reveal and ranks
+8. make left side cards nice
+9. aspect ratio
+10. Reveal and ranks
