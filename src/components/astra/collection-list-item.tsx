@@ -3,7 +3,7 @@ import { BGImage } from 'components/common';
 import { CollectionInfo } from '../../utils/types/collection-types';
 import { twMerge } from 'tailwind-merge';
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
-import { Toltip } from './toltip';
+import { HelpTip } from './helptip';
 
 interface Props2 {
   collection: CollectionInfo;
@@ -17,7 +17,7 @@ export const CollectionListItem = ({ collection, onClick, selected }: Props2) =>
   return (
     // this wrapper div is needed, otherwise the tooltip gets top margin from the space-y value on the list
     <div>
-      <Toltip className="z-50" content={collection.name} placement="right">
+      <HelpTip content={collection.name} placement="right">
         <div className="relative">
           <div
             className={twMerge(
@@ -36,7 +36,7 @@ export const CollectionListItem = ({ collection, onClick, selected }: Props2) =>
             </div>
           </div>
         </div>
-      </Toltip>
+      </HelpTip>
     </div>
   );
 };

@@ -23,7 +23,7 @@ import {
   PageBox
 } from 'components/common';
 import { twMerge } from 'tailwind-merge';
-import { Tooltip } from 'flowbite-react';
+import { HelpTip } from 'components/astra/helptip';
 
 const comboValues: ComboBoxBaseType[] = [
   { id: 0, name: 'Empty Trash' },
@@ -237,10 +237,10 @@ export const SandboxPage = () => {
         </Modal>
       </div>
 
-      <SBHeader># Tooltip</SBHeader>
-      <Tooltip content="Tooltip content">
+      <SBHeader># HelpTip</SBHeader>
+      <HelpTip content="HelpTip content">
         <Button>Default tooltip</Button>
-      </Tooltip>
+      </HelpTip>
     </PageBox>
   );
 };
