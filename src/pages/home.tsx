@@ -7,8 +7,8 @@ export const HomePage = () => {
 
   return (
     <PageBox footer={<Footer />} className="mx-auto" pageClass="bg-black">
-      <main className="  ">
-        <div className="relative max-w-screen-2xl mx-8">
+      <main className=" max-w-screen-2xl mx-8 ">
+        <div className="relative ">
           <CardAnimation />
           <div className="absolute bottom-0 top-0 left-0 w-full bg-gradient-to-r from-black" />
           <div className="absolute bottom-0 right-0 left-0 h-96 bg-gradient-to-t from-black" />
@@ -17,15 +17,39 @@ export const HomePage = () => {
           <div className="absolute bottom-0  top-0 left-0 right-0">
             <div className="relative    mt-64   ">
               <div className="block text-white font-bold text-9xl">PixelScore</div>
-              <p className="mt-6 max-w-lg text-2xl font-bold text-white  ">
+              <div className="mt-6 max-w-lg text-2xl font-bold text-white  ">
                 Next generation Metaverse NFT ecosystem platform for games, communities and creators.
-              </p>
-              <div className="mt-16 max-w-sm    ">
+              </div>
+              <div className="mt-16   ">
                 <div className="space-x-8    ">
                   <LargeButton onClick={() => navigate('dashboard')}>Dashboard</LargeButton>
                   <LargeButton onClick={() => navigate('sandbox')}>Sandbox</LargeButton>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="  mt-24   ">
+          <div className="block text-white font-bold text-8xl">What is PixelScore?</div>
+          <div className="mt-6 max-w-xlg text-2xl font-bold text-white  ">
+            PixelScore is like magic. Powered by AI, machine learning and quantum physics.
+          </div>
+          <div className="mt-28 flex flex-wrap items-start gap-16">
+            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-white ">
+              Radical NFT Technology
+            </div>
+            <div className=" border-4 rounded-3xl p-40 border-pink-500  text-white bg-opacity-25 bg-pink-400">
+              Endless Airdrops
+            </div>
+            <div className=" border-4 rounded-3xl p-40 border-pink-500  text-white bg-opacity-25 bg-pink-400">
+              Free Bitconnect
+            </div>
+            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300  text-white bg-opacity-25 bg-pink-400">
+              Radical NFT Technology
+            </div>
+            <div className=" border-4 rounded-3xl p-40 border-sky-300  text-white bg-opacity-25 bg-pink-400">
+              Radical NFT Technology
             </div>
           </div>
         </div>
@@ -129,7 +153,7 @@ const Footer = () => {
             </a>
           ))}
         </div>
-        <p className="mt-8 text-center text-base text-gray-400">&copy; 2020 Workflow, Inc. All rights reserved.</p>
+        <p className="mt-8 text-center text-base text-gray-400">&copy; 2022 Infinity, LLC. All rights reserved.</p>
       </div>
     </footer>
   );
