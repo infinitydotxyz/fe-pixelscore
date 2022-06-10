@@ -9,14 +9,14 @@ interface Props {
   extraScrollHeight?: boolean; // set to false if you want to center the contents (connect page)
 }
 
-export const PageBox = ({ children, className = '', extraScrollHeight = true, footer }: Props): JSX.Element => {
+export const PageBox = ({ children, className = '', footer }: Props): JSX.Element => {
   return (
     <>
-      <div className="w-full min-h-screen flex flex-col">
+      <div className="w-full max-h-screen flex flex-col overflow-y-auto">
         <Navbar />
         <div className={twMerge('flex-1 mx-12', className)}>{children}</div>
 
-        {extraScrollHeight && <div className="h-[300px]" />}
+        <div className="h-[300px] shrink-0" />
 
         {footer}
       </div>
