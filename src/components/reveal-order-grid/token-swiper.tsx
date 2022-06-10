@@ -65,8 +65,8 @@ export const TokenSwiper = ({ tokens, className = 'flex-grow' }: Props) => {
         </div>
 
         <PillBadge val={tokens[index].pixelRank} tooltip="Pixel rank" />
-        <PillBadge val={tokens[index].pixelScore} tooltip="Pixel score" className="bottom-1 left-1" />
-        <PillBadge val={tokens[index].tokenId} tooltip="Token id" className="top-1 right-1" />
+        <PillBadge val={tokens[index].pixelScore} tooltip="Pixel score" className="bottom-2 left-2" />
+        <PillBadge val={tokens[index].tokenId} tooltip="Token id" className="top-2 right-2" />
       </div>
 
       {controls()}

@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-export const PillBadge = ({ val, tooltip, className = 'top-1 left-1' }: Props) => {
+export const PillBadge = ({ val, tooltip, className = 'top-2 left-2' }: Props) => {
   if (val) {
     return (
       <div className={twMerge(className, 'absolute')}>

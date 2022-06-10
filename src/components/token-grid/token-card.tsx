@@ -37,9 +37,9 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
           </div>
 
           <PillBadge val={data.pixelRank} tooltip="Pixel rank" />
-          <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-1 left-1" />
-          <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-1 right-1" />
-          <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-1" />
+          <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" />
+          <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
+          <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" />
         </div>
 
         <div className="mt-3 mb-4 mx-3">
