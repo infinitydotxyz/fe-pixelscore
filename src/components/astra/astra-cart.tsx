@@ -57,7 +57,8 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
       <div className="mb-2">
         {/* <GridHeader route={route} vertical={true} /> */}
 
-        <div className="text-2xl m-4">My Cart</div>
+        <div className="text-3xl font-bold text-gray-500 m-4">My Cart</div>
+        <div className=" text-slate-600 m-4 leading-5">Add NFTs to the cart to do stuff.</div>
       </div>
 
       {listComponent}

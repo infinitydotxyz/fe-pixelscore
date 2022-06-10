@@ -19,7 +19,6 @@ const classes = {
     primary: 'border rounded-full border-gray-100 bg-black text-white',
     secondary: 'border rounded-full border-gray-100 bg-black text-white',
     outline: twMerge(inputBorderColor, 'border rounded-full text-gray-900'),
-    danger: 'bg-red-500 hover:bg-red-800 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 text-white',
     round: 'rounded-full p-2' // use plain size
   }
 };
@@ -42,17 +41,34 @@ export const Button = ({
   onClick
 }: Props): JSX.Element => {
   return (
+    <ButtonBase
+      disabled={disabled}
+      className={twMerge(classes.base, classes.size[size], classes.variant[variant], className)}
+      onClick={onClick}
+    >
+      {children}
+    </ButtonBase>
+  );
+};
+
+// ======================================================
+
+export interface BaseProps {
+  onClick: (ev: React.MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
+  children: ReactNode;
+  disabled?: boolean;
+  className?: string;
+}
+
+const ButtonBase = ({ disabled = false, children, className = '', onClick }: BaseProps): JSX.Element => {
+  const disabledClass = 'opacity-30 cursor-not-allowed';
+
+  return (
     <button
       // don't disable here, just use the disabled style
       // otherwise a disabled buttons click will go to the parent, onClick isn't called
       // disabled={disabled}
-      className={twMerge(
-        classes.base,
-        classes.size[size],
-        classes.variant[variant],
-        disabled ? classes.disabled : '',
-        className
-      )}
+      className={twMerge(disabled ? disabledClass : '', className)}
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -74,5 +90,22 @@ export const RoundButton = ({ disabled = false, children, className = '', onClic
     <Button size="plain" variant="round" disabled={disabled} className={className} onClick={onClick}>
       {children}
     </Button>
+  );
+};
+
+// ======================================================
+
+export const LargeButton = ({ disabled = false, children, className = '', onClick }: Props): JSX.Element => {
+  return (
+    <ButtonBase
+      disabled={disabled}
+      className={twMerge(
+        'text-xl font-bold px-8 text-white py-3 rounded-2xl border-4 border-cyan-400 bg-black',
+        className
+      )}
+      onClick={onClick}
+    >
+      {children}
+    </ButtonBase>
   );
 };
