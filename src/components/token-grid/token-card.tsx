@@ -44,7 +44,7 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
 
         <div className="mt-3 mb-4 mx-3">
           <div className="font-bold truncate">{title}</div>
-          <div className="text-secondary font-heading truncate">{tokenId}</div>
+          <div className="truncate">{tokenId}</div>
         </div>
       </div>
     </div>

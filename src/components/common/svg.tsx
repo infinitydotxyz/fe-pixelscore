@@ -129,15 +129,28 @@ export class SVG {
     </svg>
   );
 
-  static miniLogo = ({ ...props }) => (
+  static hamburger = ({ ...props }) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      {...props}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  );
+
+  static miniLogo = ({ logoColor = '#fff', ...props }) => (
     <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 60" {...props}>
       <path
         d="M48.288 60H13.356C5.96 60 0 54.2 0 47V13C0 5.8 5.959 0 13.356 0h34.932c7.397 0 13.356 5.8 13.356 13v34c0 7.2-5.96 13-13.356 13Z"
-        fill="#000"
+        fill="currentColor"
       />
       <path
         d="M41.08 19.88c-8.976 0-10.258 9.375-10.258 9.375S29.54 19.88 20.564 19.88c-2.72 0-5.33 1.053-7.253 2.929a9.875 9.875 0 0 0-3.004 7.071 9.874 9.874 0 0 0 3.004 7.071 10.393 10.393 0 0 0 7.253 2.93c8.976 0 10.258-9.376 10.258-9.376s1.282 9.375 10.257 9.375c2.72 0 5.33-1.054 7.253-2.929a9.874 9.874 0 0 0 3.005-7.07 9.875 9.875 0 0 0-3.005-7.072 10.393 10.393 0 0 0-7.253-2.929Z"
-        fill="#fff"
+        fill={logoColor}
       />
     </svg>
   );

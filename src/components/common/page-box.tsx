@@ -7,14 +7,15 @@ interface Props {
   footer?: JSX.Element;
   className?: string;
   pageClass?: string;
+  customHeader?: JSX.Element;
   extraScrollHeight?: boolean; // set to false if you want to center the contents (connect page)
 }
 
-export const PageBox = ({ children, className = '', pageClass = '', footer }: Props): JSX.Element => {
+export const PageBox = ({ children, customHeader, className = '', pageClass = '', footer }: Props): JSX.Element => {
   return (
     <>
       <div className={twMerge('w-full max-h-screen flex flex-col overflow-y-auto', pageClass)}>
-        <Navbar />
+        {customHeader ? customHeader : <Navbar />}
         <div className={twMerge('flex-1 mx-12', className)}>{children}</div>
 
         <div className="h-[300px] shrink-0" />

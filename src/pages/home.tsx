@@ -1,27 +1,31 @@
-import { LargeButton, PageBox } from 'components/common';
+import { LargeButton, NextLink, PageBox, RoundButton, SVG } from 'components/common';
 import { useNavigate } from 'react-router-dom';
 import { CardAnimation } from 'components/astra/card_animation/card_animation';
+import { iconButtonStyle } from 'utils/ui-constants';
+import { twMerge } from 'tailwind-merge';
 
 export const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <PageBox footer={<Footer />} className="mx-auto" pageClass="bg-black">
+    <PageBox footer={<Footer />} className="mx-auto" pageClass="bg-black" customHeader={<></>}>
       <main className=" max-w-screen-2xl mx-8 ">
-        <div className="relative ">
+        <div className="relative">
           <CardAnimation />
           <div className="absolute bottom-0 top-0 left-0 w-full bg-gradient-to-r from-black" />
           <div className="absolute bottom-0 right-0 left-0 h-96 bg-gradient-to-t from-black" />
           <div className="absolute top-0 right-0 left-0 h-96 bg-gradient-to-b from-black" />
 
-          <div className="absolute bottom-0  top-0 left-0 right-0">
-            <div className="relative    mt-64   ">
+          <div className="absolute bottom-0 mt-44 top-0 left-0 right-0">
+            <HomePageLogo />
+
+            <div className="mt-32">
               <div className="block text-white font-bold text-9xl">PixelScore</div>
               <div className="mt-6 max-w-lg text-2xl font-bold text-white  ">
                 Next generation Metaverse NFT ecosystem platform for games, communities and creators.
               </div>
-              <div className="mt-16   ">
-                <div className="space-x-8    ">
+              <div className="mt-20   ">
+                <div className="space-x-14 ">
                   <LargeButton onClick={() => navigate('dashboard')}>Dashboard</LargeButton>
                   <LargeButton onClick={() => navigate('sandbox')}>Sandbox</LargeButton>
                 </div>
@@ -160,3 +164,35 @@ const Footer = () => {
 };
 
 // =====================================================================
+
+export const HomePageLogo = () => {
+  // const navigate = useNavigate();
+
+  return (
+    <div className=" max-w-screen-2xl flex items-center  ">
+      <NextLink href="/" className="flex items-center ">
+        <SVG.miniLogo className="h-16 w-16 text-white" logoColor="#000" />
+      </NextLink>
+
+      <HomeMenuButton />
+    </div>
+  );
+};
+
+export const HomeMenuButton = () => {
+  // const navigate = useNavigate();
+
+  return (
+    <div className="  fixed right-[10%]   ">
+      <RoundButton
+        showBackground={true}
+        className="ml-4"
+        onClick={() => {
+          // setShowCart(!showCart);
+        }}
+      >
+        <SVG.hamburger className={twMerge('text-white', iconButtonStyle)} />
+      </RoundButton>
+    </div>
+  );
+};
