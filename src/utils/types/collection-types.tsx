@@ -2,6 +2,9 @@ export interface CollectionInfo {
   address: string;
   chainId: string;
   tokenStandard: string;
+  hasBlueCheck?: boolean;
+  numNfts?: number;
+  numOwners?: number;
   slug: string;
   name: string;
   symbol: string;
