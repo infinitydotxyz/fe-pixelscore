@@ -25,6 +25,7 @@ export interface TokenInfo {
   collectionName?: string;
   collectionBannerImage?: string;
   collectionProfileImage?: string;
+  hasBlueCheck?: boolean;
   collectionSlug?: string;
   tokenId: string;
   imageUrl: string;

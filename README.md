@@ -50,3 +50,12 @@ hide score from card
 
 get by collection address
 reveal items bluecheck, add it to reveals collection, copy over check
+
+clean up any bad collections
+
+Error getting collection info from infinity: TypeError: Cannot read properties of undefined (reading 'name')
+at getCollectionInfoFromInfinity (/home/steve/Documents/GitHub/mavrik/pixelscore/src/scripts/metadataUtils.ts:40:29)
+at runMicrotasks (<anonymous>)
+at processTicksAndRejections (node:internal/process/task_queues:96:5)
+at async \_fetchCollectionInfo (/home/steve/Documents/GitHub/mavrik/pixelscore/src/scripts/secondpass.ts:112:26)
+at async updateCollections (/home/steve/Documents/GitHub/mavrik/pixelscore/src/scripts/secondpass.ts:69:30)
