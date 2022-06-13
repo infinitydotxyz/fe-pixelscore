@@ -5,6 +5,7 @@ import { RevealOrder } from 'utils/types/be-types';
 import { refreshReveal } from 'utils/astra-utils';
 import { ellipsisString, httpErrorResponse, shortDateWithTime } from 'utils';
 import { TokenSwiper } from './token-swiper';
+import { useState } from 'react';
 
 interface Props {
   userAddress: string;
@@ -17,19 +18,26 @@ interface Props {
 
 export const RevealOrderCard = ({
   userAddress,
-  revealOrder,
+  revealOrder: inOrder,
   height,
   onClick,
   selected,
   isComplete
 }: Props): JSX.Element => {
+  const [revealOrder, setRevealOrder] = useState<RevealOrder>(inOrder);
+
   const heightStyle = `${height}px`;
 
   const refreshClick = async () => {
     try {
-      const result = await refreshReveal(userAddress, revealOrder.txnHash, revealOrder.chainId);
+      const { status, order } = await refreshReveal(userAddress, revealOrder.txnHash, revealOrder.chainId);
 
-      toastSuccess(result);
+      toastSuccess(status);
+
+      if (order) {
+        // replace our data
+        setRevealOrder(order);
+      }
     } catch (err) {
       const errStr = httpErrorResponse(err);
 
@@ -41,8 +49,6 @@ export const RevealOrderCard = ({
     console.log(JSON.stringify(revealOrder, null, '  '));
 
     try {
-      // const result = await refreshReveal(userAddress, revealOrder.txnHash, revealOrder.chainId);
-
       toastSuccess('result');
     } catch (err) {
       const errStr = httpErrorResponse(err);

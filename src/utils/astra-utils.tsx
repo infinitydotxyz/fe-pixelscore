@@ -142,7 +142,11 @@ export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
 
 // ======================================================
 
-export const refreshReveal = async (user: string, txnHash: string, chainId: string): Promise<string> => {
+export const refreshReveal = async (
+  user: string,
+  txnHash: string,
+  chainId: string
+): Promise<{ status: string; order: RevealOrder | undefined }> => {
   try {
     const body = {
       txnHash,
@@ -151,19 +155,14 @@ export const refreshReveal = async (user: string, txnHash: string, chainId: stri
 
     const response = await httpPost(`/u/${user}/refresh`, body);
 
-    // result is a string or RevealOrder
-    if (typeof response.result === 'string') {
-      return response.result as string;
-    } else {
+    // result is a string or RevealOrder (on success)
+    if (typeof response.result !== 'string') {
       const revealOrder = response.result as RevealOrder;
 
-      // console.log('refresh revealOrder');
-      // console.log(JSON.stringify(revealOrder, null, '  '));
-
-      return `Transaction: ${revealOrder.txnStatus}`;
+      return { status: `Transaction: ${revealOrder.txnStatus}`, order: revealOrder };
     }
 
-    return response.result as string;
+    return { status: response.result as string, order: undefined };
   } catch (err) {
     console.error(err);
     throw err;
