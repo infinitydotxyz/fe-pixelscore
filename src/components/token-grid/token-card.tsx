@@ -1,6 +1,6 @@
-import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
+import { iconButtonStyle, inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage } from '../common';
+import { BGImage, SVG } from '../common';
 import { NFTCard } from 'utils/types/be-types';
 import { PillBadge } from './pill-badge';
 
@@ -37,9 +37,15 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
           </div>
 
           <PillBadge val={data.pixelRank} tooltip="Pixel rank" />
-          <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" />
+          {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
           <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
           <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" />
+
+          {data.hasBlueCheck && (
+            <div className="absolute bottom-2 right-2 bg-white rounded-full">
+              <SVG.blueCheck className={iconButtonStyle} />
+            </div>
+          )}
         </div>
 
         <div className="mt-3 mb-4 mx-3">

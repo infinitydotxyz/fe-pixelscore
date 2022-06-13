@@ -1,8 +1,8 @@
 import React from 'react';
-import { BGImage } from 'components/common';
+import { BGImage, SVG } from 'components/common';
 import { CollectionInfo } from '../../utils/types/collection-types';
 import { twMerge } from 'tailwind-merge';
-import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
+import { iconButtonStyle, inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { HelpTip } from './helptip';
 
 interface Props2 {
@@ -34,6 +34,12 @@ export const CollectionListItem = ({ collection, onClick, selected }: Props2) =>
                 {collection.name}
               </div>
             </div>
+
+            {collection.hasBlueCheck && (
+              <div className="absolute bottom-2 right-2 bg-white rounded-full">
+                <SVG.blueCheck className={iconButtonStyle} />
+              </div>
+            )}
           </div>
         </div>
       </HelpTip>

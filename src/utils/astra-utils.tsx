@@ -119,6 +119,7 @@ export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
       tokenAddress: token.collectionAddress,
       tokenId: token.tokenId,
       address: token.collectionAddress,
+      hasBlueCheck: token.hasBlueCheck,
       image: token.imageUrl,
       inCollectionPixelRank: token.inCollectionPixelRank,
       pixelRank: token.pixelRank,
