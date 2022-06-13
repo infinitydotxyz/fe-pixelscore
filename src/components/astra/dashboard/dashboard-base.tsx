@@ -69,6 +69,7 @@ export const DashboardBase = ({ route }: Props) => {
       <div className="flex flex-col h-full w-full">
         <RevealOrderGrid
           orderFetcher={orderFetcher}
+          isComplete={route === AstraNavTab.Revealed}
           className="px-8 py-6"
           onClick={onRevealOrderClick}
           isSelected={(data) => {

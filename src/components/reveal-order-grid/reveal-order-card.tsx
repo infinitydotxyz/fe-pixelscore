@@ -10,21 +10,40 @@ interface Props {
   userAddress: string;
   revealOrder: RevealOrder;
   height: number;
+  isComplete: boolean;
   selected: boolean;
   onClick: (data: RevealOrder) => void;
 }
 
-export const RevealOrderCard = ({ userAddress, revealOrder, height, onClick, selected }: Props): JSX.Element => {
+export const RevealOrderCard = ({
+  userAddress,
+  revealOrder,
+  height,
+  onClick,
+  selected,
+  isComplete
+}: Props): JSX.Element => {
   const heightStyle = `${height}px`;
 
   const refreshClick = async () => {
-    // console.log('cards revealOrder');
-    // console.log(JSON.stringify(revealOrder, null, '  '));
-
     try {
       const result = await refreshReveal(userAddress, revealOrder.txnHash, revealOrder.chainId);
 
       toastSuccess(result);
+    } catch (err) {
+      const errStr = httpErrorResponse(err);
+
+      toastError(`Error: ${errStr.status} ${errStr.error}`);
+    }
+  };
+
+  const visibleClick = async () => {
+    console.log(JSON.stringify(revealOrder, null, '  '));
+
+    try {
+      // const result = await refreshReveal(userAddress, revealOrder.txnHash, revealOrder.chainId);
+
+      toastSuccess('result');
     } catch (err) {
       const errStr = httpErrorResponse(err);
 
@@ -61,9 +80,17 @@ export const RevealOrderCard = ({ userAddress, revealOrder, height, onClick, sel
 
           <Spacer />
 
-          <div className="mx-3 mt-4 flex flex-col ">
-            <Button onClick={refreshClick}>Refresh</Button>
-          </div>
+          {!isComplete && (
+            <div className="mx-3 mt-4 flex flex-col ">
+              <Button onClick={refreshClick}>Refresh</Button>
+            </div>
+          )}
+
+          {isComplete && (
+            <div className="mx-3 mt-4 flex flex-col ">
+              <Button onClick={visibleClick}>Make Visible</Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

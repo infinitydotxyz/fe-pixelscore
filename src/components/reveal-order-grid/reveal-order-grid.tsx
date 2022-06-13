@@ -10,13 +10,14 @@ import { RevealOrderCard } from './reveal-order-card';
 
 interface Props {
   className?: string;
+  isComplete: boolean;
   onClick?: (data: RevealOrder) => void;
   isSelected: (data: RevealOrder) => boolean;
   onLoad: (numItems: number) => void;
   orderFetcher: RevealOrderFetcher;
 }
 
-export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
+export const RevealOrderGrid = ({ orderFetcher, isComplete, className = '', onLoad, onClick, isSelected }: Props) => {
   const [revealOrders, setRevealOrders] = useState<RevealOrder[]>([]);
   const [error, setError] = useState(false);
   const [noData, setNoData] = useState(false);
@@ -80,6 +81,7 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
             {revealOrders.map((data) => {
               return (
                 <RevealOrderCard
+                  isComplete={isComplete}
                   userAddress={orderFetcher.userAddress}
                   height={cardHeight}
                   key={data.txnHash + data.timestamp}

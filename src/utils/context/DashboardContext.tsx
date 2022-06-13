@@ -139,7 +139,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
           selection.length,
           pricePerTokenInEther,
           amountInEth,
-          user.address, // revealer? I don't think this is used
+          user.address,
           chainId ?? '',
           tokenInfo
         );
