@@ -226,9 +226,10 @@ export const setReveals = async (
 
 // ======================================================
 
-export const getReveals = async (user: string, startAfterTimestamp = 0): Promise<ApiResponse> => {
+export const getReveals = async (user: string, cursor: string, isCompleted: boolean): Promise<ApiResponse> => {
   const response = await httpGet(`/u/${user}/reveals`, {
-    startAfterTimestamp
+    cursor,
+    isCompleted
   });
 
   return response;

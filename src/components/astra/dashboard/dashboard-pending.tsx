@@ -11,7 +11,7 @@ export const DashboardPending = () => {
 
   useEffect(() => {
     if (user) {
-      setOrderFetcher(RevealOrderCache.shared().fetcher(user.address));
+      setOrderFetcher(RevealOrderCache.shared().fetcher(user.address, false));
 
       setDisplayName('Pending');
     }

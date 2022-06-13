@@ -5,18 +5,21 @@ import { RevealOrder } from 'utils/types/be-types';
 export interface RevealOrderFetcherResult {
   ferror: boolean;
   frevealOrders: RevealOrder[];
-  fcursor: number;
+  fcursor: string;
   fhasNextPage: boolean;
 }
 
 export class RevealOrderFetcher {
   userAddress = '';
+  isCompleted = false;
 
-  constructor(userAddress: string) {
+  constructor(userAddress: string, isCompleted: boolean) {
     this.userAddress = userAddress;
+    this.isCompleted = isCompleted;
   }
+
   error = false;
-  cursor = 0;
+  cursor = '';
   hasNextPage = false;
   revealOrders: RevealOrder[] = [];
 
@@ -37,21 +40,16 @@ export class RevealOrderFetcher {
         this.error = response.error !== null;
         console.error(response.error);
       } else {
-        const results = response.result as RevealOrder[];
+        const { data, cursor, hasNextPage } = response.result;
 
-        let lastItem: RevealOrder | undefined;
-        if (results.length > 0) {
-          lastItem = results[results.length - 1];
-        }
-
-        let newOrders = results;
+        let newOrders = data;
         if (loadMore) {
           newOrders = [...this.revealOrders, ...newOrders];
         }
 
         this.revealOrders = newOrders;
-        this.cursor = lastItem?.timestamp ?? 0;
-        this.hasNextPage = results.length > 0;
+        this.cursor = cursor ?? '';
+        this.hasNextPage = hasNextPage;
       }
     }
 
@@ -65,7 +63,7 @@ export class RevealOrderFetcher {
 
   // override this
   protected doFetch = async (): Promise<ApiResponse> => {
-    return await getReveals(this.userAddress, this.cursor);
+    return await getReveals(this.userAddress, this.cursor, this.isCompleted);
   };
 }
 
@@ -74,7 +72,8 @@ export class RevealOrderFetcher {
 export class RevealOrderCache {
   private static instance: RevealOrderCache;
 
-  private cache: Map<string, RevealOrderFetcher>;
+  private cacheCompleted: Map<string, RevealOrderFetcher>;
+  private cachePending: Map<string, RevealOrderFetcher>;
 
   public static shared() {
     if (!this.instance) {
@@ -85,22 +84,28 @@ export class RevealOrderCache {
   }
 
   private constructor() {
-    this.cache = new Map<string, RevealOrderFetcher>();
+    this.cachePending = new Map<string, RevealOrderFetcher>();
+    this.cacheCompleted = new Map<string, RevealOrderFetcher>();
   }
 
   refresh = () => {
-    this.cache = new Map<string, RevealOrderFetcher>();
+    this.cachePending = new Map<string, RevealOrderFetcher>();
+    this.cacheCompleted = new Map<string, RevealOrderFetcher>();
   };
 
-  fetcher(userAddress: string): RevealOrderFetcher {
-    const cached = this.cache.get(userAddress);
+  fetcher(userAddress: string, isCompleted: boolean): RevealOrderFetcher {
+    let cache = this.cachePending;
+    if (isCompleted) {
+      cache = this.cacheCompleted;
+    }
 
+    const cached = cache.get(userAddress);
     if (cached) {
       return cached;
     }
 
-    const result = new RevealOrderFetcher(userAddress);
-    this.cache.set(userAddress, result);
+    const result = new RevealOrderFetcher(userAddress, isCompleted);
+    cache.set(userAddress, result);
 
     return result;
   }

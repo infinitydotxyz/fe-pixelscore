@@ -11,11 +11,11 @@ export const DashboardRevealed = () => {
 
   useEffect(() => {
     if (user) {
-      setOrderFetcher(RevealOrderCache.shared().fetcher(user.address));
+      setOrderFetcher(RevealOrderCache.shared().fetcher(user.address, true));
 
       setDisplayName('Revealed');
     }
   }, [user, refreshTrigger]);
 
-  return <DashboardBase route={AstraNavTab.Pending} />;
+  return <DashboardBase route={AstraNavTab.Revealed} />;
 };
