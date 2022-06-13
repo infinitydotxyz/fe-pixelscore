@@ -133,7 +133,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
           tokenInfo.push(token);
         }
 
-        const duh = await setReveals(
+        await setReveals(
           user.address,
           txnHash,
           selection.length,
@@ -143,8 +143,6 @@ export const DashboardContextProvider = ({ children }: Props) => {
           chainId ?? '',
           tokenInfo
         );
-
-        console.log(duh);
 
         // clearSelection();
 

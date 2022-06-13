@@ -12,6 +12,7 @@ TODO:
 10. toasts?
 11. nfts?
 12. Some of your NFTs are in the top 1%, pay to reveal
+13. spinner on loading image
 
 top 1%, (pixel rank bucket 10)
 
