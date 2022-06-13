@@ -11,8 +11,7 @@ TODO:
 9. Reveal and ranks
 10. toasts?
 11. nfts?
-12. bluechecks, sort by bluecheck
-13. Some of your NFTs are in the top 1%, pay to reveal
+12. Some of your NFTs are in the top 1%, pay to reveal
 
 top 1%, (pixel rank bucket 10)
 
@@ -22,20 +21,18 @@ ui for choosing public visibility
 
 revealed? visible, revealer.
 
-add bluecheck to ui
-
 responsive
 
 checkout not connected falied?
 
-checkbox for make public above checkout button
 pending tab should also have public option
 
-no pixelrank, show bluecheck, no collection address,
+no pixelrank, no collection address,
 
 rarity.tools
 
-nonrevealed: image, bluecheck. Revealed everthing. filter on backend.
+nonrevealed: image, bluecheck.
+Revealed everthing. filter on backend.
 
 .5% 10,000 - 50,000,
 1% 50,000 - 100,000
@@ -45,11 +42,6 @@ pixel rank >=1 <10,000,
 rank: 1-10,000,000
 bucket: 1-10
 score 0-1
-
-hide score from card
-
-get by collection address
-reveal items bluecheck, add it to reveals collection, copy over check
 
 clean up any bad collections
 
