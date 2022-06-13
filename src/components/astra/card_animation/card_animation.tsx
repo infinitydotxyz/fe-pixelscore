@@ -6,10 +6,10 @@ export const CardAnimation = () => {
   return (
     <div className="flex flex-col">
       <div className="flex space-x-9">
-        <ScrollingCards rtl={true} />
-        <ScrollingCards rtl={false} />
-        <ScrollingCards rtl={true} />
-        <ScrollingCards rtl={false} />
+        <ScrollingCards rtl={true} speed={5000} />
+        <ScrollingCards rtl={false} speed={2000} />
+        <ScrollingCards rtl={true} speed={3000} />
+        <ScrollingCards rtl={false} speed={4000} />
       </div>
     </div>
   );
@@ -17,18 +17,19 @@ export const CardAnimation = () => {
 
 interface Props {
   rtl?: boolean;
+  speed?: number;
 }
 
-export const ScrollingCards = ({ rtl = false }: Props) => {
+export const ScrollingCards = ({ rtl = false, speed = 4000 }: Props) => {
   const settings: Settings = {
     infinite: true,
-    speed: 4610,
+    speed: speed,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 0,
-    // cssEase: '',
-    // easing: '',
+    cssEase: 'linear',
+    easing: 'linear',
     rtl: rtl,
     draggable: false,
     arrows: false,
