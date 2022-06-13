@@ -19,6 +19,7 @@ import { DashboardMyNFTs } from 'components/astra/dashboard/dashboard-my-nfts';
 import { DashboardHot } from 'components/astra/dashboard/dashboard-hot';
 import { DashboardContextProvider } from 'utils/context/DashboardContext';
 import { DashboardPending } from 'components/astra/dashboard/dashboard-pending';
+import { DashboardRevealed } from 'components/astra/dashboard/dashboard-revealed';
 
 const AppRoutes = () => {
   const { allowed, ready } = useSecurityContext();
@@ -39,6 +40,7 @@ const AppRoutes = () => {
             <Route path="nfts" element={<DashboardMyNFTs />} />
             <Route path="hot" element={<DashboardHot />} />
             <Route path="pending" element={<DashboardPending />} />
+            <Route path="revealed" element={<DashboardRevealed />} />
           </Route>
           <Route path="*" element={<Navigate to={'/'} replace />} />
         </>

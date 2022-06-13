@@ -48,6 +48,7 @@ export const DashboardPage = () => {
         break;
       case AstraNavTab.MyNFTs:
       case AstraNavTab.Pending:
+      case AstraNavTab.Revealed:
         setShowCart(false);
         break;
     }

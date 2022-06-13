@@ -1,8 +1,9 @@
-import { iconButtonStyle, inputBorderColor } from 'utils/ui-constants';
+import { inputBorderColor } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage, ReadMoreText, Spacer, SVG } from 'components/common';
+import { BGImage, ReadMoreText, Spacer } from 'components/common';
 import { AstraNavTab } from '../astra-navbar';
 import { useDashboardContext } from 'utils/context/DashboardContext';
+import { BlueCheckBadge } from 'components/token-grid/pill-badge';
 
 interface Props {
   route: AstraNavTab;
@@ -29,6 +30,10 @@ export const GridHeader = ({ route, vertical }: Props) => {
       name = route;
       description = 'Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. ';
       break;
+    case AstraNavTab.Revealed:
+      name = route;
+      description = 'Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. ';
+      break;
     case AstraNavTab.MyNFTs:
       name = route;
 
@@ -43,16 +48,12 @@ export const GridHeader = ({ route, vertical }: Props) => {
   }
 
   if (vertical) {
-    if (route !== AstraNavTab.Pending) {
+    if (route !== AstraNavTab.Pending && route !== AstraNavTab.Revealed) {
       return (
         <div className={twMerge(inputBorderColor, 'flex-col items-center bg-gray-100 border-b px-8 py-3')}>
           <div className="relative">
             <BGImage src={avatarUrl} className="mr-6 h-20 w-full rounded-xl" />
-            {collection?.hasBlueCheck && (
-              <div className="absolute bottom-1 right-1 bg-white">
-                <SVG.blueCheck className={iconButtonStyle} />
-              </div>
-            )}
+            <BlueCheckBadge val={collection?.hasBlueCheck} />
           </div>
 
           <div className="my-2 tracking-tight text-theme-light-800 font-bold text-xl text-center">{name}</div>
@@ -87,16 +88,12 @@ export const GridHeader = ({ route, vertical }: Props) => {
       );
     }
   } else {
-    if (route !== AstraNavTab.Pending) {
+    if (route !== AstraNavTab.Pending && route !== AstraNavTab.Revealed) {
       return (
         <div className={twMerge(inputBorderColor, 'flex items-center bg-gray-100 border-b px-8 py-3')}>
           <div className="relative mr-6">
             <BGImage src={avatarUrl} className="h-16 w-36 rounded-xl" />
-            {collection?.hasBlueCheck && (
-              <div className="absolute bottom-1 right-1 bg-white rounded-full">
-                <SVG.blueCheck className={iconButtonStyle} />
-              </div>
-            )}
+            <BlueCheckBadge val={collection?.hasBlueCheck} />
           </div>
 
           <div className="flex flex-col items-start">

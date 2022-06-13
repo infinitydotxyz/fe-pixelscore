@@ -34,6 +34,7 @@ export const DashboardBase = ({ route }: Props) => {
       emptyMessage = 'Select a Collection';
       break;
     case AstraNavTab.Pending:
+    case AstraNavTab.Revealed:
     case AstraNavTab.MyNFTs:
       emptyMessage = route;
 
@@ -47,7 +48,7 @@ export const DashboardBase = ({ route }: Props) => {
       break;
   }
 
-  if (tokenFetcher && route !== AstraNavTab.Pending) {
+  if (tokenFetcher && route !== AstraNavTab.Pending && route !== AstraNavTab.Revealed) {
     tokensGrid = (
       <div className="flex flex-col h-full w-full">
         <GridHeader route={route} vertical={false} />
@@ -63,7 +64,7 @@ export const DashboardBase = ({ route }: Props) => {
         />
       </div>
     );
-  } else if (orderFetcher && route === AstraNavTab.Pending) {
+  } else if (orderFetcher && (route === AstraNavTab.Pending || route === AstraNavTab.Revealed)) {
     tokensGrid = (
       <div className="flex flex-col h-full w-full">
         <RevealOrderGrid

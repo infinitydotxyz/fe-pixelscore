@@ -10,6 +10,7 @@ export enum AstraNavTab {
   Top100 = 'Top 100',
   Pending = 'Pending',
   Hot = 'Hot',
+  Revealed = 'Revealed',
   MyNFTs = 'My NFTs'
 }
 
@@ -18,7 +19,14 @@ export const AstraNavbar = () => {
   const { setTokenFetcher, setOrderFetcher, showCart, setShowCart } = useDashboardContext();
 
   const { options, selected } = useToggleTab(
-    [AstraNavTab.All, AstraNavTab.Top100, AstraNavTab.Hot, AstraNavTab.MyNFTs, AstraNavTab.Pending],
+    [
+      AstraNavTab.All,
+      AstraNavTab.Top100,
+      AstraNavTab.Hot,
+      AstraNavTab.MyNFTs,
+      AstraNavTab.Revealed,
+      AstraNavTab.Pending
+    ],
     currentTab
   );
   const navigate = useNavigate();
@@ -79,6 +87,8 @@ export class TabUtils {
         return '/dashboard/all';
       case AstraNavTab.Pending:
         return '/dashboard/pending';
+      case AstraNavTab.Revealed:
+        return '/dashboard/revealed';
       case AstraNavTab.MyNFTs:
         return '/dashboard/nfts';
       case AstraNavTab.Hot:
@@ -94,6 +104,8 @@ export class TabUtils {
         return AstraNavTab.All;
       case '/dashboard/pending':
         return AstraNavTab.Pending;
+      case '/dashboard/revealed':
+        return AstraNavTab.Revealed;
       case '/dashboard/nfts':
         return AstraNavTab.MyNFTs;
       case '/dashboard/hot':

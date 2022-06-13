@@ -1,9 +1,10 @@
 import React from 'react';
-import { BGImage, SVG } from 'components/common';
+import { BGImage } from 'components/common';
 import { CollectionInfo } from '../../utils/types/collection-types';
 import { twMerge } from 'tailwind-merge';
-import { iconButtonStyle, inputBorderColor, selectionOutline } from 'utils/ui-constants';
+import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { HelpTip } from './helptip';
+import { BlueCheckBadge } from 'components/token-grid/pill-badge';
 
 interface Props2 {
   collection: CollectionInfo;
@@ -35,11 +36,7 @@ export const CollectionListItem = ({ collection, onClick, selected }: Props2) =>
               </div>
             </div>
 
-            {collection.hasBlueCheck && (
-              <div className="absolute bottom-2 right-2 bg-white rounded-full">
-                <SVG.blueCheck className={iconButtonStyle} />
-              </div>
-            )}
+            <BlueCheckBadge val={collection.hasBlueCheck} />
           </div>
         </div>
       </HelpTip>
