@@ -1,11 +1,12 @@
 import { CenteredContent } from 'components/common';
-import { NFTCard, RevealOrder } from 'utils/types/be-types';
+import { NFTCard, RevealOrder, TokenInfo } from 'utils/types/be-types';
 import { TokensGrid } from 'components/token-grid/token-grid';
 import { useDashboardContext } from 'utils/context/DashboardContext';
 import { RevealOrderGrid } from 'components/reveal-order-grid/reveal-order-grid';
 import { AstraNavTab } from '../astra-navbar';
 import { useAppContext } from 'utils/context/AppContext';
 import { GridHeader } from './grid-header';
+import { RevealedOrderGrid } from 'components/revealed-order-grid/revealed-order-grid';
 // import { GridHeader } from './grid-header';
 
 interface Props {
@@ -24,6 +25,10 @@ export const DashboardBase = ({ route }: Props) => {
   let tokensGrid;
 
   const onRevealOrderClick = (data: RevealOrder) => {
+    console.log(data);
+  };
+
+  const onRevealedOrderClick = (data: TokenInfo) => {
     console.log(data);
   };
 
@@ -65,23 +70,42 @@ export const DashboardBase = ({ route }: Props) => {
       </div>
     );
   } else if (orderFetcher && (route === AstraNavTab.Pending || route === AstraNavTab.Revealed)) {
-    tokensGrid = (
-      <div className="flex flex-col h-full w-full">
-        <RevealOrderGrid
-          orderFetcher={orderFetcher}
-          isComplete={route === AstraNavTab.Revealed}
-          className="px-8 py-6"
-          onClick={onRevealOrderClick}
-          isSelected={(data) => {
-            if (data) {
-              return false;
-            }
-            return false; // isSelected(data);
-          }}
-          onLoad={(value) => setNumTokens(value)}
-        />
-      </div>
-    );
+    if (orderFetcher && route === AstraNavTab.Pending) {
+      tokensGrid = (
+        <div className="flex flex-col h-full w-full">
+          <RevealOrderGrid
+            orderFetcher={orderFetcher}
+            className="px-8 py-6"
+            onClick={onRevealOrderClick}
+            isSelected={(data) => {
+              if (data) {
+                return false;
+              }
+              return false; // isSelected(data);
+            }}
+            onLoad={(value) => setNumTokens(value)}
+          />
+        </div>
+      );
+    } else {
+      //  route === AstraNavTab.Revealed
+      tokensGrid = (
+        <div className="flex flex-col h-full w-full">
+          <RevealedOrderGrid
+            orderFetcher={orderFetcher}
+            className="px-8 py-6"
+            onClick={onRevealedOrderClick}
+            isSelected={(data) => {
+              if (data) {
+                return false;
+              }
+              return false; // isSelected(data);
+            }}
+            onLoad={(value) => setNumTokens(value)}
+          />
+        </div>
+      );
+    }
   } else {
     tokensGrid = <CenteredContent>{emptyMessage}</CenteredContent>;
   }

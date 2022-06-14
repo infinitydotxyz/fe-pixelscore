@@ -11,7 +11,6 @@ interface Props {
   userAddress: string;
   revealOrder: RevealOrder;
   height: number;
-  isComplete: boolean;
   selected: boolean;
   onClick: (data: RevealOrder) => void;
 }
@@ -21,8 +20,7 @@ export const RevealOrderCard = ({
   revealOrder: inOrder,
   height,
   onClick,
-  selected,
-  isComplete
+  selected
 }: Props): JSX.Element => {
   const [revealOrder, setRevealOrder] = useState<RevealOrder>(inOrder);
 
@@ -38,18 +36,6 @@ export const RevealOrderCard = ({
         // replace our data
         setRevealOrder(order);
       }
-    } catch (err) {
-      const errStr = httpErrorResponse(err);
-
-      toastError(`Error: ${errStr.status} ${errStr.error}`);
-    }
-  };
-
-  const visibleClick = async () => {
-    console.log(JSON.stringify(revealOrder, null, '  '));
-
-    try {
-      toastSuccess('result');
     } catch (err) {
       const errStr = httpErrorResponse(err);
 
@@ -86,17 +72,9 @@ export const RevealOrderCard = ({
 
           <Spacer />
 
-          {!isComplete && (
-            <div className="mx-3 mt-4 flex flex-col ">
-              <Button onClick={refreshClick}>Refresh</Button>
-            </div>
-          )}
-
-          {isComplete && (
-            <div className="mx-3 mt-4 flex flex-col ">
-              <Button onClick={visibleClick}>Make Visible</Button>
-            </div>
-          )}
+          <div className="mx-3 mt-4 flex flex-col ">
+            <Button onClick={refreshClick}>Refresh</Button>
+          </div>
         </div>
       </div>
     </div>

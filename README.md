@@ -4,15 +4,13 @@ TODO:
 2. score NFTs that are not scored yet. show unscored?
 3. dark home page, https://pixelverse.ai/, https://nft-avatars.webflow.io/
 4. in the checkout flow, if someone tries to checkout NFTs whose ranks are already revealed (all NFTs whose pixel rank bucket < 10 and the ones with bucket 10 but pixelRankRevealed = true), checkout should show an error to remove already revealed items from cart (edited)
-5. pending cards ugly
-6. reveals tab
-7. make left side cards nice
-8. aspect ratio
-9. Reveal and ranks
-10. toasts?
-11. nfts?
-12. Some of your NFTs are in the top 1%, pay to reveal
-13. spinner on loading image
+5. make left side cards nice
+6. aspect ratio
+7. Reveal and ranks
+8. toasts?
+9. Some of your NFTs are in the top 1%, pay to reveal
+10. spinner on loading image
+11. on Refresh button, also refresh list if data comes back success?
 
 top 1%, (pixel rank bucket 10)
 
@@ -25,8 +23,6 @@ revealed? visible, revealer.
 responsive
 
 checkout not connected falied?
-
-pending tab should also have public option
 
 no pixelrank, no collection address,
 

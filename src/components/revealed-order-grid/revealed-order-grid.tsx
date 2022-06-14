@@ -4,19 +4,19 @@ import { ScrollLoader } from 'components/common';
 import { useIsMounted } from 'hooks/useIsMounted';
 import { twMerge } from 'tailwind-merge';
 import { ErrorOrLoading } from '../astra/error-or-loading';
-import { RevealOrder } from 'utils/types/be-types';
-import { RevealOrderFetcher } from './reveal-order-fetcher';
-import { RevealOrderCard } from './reveal-order-card';
+import { RevealOrder, TokenInfo } from 'utils/types/be-types';
+import { RevealedOrderCard } from './revealed-order-card';
+import { RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
 
 interface Props {
   className?: string;
-  onClick?: (data: RevealOrder) => void;
-  isSelected: (data: RevealOrder) => boolean;
+  onClick?: (data: TokenInfo) => void;
+  isSelected: (data: TokenInfo) => boolean;
   onLoad: (numItems: number) => void;
   orderFetcher: RevealOrderFetcher;
 }
 
-export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
+export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
   const [revealOrders, setRevealOrders] = useState<RevealOrder[]>([]);
   const [error, setError] = useState(false);
   const [noData, setNoData] = useState(false);
@@ -74,16 +74,21 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
 
       cardHeight = gridWidth / (cols - 1);
 
+      const tokens: TokenInfo[] = [];
+
+      for (const order of revealOrders) {
+        tokens.push(...order.revealItems);
+      }
+
       contents = (
         <>
           <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
-            {revealOrders.map((data) => {
+            {tokens.map((data) => {
               return (
-                <RevealOrderCard
-                  userAddress={orderFetcher.userAddress}
+                <RevealedOrderCard
                   height={cardHeight}
-                  key={data.txnHash + data.timestamp}
-                  revealOrder={data}
+                  key={`${data.collectionAddress}:${data.tokenId}`}
+                  token={data}
                   selected={isSelected(data)}
                   onClick={(data) => {
                     if (onClick) {
