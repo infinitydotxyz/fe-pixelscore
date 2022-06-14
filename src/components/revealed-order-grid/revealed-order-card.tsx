@@ -87,7 +87,7 @@ const VisibilityIcon = ({ visible, message }: Props2) => {
   }
 
   return (
-    <div className="flex  items-center">
+    <div className="flex items-center">
       <div className="mr-3">{icon}</div>
       <div>{message}</div>
     </div>
