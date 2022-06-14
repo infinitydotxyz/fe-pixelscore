@@ -63,7 +63,7 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
       const cols = Math.round(wrapWidth / 360);
       const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
-      cardHeight = wrapWidth / cols;
+      cardHeight = wrapWidth / (cols * 1.14);
 
       contents = (
         <>
