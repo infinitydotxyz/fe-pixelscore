@@ -50,7 +50,7 @@ export const RevealedOrderCard = ({ token, height, onClick, selected }: Props): 
         <RevealedTokenImage token={token} />
 
         <div className="mt-3 mb-4 mx-5 flex flex-col ">
-          <div className="text-xl font-bold">{token.collectionName ?? 'Unknown'}</div>
+          <div className="font-bold truncate">{token.collectionName ?? 'Unknown'}</div>
 
           <VisibilityIcon
             visible={token.pixelRankVisible}
@@ -82,7 +82,7 @@ const VisibilityIcon = ({ visible, message }: Props2) => {
 
   let icon = <MdVisibility color="#0a0" className="h-5 w-5" />;
 
-  if (visible) {
+  if (!visible) {
     icon = <MdVisibilityOff color="#a00" className="h-5 w-5" />;
   }
 
