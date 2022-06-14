@@ -36,10 +36,10 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
             <BGImage src={data?.image} className="hover:scale-110 transition-all" />
           </div>
 
-          <PillBadge val={data.pixelRank} tooltip="Pixel rank" />
+          <PillBadge val={data.pixelRank} tooltip="Pixel rank" numberSign={true} />
           {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
           <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
-          <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" />
+          <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} />
 
           <BlueCheckBadge val={data.hasBlueCheck} />
         </div>

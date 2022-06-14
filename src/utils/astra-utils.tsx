@@ -179,12 +179,14 @@ export const updateRankVisibility = async (
   pixelRankVisible: boolean
 ): Promise<string> => {
   try {
-    const body: UpdateRankVisibility = {
-      chainId,
-      collectionAddress,
-      tokenId,
-      pixelRankVisible
-    };
+    const body: UpdateRankVisibility[] = [
+      {
+        chainId,
+        collectionAddress,
+        tokenId,
+        pixelRankVisible
+      }
+    ];
 
     const response = await httpPost(`/u/${user}/rankVisibility`, body);
     return response.result as string;

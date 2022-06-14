@@ -4,6 +4,9 @@ import { Button, toastError } from '../common';
 import { TokenInfo } from 'utils/types/be-types';
 import { httpErrorResponse } from 'utils';
 import { RevealedTokenImage } from './revealed-token-image';
+import { updateRankVisibility } from 'utils/astra-utils';
+import { useAppContext } from 'utils/context/AppContext';
+import { MdVisibilityOff, MdVisibility } from 'react-icons/md';
 
 interface Props {
   token: TokenInfo;
@@ -14,10 +17,17 @@ interface Props {
 
 export const RevealedOrderCard = ({ token, height, onClick, selected }: Props): JSX.Element => {
   const heightStyle = `${height}px`;
+  const { user } = useAppContext();
 
   const visibleClick = async () => {
     try {
-      // dd
+      updateRankVisibility(
+        user?.address ?? '',
+        token.tokenId,
+        token.collectionAddress,
+        token.chainId,
+        !token.pixelRankVisible
+      );
     } catch (err) {
       const errStr = httpErrorResponse(err);
 
@@ -28,7 +38,7 @@ export const RevealedOrderCard = ({ token, height, onClick, selected }: Props): 
   return (
     <div
       className={twMerge(
-        'border shadow-md',
+        'border',
         inputBorderColor,
         'rounded-2xl w-full relative flex flex-col',
         selected ? selectionOutline : ''
@@ -40,11 +50,46 @@ export const RevealedOrderCard = ({ token, height, onClick, selected }: Props): 
         <RevealedTokenImage token={token} />
 
         <div className="mt-3 mb-4 mx-5 flex flex-col ">
+          <div className="text-xl font-bold">{token.collectionName ?? 'Unknown'}</div>
+
+          <VisibilityIcon
+            visible={token.pixelRankVisible}
+            message={token.pixelRankVisible ? 'Rank is visible' : 'Rank is hidden'}
+          />
+
           <div className="mx-3 mt-4 flex flex-col ">
-            <Button onClick={visibleClick}>Make Publicly Visible</Button>
+            <Button variant="outline" onClick={visibleClick}>
+              {token.pixelRankVisible ? 'Hide rank' : 'Make rank visible'}
+            </Button>
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+// ====================================================================
+
+interface Props2 {
+  visible?: boolean;
+  message?: string;
+}
+
+const VisibilityIcon = ({ visible, message }: Props2) => {
+  if (visible === undefined) {
+    return <></>;
+  }
+
+  let icon = <MdVisibility color="#0a0" className="h-5 w-5" />;
+
+  if (visible) {
+    icon = <MdVisibilityOff color="#a00" className="h-5 w-5" />;
+  }
+
+  return (
+    <div className="flex  items-center">
+      <div className="mr-3">{icon}</div>
+      <div>{message}</div>
     </div>
   );
 };

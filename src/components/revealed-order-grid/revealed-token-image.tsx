@@ -1,6 +1,6 @@
 import { BGImage, Divider } from '../common';
 import { TokenInfo } from 'utils/types/be-types';
-import { PillBadge } from 'components/token-grid/pill-badge';
+import { BlueCheckBadge, PillBadge } from 'components/token-grid/pill-badge';
 import { twMerge } from 'tailwind-merge';
 
 interface Props {
@@ -18,9 +18,10 @@ export const RevealedTokenImage = ({ token, className = 'flex-grow' }: Props) =>
           <BGImage src={token.imageUrl} className="hover:scale-110 transition-all  " />
         </div>
 
-        <PillBadge val={token.pixelRank} tooltip="Pixel rank" />
+        <PillBadge val={token.pixelRank} tooltip="Pixel rank" numberSign={true} />
         {/* <PillBadge val={token.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
         <PillBadge val={token.tokenId} tooltip="Token id" className="top-2 right-2" />
+        <BlueCheckBadge val={token.hasBlueCheck} />
       </div>
 
       <Divider className="" />

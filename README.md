@@ -10,7 +10,7 @@ TODO:
 8. toasts?
 9. Some of your NFTs are in the top 1%, pay to reveal
 10. spinner on loading image
-11. on Refresh button, also refresh list if data comes back success?
+11. on Refresh button, also refresh list if data comes back success? also visibility button
 
 top 1%, (pixel rank bucket 10)
 

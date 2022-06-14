@@ -6,14 +6,18 @@ interface Props {
   val: number | string | undefined;
   tooltip: string;
   className?: string;
+  numberSign?: boolean;
 }
 
-export const PillBadge = ({ val, tooltip, className = 'top-2 left-2' }: Props) => {
+export const PillBadge = ({ val, tooltip, className = 'top-2 left-2', numberSign = false }: Props) => {
   if (val) {
     return (
       <div className={twMerge(className, 'absolute')}>
         <HelpTip content={tooltip}>
-          <div className="bg-white font-bold rounded-full px-3 shadow-lg">{val}</div>
+          <div className="bg-white font-bold rounded-full px-3 shadow-lg">
+            {numberSign ? '#' : ''}
+            {val}
+          </div>
         </HelpTip>
       </div>
     );

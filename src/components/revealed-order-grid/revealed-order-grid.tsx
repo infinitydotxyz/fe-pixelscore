@@ -69,10 +69,10 @@ export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClic
     contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
     if (gridWidth > 0) {
-      const cols = Math.round(gridWidth / 400);
+      const cols = Math.round(gridWidth / 300);
       const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
-      cardHeight = gridWidth / (cols - 1);
+      cardHeight = gridWidth / cols;
 
       const tokens: TokenInfo[] = [];
 

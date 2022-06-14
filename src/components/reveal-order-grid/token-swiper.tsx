@@ -1,6 +1,6 @@
 import { BGImage, Divider, RoundButton, SVG } from '../common';
 import { TokenInfo } from 'utils/types/be-types';
-import { PillBadge } from 'components/token-grid/pill-badge';
+import { BlueCheckBadge, PillBadge } from 'components/token-grid/pill-badge';
 import { useState } from 'react';
 import { smallIconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
@@ -64,9 +64,10 @@ export const TokenSwiper = ({ tokens, className = 'flex-grow' }: Props) => {
           <BGImage src={tokens[index].imageUrl} className="hover:scale-110 transition-all  " />
         </div>
 
-        <PillBadge val={tokens[index].pixelRank} tooltip="Pixel rank" />
+        <PillBadge val={tokens[index].pixelRank} tooltip="Pixel rank" numberSign={true} />
         {/* <PillBadge val={tokens[index].pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
         <PillBadge val={tokens[index].tokenId} tooltip="Token id" className="top-2 right-2" />
+        <BlueCheckBadge val={tokens[index].hasBlueCheck} />
       </div>
 
       {controls()}
