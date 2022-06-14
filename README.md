@@ -12,6 +12,12 @@ TODO:
 10. spinner on loading image
 11. on Refresh button, also refresh list if data comes back success? also visibility button
 
+Lets keep it simple i guess:
+
+1. Revealed items once made visible stay visible
+2. If revealed but not made visible - we can show this info somewhere (maybe in the cart) saying these items were revealed previously but the revealer(s) chose to keep rank hidden. But you have the choice to make ranks public once you pay to reveal. We can even show the number of times an item has been revealed previously.
+   re: price differences for reveals - I like that and makes sense
+
 top 1%, (pixel rank bucket 10)
 
 .1% of the sorted by rank list (top .1%) 10,000,

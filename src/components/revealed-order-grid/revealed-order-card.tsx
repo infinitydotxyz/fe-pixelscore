@@ -7,27 +7,35 @@ import { RevealedTokenImage } from './revealed-token-image';
 import { updateRankVisibility } from 'utils/astra-utils';
 import { useAppContext } from 'utils/context/AppContext';
 import { MdVisibilityOff, MdVisibility } from 'react-icons/md';
+import { RevealOrderCache } from 'components/reveal-order-grid/reveal-order-fetcher';
 
 interface Props {
   token: TokenInfo;
   height: number;
   selected: boolean;
   onClick: (data: TokenInfo) => void;
+  onRefreshToken: (data: TokenInfo) => void;
 }
 
-export const RevealedOrderCard = ({ token, height, onClick, selected }: Props): JSX.Element => {
+export const RevealedOrderCard = ({ token, height, onClick, onRefreshToken, selected }: Props): JSX.Element => {
   const heightStyle = `${height}px`;
   const { user } = useAppContext();
 
   const visibleClick = async () => {
     try {
-      updateRankVisibility(
+      await updateRankVisibility(
         user?.address ?? '',
         token.tokenId,
         token.collectionAddress,
         token.chainId,
         !token.pixelRankVisible
       );
+
+      // we don't want to reload the list, so just tell the parent to reload this card
+      onRefreshToken({ ...token, pixelRankVisible: !token.pixelRankVisible });
+
+      // we need to dump the revealed cache so if they open the Revealed tab it will load the new info
+      RevealOrderCache.shared().refresh();
     } catch (err) {
       const errStr = httpErrorResponse(err);
 

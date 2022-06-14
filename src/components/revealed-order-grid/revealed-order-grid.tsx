@@ -18,6 +18,7 @@ interface Props {
 
 export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClick, isSelected }: Props) => {
   const [revealOrders, setRevealOrders] = useState<RevealOrder[]>([]);
+  const [tokens, setTokens] = useState<TokenInfo[]>([]);
   const [error, setError] = useState(false);
   const [noData, setNoData] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
@@ -37,6 +38,16 @@ export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClic
     setLoading(true);
     handleFetch(false);
   }, [orderFetcher]);
+
+  useEffect(() => {
+    const ts: TokenInfo[] = [];
+
+    for (const order of revealOrders) {
+      ts.push(...order.revealItems);
+    }
+
+    setTokens(ts);
+  }, [revealOrders]);
 
   const handleFetch = async (loadMore: boolean) => {
     if (orderFetcher) {
@@ -74,18 +85,24 @@ export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClic
 
       cardHeight = gridWidth / cols;
 
-      const tokens: TokenInfo[] = [];
-
-      for (const order of revealOrders) {
-        tokens.push(...order.revealItems);
-      }
-
       contents = (
         <>
           <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
             {tokens.map((data) => {
               return (
                 <RevealedOrderCard
+                  onRefreshToken={(data) => {
+                    const newTokens = [];
+
+                    for (const token of tokens) {
+                      if (token.tokenId === data.tokenId && token.collectionAddress === data.collectionAddress) {
+                        newTokens.push(data);
+                      } else {
+                        newTokens.push(token);
+                      }
+                    }
+                    setTokens(newTokens);
+                  }}
                   height={cardHeight}
                   key={`${data.collectionAddress}:${data.tokenId}`}
                   token={data}
