@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NFTCard } from 'utils/types/be-types';
 
 interface CardSelectionResult {
@@ -10,43 +10,39 @@ interface CardSelectionResult {
 }
 
 export const useCardSelection = (): CardSelectionResult => {
+  const [selectionMap, setSelectionMap] = useState<Map<string, NFTCard>>(new Map());
   const [selection, setSelection] = useState<NFTCard[]>([]);
 
-  const toggleSelection = (data: NFTCard) => {
-    const i = indexOfSelection(data);
+  useEffect(() => {
+    setSelection(Array.from(selectionMap.values()));
+  }, [selectionMap]);
 
-    if (i === -1) {
-      setSelection([...selection, data]);
+  const toggleSelection = (value: NFTCard) => {
+    if (!isSelected(value)) {
+      const copy = new Map(selectionMap);
+      copy.set(value.id, value);
+
+      setSelectionMap(copy);
     } else {
-      removeFromSelection(data);
+      removeFromSelection(value);
     }
   };
 
-  const indexOfSelection = (value: NFTCard): number => {
-    const i = selection.findIndex((token) => {
-      return value.id === token.id;
-    });
-
-    return i;
-  };
-
   const removeFromSelection = (value: NFTCard) => {
-    const i = indexOfSelection(value);
+    if (isSelected(value)) {
+      const copy = new Map(selectionMap);
+      copy.delete(value.id);
 
-    if (i !== -1) {
-      const copy = [...selection];
-      copy.splice(i, 1);
-
-      setSelection(copy);
+      setSelectionMap(copy);
     }
   };
 
   const isSelected = (value: NFTCard): boolean => {
-    return indexOfSelection(value) !== -1;
+    return selectionMap.has(value.id);
   };
 
   const clearSelection = () => {
-    setSelection([]);
+    setSelectionMap(new Map());
   };
 
   return { selection, isSelected, clearSelection, toggleSelection, removeFromSelection };

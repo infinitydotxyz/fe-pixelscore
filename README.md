@@ -10,7 +10,6 @@ TODO:
 8. toasts?
 9. Some of your NFTs are in the top 1%, pay to reveal
 10. spinner on loading image
-11. on Refresh button, also refresh list if data comes back success? also visibility button
 
 Lets keep it simple i guess:
 
@@ -22,14 +21,13 @@ top 1%, (pixel rank bucket 10)
 
 .1% of the sorted by rank list (top .1%) 10,000,
 
-ui for choosing public visibility
-
 revealed? visible, revealer.
 
 responsive
 
 checkout not connected falied?
 
+// you need collectionAddress for cart?
 no pixelrank, no collection address,
 
 rarity.tools
