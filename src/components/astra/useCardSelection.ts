@@ -19,10 +19,13 @@ export const useCardSelection = (): CardSelectionResult => {
 
   const toggleSelection = (value: NFTCard) => {
     if (!isSelected(value)) {
-      const copy = new Map(selectionMap);
-      copy.set(value.id, value);
+      // don't allow adding an already revealed and visible card to be added to cart
+      if (!value.pixelRankVisible) {
+        const copy = new Map(selectionMap);
+        copy.set(value.id, value);
 
-      setSelectionMap(copy);
+        setSelectionMap(copy);
+      }
     } else {
       removeFromSelection(value);
     }

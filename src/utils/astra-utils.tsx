@@ -87,10 +87,11 @@ export const tokensToCardData = (tokens: NFTToken[]): NFTCard[] => {
       chainId: token.chainId,
       tokenAddress: token.collectionAddress,
       tokenId: token.tokenId,
-      rarityRank: token.rarityRank,
       collectionSlug: token.collectionSlug,
       hasBlueCheck: token.hasBlueCheck,
       address: token.collectionAddress,
+
+      rarityRank: token.rarityRank,
       inCollectionPixelRank: token.inCollectionPixelRank,
       pixelRank: token.pixelRank,
       pixelRankBucket: token.pixelRankBucket,
@@ -122,13 +123,20 @@ export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
       address: token.collectionAddress,
       hasBlueCheck: token.hasBlueCheck,
       image: token.imageUrl,
-      inCollectionPixelRank: token.inCollectionPixelRank,
-      pixelRank: token.pixelRank,
-      pixelRankBucket: token.pixelRankBucket,
-      pixelScore: token.pixelScore,
       collectionBannerImage: token.collectionBannerImage,
       collectionProfileImage: token.collectionProfileImage,
-      rarityRank: token.rarityRank
+
+      rarityScore: token.rarityScore,
+      rarityRank: token.rarityRank,
+      inCollectionPixelScore: token.inCollectionPixelScore,
+      inCollectionPixelRank: token.inCollectionPixelRank,
+      pixelScore: token.pixelScore,
+      pixelRank: token.pixelRank,
+      pixelRankBucket: token.pixelRankBucket,
+      pixelRankRevealed: token.pixelRankRevealed,
+      pixelRankVisible: token.pixelRankVisible,
+      pixelRankRevealer: token.pixelRankRevealer,
+      pixelRankRevealedAt: token.pixelRankRevealedAt
     };
 
     return result;

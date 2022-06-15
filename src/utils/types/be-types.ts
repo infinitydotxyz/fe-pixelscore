@@ -99,10 +99,17 @@ export interface NFTCard extends CardData {
   collectionBannerImage?: string;
   collectionProfileImage?: string;
 
+  rarityScore?: number;
+  rarityRank?: number;
+  inCollectionPixelScore?: number;
   inCollectionPixelRank?: number;
+  pixelScore?: number;
   pixelRank?: number;
   pixelRankBucket?: number;
-  pixelScore?: number;
+  pixelRankRevealed?: boolean;
+  pixelRankVisible?: boolean;
+  pixelRankRevealer?: string;
+  pixelRankRevealedAt?: number;
 }
 
 export interface PortfolioScore {
