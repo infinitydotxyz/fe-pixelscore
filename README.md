@@ -3,7 +3,7 @@ TODO:
 1. use result from refresh on Pending item and update the list on screen
 2. score NFTs that are not scored yet. show unscored?
 3. dark home page, https://pixelverse.ai/, https://nft-avatars.webflow.io/
-4. in the checkout flow, if someone tries to checkout NFTs whose ranks are already revealed (all NFTs whose pixel rank bucket < 10 and the ones with bucket 10 but pixelRankRevealed = true), checkout should show an error to remove already revealed items from cart (edited)
+4. in the checkout flow, if someone tries to checkout NFTs whose pixel rank bucket < 10, checkout should show an error to remove them from cart (edited)
 5. make left side cards nice
 6. aspect ratio
 7. Reveal and ranks
