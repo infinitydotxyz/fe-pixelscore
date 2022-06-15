@@ -9,7 +9,8 @@ TODO:
 7. Reveal and ranks
 8. toasts?
 9. Some of your NFTs are in the top 1%, pay to reveal
-10. spinner on loading image
+10. first revealer can hide, if they hide and it's reshown, the new person has control
+11. must dump the caches if visibility is set
 
 Lets keep it simple i guess:
 
