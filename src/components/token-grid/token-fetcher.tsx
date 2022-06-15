@@ -5,9 +5,9 @@ import {
   fetchTokensByRank,
   fetchUserTokens,
   tokenInfosToCardData,
-  tokensToCardData
+  userNftsToCardData
 } from 'utils/astra-utils';
-import { NFTCard, NFTToken, TokenInfo } from 'utils/types/be-types';
+import { NFTCard, UserNft, TokenInfo } from 'utils/types/be-types';
 
 export interface TokenFetcherResult {
   ferror: boolean;
@@ -118,7 +118,7 @@ class CollectionTokenFetcher extends TokenFetcher {
     this.collection = collection;
     this.chainId = chainId;
 
-    // NFTToken doesn't have a collection name from server, so setting it here
+    // not sure if this is needed now days
     this.collectionName = collection.name ?? 'Unknown';
   }
 
@@ -173,9 +173,6 @@ class UserTokenFetcher extends TokenFetcher {
   constructor(userAddress: string) {
     super();
     this.userAddress = userAddress;
-
-    // NFTToken doesn't have a collection name from server, so setting it here
-    this.collectionName = 'Unknown';
   }
 
   // override
@@ -185,8 +182,8 @@ class UserTokenFetcher extends TokenFetcher {
 
   // override
   protected toCardData = (data: NFTArrayResult<unknown>): NFTCard[] => {
-    const result = data as NFTArrayResult<NFTToken>;
-    return tokensToCardData(result.data);
+    const result = data as NFTArrayResult<UserNft>;
+    return userNftsToCardData(result.data);
   };
 }
 

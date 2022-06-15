@@ -2,7 +2,7 @@ import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'util
 import {
   Filter,
   NFTCard,
-  NFTToken,
+  UserNft,
   PortfolioScore,
   RevealOrder,
   TokenInfo,
@@ -69,11 +69,8 @@ export const fetchCollections = async (query: string, cursor?: string): Promise<
 
 // ======================================================
 
-export const tokensToCardData = (tokens: NFTToken[]): NFTCard[] => {
+export const userNftsToCardData = (tokens: UserNft[]): NFTCard[] => {
   let cardData = tokens.map((token) => {
-    // token doesn't have a collectionName, remove from NFTToken or fix BE
-    // const collectionName = token.collectionName ?? 'Unknown';
-
     const result: NFTCard = {
       id: token.collectionAddress + '_' + token.tokenId,
       name: token.metadata?.name,
@@ -109,9 +106,6 @@ export const tokensToCardData = (tokens: NFTToken[]): NFTCard[] => {
 
 export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
   let cardData = tokens.map((token) => {
-    // token doesn't have a collectionName, remove from NFTToken or fix BE
-    // const collectionName = token.collectionName ?? 'Unknown';
-
     const result: NFTCard = {
       id: token.collectionAddress + '_' + token.tokenId,
       collectionName: token.collectionName,
