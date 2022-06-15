@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { CenteredContent } from './centered-content';
+import { Spinner } from './spinner';
 
 interface Props {
   src?: string;
@@ -14,10 +16,12 @@ export const BGImage = ({ src, center = true, className = '' }: Props) => {
   src = src?.replace('storage.opensea.io', 'openseauserdata.com');
 
   useEffect(() => {
-    const img = new Image();
+    let img: HTMLImageElement | undefined;
     let deleted = false;
 
     if (src) {
+      const img = new Image();
+
       img.onload = () => {
         if (!deleted) {
           setLoaded(true);
@@ -30,23 +34,35 @@ export const BGImage = ({ src, center = true, className = '' }: Props) => {
       deleted = true;
 
       // trying to cancel load? not sure if this works
-      img.src = '';
-      img.onload = null;
+      if (img) {
+        img.src = '';
+        img.onload = null;
+        img = undefined;
+      }
     };
   }, [src]);
 
   return (
-    <div className={twMerge('w-full h-full', className, 'bg-slate-400')}>
+    <div className={twMerge('w-full h-full relative', className, 'bg-slate-100')}>
       {src && (
-        <div
-          className={twMerge(
-            center ? 'bg-center' : 'bg-top',
-            loaded ? 'opacity-100' : 'opacity-0',
-            'transition-opacity duration-400 w-full h-full bg-cover bg-no-repeat',
-            className
+        <>
+          <div
+            className={twMerge(
+              center ? 'bg-center' : 'bg-top',
+              loaded ? 'opacity-100' : 'opacity-0',
+              'transition-opacity  duration-400 w-full h-full bg-cover bg-no-repeat',
+              className
+            )}
+            style={{ backgroundImage: `url(${src})` }}
+          />
+          {!loaded && (
+            <div className="absolute top-0 bottom-0 left-0 right-0">
+              <CenteredContent>
+                <Spinner />
+              </CenteredContent>
+            </div>
           )}
-          style={{ backgroundImage: `url(${src})` }}
-        />
+        </>
       )}
     </div>
   );
