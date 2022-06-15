@@ -12,6 +12,11 @@ TODO:
 10. first revealer can hide, if they hide and it's reshown, the new person has control
 11. must dump the caches if visibility is set
 
+bucket 10 are the rarest
+we only want to hide ranks for bucket 10
+rest should be visible by default
+no need to pay for reveal
+
 Lets keep it simple i guess:
 
 1. Revealed items once made visible stay visible
