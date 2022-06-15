@@ -11,17 +11,14 @@ TODO:
 9. Some of your NFTs are in the top 1%, pay to reveal
 10. first revealer can hide, if they hide and it's reshown, the new person has control
 11. must dump the caches if visibility is set
+12. tabs in the navbar should have the right tabs (top 100 and hot don't make sense); maybe top 1%, 2% and 3% do
 
 bucket 10 are the rarest
 we only want to hide ranks for bucket 10
 rest should be visible by default
 no need to pay for reveal
 
-Lets keep it simple i guess:
-
-1. Revealed items once made visible stay visible
-2. If revealed but not made visible - we can show this info somewhere (maybe in the cart) saying these items were revealed previously but the revealer(s) chose to keep rank hidden. But you have the choice to make ranks public once you pay to reveal. We can even show the number of times an item has been revealed previously.
-   re: price differences for reveals - I like that and makes sense
+re: price differences for reveals - I like that and makes sense
 
 top 1%, (pixel rank bucket 10)
 
