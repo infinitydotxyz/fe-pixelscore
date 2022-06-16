@@ -10,7 +10,7 @@ TODO:
 8. first revealer can hide, if they hide and it's reshown, the new person has control
 9. tabs in the navbar should have the right tabs (top 100 and hot don't make sense); maybe top 1%, 2% and 3% do
 
-bucket 10 only add those to cart
+bucket 10 only add those to cart, BE needs to send the bucket or a flag (revealable)
 
 re: price differences for reveals - I like that and makes sense
 
@@ -51,3 +51,14 @@ at runMicrotasks (<anonymous>)
 at processTicksAndRejections (node:internal/process/task_queues:96:5)
 at async \_fetchCollectionInfo (/home/steve/Documents/GitHub/mavrik/pixelscore/src/scripts/secondpass.ts:112:26)
 at async updateCollections (/home/steve/Documents/GitHub/mavrik/pixelscore/src/scripts/secondpass.ts:69:30)
+
+all list, sort by rank
+
+mynfts, reveal, pending,
+
+only 3 cards is too big
+
+mynfts under connect
+
+mynfts use header, say "no ranked nfts in your portfolio" portfolio score.
+some of your nfts are 10, or 9

@@ -1,10 +1,10 @@
-import React from 'react';
 import { BGImage } from 'components/common';
 import { CollectionInfo } from '../../utils/types/collection-types';
 import { twMerge } from 'tailwind-merge';
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { HelpTip } from './helptip';
 import { BlueCheckBadge } from 'components/token-grid/pill-badge';
+import { truncateStr } from 'utils';
 
 interface Props2 {
   collection: CollectionInfo;
@@ -15,10 +15,17 @@ interface Props2 {
 export const CollectionListItem = ({ collection, onClick, selected }: Props2) => {
   const avatarUrl = collection.bannerImage || collection.profileImage;
 
+  const tooltip = (
+    <div>
+      <div>{collection.name}</div>
+      <div>{truncateStr(collection.description)}</div>
+    </div>
+  );
+
   return (
     // this wrapper div is needed, otherwise the tooltip gets top margin from the space-y value on the list
     <div>
-      <HelpTip content={collection.name} placement="right">
+      <HelpTip content={tooltip} placement="right">
         <div className="relative">
           <div
             className={twMerge(

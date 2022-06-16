@@ -32,7 +32,7 @@ export const SecurityContextProvider = ({ children }: Props) => {
   const [didReadPassword, setDidReadPassword] = useState<boolean>(false);
 
   useEffect(() => {
-    if (password === 'gmwagmi678') {
+    if (password === 'gmwagmi') {
       savePassword(password);
       setAllowed(true);
     }

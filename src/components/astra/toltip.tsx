@@ -61,7 +61,7 @@ export const Toltip: FC<TooltipProps> = ({
   const { getFloatingProps, getReferenceProps } = useInteractions([
     useClick(context, { enabled: trigger === 'click' }),
     useFocus(context),
-    useHover(context, { enabled: trigger === 'hover' }),
+    useHover(context, { enabled: trigger === 'hover', delay: 300 }), // SNG added delay
     useRole(context, { role: 'tooltip' })
   ]);
 
@@ -73,6 +73,7 @@ export const Toltip: FC<TooltipProps> = ({
 
   return (
     <>
+      {/* SNG removed w-fit */}
       <div className="" {...getReferenceProps({ ref: reference })} data-testid="tooltip-target">
         {children}
       </div>

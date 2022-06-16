@@ -1,6 +1,7 @@
 import { utils } from 'ethers';
 
 import { ETHEREUM_CHAIN_SCANNER_BASE, POLYGON_CHAIN_SCANNER_BASE, trimLowerCase } from '@infinityxyz/lib/utils';
+import { trimText } from 'components/common';
 
 export const isLocalhost = () => (window?.location?.host || '').indexOf('localhost') >= 0;
 
@@ -131,4 +132,14 @@ export const truncateDecimals = (numStr: string) => {
 
 export const numberWithCommas = (x: number | string) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
+export const truncateStr = (str: string, max = 400) => {
+  const textArray = trimText(str, max - 2, max - 1, max);
+
+  if (textArray[1].length > 0) {
+    return `${textArray[0]}\u{02026}`;
+  }
+
+  return textArray[0];
 };
