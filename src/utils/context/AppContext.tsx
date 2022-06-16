@@ -2,8 +2,9 @@ import * as React from 'react';
 import { ProviderEvents, WalletType } from 'utils/providers/AbstractProvider';
 import { UserRejectException } from 'utils/providers/UserRejectException';
 import { ProviderManager } from 'utils/providers/ProviderManager';
-import { Toaster, toastError } from 'components/common';
+import { toastError } from 'components/common';
 import { useIsMounted } from 'hooks/useIsMounted';
+import { Toaster } from 'react-hot-toast';
 
 export type User = {
   address: string;

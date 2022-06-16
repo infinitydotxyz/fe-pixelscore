@@ -128,3 +128,7 @@ export const getChainScannerBase = (chainId?: string): string | null => {
 export const truncateDecimals = (numStr: string) => {
   return ((numStr ?? '') + ' ').slice(0, numStr.indexOf('.'));
 };
+
+export const numberWithCommas = (x: number | string) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};

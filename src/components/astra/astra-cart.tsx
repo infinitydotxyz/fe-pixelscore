@@ -1,9 +1,9 @@
 import { BGImage, Button, Spacer } from 'components/common';
-import { iconButtonStyle, largeIconButtonStyle } from 'utils/ui-constants';
+import { smallIconButtonStyle, largeIconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { XIcon } from '@heroicons/react/outline';
 import { ReactNode } from 'react';
 import { NFTCard } from 'utils/types/be-types';
+import { BiTrash } from 'react-icons/bi';
 
 interface Props {
   cardData: NFTCard[];
@@ -52,8 +52,8 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
   }
 
   return (
-    // setting to w-64 so it doen't shrink and expand while animating
-    <div className="h-full flex flex-col w-64">
+    // setting to  w-72 so it doen't shrink and expand while animating
+    <div className="h-full flex flex-col w-72">
       <div className="mb-2">
         {/* <GridHeader route={route} vertical={true} /> */}
 
@@ -95,7 +95,7 @@ export const AstraCartItem = ({ token, index, onRemove }: Props2) => {
           onRemove(token);
         }}
       >
-        <XIcon className={iconButtonStyle} />
+        <BiTrash className={twMerge(smallIconButtonStyle, 'opacity-80')} />
       </Button>
     </div>
   );

@@ -22,7 +22,7 @@ export const gridTemplate = (
       </div>
 
       <div className="row-span-3 col-span-1 overflow-y-auto overflow-x-hidden">
-        <div className={twMerge('h-full', showCart ? 'w-64' : 'w-0', 'transition-width duration-300')}>{cart}</div>
+        <div className={twMerge('h-full', showCart ? 'w-72' : 'w-0', 'transition-width duration-300')}>{cart}</div>
       </div>
 
       <div className="col-start-2 col-span-1">{footer}</div>

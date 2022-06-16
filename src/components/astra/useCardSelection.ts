@@ -27,7 +27,7 @@ export const useCardSelection = (): CardSelectionResult => {
 
         setSelectionMap(copy);
       } else {
-        toastWarning('This NFT has already been revealed');
+        toastWarning('This NFT has already been revealed', 'Pick another NFT');
       }
     } else {
       removeFromSelection(value);

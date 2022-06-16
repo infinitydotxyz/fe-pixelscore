@@ -1,6 +1,7 @@
 import { HelpTip } from 'components/astra/helptip';
 import { SVG } from 'components/common';
 import { twMerge } from 'tailwind-merge';
+import { numberWithCommas } from 'utils';
 
 interface Props {
   val: number | string | undefined;
@@ -15,8 +16,8 @@ export const PillBadge = ({ val, tooltip, className = 'top-2 left-2', numberSign
       <div className={twMerge(className, 'absolute')}>
         <HelpTip content={tooltip}>
           <div className="bg-white  rounded-full px-3 shadow-lg">
-            {numberSign && <div className="inline-block mr-1">#</div>}
-            <div className="inline-block font-bold">{val}</div>
+            {numberSign && <div className="inline-block text-gray-500">#</div>}
+            <div className="inline-block font-bold">{numberWithCommas(val)}</div>
           </div>
         </HelpTip>
       </div>
