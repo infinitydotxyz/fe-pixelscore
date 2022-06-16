@@ -10,21 +10,12 @@ import { useState } from 'react';
 interface Props {
   userAddress: string;
   revealOrder: RevealOrder;
-  height: number;
   selected: boolean;
   onClick: (data: RevealOrder) => void;
 }
 
-export const RevealOrderCard = ({
-  userAddress,
-  revealOrder: inOrder,
-  height,
-  onClick,
-  selected
-}: Props): JSX.Element => {
+export const RevealOrderCard = ({ userAddress, revealOrder: inOrder, onClick, selected }: Props): JSX.Element => {
   const [revealOrder, setRevealOrder] = useState<RevealOrder>(inOrder);
-
-  const heightStyle = `${height}px`;
 
   const refreshClick = async () => {
     try {
@@ -61,7 +52,7 @@ export const RevealOrderCard = ({
         'rounded-2xl w-full relative flex flex-col',
         selected ? selectionOutline : ''
       )}
-      style={{ height: heightStyle }}
+      style={{ aspectRatio: '4/5' }}
       onClick={() => onClick(revealOrder)}
     >
       <div className="h-full flex flex-col">

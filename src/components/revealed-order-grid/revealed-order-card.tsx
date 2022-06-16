@@ -12,14 +12,12 @@ import { RankTokenCache } from 'components/token-grid/token-fetcher';
 
 interface Props {
   token: TokenInfo;
-  height: number;
   selected: boolean;
   onClick: (data: TokenInfo) => void;
   onRefreshToken: (data: TokenInfo) => void;
 }
 
-export const RevealedOrderCard = ({ token, height, onClick, onRefreshToken, selected }: Props): JSX.Element => {
-  const heightStyle = `${height}px`;
+export const RevealedOrderCard = ({ token, onClick, onRefreshToken, selected }: Props): JSX.Element => {
   const { user } = useAppContext();
 
   const visibleClick = async () => {
@@ -55,7 +53,7 @@ export const RevealedOrderCard = ({ token, height, onClick, onRefreshToken, sele
         'rounded-2xl w-full relative flex flex-col',
         selected ? selectionOutline : ''
       )}
-      style={{ height: heightStyle }}
+      style={{ aspectRatio: '4/5' }}
       onClick={() => onClick(token)}
     >
       <div className="h-full flex flex-col">

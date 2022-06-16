@@ -5,13 +5,10 @@ TODO:
 3. dark home page, https://pixelverse.ai/, https://nft-avatars.webflow.io/
 4. in the checkout flow, if someone tries to checkout NFTs whose pixel rank bucket < 10, checkout should show an error to remove them from cart (edited)
 5. make left side cards nice
-6. aspect ratio
-7. Reveal and ranks
-8. toasts?
-9. Some of your NFTs are in the top 1%, pay to reveal
-10. first revealer can hide, if they hide and it's reshown, the new person has control
-11. must dump the caches if visibility is set
-12. tabs in the navbar should have the right tabs (top 100 and hot don't make sense); maybe top 1%, 2% and 3% do
+6. Reveal and ranks
+7. Some of your NFTs are in the top 1%, pay to reveal
+8. first revealer can hide, if they hide and it's reshown, the new person has control
+9. tabs in the navbar should have the right tabs (top 100 and hot don't make sense); maybe top 1%, 2% and 3% do
 
 bucket 10 only add those to cart
 

@@ -6,16 +6,13 @@ import { BlueCheckBadge, PillBadge } from './pill-badge';
 
 interface Props {
   data: NFTCard;
-  height: number;
   selected: boolean;
   onClick: (data: NFTCard) => void;
 }
 
-export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Element => {
+export const TokenCard = ({ data, onClick, selected }: Props): JSX.Element => {
   const title = data?.title ?? '';
   const tokenId = data?.tokenId ?? '';
-
-  const heightStyle = `${height}px`;
 
   return (
     <div
@@ -25,7 +22,7 @@ export const TokenCard = ({ data, height, onClick, selected }: Props): JSX.Eleme
         'rounded-2xl w-full relative flex flex-col',
         selected ? selectionOutline : ''
       )}
-      style={{ height: heightStyle }}
+      style={{ aspectRatio: '4 / 5' }}
       onClick={() => onClick(data)}
     >
       <div className="h-full flex flex-col">

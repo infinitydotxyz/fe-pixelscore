@@ -74,16 +74,13 @@ export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClic
   };
 
   let contents;
-  let cardHeight = 290;
 
   if (error || loading || noData) {
     contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
     if (gridWidth > 0) {
-      const cols = Math.round(gridWidth / 300);
+      const cols = Math.round(gridWidth / 360);
       const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
-
-      cardHeight = gridWidth / cols;
 
       contents = (
         <>
@@ -103,7 +100,6 @@ export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClic
                     }
                     setTokens(newTokens);
                   }}
-                  height={cardHeight}
                   key={`${data.collectionAddress}:${data.tokenId}`}
                   token={data}
                   selected={isSelected(data)}

@@ -63,7 +63,6 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
   };
 
   let contents;
-  let cardHeight = 290;
 
   if (error || loading || noData) {
     contents = <ErrorOrLoading error={error} noData={noData} />;
@@ -72,8 +71,6 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
       const cols = Math.round(gridWidth / 400);
       const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
-      cardHeight = gridWidth / (cols - 1);
-
       contents = (
         <>
           <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
@@ -81,7 +78,6 @@ export const RevealOrderGrid = ({ orderFetcher, className = '', onLoad, onClick,
               return (
                 <RevealOrderCard
                   userAddress={orderFetcher.userAddress}
-                  height={cardHeight}
                   key={data.txnHash + data.timestamp}
                   revealOrder={data}
                   selected={isSelected(data)}
