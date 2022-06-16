@@ -8,6 +8,7 @@ import { updateRankVisibility } from 'utils/astra-utils';
 import { useAppContext } from 'utils/context/AppContext';
 import { MdVisibilityOff, MdVisibility } from 'react-icons/md';
 import { RevealOrderCache } from 'components/reveal-order-grid/reveal-order-fetcher';
+import { RankTokenCache } from 'components/token-grid/token-fetcher';
 
 interface Props {
   token: TokenInfo;
@@ -36,6 +37,9 @@ export const RevealedOrderCard = ({ token, height, onClick, onRefreshToken, sele
 
       // we need to dump the revealed cache so if they open the Revealed tab it will load the new info
       RevealOrderCache.shared().refresh();
+
+      // dump the rank cache so they reload with the rank info hidden or visible
+      RankTokenCache.shared().refresh();
     } catch (err) {
       const errStr = httpErrorResponse(err);
 

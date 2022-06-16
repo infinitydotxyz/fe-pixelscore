@@ -28,6 +28,8 @@ revealed? visible, revealer.
 
 responsive
 
+connect page broken
+
 checkout not connected falied?
 
 // you need collectionAddress for cart?
