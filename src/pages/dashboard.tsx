@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { AstraNavbar, AstraNavTab, TabUtils } from 'components/astra/astra-navbar';
 import { AstraSidebar } from 'components/astra/astra-sidebar';
 import { AstraCart } from 'components/astra/astra-cart';
-import { AstraFooter } from 'components/astra/astra-footer';
 import { useResizeDetector } from 'react-resize-detector';
 import { gridTemplate } from 'components/astra/dashboard/grid-template';
 import { useDashboardContext } from 'utils/context/DashboardContext';
@@ -10,15 +9,12 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 export const DashboardPage = () => {
   const {
-    numTokens,
     collection,
     setCollection,
     setChainId,
     setGridWidth,
     showCart,
     handleCheckout,
-    refreshData,
-    displayName,
     selection,
     clearSelection,
     removeFromSelection,
@@ -102,7 +98,8 @@ export const DashboardPage = () => {
     />
   );
 
-  const footer = <AstraFooter name={displayName} numTokens={numTokens} onRefresh={refreshData} />;
+  // footer disabled
+  const footer = <></>; // <AstraFooter name={displayName} numTokens={numTokens} onRefresh={refreshData} />;
 
   const contents = gridTemplate(navBar, sidebar, <Outlet />, cart, footer, gridRef, containerRef, showCart);
 

@@ -13,10 +13,7 @@ TODO:
 11. must dump the caches if visibility is set
 12. tabs in the navbar should have the right tabs (top 100 and hot don't make sense); maybe top 1%, 2% and 3% do
 
-bucket 10 are the rarest
-we only want to hide ranks for bucket 10
-rest should be visible by default
-no need to pay for reveal
+bucket 10 only add those to cart
 
 re: price differences for reveals - I like that and makes sense
 

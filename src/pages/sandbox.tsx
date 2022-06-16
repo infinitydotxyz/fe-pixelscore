@@ -226,7 +226,9 @@ export const SandboxPage = () => {
 
       <SBHeader># Toaster</SBHeader>
       <div className="w-1/3">
-        <Button onClick={() => toastSuccess('Success', 'Content (optional)')}>Success</Button>
+        <Button onClick={() => toastSuccess('Success', 'Content This is a test of a long string message')}>
+          Success
+        </Button>
         <Button onClick={() => toastError('Error', 'Content (optional)')}>Error</Button>
         <Button onClick={() => toastWarning('Warning', 'Content (optional)')}>Warning</Button>
       </div>

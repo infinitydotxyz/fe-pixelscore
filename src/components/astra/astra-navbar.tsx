@@ -7,7 +7,7 @@ import { useDashboardContext } from 'utils/context/DashboardContext';
 
 export enum AstraNavTab {
   All = 'All',
-  Top100 = 'Top 100',
+  Top100 = 'Top .1%',
   Pending = 'Pending',
   Hot = 'Hot',
   Revealed = 'Revealed',
