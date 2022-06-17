@@ -20,7 +20,7 @@ export const fetchTokens = async (
     limit: LARGE_LIMIT,
     cursor,
     minRank: 1,
-    maxRank: 10,
+    maxRank: 10_000_000,
     orderBy: NftsOrderBy.PixelRank,
     orderDirection: OrderDirection.Ascending
   };
@@ -36,8 +36,8 @@ export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor
     cursor,
     orderBy: NftsOrderBy.PixelRank,
     orderDirection: OrderDirection.Ascending,
-    minRank: minRank,
-    maxRank: maxRank
+    minRank: 1,
+    maxRank: 100_000 // todo: remove hard coded ranks
   };
   const response = await httpGet(`/nfts`, query);
   return response;
@@ -48,6 +48,8 @@ export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor
 export const fetchUserTokens = async (userAddress: string, cursor?: string): Promise<ApiResponse> => {
   const response = await httpGet(`/u/${userAddress}/nfts`, {
     limit: LARGE_LIMIT,
+    minRank: 1,
+    maxRank: 10000, // todo: remove hard coded ranks
     cursor
   });
 
