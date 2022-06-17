@@ -87,6 +87,7 @@ export const Modal = ({
   }
 
   let wideStyle = '';
+  let padding = 'py-8 px-9';
 
   switch (wide) {
     case 'normal':
@@ -94,13 +95,12 @@ export const Modal = ({
       break;
     case 'fit':
       wideStyle = 'w-fit';
+      padding = '';
       break;
     case 'wide':
       wideStyle = 'w-full max-w-lg';
       break;
   }
-
-  const padding = 'py-8 px-9';
 
   return (
     <Transition appear show={isOpen} as={Fragment}>

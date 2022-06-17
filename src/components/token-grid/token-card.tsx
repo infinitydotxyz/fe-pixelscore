@@ -1,9 +1,10 @@
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage, Button, Modal, SVG, toastWarning } from '../common';
+import { BGImage, Button, Spacer, SVG, toastWarning } from '../common';
 import { NFTCard } from 'utils/types/be-types';
-import { PillBadge } from './pill-badge';
-import { useEffect, useState } from 'react';
+import { EyeBadge, PillBadge } from './pill-badge';
+import { useState } from 'react';
+import { TokenCardModal } from './token-card-modal';
 
 interface Props {
   data: NFTCard;
@@ -51,6 +52,12 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
           <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
           <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} />
+
+          <EyeBadge
+            onClick={() => {
+              setModalOpen(true);
+            }}
+          />
         </div>
 
         <div className="mt-3 mb-4 mx-3">
@@ -58,73 +65,18 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
             <div className="font-bold truncate flex-1">{title}</div>
             <SVG.blueCheck className={'h-5 w-5'} />
           </div>
-          <div className="truncate"># {tokenId}</div>
 
-          <Button onClick={() => setModalOpen(true)}>Details</Button>
+          <div className="flex items-center">
+            <div className="truncate"># {tokenId}</div>
+            <Spacer />
+            <Button variant="plain" size="small" onClick={() => setModalOpen(true)}>
+              Details
+            </Button>{' '}
+          </div>
         </div>
       </div>
 
-      <Modal wide="fit" isOpen={modalOpen} showActionButtons={false} onClose={() => setModalOpen(false)}>
-        <div onClick={() => setModalOpen(false)}>
-          <ModalImage src={data?.image} className="" />
-
-          <div>duh</div>
-        </div>
-      </Modal>
-    </div>
-  );
-};
-
-// ==================================
-
-interface Props2 {
-  src?: string;
-  className?: string;
-}
-
-export const ModalImage = ({ src, className = '' }: Props2) => {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-
-  // todo: src.replace hack to handle changed opensea image url
-  src = src?.replace('storage.opensea.io', 'openseauserdata.com');
-
-  useEffect(() => {
-    let img: HTMLImageElement | undefined;
-    let deleted = false;
-
-    if (src) {
-      const img = new Image();
-
-      img.onload = () => {
-        if (!deleted) {
-          setWidth(img.width);
-          setHeight(img.height);
-        }
-      };
-      img.src = src;
-    }
-
-    return () => {
-      deleted = true;
-
-      // trying to cancel load? not sure if this works
-      if (img) {
-        img.src = '';
-        img.onload = null;
-        img = undefined;
-      }
-    };
-  }, [src]);
-
-  return (
-    <div className={twMerge('bg-slate-100', className)} style={{ width: `${width}px`, height: `${height}px` }}>
-      {src && (
-        <div
-          className={twMerge('bg-center w-full h-full bg-contain bg-no-repeat', className)}
-          style={{ backgroundImage: `url(${src})` }}
-        />
-      )}
+      <TokenCardModal data={data} modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>
   );
 };
