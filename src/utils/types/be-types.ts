@@ -4,7 +4,8 @@ import {
   Erc721Metadata,
   ListingType,
   CardData,
-  TokenStandard
+  TokenStandard,
+  OrderDirection
 } from '@infinityxyz/lib/types/core';
 
 export interface RevealOrder {
@@ -143,6 +144,20 @@ export type Filter = {
   minPrice?: string;
   maxPrice?: string;
   sortByPrice?: 'ASC' | 'DESC' | '';
-  orderBy?: 'tokenId' | '';
+  orderBy?: NftsOrderBy;
   orderDirection?: 'asc' | 'desc' | '';
 };
+
+export enum NftsOrderBy {
+  TokenId = 'tokenId'
+}
+
+export interface NftRankQuery {
+  orderBy: NftsOrderBy;
+  orderDirection: OrderDirection;
+  limit: number;
+  cursor?: string;
+
+  minRank: number;
+  maxRank: number;
+}

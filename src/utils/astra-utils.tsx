@@ -1,13 +1,15 @@
+import { OrderDirection } from '@infinityxyz/lib/types/core';
 import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'utils';
 import {
-  Filter,
   NFTCard,
   UserNft,
   PortfolioScore,
   RevealOrder,
   TokenInfo,
   UpdateRankVisibility,
-  UserRecord
+  UserRecord,
+  NftsOrderBy,
+  NftRankQuery
 } from './types/be-types';
 
 export const fetchTokens = async (
@@ -15,16 +17,16 @@ export const fetchTokens = async (
   chainId: string,
   cursor?: string
 ): Promise<ApiResponse> => {
-  const filterState: Filter = {};
-
-  filterState.orderBy = 'tokenId';
-  filterState.orderDirection = 'asc';
-
-  const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts-bottom`, {
+  const query: NftRankQuery = {
     limit: LARGE_LIMIT,
     cursor,
-    ...filterState
-  });
+    minRank: 1,
+    maxRank: 10,
+    orderBy: NftsOrderBy.TokenId,
+    orderDirection: OrderDirection.Ascending
+  };
+
+  const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts`, query);
 
   return response;
 };
@@ -32,14 +34,16 @@ export const fetchTokens = async (
 // ======================================================
 
 export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor?: string): Promise<ApiResponse> => {
-  const response = await httpGet(`/collections/nfts`, {
+  const query: NftRankQuery = {
     limit: LARGE_LIMIT,
     cursor,
-    orderBy: 'tokenId',
-    orderDirection: 'asc',
+    orderBy: NftsOrderBy.TokenId,
+    orderDirection: OrderDirection.Ascending,
     minRank: minRank,
     maxRank: maxRank
-  });
+  };
+
+  const response = await httpGet(`/collections/nfts`, query);
 
   return response;
 };
