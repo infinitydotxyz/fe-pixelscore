@@ -116,16 +116,13 @@ export interface NFTCard extends CardData {
   pixelRankRevealer?: string;
   pixelRankRevealedAt?: number;
 }
-
-export interface PortfolioScore {
-  score: number;
-  count: number;
-}
-
 export interface UserRecord {
   address: string;
   name: string;
   portfolioScore: number;
+  portfolioScoreUpdatedAt: number;
+  portfolioScoreNumNfts: number;
+  totalNftsOwned: number;
 }
 
 export enum OrderType {
