@@ -68,7 +68,11 @@ export const TokensGrid = ({
     contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
     if (wrapWidth > 0) {
-      const cols = Math.round(wrapWidth / 370);
+      console.log(wrapWidth);
+      let divisor = wrapWidth < 1500 ? 500 : 380;
+      divisor = wrapWidth < 950 ? 700 : divisor;
+
+      const cols = Math.round(wrapWidth / divisor);
       const gridColumns = `repeat(${cols}, minmax(0, 1fr))`;
 
       contents = (
