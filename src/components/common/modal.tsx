@@ -25,7 +25,7 @@ interface Props {
   onOKButton?: () => void;
 
   showActionButtons?: boolean;
-  wide?: boolean;
+  wide?: 'normal' | 'wide' | 'fit';
 }
 
 export const Modal = ({
@@ -41,7 +41,7 @@ export const Modal = ({
   title,
   onClose, // X icon, or click outside dialog
   showActionButtons = true,
-  wide = true
+  wide = 'normal'
 }: Props) => {
   const buttons = [];
 
@@ -86,6 +86,22 @@ export const Modal = ({
     );
   }
 
+  let wideStyle = '';
+  let padding = 'py-8 px-9';
+
+  switch (wide) {
+    case 'normal':
+      wideStyle = 'w-full max-w-md';
+      break;
+    case 'fit':
+      wideStyle = 'w-fit';
+      padding = '';
+      break;
+    case 'wide':
+      wideStyle = 'w-full max-w-lg';
+      break;
+  }
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -113,26 +129,23 @@ export const Modal = ({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className={`w-full ${
-                  wide ? 'max-w-lg' : 'max-w-md'
-                } transform overflow-hidden rounded-2xl bg-white py-8 px-9 text-left align-middle shadow-xl transition-all`}
+                className={`${wideStyle} transform overflow-hidden rounded-2xl bg-white ${padding} text-left align-middle shadow-xl transition-all`}
               >
-                <Dialog.Title
-                  as="h3"
-                  className="flex items-center tracking-tight text-xl font-bold leading-6 text-gray-900 mb-6"
-                >
-                  {title}
+                {(title || showCloseIcon) && (
+                  <Dialog.Title className="flex items-center tracking-tight text-xl font-bold leading-6 text-gray-900 mb-6">
+                    {title && title}
 
-                  {showCloseIcon && (
-                    <>
-                      <Spacer />
+                    {showCloseIcon && (
+                      <>
+                        <Spacer />
 
-                      <Button size="plain" variant="round" onClick={onClose}>
-                        <XIcon className={iconButtonStyle} />
-                      </Button>
-                    </>
-                  )}
-                </Dialog.Title>
+                        <Button size="plain" variant="round" onClick={onClose}>
+                          <XIcon className={iconButtonStyle} />
+                        </Button>
+                      </>
+                    )}
+                  </Dialog.Title>
+                )}
 
                 {children}
                 {showActionButtons && <div className="p-4 flex space-x-4 mt-8">{buttons}</div>}

@@ -1,9 +1,10 @@
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage, SVG, toastWarning } from '../common';
+import { BGImage, Button, Spacer, SVG, toastWarning } from '../common';
 import { NFTCard } from 'utils/types/be-types';
-import { PillBadge } from './pill-badge';
+import { EyeBadge, PillBadge } from './pill-badge';
 import { useState } from 'react';
+import { TokenCardModal } from './token-card-modal';
 
 interface Props {
   data: NFTCard;
@@ -14,6 +15,7 @@ interface Props {
 
 export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX.Element => {
   const [notSelectable, setNotSelectable] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const title = data?.title ?? '';
   const tokenId = data?.tokenId ?? '';
@@ -50,6 +52,12 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
           <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
           <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} />
+
+          <EyeBadge
+            onClick={() => {
+              setModalOpen(true);
+            }}
+          />
         </div>
 
         <div className="mt-3 mb-4 mx-3">
@@ -57,9 +65,18 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
             <div className="font-bold truncate flex-1">{title}</div>
             <SVG.blueCheck className={'h-5 w-5'} />
           </div>
-          <div className="truncate"># {tokenId}</div>
+
+          <div className="flex items-center">
+            <div className="truncate"># {tokenId}</div>
+            <Spacer />
+            <Button variant="plain" size="small" onClick={() => setModalOpen(true)}>
+              Details
+            </Button>{' '}
+          </div>
         </div>
       </div>
+
+      <TokenCardModal data={data} modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>
   );
 };
