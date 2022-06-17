@@ -126,7 +126,8 @@ export interface UserRecord {
 }
 
 export enum NftsOrderBy {
-  TokenId = 'tokenId'
+  TokenId = 'tokenId',
+  PixelRank = 'pixelRank'
 }
 
 export interface NftRankQuery {

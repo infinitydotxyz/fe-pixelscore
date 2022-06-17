@@ -21,12 +21,10 @@ export const fetchTokens = async (
     cursor,
     minRank: 1,
     maxRank: 10,
-    orderBy: NftsOrderBy.TokenId,
+    orderBy: NftsOrderBy.PixelRank,
     orderDirection: OrderDirection.Ascending
   };
-
   const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts`, query);
-
   return response;
 };
 
@@ -36,14 +34,12 @@ export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor
   const query: NftRankQuery = {
     limit: LARGE_LIMIT,
     cursor,
-    orderBy: NftsOrderBy.TokenId,
+    orderBy: NftsOrderBy.PixelRank,
     orderDirection: OrderDirection.Ascending,
     minRank: minRank,
     maxRank: maxRank
   };
-
-  const response = await httpGet(`/collections/nfts`, query);
-
+  const response = await httpGet(`/nfts`, query);
   return response;
 };
 
