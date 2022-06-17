@@ -18,12 +18,14 @@ export const GridHeader = ({ route, vertical }: Props) => {
   let description = '';
   let scoreText = '';
   let numNfts = numTokens;
+  let showCollectionImage = false;
 
   switch (route) {
     case AstraNavTab.All:
       avatarUrl = collection?.bannerImage || collection?.profileImage;
       name = collection?.name ?? '';
       description = collection?.description ?? '';
+      showCollectionImage = true;
       numNfts = numTokens;
       break;
     case AstraNavTab.Pending:
@@ -51,10 +53,12 @@ export const GridHeader = ({ route, vertical }: Props) => {
     if (route !== AstraNavTab.Pending && route !== AstraNavTab.Revealed) {
       return (
         <div className={twMerge(inputBorderColor, 'flex-col items-center bg-gray-100 border-b px-8 py-3')}>
-          <div className="relative">
-            <BGImage src={avatarUrl} className="mr-6 h-20 w-full rounded-xl" />
-            <BlueCheckBadge val={collection?.hasBlueCheck} />
-          </div>
+          {showCollectionImage && (
+            <div className="relative">
+              <BGImage src={avatarUrl} className="mr-6 h-20 w-full rounded-xl" />
+              <BlueCheckBadge val={collection?.hasBlueCheck} />
+            </div>
+          )}
 
           <div className="my-2 tracking-tight text-theme-light-800 font-bold text-xl text-center">{name}</div>
 
@@ -91,10 +95,12 @@ export const GridHeader = ({ route, vertical }: Props) => {
     if (route !== AstraNavTab.Pending && route !== AstraNavTab.Revealed) {
       return (
         <div className={twMerge(inputBorderColor, 'flex items-center bg-gray-100 border-b px-8 py-3')}>
-          <div className="relative mr-6">
-            <BGImage src={avatarUrl} className="h-16 w-36 rounded-xl" />
-            <BlueCheckBadge val={collection?.hasBlueCheck} />
-          </div>
+          {showCollectionImage && (
+            <div className="relative mr-6">
+              <BGImage src={avatarUrl} className="h-16 w-36 rounded-xl" />
+              <BlueCheckBadge val={collection?.hasBlueCheck} />
+            </div>
+          )}
 
           <div className="flex flex-col items-start">
             <div className="tracking-tight text-theme-light-800 font-bold text-xl text-center">{name}</div>
