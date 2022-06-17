@@ -5,6 +5,7 @@ import { NFTCard } from 'utils/types/be-types';
 interface CardSelectionResult {
   toggleSelection: (data: NFTCard) => void;
   isSelected: (data: NFTCard) => boolean;
+  isSelectable: (data: NFTCard) => boolean;
   removeFromSelection: (data: NFTCard) => void;
   selection: NFTCard[];
   clearSelection: () => void;
@@ -34,6 +35,10 @@ export const useCardSelection = (): CardSelectionResult => {
     }
   };
 
+  const isSelectable = (value: NFTCard): boolean => {
+    return value.pixelRankVisible !== true && (value?.pixelRankBucket ?? 0) >= 9;
+  };
+
   const removeFromSelection = (value: NFTCard) => {
     if (isSelected(value)) {
       const copy = new Map(selectionMap);
@@ -51,5 +56,5 @@ export const useCardSelection = (): CardSelectionResult => {
     setSelectionMap(new Map());
   };
 
-  return { selection, isSelected, clearSelection, toggleSelection, removeFromSelection };
+  return { selection, isSelected, isSelectable, clearSelection, toggleSelection, removeFromSelection };
 };

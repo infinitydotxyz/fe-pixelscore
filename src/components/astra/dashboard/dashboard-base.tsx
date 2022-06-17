@@ -13,7 +13,8 @@ interface Props {
 }
 
 export const DashboardBase = ({ route }: Props) => {
-  const { setNumTokens, tokenFetcher, orderFetcher, isSelected, toggleSelection, gridWidth } = useDashboardContext();
+  const { setNumTokens, tokenFetcher, orderFetcher, isSelected, isSelectable, toggleSelection, gridWidth } =
+    useDashboardContext();
 
   const { user } = useAppContext();
 
@@ -61,6 +62,7 @@ export const DashboardBase = ({ route }: Props) => {
           className="px-8 py-6"
           onClick={onCardClick}
           wrapWidth={gridWidth}
+          isSelectable={isSelectable}
           isSelected={(data) => {
             return isSelected(data);
           }}

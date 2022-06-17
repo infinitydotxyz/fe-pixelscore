@@ -5,7 +5,21 @@ module.exports = {
     './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' }
+        },
+        redglow: {
+          '50%': { boxShadow: '0 0 30px red' }
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 200ms ease-in-out',
+        redglow: 'redglow 300ms ease-in-out'
+      }
+    }
   },
   plugins: [require('flowbite/plugin')]
 };

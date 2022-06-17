@@ -13,10 +13,19 @@ interface Props {
   wrapWidth?: number;
   onClick?: (data: NFTCard) => void;
   isSelected: (data: NFTCard) => boolean;
+  isSelectable: (data: NFTCard) => boolean;
   onLoad: (numItems: number) => void;
 }
 
-export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSelected, wrapWidth = 0 }: Props) => {
+export const TokensGrid = ({
+  tokenFetcher,
+  className = '',
+  onLoad,
+  onClick,
+  isSelected,
+  isSelectable,
+  wrapWidth = 0
+}: Props) => {
   const [cardData, setCardData] = useState<NFTCard[]>([]);
   const [error, setError] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(false);
@@ -71,6 +80,7 @@ export const TokensGrid = ({ tokenFetcher, className = '', onLoad, onClick, isSe
                   key={data.id}
                   data={data}
                   selected={isSelected(data)}
+                  isSelectable={isSelectable}
                   onClick={(data) => {
                     if (onClick) {
                       return onClick(data);

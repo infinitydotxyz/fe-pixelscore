@@ -43,6 +43,7 @@ export type DashboardContextType = {
 
   toggleSelection: (data: NFTCard) => void;
   isSelected: (data: NFTCard) => boolean;
+  isSelectable: (data: NFTCard) => boolean;
   removeFromSelection: (data: NFTCard) => void;
   selection: NFTCard[];
   clearSelection: () => void;
@@ -68,7 +69,8 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const [displayName, setDisplayName] = useState<string>('');
 
   const { user, providerManager } = useAppContext();
-  const { isSelected, toggleSelection, clearSelection, selection, removeFromSelection } = useCardSelection();
+  const { isSelected, isSelectable, toggleSelection, clearSelection, selection, removeFromSelection } =
+    useCardSelection();
 
   // useEffect(() => {
   //   setShowCart(selection.length > 0);
@@ -196,6 +198,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
     displayName,
 
     isSelected,
+    isSelectable,
     toggleSelection,
     clearSelection,
     selection,

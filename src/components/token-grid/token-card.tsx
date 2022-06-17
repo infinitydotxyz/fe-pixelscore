@@ -1,16 +1,20 @@
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage, SVG } from '../common';
+import { BGImage, SVG, toastWarning } from '../common';
 import { NFTCard } from 'utils/types/be-types';
 import { PillBadge } from './pill-badge';
+import { useState } from 'react';
 
 interface Props {
   data: NFTCard;
   selected: boolean;
+  isSelectable: (data: NFTCard) => boolean;
   onClick: (data: NFTCard) => void;
 }
 
-export const TokenCard = ({ data, onClick, selected }: Props): JSX.Element => {
+export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX.Element => {
+  const [notSelectable, setNotSelectable] = useState(false);
+
   const title = data?.title ?? '';
   const tokenId = data?.tokenId ?? '';
 
@@ -20,10 +24,19 @@ export const TokenCard = ({ data, onClick, selected }: Props): JSX.Element => {
         'border',
         inputBorderColor,
         'rounded-2xl w-full relative flex flex-col',
-        selected ? selectionOutline : ''
+        selected ? selectionOutline : '',
+        notSelectable ? 'animate-wiggle' : ''
       )}
       style={{ aspectRatio: '4 / 5' }}
-      onClick={() => onClick(data)}
+      onClick={() => {
+        if (!isSelectable(data)) {
+          toastWarning('NFT rank is already revealed', 'Try another NFT');
+          setNotSelectable(true);
+        } else {
+          onClick(data);
+        }
+      }}
+      onAnimationEnd={() => setNotSelectable(false)}
     >
       <div className="h-full flex flex-col">
         <div className="relative flex-1">
