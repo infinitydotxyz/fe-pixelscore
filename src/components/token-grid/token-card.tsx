@@ -1,8 +1,8 @@
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage } from '../common';
+import { BGImage, SVG } from '../common';
 import { NFTCard } from 'utils/types/be-types';
-import { BlueCheckBadge, PillBadge } from './pill-badge';
+import { PillBadge } from './pill-badge';
 
 interface Props {
   data: NFTCard;
@@ -37,12 +37,13 @@ export const TokenCard = ({ data, onClick, selected }: Props): JSX.Element => {
           {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
           <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
           <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} />
-
-          <BlueCheckBadge val={data.hasBlueCheck} />
         </div>
 
         <div className="mt-3 mb-4 mx-3">
-          <div className="font-bold truncate">{title}</div>
+          <div className="flex items-center">
+            <div className="font-bold truncate flex-1">{title}</div>
+            <SVG.blueCheck className={'h-5 w-5'} />
+          </div>
           <div className="truncate"># {tokenId}</div>
         </div>
       </div>
