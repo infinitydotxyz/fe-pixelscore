@@ -2,7 +2,6 @@ import {
   RefreshTokenFlow,
   RefreshTokenErrorJson,
   Erc721Metadata,
-  ListingType,
   CardData,
   TokenStandard,
   OrderDirection
