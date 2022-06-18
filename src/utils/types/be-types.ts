@@ -104,6 +104,7 @@ export interface UserNft {
 export interface NFTCard extends CardData {
   collectionBannerImage?: string;
   collectionProfileImage?: string;
+  hasBlueCheck?: boolean;
 
   rarityScore?: number;
   rarityRank?: number;

@@ -16,9 +16,9 @@ interface Props {
 export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX.Element => {
   const [notSelectable, setNotSelectable] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-
   const title = data?.title ?? '';
   const tokenId = data?.tokenId ?? '';
+  const hasBlueCheck = data?.hasBlueCheck ?? false;
 
   return (
     <div
@@ -63,7 +63,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
         <div className="mt-3 mb-4 mx-3">
           <div className="flex items-center">
             <div className="font-bold truncate flex-1">{title}</div>
-            <SVG.blueCheck className={'h-5 w-5'} />
+            {hasBlueCheck ? <SVG.blueCheck className={'h-5 w-5'} /> : ''}
           </div>
 
           <div className="flex items-center">
