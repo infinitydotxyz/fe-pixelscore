@@ -60,6 +60,30 @@ export interface BaseProps {
   className?: string;
 }
 
+export interface BasePropsNoClick {
+  children: ReactNode;
+  disabled?: boolean;
+  className?: string;
+}
+
+const ButtonBaseNoClick = ({ disabled = false, children, className = '' }: BasePropsNoClick): JSX.Element => {
+  const disabledClass = 'opacity-30 cursor-not-allowed';
+  // focus ring appears on keyboard tab key navigation for accessibility, not on clicks
+  const base =
+    'active:bg-gray-900 active:text-white select-none transition ease-in-out duration-300 focus:outline-none focus-visible:ring focus:ring-black focus:ring-opacity-50';
+
+  return (
+    <button
+      // don't disable here, just use the disabled style
+      // otherwise a disabled buttons click will go to the parent, onClick isn't called
+      // disabled={disabled}
+      className={twMerge(base, disabled ? disabledClass : '', className)}
+    >
+      <div className="whitespace-nowrap">{children}</div>
+    </button>
+  );
+};
+
 const ButtonBase = ({ disabled = false, children, className = '', onClick }: BaseProps): JSX.Element => {
   const disabledClass = 'opacity-30 cursor-not-allowed';
   // focus ring appears on keyboard tab key navigation for accessibility, not on clicks
@@ -120,5 +144,20 @@ export const LargeButton = ({ disabled = false, children, className = '', onClic
     >
       {children}
     </ButtonBase>
+  );
+};
+
+export const LargeButtonNoClick = ({ disabled = false, children, className = '' }: BasePropsNoClick): JSX.Element => {
+  return (
+    <ButtonBaseNoClick
+      disabled={disabled}
+      className={twMerge(
+        'text-xl font-bold px-8 text-white py-3 rounded-2xl border-4 border-cyan-400 bg-black',
+        'shadow-[0_20px_40px_-13px_rgba(34,211,238,.6)]',
+        className
+      )}
+    >
+      {children}
+    </ButtonBaseNoClick>
   );
 };

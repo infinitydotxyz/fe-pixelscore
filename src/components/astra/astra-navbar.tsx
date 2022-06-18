@@ -84,33 +84,33 @@ export class TabUtils {
   static tabToRoute = (tab: AstraNavTab): string => {
     switch (tab) {
       case AstraNavTab.All:
-        return '/dashboard/all';
+        return '/app/all';
       case AstraNavTab.Pending:
-        return '/dashboard/pending';
+        return '/app/pending';
       case AstraNavTab.Revealed:
-        return '/dashboard/revealed';
+        return '/app/revealed';
       case AstraNavTab.MyNFTs:
-        return '/dashboard/nfts';
+        return '/app/nfts';
       case AstraNavTab.Hot:
-        return '/dashboard/hot';
+        return '/app/hot';
       case AstraNavTab.Top100:
-        return '/dashboard/top';
+        return '/app/top';
     }
   };
 
   static routeToTab = (route: string): AstraNavTab => {
     switch (route) {
-      case '/dashboard/all':
+      case '/app/all':
         return AstraNavTab.All;
-      case '/dashboard/pending':
+      case '/app/pending':
         return AstraNavTab.Pending;
-      case '/dashboard/revealed':
+      case '/app/revealed':
         return AstraNavTab.Revealed;
-      case '/dashboard/nfts':
+      case '/app/nfts':
         return AstraNavTab.MyNFTs;
-      case '/dashboard/hot':
+      case '/app/hot':
         return AstraNavTab.Hot;
-      case '/dashboard/top':
+      case '/app/top':
         return AstraNavTab.Top100;
     }
 

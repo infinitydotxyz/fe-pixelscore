@@ -12,7 +12,7 @@ import { HomePage } from 'pages/home';
 import { PasswordPage } from 'pages/password';
 import { SecurityContextProvider, useSecurityContext } from 'utils/context/SecurityContext';
 import { SandboxPage } from 'pages/sandbox';
-import { DashboardPage } from 'pages/dashboard';
+import { DashboardPage } from 'pages/app';
 import { DashboardAll } from 'components/astra/dashboard/dashboard-all';
 import { DashboardTop } from 'components/astra/dashboard/dashboard-top';
 import { DashboardMyNFTs } from 'components/astra/dashboard/dashboard-my-nfts';
@@ -33,7 +33,7 @@ const AppRoutes = () => {
           <Route path="home" element={<HomePage />} />
           <Route path="connect" element={<ConnectPage />} />
           <Route path="sandbox" element={<SandboxPage />} />
-          <Route path="dashboard" element={<DashboardPage />}>
+          <Route path="app" element={<DashboardPage />}>
             <Route index element={<DashboardAll />} />
             <Route path="all" element={<DashboardAll />} />
             <Route path="top" element={<DashboardTop />} />

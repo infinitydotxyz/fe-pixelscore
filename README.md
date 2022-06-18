@@ -9,6 +9,8 @@ TODO:
 7. Some of your NFTs are in the top 1%, pay to reveal
 8. first revealer can hide, if they hide and it's reshown, the new person has control
 9. tabs in the navbar should have the right tabs (top 100 and hot don't make sense); maybe top 1%, 2% and 3% do
+10. Remove sandbox page and route
+11. Paper btn on click not working because the component is using preventDefault and stopPropagation
 
 bucket 10 only add those to cart, BE needs to send the bucket or a flag (revealable)
 

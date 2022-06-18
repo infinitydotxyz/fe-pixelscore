@@ -79,10 +79,11 @@ export interface UserNft {
   mintTxHash: string;
   mintPrice: number;
   destroyedAt?: number;
-  metadata: Erc721Metadata;
+  metadata?: Erc721Metadata;
   numTraitTypes: number;
   updatedAt: number;
   tokenUri: string;
+  imageUrl?: string;
   image: NftImage;
   state?: NftStateDto;
   tokenStandard: TokenStandard;
