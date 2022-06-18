@@ -1,6 +1,6 @@
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage, Button, Spacer, SVG, toastWarning } from '../common';
+import { BGImage, Spacer, SVG, toastWarning } from '../common';
 import { NFTCard } from 'utils/types/be-types';
 import { EyeBadge, PillBadge } from './pill-badge';
 import { useState } from 'react';
@@ -69,9 +69,6 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           <div className="flex items-center">
             <div className="truncate"># {tokenId}</div>
             <Spacer />
-            <Button variant="plain" size="small" onClick={() => setModalOpen(true)}>
-              Details
-            </Button>{' '}
           </div>
         </div>
       </div>
