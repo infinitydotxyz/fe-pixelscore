@@ -35,10 +35,10 @@ export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor
   const query: NftsQuery = {
     limit: LARGE_LIMIT,
     cursor,
-    orderBy: NftsOrderBy.TokenId,
-    orderDirection: OrderDirection.Ascending,
     minRank,
-    maxRank
+    maxRank,
+    orderBy: NftsOrderBy.TokenId,
+    orderDirection: OrderDirection.Ascending
   };
   const response = await httpGet(`/nfts`, query);
   return response;

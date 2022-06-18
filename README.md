@@ -13,6 +13,7 @@ TODO:
 11. Spinner is ugly - use spinner from Infinity
 12. Homepage must be responsive
 13. Truncate portfolio score to 4 digits
+14. Bluecheck is showing on all cards by default - hardcoded?
 
 bucket 10 only add those to cart, BE needs to send the bucket or a flag (revealable)
 
