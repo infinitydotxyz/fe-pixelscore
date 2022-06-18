@@ -36,8 +36,8 @@ export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor
     cursor,
     orderBy: NftsOrderBy.TokenId,
     orderDirection: OrderDirection.Ascending,
-    minRank: 1,
-    maxRank: 10 // todo: remove hard coded ranks
+    minRank,
+    maxRank
   };
   const response = await httpGet(`/nfts`, query);
   return response;

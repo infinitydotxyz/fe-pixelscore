@@ -35,14 +35,15 @@ export const DashboardPage = () => {
   const location = useLocation();
   useEffect(() => {
     switch (TabUtils.routeToTab(location.pathname)) {
-      case AstraNavTab.All:
-      case AstraNavTab.Top100:
-      case AstraNavTab.Hot:
+      case AstraNavTab.Top1:
+      case AstraNavTab.Top3:
+      case AstraNavTab.Top5:
         if (selection.length > 0) {
           setShowCart(true);
         }
         break;
-      case AstraNavTab.MyNFTs:
+      case AstraNavTab.All:
+      case AstraNavTab.Portfolio:
       case AstraNavTab.Pending:
       case AstraNavTab.Revealed:
         setShowCart(false);

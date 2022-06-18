@@ -36,5 +36,5 @@ export const DashboardMyNFTs = () => {
     }
   };
 
-  return <DashboardBase route={AstraNavTab.MyNFTs} />;
+  return <DashboardBase route={AstraNavTab.Portfolio} />;
 };

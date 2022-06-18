@@ -4,14 +4,14 @@ import { useDashboardContext } from 'utils/context/DashboardContext';
 import { AstraNavTab } from '../astra-navbar';
 import { DashboardBase } from './dashboard-base';
 
-export const DashboardHot = () => {
+export const DashboardTop1 = () => {
   const { setTokenFetcher, refreshTrigger, setDisplayName } = useDashboardContext();
 
   useEffect(() => {
-    setTokenFetcher(RankTokenCache.shared().fetcher(7, 9));
+    setTokenFetcher(RankTokenCache.shared().fetcher(10, 10));
 
-    setDisplayName('Hot');
+    setDisplayName('Top 1%');
   }, [refreshTrigger]);
 
-  return <DashboardBase route={AstraNavTab.Hot} />;
+  return <DashboardBase route={AstraNavTab.Top1} />;
 };

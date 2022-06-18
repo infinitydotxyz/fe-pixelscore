@@ -36,15 +36,16 @@ export const GridHeader = ({ route, vertical }: Props) => {
       name = route;
       description = 'Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. Lorem ipsum. ';
       break;
-    case AstraNavTab.MyNFTs:
+    case AstraNavTab.Portfolio:
       name = route;
 
       if (userRecord && userRecord.portfolioScore !== -1) {
         scoreText = `Portfolio Score: ${userRecord.portfolioScore}`;
       }
       break;
-    case AstraNavTab.Hot:
-    case AstraNavTab.Top100:
+    case AstraNavTab.Top1:
+    case AstraNavTab.Top3:
+    case AstraNavTab.Top5:
       name = route;
       break;
   }

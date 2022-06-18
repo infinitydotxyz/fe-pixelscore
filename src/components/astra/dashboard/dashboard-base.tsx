@@ -39,7 +39,7 @@ export const DashboardBase = ({ route }: Props) => {
     case AstraNavTab.All:
       emptyMessage = 'Select a Collection';
       break;
-    case AstraNavTab.MyNFTs:
+    case AstraNavTab.Portfolio:
       showHeader = true;
       emptyMessage = route;
 
@@ -55,8 +55,9 @@ export const DashboardBase = ({ route }: Props) => {
         emptyMessage = 'Click "Connect" to sign in';
       }
       break;
-    case AstraNavTab.Hot:
-    case AstraNavTab.Top100:
+    case AstraNavTab.Top1:
+    case AstraNavTab.Top3:
+    case AstraNavTab.Top5:
       emptyMessage = route;
       break;
   }

@@ -1,25 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './global.scss';
+import { DashboardAll } from 'components/astra/dashboard/dashboard-all';
+import { DashboardMyNFTs } from 'components/astra/dashboard/dashboard-my-nfts';
+import { DashboardPending } from 'components/astra/dashboard/dashboard-pending';
+import { DashboardRevealed } from 'components/astra/dashboard/dashboard-revealed';
+import { DashboardTop1 } from 'components/astra/dashboard/dashboard-top1';
+import { DashboardTop3 } from 'components/astra/dashboard/dashboard-top3';
+import { DashboardTop5 } from 'components/astra/dashboard/dashboard-top5';
 import 'flowbite';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { reportWebVitals } from './reportWebVitals';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AppContextProvider } from 'utils/context/AppContext';
+import { DashboardPage } from 'pages/app';
 import { ConnectPage } from 'pages/connect';
 import { HomePage } from 'pages/home';
 import { PasswordPage } from 'pages/password';
-import { SecurityContextProvider, useSecurityContext } from 'utils/context/SecurityContext';
 import { SandboxPage } from 'pages/sandbox';
-import { DashboardPage } from 'pages/app';
-import { DashboardAll } from 'components/astra/dashboard/dashboard-all';
-import { DashboardTop } from 'components/astra/dashboard/dashboard-top';
-import { DashboardMyNFTs } from 'components/astra/dashboard/dashboard-my-nfts';
-import { DashboardHot } from 'components/astra/dashboard/dashboard-hot';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import { AppContextProvider } from 'utils/context/AppContext';
 import { DashboardContextProvider } from 'utils/context/DashboardContext';
-import { DashboardPending } from 'components/astra/dashboard/dashboard-pending';
-import { DashboardRevealed } from 'components/astra/dashboard/dashboard-revealed';
+import { SecurityContextProvider, useSecurityContext } from 'utils/context/SecurityContext';
+import './global.scss';
+import { reportWebVitals } from './reportWebVitals';
 
 const AppRoutes = () => {
   const { allowed, ready } = useSecurityContext();
@@ -36,9 +37,10 @@ const AppRoutes = () => {
           <Route path="app" element={<DashboardPage />}>
             <Route index element={<DashboardAll />} />
             <Route path="all" element={<DashboardAll />} />
-            <Route path="top" element={<DashboardTop />} />
-            <Route path="nfts" element={<DashboardMyNFTs />} />
-            <Route path="hot" element={<DashboardHot />} />
+            <Route path="top1" element={<DashboardTop1 />} />
+            <Route path="top3" element={<DashboardTop3 />} />
+            <Route path="top5" element={<DashboardTop5 />} />
+            <Route path="portfolio" element={<DashboardMyNFTs />} />
             <Route path="pending" element={<DashboardPending />} />
             <Route path="revealed" element={<DashboardRevealed />} />
           </Route>

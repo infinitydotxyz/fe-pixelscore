@@ -7,11 +7,12 @@ import { useDashboardContext } from 'utils/context/DashboardContext';
 
 export enum AstraNavTab {
   All = 'All',
-  Top100 = 'Top .1%',
+  Top1 = 'Top 1%',
+  Top3 = 'Top 3%',
+  Top5 = 'Top 5%',
   Pending = 'Pending',
-  Hot = 'Hot',
   Revealed = 'Revealed',
-  MyNFTs = 'My NFTs'
+  Portfolio = 'Portfolio'
 }
 
 export const AstraNavbar = () => {
@@ -21,9 +22,10 @@ export const AstraNavbar = () => {
   const { options, selected } = useToggleTab(
     [
       AstraNavTab.All,
-      AstraNavTab.Top100,
-      AstraNavTab.Hot,
-      AstraNavTab.MyNFTs,
+      AstraNavTab.Top1,
+      AstraNavTab.Top3,
+      AstraNavTab.Top5,
+      AstraNavTab.Portfolio,
       AstraNavTab.Revealed,
       AstraNavTab.Pending
     ],
@@ -89,12 +91,14 @@ export class TabUtils {
         return '/app/pending';
       case AstraNavTab.Revealed:
         return '/app/revealed';
-      case AstraNavTab.MyNFTs:
-        return '/app/nfts';
-      case AstraNavTab.Hot:
-        return '/app/hot';
-      case AstraNavTab.Top100:
-        return '/app/top';
+      case AstraNavTab.Portfolio:
+        return '/app/portfolio';
+      case AstraNavTab.Top1:
+        return '/app/top1';
+      case AstraNavTab.Top3:
+        return '/app/top3';
+      case AstraNavTab.Top5:
+        return '/app/top5';
     }
   };
 
@@ -106,12 +110,14 @@ export class TabUtils {
         return AstraNavTab.Pending;
       case '/app/revealed':
         return AstraNavTab.Revealed;
-      case '/app/nfts':
-        return AstraNavTab.MyNFTs;
-      case '/app/hot':
-        return AstraNavTab.Hot;
-      case '/app/top':
-        return AstraNavTab.Top100;
+      case '/app/portfolio':
+        return AstraNavTab.Portfolio;
+      case '/app/top1':
+        return AstraNavTab.Top1;
+      case '/app/top3':
+        return AstraNavTab.Top3;
+      case '/app/top5':
+        return AstraNavTab.Top5;
     }
 
     return AstraNavTab.All;
