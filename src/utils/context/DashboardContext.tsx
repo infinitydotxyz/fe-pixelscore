@@ -8,7 +8,7 @@ import { useAppContext } from './AppContext';
 import { setReveals } from 'utils/astra-utils';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { CollectionInfo } from 'utils/types/collection-types';
-import { PIXELSCORE_WALLET } from 'utils/constants';
+import { PIXELRANK_WALLET } from 'utils/constants';
 
 export type DashboardContextType = {
   collection: CollectionInfo | undefined;
@@ -78,7 +78,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
   // }, [selection]);
 
   const sendEth = async (userAddress: string, amountInEther: string): Promise<string | undefined> => {
-    const receiverAddress = PIXELSCORE_WALLET;
+    const receiverAddress = PIXELRANK_WALLET;
 
     if (!utils.isAddress(userAddress)) {
       toastError(`Invalid user address: ${userAddress}.`);
