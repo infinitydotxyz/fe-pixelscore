@@ -68,7 +68,6 @@ export const TokensGrid = ({
     contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
     if (wrapWidth > 0) {
-      console.log(wrapWidth);
       let divisor = wrapWidth < 1500 ? 500 : 380;
       divisor = wrapWidth < 950 ? 700 : divisor;
 

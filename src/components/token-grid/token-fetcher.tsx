@@ -119,7 +119,7 @@ class CollectionTokenFetcher extends TokenFetcher {
     this.chainId = chainId;
 
     // not sure if this is needed now days
-    this.collectionName = collection.name ?? 'Unknown';
+    this.collectionName = collection.name ?? '';
   }
 
   // override
@@ -237,7 +237,7 @@ class RankTokenFetcher extends TokenFetcher {
     this.minRank = minRank;
     this.maxRank = maxRank;
 
-    this.collectionName = 'Unknown';
+    this.collectionName = '';
   }
 
   // override

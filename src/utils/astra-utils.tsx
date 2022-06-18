@@ -10,6 +10,7 @@ import {
   NftRankQuery,
   NftsOrderBy
 } from './types/be-types';
+import { v4 as uuidv4 } from 'uuid';
 
 export const fetchTokens = async (
   collectionAddress: string,
@@ -71,12 +72,12 @@ export const fetchCollections = async (query: string, cursor?: string): Promise<
 // ======================================================
 
 export const userNftsToCardData = (tokens: UserNft[]): NFTCard[] => {
-  let cardData = tokens.map((token) => {
+  const cardData = tokens.map((token) => {
     const result: NFTCard = {
-      id: token.collectionAddress + '_' + token.tokenId,
+      id: uuidv4(),
       name: token.metadata?.name,
       collectionName: token.collectionName,
-      title: token.collectionName ?? 'Unknown',
+      title: token.collectionName ?? '',
       description: token.metadata?.description,
       image: token.imageUrl || token.image.url || token.image.originalUrl,
       collectionBannerImage: token.collectionBannerImage,
@@ -100,17 +101,17 @@ export const userNftsToCardData = (tokens: UserNft[]): NFTCard[] => {
   });
 
   // remove any without tokenAddress (seeing bad NFTs in my profile)
-  cardData = cardData.filter((x) => x.tokenAddress);
+  // cardData = cardData.filter((x) => x.tokenAddress);
 
   return cardData;
 };
 
 export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
-  let cardData = tokens.map((token) => {
+  const cardData = tokens.map((token) => {
     const result: NFTCard = {
-      id: token.collectionAddress + '_' + token.tokenId,
+      id: uuidv4(),
       collectionName: token.collectionName,
-      title: token.collectionName ?? 'Unknown',
+      title: token.collectionName ?? '',
       chainId: token.chainId,
       tokenAddress: token.collectionAddress,
       tokenId: token.tokenId,
@@ -138,7 +139,7 @@ export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
   });
 
   // remove any without tokenAddress (seeing bad NFTs in my profile)
-  cardData = cardData.filter((x) => x.tokenAddress);
+  // cardData = cardData.filter((x) => x.tokenAddress);
 
   return cardData;
 };

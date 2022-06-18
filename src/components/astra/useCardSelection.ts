@@ -1,5 +1,6 @@
 import { toastWarning } from 'components/common';
 import { useEffect, useState } from 'react';
+import { MAX_PIXELRANKBUCKET_PUBLICLY_VISIBLE } from 'utils';
 import { NFTCard } from 'utils/types/be-types';
 
 interface CardSelectionResult {
@@ -21,13 +22,14 @@ export const useCardSelection = (): CardSelectionResult => {
 
   const toggleSelection = (value: NFTCard) => {
     if (!isSelected(value)) {
-      // don't allow adding an already revealed and visible card to be added to cart
+      // don't allow an already revealed and visible card to be added to cart
       if (!value.pixelRankVisible) {
         const copy = new Map(selectionMap);
         copy.set(value.id, value);
 
         setSelectionMap(copy);
       } else {
+        // todo: when will this toast pop up?
         toastWarning('This NFT has already been revealed', 'Pick another NFT');
       }
     } else {
@@ -36,7 +38,7 @@ export const useCardSelection = (): CardSelectionResult => {
   };
 
   const isSelectable = (value: NFTCard): boolean => {
-    return value.pixelRankVisible !== true && (value?.pixelRankBucket ?? 0) >= 9;
+    return value.pixelRankVisible !== true && (value?.pixelRankBucket ?? 0) > MAX_PIXELRANKBUCKET_PUBLICLY_VISIBLE;
   };
 
   const removeFromSelection = (value: NFTCard) => {

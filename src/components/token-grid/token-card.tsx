@@ -1,6 +1,6 @@
 import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage, Spacer, SVG, toastWarning } from '../common';
+import { BGImage, Spacer, SVG } from '../common';
 import { NFTCard } from 'utils/types/be-types';
 import { EyeBadge, PillBadge } from './pill-badge';
 import { useState } from 'react';
@@ -32,7 +32,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
       style={{ aspectRatio: '4 / 5' }}
       onClick={() => {
         if (!isSelectable(data)) {
-          toastWarning('NFT rank is already revealed', 'Try another NFT');
+          // toastWarning('NFT rank is already revealed', 'Try another NFT');
           setNotSelectable(true);
         } else {
           onClick(data);
@@ -50,8 +50,8 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
 
           <PillBadge val={data.pixelRank} tooltip="Pixel rank" numberSign={true} />
           {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
-          <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
-          <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} />
+          {/* <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
+          <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} /> */}
 
           <EyeBadge
             onClick={() => {
@@ -67,7 +67,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           </div>
 
           <div className="flex items-center">
-            <div className="truncate"># {tokenId}</div>
+            <div className="truncate">{tokenId}</div>
             <Spacer />
           </div>
         </div>

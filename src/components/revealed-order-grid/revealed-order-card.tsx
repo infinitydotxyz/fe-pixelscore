@@ -60,7 +60,7 @@ export const RevealedOrderCard = ({ token, onClick, onRefreshToken, selected }: 
         <RevealedTokenImage token={token} />
 
         <div className="mt-3 mb-4 mx-5 flex flex-col ">
-          <div className="font-bold truncate">{token.collectionName ?? 'Unknown'}</div>
+          <div className="font-bold truncate">{token.collectionName ?? ''}</div>
 
           <VisibilityIcon
             visible={token.pixelRankVisible}
