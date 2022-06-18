@@ -10,7 +10,9 @@ TODO:
 8. first revealer can hide, if they hide and it's reshown, the new person has control
 9. tabs in the navbar should have the right tabs (top 100 and hot don't make sense); maybe top 1%, 2% and 3% do
 10. Remove sandbox page and route
-11. Paper btn on click not working because the component is using preventDefault and stopPropagation
+11. Spinner is ugly - use spinner from Infinity
+12. Homepage must be responsive
+13. Truncate portfolio score to 4 digits
 
 bucket 10 only add those to cart, BE needs to send the bucket or a flag (revealable)
 

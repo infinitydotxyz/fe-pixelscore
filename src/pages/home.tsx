@@ -22,7 +22,7 @@ export const HomePage = () => {
             <div className="mt-28">
               <div className="block text-white font-bold text-9xl">Pixelrank</div>
               <div className="mt-6 max-w-lg text-2xl font-bold text-white  ">
-                The world's only global NFT ranking. Pure math, no bias.
+                The world's only global NFT ranking. Pure Math. No bias.
               </div>
               <div className="mt-16">
                 <div className="space-x-14 ">
@@ -38,28 +38,48 @@ export const HomePage = () => {
           </div>
         </div>
 
-        <div className="  mt-24   ">
+        <div className="mt-24">
           <div className="block text-white font-bold text-8xl">What is Pixelrank?</div>
           <div className="mt-6 max-w-xlg text-2xl font-bold text-white  ">
-            Pixelrank is a novel method for estimating the global rarity of NFTs. It ranks NFTs by determining how rare
+            Pixelrank is a novel method for estimating the global rarity of NFTs. It ranks NFTs by calculating how rare
             an NFT's pixels are compared to all NFTs in existence.
           </div>
           <div className="mt-28 flex flex-wrap items-start gap-16">
             <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-white ">
-              Radical NFT Technology
+              Ranking based on our unbiased PixelScore algorithm. See our methodology{' '}
+              <a href="/paper.pdf" target="_blank" className="underline">
+                here
+              </a>
+            </div>
+            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-white ">
+              About 55,000 collections analyzed and 10M NFTs ranked. All but the top 5% NFTs are revealed by default.
             </div>
             <div className=" border-4 rounded-3xl p-40 border-pink-500  text-white bg-opacity-25 bg-pink-400">
-              Endless Airdrops
-            </div>
-            <div className=" border-4 rounded-3xl p-40 border-pink-500  text-white bg-opacity-25 bg-pink-400">
-              Free Bitconnect
+              Global and within collection rank for each NFT. Portfolio score for NFTs owned by you.
             </div>
             <div className=" border-4 rounded-3xl p-40 border-fuchsia-300  text-white bg-opacity-25 bg-pink-400">
-              Radical NFT Technology
+              Upcoming, free to mint 10k collection with global NFT ranks based on our PixelScore algorithm.
             </div>
-            <div className=" border-4 rounded-3xl p-40 border-sky-300  text-white bg-opacity-25 bg-pink-400">
-              Radical NFT Technology
-            </div>
+          </div>
+        </div>
+
+        <div className="mt-28">
+          <div className="block text-white font-bold text-3xl">
+            NFT Gallery section from{' '}
+            <a href="https://nft-avatars.webflow.io/" className="underline">
+              {' '}
+              NFT Avatars
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-28">
+          <div className="block text-white font-bold text-3xl">
+            FAQ section from{' '}
+            <a href="https://nft-avatars.webflow.io/" className="underline">
+              {' '}
+              NFT Avatars
+            </a>
           </div>
         </div>
       </main>
