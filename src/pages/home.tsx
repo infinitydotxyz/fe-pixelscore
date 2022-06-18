@@ -39,7 +39,7 @@ export const HomePage = () => {
         </div>
 
         <div className="  mt-24   ">
-          <div className="block text-white font-bold text-8xl">What is PixelScore?</div>
+          <div className="block text-white font-bold text-8xl">What is Pixelrank?</div>
           <div className="mt-6 max-w-xlg text-2xl font-bold text-white  ">
             PixelScore is like magic. Powered by AI, machine learning and quantum physics.
           </div>
