@@ -131,11 +131,13 @@ export enum NftsOrderBy {
   PixelRank = 'pixelRank'
 }
 
-export interface NftRankQuery {
+export interface NftsQuery {
   orderBy: NftsOrderBy;
   orderDirection: OrderDirection;
   limit: number;
   cursor?: string;
-  minRank: number;
-  maxRank: number;
+  minRank?: number;
+  maxRank?: number;
+  showOnlyVisible?: boolean;
+  showOnlyUnvisible?: boolean;
 }

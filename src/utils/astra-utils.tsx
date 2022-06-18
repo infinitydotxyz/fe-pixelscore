@@ -7,7 +7,7 @@ import {
   TokenInfo,
   UpdateRankVisibility,
   UserRecord,
-  NftRankQuery,
+  NftsQuery,
   NftsOrderBy
 } from './types/be-types';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,7 +17,7 @@ export const fetchTokens = async (
   chainId: string,
   cursor?: string
 ): Promise<ApiResponse> => {
-  const query: NftRankQuery = {
+  const query: NftsQuery = {
     limit: LARGE_LIMIT,
     cursor,
     minRank: 1,
@@ -32,7 +32,7 @@ export const fetchTokens = async (
 // ======================================================
 
 export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor?: string): Promise<ApiResponse> => {
-  const query: NftRankQuery = {
+  const query: NftsQuery = {
     limit: LARGE_LIMIT,
     cursor,
     orderBy: NftsOrderBy.TokenId,
