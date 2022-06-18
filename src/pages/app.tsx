@@ -35,8 +35,6 @@ export const DashboardPage = () => {
   const location = useLocation();
   useEffect(() => {
     switch (TabUtils.routeToTab(location.pathname)) {
-      case AstraNavTab.Top1:
-      case AstraNavTab.Top3:
       case AstraNavTab.Top5:
         if (selection.length > 0) {
           setShowCart(true);

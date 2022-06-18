@@ -43,8 +43,6 @@ export const GridHeader = ({ route, vertical }: Props) => {
         scoreText = `Portfolio Score: ${userRecord.portfolioScore}`;
       }
       break;
-    case AstraNavTab.Top1:
-    case AstraNavTab.Top3:
     case AstraNavTab.Top5:
       name = route;
       break;

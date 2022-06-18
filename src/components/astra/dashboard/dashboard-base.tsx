@@ -55,8 +55,6 @@ export const DashboardBase = ({ route }: Props) => {
         emptyMessage = 'Click "Connect" to sign in';
       }
       break;
-    case AstraNavTab.Top1:
-    case AstraNavTab.Top3:
     case AstraNavTab.Top5:
       emptyMessage = route;
       break;

@@ -8,7 +8,7 @@ export const DashboardTop5 = () => {
   const { setTokenFetcher, refreshTrigger, setDisplayName } = useDashboardContext();
 
   useEffect(() => {
-    setTokenFetcher(RankTokenCache.shared().fetcher(8, 8));
+    setTokenFetcher(RankTokenCache.shared().fetcher(8, 10));
 
     setDisplayName('Top 1%');
   }, [refreshTrigger]);

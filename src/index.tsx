@@ -2,8 +2,6 @@ import { DashboardAll } from 'components/astra/dashboard/dashboard-all';
 import { DashboardMyNFTs } from 'components/astra/dashboard/dashboard-my-nfts';
 import { DashboardPending } from 'components/astra/dashboard/dashboard-pending';
 import { DashboardRevealed } from 'components/astra/dashboard/dashboard-revealed';
-import { DashboardTop1 } from 'components/astra/dashboard/dashboard-top1';
-import { DashboardTop3 } from 'components/astra/dashboard/dashboard-top3';
 import { DashboardTop5 } from 'components/astra/dashboard/dashboard-top5';
 import 'flowbite';
 import { DashboardPage } from 'pages/app';
@@ -37,8 +35,6 @@ const AppRoutes = () => {
           <Route path="app" element={<DashboardPage />}>
             <Route index element={<DashboardAll />} />
             <Route path="all" element={<DashboardAll />} />
-            <Route path="top1" element={<DashboardTop1 />} />
-            <Route path="top3" element={<DashboardTop3 />} />
             <Route path="top5" element={<DashboardTop5 />} />
             <Route path="portfolio" element={<DashboardMyNFTs />} />
             <Route path="pending" element={<DashboardPending />} />
