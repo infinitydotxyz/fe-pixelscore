@@ -16,7 +16,19 @@ export const NFT_DATA_SOURCES = {
   COVALENT: 4
 };
 
-export const LOGIN_MESSAGE =
-  'Welcome to Infinity. Click "Sign" to sign in. No password needed. This request will not trigger a blockchain transaction or cost any gas fees.';
+export const LOGIN_MESSAGE = 'Welcome to Pixelrank. Click "Sign" to sign in. Signing in is a gasless operation';
 
 export const BLANK_IMG = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+
+export const PIXELRANK_BUCKET_PERCENT_MAP = {
+  10: 'Top 1%',
+  9: 'Top 3%',
+  8: 'Top 5%',
+  7: 'Top 7%',
+  6: 'Top 10%',
+  5: 'Top 15%',
+  4: 'Top 25%',
+  3: 'Top 40%',
+  2: 'Top 65%',
+  1: 'Top 100%'
+};

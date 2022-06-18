@@ -41,7 +41,8 @@ export const HomePage = () => {
         <div className="  mt-24   ">
           <div className="block text-white font-bold text-8xl">What is Pixelrank?</div>
           <div className="mt-6 max-w-xlg text-2xl font-bold text-white  ">
-            PixelScore is like magic. Powered by AI, machine learning and quantum physics.
+            Pixelrank is a novel method for estimating the global rarity of NFTs. It compares the rarity of any pair of
+            NFTs from any collection and ranks all existing NFTs by pixel rarity.
           </div>
           <div className="mt-28 flex flex-wrap items-start gap-16">
             <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-white ">
