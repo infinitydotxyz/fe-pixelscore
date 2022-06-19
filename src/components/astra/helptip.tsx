@@ -10,7 +10,7 @@ interface Props {
 
 export const HelpTip = ({ content, children, placement = 'bottom' }: Props) => {
   return (
-    <Toltip content={content} className="z-50 w-max max-w-xl" placement={placement}>
+    <Toltip content={content} className="z-50 w-max max-w-xl text-dark-body" placement={placement}>
       {children}
     </Toltip>
   );

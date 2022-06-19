@@ -55,7 +55,7 @@ export const RevealOrderCard = ({ userAddress, revealOrder: inOrder, onClick, se
       style={{ aspectRatio: '4/5' }}
       onClick={() => onClick(revealOrder)}
     >
-      <div className="h-full flex flex-col dark:text-dark-text">
+      <div className="h-full flex flex-col dark:text-dark-body">
         <TokenSwiper tokens={revealOrder.revealItems} />
 
         <div className="mt-3 mb-4 mx-5 flex flex-col ">

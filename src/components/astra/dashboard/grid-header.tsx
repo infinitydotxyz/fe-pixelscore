@@ -38,7 +38,6 @@ export const GridHeader = ({ route, vertical }: Props) => {
       break;
     case AstraNavTab.Portfolio:
       name = route;
-
       if (userRecord && userRecord.portfolioScore !== -1) {
         scoreText = `Portfolio Score: ${userRecord.portfolioScore}`;
       }
@@ -96,7 +95,7 @@ export const GridHeader = ({ route, vertical }: Props) => {
         <div
           className={twMerge(
             inputBorderColor,
-            'flex items-center bg-gray-100 dark:bg-dark-card border-b px-8 py-3 dark:text-dark-text'
+            'flex items-center bg-gray-100 dark:bg-dark-card border-b px-8 py-3 dark:text-dark-body'
           )}
         >
           {showCollectionImage && (

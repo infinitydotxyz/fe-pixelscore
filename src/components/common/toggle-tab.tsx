@@ -47,7 +47,7 @@ export const ToggleTab = ({
               className={twMerge(
                 equalWidths ? 'min-w-[130px]' : '',
                 'flex select-none text-md items-center justify-center  text-center whitespace-nowrap font-medium rounded-full text-secondary',
-                selected === option ? 'bg-black text-white font-bold' : '',
+                selected === option ? 'bg-black text-dark-body font-bold' : '',
                 altStyle ? 'py-1 px-6' : 'py-2.5 px-10'
               )}
               onClick={() => onChange(option)}
@@ -71,9 +71,9 @@ export const ToggleTabAlt = ({ options, onChange, selected, className = '', equa
               key={option}
               className={twMerge(
                 equalWidths ? 'min-w-[130px]' : '',
-                'flex select-none text-md items-center justify-center  text-center whitespace-nowrap font-medium rounded-full text-secondary',
-                selected === option ? 'dark:text-white font-bold' : 'dark:text-gray-400',
-                'mx-4 text-xl'
+                'flex select-none items-center justify-center text-center whitespace-nowrap rounded-full',
+                selected === option ? 'dark:text-dark-pink' : 'dark:text-dark-blue',
+                'mx-4 text-md'
               )}
               onClick={() => onChange(option)}
             >

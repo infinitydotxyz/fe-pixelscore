@@ -1,5 +1,5 @@
 import { OrderDirection } from '@infinityxyz/lib/types/core';
-import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT } from 'utils';
+import { DEFAULT_LIMIT, ApiResponse, httpGet, httpPost, LARGE_LIMIT, PIXELRANK_BUCKET_PERCENT_MAP } from 'utils';
 import {
   NFTCard,
   UserNft,
@@ -261,4 +261,30 @@ export const getUserRecord = async (user: string): Promise<UserRecord> => {
     portfolioScoreUpdatedAt: -1,
     totalNftsOwned: -1
   };
+};
+
+export const pixelRankBucketToolTip = (pixelRankBucket: number): string => {
+  switch (pixelRankBucket) {
+    case 1:
+      return PIXELRANK_BUCKET_PERCENT_MAP[1];
+    case 2:
+      return PIXELRANK_BUCKET_PERCENT_MAP[2];
+    case 3:
+      return PIXELRANK_BUCKET_PERCENT_MAP[3];
+    case 4:
+      return PIXELRANK_BUCKET_PERCENT_MAP[4];
+    case 5:
+      return PIXELRANK_BUCKET_PERCENT_MAP[5];
+    case 6:
+      return PIXELRANK_BUCKET_PERCENT_MAP[6];
+    case 7:
+      return PIXELRANK_BUCKET_PERCENT_MAP[7];
+    case 8:
+      return PIXELRANK_BUCKET_PERCENT_MAP[8];
+    case 9:
+      return PIXELRANK_BUCKET_PERCENT_MAP[9];
+    case 10:
+      return PIXELRANK_BUCKET_PERCENT_MAP[10];
+  }
+  return '';
 };

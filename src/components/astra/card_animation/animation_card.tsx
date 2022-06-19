@@ -35,7 +35,7 @@ export const AnimationCard = ({ data, height, onClick, selected }: Props): JSX.E
           </div>
         </div>
 
-        <div className="my-5 text-white   mx-4">
+        <div className="my-5 text-dark-body   mx-4">
           <div className="font-bold truncate text-lg">{title}</div>
           <div className="text-secondary font-heading truncate text-sm mt-1">#{tokenId}</div>
         </div>

@@ -39,9 +39,9 @@ export const Dropdown = ({
             <Menu.Button
               className={twMerge(
                 inputBorderColor,
-                'transition ease-in-out duration-300 hover:border-black dark:hover:border-dark-text bg-white dark:bg-dark-bg active:bg-gray-900 hover:bg-light-gray-200 dark:hover:bg-dark-gray-100',
+                'transition ease-in-out duration-300 hover:border-black bg-white dark:bg-dark-bg active:bg-gray-900 hover:bg-light-gray-200 dark:hover:opacity-75',
                 'focus:outline-none focus-visible:ring focus:ring-black focus:ring-opacity-50',
-                'px-6 py-2.5 border rounded-3xl text-gray-900 dark:text-dark-text font-heading flex items-center space-x-1'
+                'px-6 py-2.5 border rounded-3xl text-gray-900 dark:text-dark-body font-heading flex items-center space-x-1'
               )}
             >
               <div className="whitespace-nowrap">{label}</div>
@@ -52,8 +52,8 @@ export const Dropdown = ({
 
         <Menu.Items
           className={twMerge(
-            `absolute mt-2 p-4 w-56 origin-top-right divide-y divide-gray-100 rounded-3xl z-50
-            border border-gray-200 bg-white dark:bg-dark-bg shadow-2xl dark:text-dark-text outline-none ${
+            `absolute mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-3xl z-50
+            border border-gray-200 bg-white dark:bg-dark-bg shadow-2xl dark:text-dark-body outline-none ${
               contentClassName ?? ''
             }`
           )}
@@ -85,10 +85,8 @@ export const CustomMenuItem = (props: CustomMenuItemProps) => {
         <a
           href="#"
           className={twMerge(
-            'flex w-full justify-between px-4 py-4 text-left leading-5 font-heading ',
-            active
-              ? 'hover:bg-light-gray-100 dark:hover:bg-dark-gray-100 rounded-xl dark:text-dark-text'
-              : 'text-gray-700 dark:text-dark-text',
+            'flex w-full justify-between px-6 py-2 text-left',
+            'dark:hover:opacity-75 rounded-xl dark:text-dark-body',
             disabled && 'cursor-not-allowed opacity-50',
             props.itemclassname
           )}

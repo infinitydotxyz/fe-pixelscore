@@ -8,17 +8,9 @@ TODO:
 6. Reveal and ranks
 7. Some of your NFTs are in the top 1%, pay to reveal
 10. Remove sandbox page and route
-11. Spinner is ugly - use spinner from Infinity
 12. Homepage must be responsive
 13. Truncate portfolio score to 4 digits
-
-bucket 10 only add those to cart, BE needs to send the bucket or a flag (revealable)
-
-re: price differences for reveals - I like that and makes sense
-
-top 1%, (pixel rank bucket 10)
-
-.1% of the sorted by rank list (top .1%) 10,000,
+14. On dashboard pages, revealed/unrevealed toggle
 
 revealed? visible, revealer.
 

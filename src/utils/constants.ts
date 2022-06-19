@@ -16,7 +16,7 @@ export const NFT_DATA_SOURCES = {
   COVALENT: 4
 };
 
-export const LOGIN_MESSAGE = 'Welcome to Pixelrank. Click "Sign" to sign in. Signing in is a gasless operation';
+export const LOGIN_MESSAGE = 'Welcome to Pixelrank. Click "Sign" to sign in. This is a gasless operation';
 
 export const BLANK_IMG = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
@@ -36,3 +36,6 @@ export const PIXELRANK_BUCKET_PERCENT_MAP = {
 export const MAX_PIXELRANKBUCKET_PUBLICLY_VISIBLE = 7;
 
 export const PIXELRANK_WALLET = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
+
+// todo: change price
+export const PIXELRANK_PRICE_PER_ITEM = 0.0001;

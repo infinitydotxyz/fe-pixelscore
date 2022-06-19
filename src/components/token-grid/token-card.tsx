@@ -5,6 +5,7 @@ import { NFTCard } from 'utils/types/be-types';
 import { EyeBadge, PillBadge } from './pill-badge';
 import { useState } from 'react';
 import { TokenCardModal } from './token-card-modal';
+import { pixelRankBucketToolTip } from 'utils/astra-utils';
 
 interface Props {
   data: NFTCard;
@@ -16,8 +17,8 @@ interface Props {
 export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX.Element => {
   const [notSelectable, setNotSelectable] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const title = data?.title ?? '';
-  const tokenId = data?.tokenId ?? '';
+  const title = data?.title || 'Hidden';
+  const tokenId = data?.tokenId || 'Reveal';
   const hasBlueCheck = data?.hasBlueCheck ?? false;
 
   return (
@@ -48,10 +49,14 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
             <BGImage src={data?.image} className="hover:scale-110 transition-all" />
           </div>
 
-          <PillBadge val={data.pixelRank} tooltip="Pixel rank" numberSign={true} />
+          {/* <PillBadge val={data.pixelRank} tooltip="Pixel rank" numberSign={true} /> */}
           {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
-          {/* <PillBadge val={data.pixelRankBucket} tooltip="Pixel rank bucket" className="top-2 right-2" />
-          <PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} /> */}
+          <PillBadge
+            val={data.pixelRankBucket}
+            tooltip={pixelRankBucketToolTip(data.pixelRankBucket ?? 0)}
+            className="top-2 right-2"
+          />
+          {/*<PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} /> */}
 
           <EyeBadge
             onClick={() => {
@@ -60,7 +65,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           />
         </div>
 
-        <div className="mt-3 mb-4 mx-3 dark:text-dark-text">
+        <div className="mt-3 mb-4 mx-3 dark:text-dark-body">
           <div className="flex items-center">
             <div className="font-bold truncate flex-1">{title}</div>
             {hasBlueCheck ? <SVG.blueCheck className={'h-5 w-5'} /> : ''}

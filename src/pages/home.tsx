@@ -8,7 +8,7 @@ export const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <PageBox footer={<Footer />} className="mx-auto" pageClass="bg-black" customHeader={<></>}>
+    <PageBox footer={<Footer />} className="mx-auto" customHeader={<></>}>
       <main className=" max-w-screen-2xl mx-8 ">
         <div className="relative">
           <CardAnimation />
@@ -20,14 +20,18 @@ export const HomePage = () => {
             {/* <HomePageLogo /> */}
 
             <div className="mt-28">
-              <div className="block text-white font-bold text-9xl">Pixelrank</div>
-              <div className="mt-6 max-w-lg text-2xl font-bold text-white  ">
+              <div className="block dark:text-dark-scarlet font-bold text-9xl">Pixelrank</div>
+              <div className="mt-6 max-w-lg text-2xl dark:text-dark-body">
                 The world's only global NFT ranking. Pure Math. No bias.
               </div>
               <div className="mt-16">
                 <div className="space-x-14 ">
-                  <LargeButton onClick={() => navigate('app')}>Rankings</LargeButton>
-                  <LargeButton onClick={() => navigate('paper')}>Paper</LargeButton>
+                  <LargeButton onClick={() => navigate('app')} className="dark:text-dark-blue hover:opacity-75">
+                    Rankings
+                  </LargeButton>
+                  <LargeButton onClick={() => navigate('paper')} className="dark:text-dark-blue hover:opacity-75">
+                    Paper
+                  </LargeButton>
                 </div>
               </div>
             </div>
@@ -35,32 +39,32 @@ export const HomePage = () => {
         </div>
 
         <div className="mt-24">
-          <div className="block text-white font-bold text-8xl">What is Pixelrank?</div>
-          <div className="mt-6 max-w-xlg text-2xl font-bold text-white  ">
+          <div className="block text-dark-scarlet font-bold text-7xl">What is Pixelrank?</div>
+          <div className="mt-6 max-w-xlg text-2xl text-dark-body">
             Pixelrank is a novel method for estimating the global rarity of NFTs. It ranks NFTs by calculating how rare
             an NFT's pixels are compared to all NFTs in existence.
           </div>
           <div className="mt-28 flex flex-wrap items-start gap-16">
-            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-white ">
+            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-dark-body ">
               Ranking based on our unbiased PixelScore algorithm. See our methodology{' '}
               <a href="/paper.pdf" target="_blank" className="underline">
                 here
               </a>
             </div>
-            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-white ">
+            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-dark-body ">
               About 55,000 collections analyzed and 10M NFTs ranked. All but the top 5% NFTs are revealed by default.
             </div>
-            <div className=" border-4 rounded-3xl p-40 border-pink-500  text-white bg-opacity-25 bg-pink-400">
+            <div className=" border-4 rounded-3xl p-40 border-pink-500  text-dark-body bg-opacity-25 bg-pink-400">
               Global and within collection rank for each NFT. Portfolio score for NFTs owned by you.
             </div>
-            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300  text-white bg-opacity-25 bg-pink-400">
+            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300  text-dark-body bg-opacity-25 bg-pink-400">
               Upcoming, free to mint 10k collection with global NFT ranks based on our PixelScore algorithm.
             </div>
           </div>
         </div>
 
         <div className="mt-28">
-          <div className="block text-white font-bold text-3xl">
+          <div className="block text-dark-body font-bold text-3xl">
             NFT Gallery section from{' '}
             <a href="https://nft-avatars.webflow.io/" className="underline">
               {' '}
@@ -70,7 +74,7 @@ export const HomePage = () => {
         </div>
 
         <div className="mt-28">
-          <div className="block text-white font-bold text-3xl">
+          <div className="block text-dark-body font-bold text-3xl">
             FAQ section from{' '}
             <a href="https://nft-avatars.webflow.io/" className="underline">
               {' '}
@@ -160,7 +164,7 @@ const navigation = {
 const Footer = () => {
   return (
     <footer className="">
-      <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8 dark:text-dark-violet">
         {/* <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="px-5 py-2">
@@ -172,13 +176,13 @@ const Footer = () => {
         </nav> */}
         <div className="mt-8 flex justify-center space-x-6">
           {navigation.social.map((item) => (
-            <a key={item.name} href={item.href} target="_blank" className="text-gray-400 hover:text-gray-500">
+            <a key={item.name} href={item.href} target="_blank">
               <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
             </a>
           ))}
         </div>
-        {<p className="mt-8 text-center text-base text-gray-400">&copy; All rights reserved</p>}
+        {<p className="mt-8 text-center text-base">&copy; All rights reserved</p>}
       </div>
     </footer>
   );
@@ -192,7 +196,7 @@ export const HomePageLogo = () => {
   return (
     <div className=" max-w-screen-2xl flex items-center  ">
       <NextLink href="/" className="flex items-center ">
-        <SVG.miniLogo className="h-16 w-16 text-white" logoColor="#000" />
+        <SVG.miniLogo className="h-16 w-16 text-dark-body" logoColor="#000" />
       </NextLink>
 
       <HomeMenuButton />
@@ -212,7 +216,7 @@ export const HomeMenuButton = () => {
           // setShowCart(!showCart);
         }}
       >
-        <SVG.hamburger className={twMerge('text-white', iconButtonStyle)} />
+        <SVG.hamburger className={twMerge('text-dark-body', iconButtonStyle)} />
       </RoundButton>
     </div>
   );

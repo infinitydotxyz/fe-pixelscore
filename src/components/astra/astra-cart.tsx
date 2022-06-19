@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { ReactNode } from 'react';
 import { NFTCard } from 'utils/types/be-types';
 import { BiTrash } from 'react-icons/bi';
+import { PIXELRANK_PRICE_PER_ITEM } from 'utils';
 
 interface Props {
   cardData: NFTCard[];
@@ -29,7 +30,7 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
       const first = tokenArray[0];
 
       divList.push(
-        <div className="w-full rounded-md bg-slate-100 py-2 px-4 font-bold truncate" key={`header-${first.id}`}>
+        <div className="w-full rounded-md px-4 font-bold truncate" key={`header-${first.id}`}>
           {first.collectionName}
         </div>
       );
@@ -42,10 +43,12 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
     });
 
     // min-w-0 is important. otherwise text doesn't truncate
-    listComponent = <div className="min-w-0 flex p-6 flex-col space-y-2 items-start flex-1">{divList}</div>;
+    listComponent = (
+      <div className="min-w-0 flex p-6 flex-col space-y-2 items-start flex-1 text-dark-body">{divList}</div>
+    );
   } else {
     listComponent = (
-      <div key={Math.random()} className="flex items-center justify-center text-sm text-gray-400 uppercase flex-1">
+      <div key={Math.random()} className="flex items-center justify-center text-dark-body uppercase flex-1">
         <div>Cart empty</div>
       </div>
     );
@@ -57,8 +60,10 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
       <div className="mb-2">
         {/* <GridHeader route={route} vertical={true} /> */}
 
-        <div className="text-3xl font-bold text-gray-500 m-4">My Cart</div>
-        <div className=" text-slate-600 m-4 leading-5">Add NFTs to the cart to do stuff.</div>
+        <div className="text-3xl font-bold text-dark-body m-4">My Cart</div>
+        <div className=" text-dark-body ml-4 mr-4 leading-5">
+          Add NFTs you want to reveal ranks for. Each NFT costs ${PIXELRANK_PRICE_PER_ITEM} ETH
+        </div>
       </div>
 
       {listComponent}
@@ -83,10 +88,9 @@ interface Props2 {
 export const AstraCartItem = ({ token, index, onRemove }: Props2) => {
   return (
     <div key={token.id} className="flex items-center w-full">
-      <div className="w-4 mr-2 text-right">{index + 1}.</div>
+      <div className="w-4 mr-2 text-right pr-2 text-xl">{index + 1}</div>
       <BGImage className={twMerge(largeIconButtonStyle, 'rounded-lg')} src={token.image} />
-      <div className="ml-2">{token.tokenId}</div>
-
+      <div>{token.tokenId}</div>
       <Spacer />
       <Button
         size="plain"
@@ -95,7 +99,7 @@ export const AstraCartItem = ({ token, index, onRemove }: Props2) => {
           onRemove(token);
         }}
       >
-        <BiTrash className={twMerge(smallIconButtonStyle, 'opacity-80')} />
+        <BiTrash className={twMerge(smallIconButtonStyle, 'opacity-75 text-dark-body')} />
       </Button>
     </div>
   );

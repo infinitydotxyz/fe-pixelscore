@@ -29,7 +29,7 @@ export const CollectionListItem = ({ collection, onClick, selected }: Props2) =>
         <div className="relative">
           <div
             className={twMerge(
-              'w-full cursor-pointer border bg-white rounded-lg overflow-clip h-24',
+              'w-full cursor-pointer rounded-lg overflow-clip h-24',
               inputBorderColor,
               selected ? selectionOutline : ''
             )}

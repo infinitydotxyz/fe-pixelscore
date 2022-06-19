@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const Chip = ({ left, content, right, iconOnly, active, onClick, className = '' }: Props) => {
-  const activeCx = active === true ? 'bg-gray-900 text-white' : '';
+  const activeCx = active === true ? 'bg-gray-900 text-dark-body' : '';
   return (
     <button
       className={twMerge(

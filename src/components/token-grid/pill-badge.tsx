@@ -59,14 +59,12 @@ interface Props3 {
   className?: string;
 }
 
-export const EyeBadge = ({ onClick, tooltip = 'View details', className = 'bottom-0 right-1' }: Props3) => {
+export const EyeBadge = ({ onClick, className = 'bottom-0 right-1' }: Props3) => {
   return (
     <div className={twMerge(className, 'absolute')}>
-      <HelpTip content={tooltip}>
-        <RoundButton onClick={onClick}>
-          <IoMdEye className={'h-8 w-8 text-white opacity-50 hover:opacity-100'} />
-        </RoundButton>
-      </HelpTip>
+      <RoundButton onClick={onClick}>
+        <IoMdEye className={'h-8 w-8 text-dark-body opacity-50 hover:opacity-100'} />
+      </RoundButton>
     </div>
   );
 };
