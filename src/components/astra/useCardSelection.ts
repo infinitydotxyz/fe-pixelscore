@@ -1,6 +1,5 @@
 import { toastWarning } from 'components/common';
 import { useEffect, useState } from 'react';
-import { MAX_PIXELRANKBUCKET_PUBLICLY_VISIBLE } from 'utils';
 import { NFTCard } from 'utils/types/be-types';
 
 interface CardSelectionResult {
@@ -38,7 +37,7 @@ export const useCardSelection = (): CardSelectionResult => {
   };
 
   const isSelectable = (value: NFTCard): boolean => {
-    return value.pixelRankVisible !== true && (value?.pixelRankBucket ?? 0) > MAX_PIXELRANKBUCKET_PUBLICLY_VISIBLE;
+    return value.pixelRankVisible !== true;
   };
 
   const removeFromSelection = (value: NFTCard) => {
