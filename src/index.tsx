@@ -70,7 +70,9 @@ root.render(
     <AppContextProvider>
       <SecurityContextProvider>
         <DashboardContextProvider>
-          <AppRoutes />
+          <div className="dark">
+            <AppRoutes />
+          </div>
         </DashboardContextProvider>
       </SecurityContextProvider>
     </AppContextProvider>

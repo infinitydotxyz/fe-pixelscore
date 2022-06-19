@@ -1,9 +1,12 @@
+const theme = require('./tailwind.theme.js');
+
 module.exports = {
   content: [
     './src/**/*.{html,js,ts,jsx,tsx}',
     './node_modules/flowbite/**/*.js',
     './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       keyframes: {
@@ -18,7 +21,8 @@ module.exports = {
       animation: {
         wiggle: 'wiggle 200ms ease-in-out',
         redglow: 'redglow 300ms ease-in-out'
-      }
+      },
+      ...theme
     }
   },
   plugins: [require('flowbite/plugin')]

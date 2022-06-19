@@ -27,5 +27,5 @@ module.exports = {
     curly: 1,
     eqeqeq: 1
   },
-  ignorePatterns: ['.eslintrc.js', '*.config.js', 'config*', 'build/**', 'node_modules/**']
+  ignorePatterns: ['.eslintrc.js', '*.config.js', '*.theme.js', 'config*', 'build/**', 'node_modules/**']
 };

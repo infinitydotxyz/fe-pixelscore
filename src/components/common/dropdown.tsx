@@ -1,4 +1,5 @@
 import { Menu } from '@headlessui/react';
+import classNames from 'classnames';
 import { ReactElement } from 'react';
 import { BiCaretDown } from 'react-icons/bi';
 import { twMerge } from 'tailwind-merge';
@@ -14,10 +15,20 @@ interface DropdownProps {
   items: DropdownItems[];
   toggler?: ReactElement; // custom toggler element.
   contentClassName?: string; // className for the dropdown content panel.
+  itemListClassName?: string;
+  itemClassName?: string;
   className?: string;
 }
 
-export const Dropdown = ({ label, items, toggler, contentClassName, className }: DropdownProps) => {
+export const Dropdown = ({
+  label,
+  items,
+  toggler,
+  contentClassName,
+  itemListClassName = '',
+  itemClassName = '',
+  className
+}: DropdownProps) => {
   return (
     <div className={twMerge(`relative inline-block text-left ${className ?? ''}`)}>
       <Menu>
@@ -28,9 +39,9 @@ export const Dropdown = ({ label, items, toggler, contentClassName, className }:
             <Menu.Button
               className={twMerge(
                 inputBorderColor,
-                'transition ease-in-out duration-300 hover:border-black bg-white active:bg-gray-900',
+                'transition ease-in-out duration-300 hover:border-black dark:hover:border-dark-text bg-white dark:bg-dark-bg active:bg-gray-900 hover:bg-light-gray-200 dark:hover:bg-dark-gray-100',
                 'focus:outline-none focus-visible:ring focus:ring-black focus:ring-opacity-50',
-                'px-6 py-2.5 border rounded-3xl text-gray-900 font-heading flex items-center space-x-1'
+                'px-6 py-2.5 border rounded-3xl text-gray-900 dark:text-dark-text font-heading flex items-center space-x-1'
               )}
             >
               <div className="whitespace-nowrap">{label}</div>
@@ -42,13 +53,15 @@ export const Dropdown = ({ label, items, toggler, contentClassName, className }:
         <Menu.Items
           className={twMerge(
             `absolute mt-2 p-4 w-56 origin-top-right divide-y divide-gray-100 rounded-3xl z-50
-            border border-gray-200 bg-white shadow-2xl outline-none ${contentClassName ?? ''}`
+            border border-gray-200 bg-white dark:bg-dark-bg shadow-2xl dark:text-dark-text outline-none ${
+              contentClassName ?? ''
+            }`
           )}
         >
-          <div className="py-1">
+          <div className={`py-1 ${itemListClassName}`}>
             {items.map((item, idx) => {
               return (
-                <CustomMenuItem key={idx} onClick={item.onClick}>
+                <CustomMenuItem key={idx} onClick={item.onClick} itemclassname={itemClassName}>
                   {item.label}
                 </CustomMenuItem>
               );
@@ -63,6 +76,7 @@ export const Dropdown = ({ label, items, toggler, contentClassName, className }:
 interface CustomMenuItemProps {
   onClick: () => void;
   children: ReactElement | string;
+  itemclassname?: string;
 }
 export const CustomMenuItem = (props: CustomMenuItemProps) => {
   return (
@@ -72,11 +86,14 @@ export const CustomMenuItem = (props: CustomMenuItemProps) => {
           href="#"
           className={twMerge(
             'flex w-full justify-between px-4 py-4 text-left leading-5 font-heading ',
-            active ? 'bg-black text-white' : 'text-gray-700',
-            disabled && 'cursor-not-allowed opacity-50'
+            active
+              ? 'hover:bg-light-gray-100 dark:hover:bg-dark-gray-100 rounded-xl dark:text-dark-text'
+              : 'text-gray-700 dark:text-dark-text',
+            disabled && 'cursor-not-allowed opacity-50',
+            props.itemclassname
           )}
         >
-          <span className={twMerge(active && 'font-bold')}>{props.children}</span>
+          <span className={classNames(active)}>{props.children}</span>
           {/* <kbd className={classNames('font-sans', active && 'text-indigo-50')}>⌘K</kbd> */}
         </a>
       )}
