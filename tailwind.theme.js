@@ -3,11 +3,12 @@ const colors = require('tailwindcss/colors');
 module.exports = {
   colors: {
     dark: {
-      bg: '#333333',
+      bg: '#151515',
       text: '#EEEEEE',
       disabled: '#555555',
-      border: '#000',
-      card: '#444',
+      border: '#555',
+      card: '#333',
+      navbar: '#111',
       gray: {
         100: '#555',
         200: '#666',
