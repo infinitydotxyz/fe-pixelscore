@@ -1,4 +1,4 @@
-import { ConnectButton, NextLink, RoundButton, Spacer, SVG, ToggleTab, useToggleTab } from 'components/common';
+import { ConnectButton, NextLink, RoundButton, Spacer, SVG, ToggleTabAlt, useToggleTab } from 'components/common';
 import { inputBorderColor, largeIconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -30,7 +30,7 @@ export const AstraNavbar = () => {
 
   const tabBar = (
     <div className={twMerge(inputBorderColor, 'flex justify-center')}>
-      <ToggleTab
+      <ToggleTabAlt
         options={options}
         selected={selected}
         onChange={(value) => {
