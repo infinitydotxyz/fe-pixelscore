@@ -19,7 +19,7 @@ export const ErrorOrLoading = ({ error, noData }: Props2) => {
   }
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full dark:text-dark-text">
       <CenteredContent>{contents}</CenteredContent>
     </div>
   );

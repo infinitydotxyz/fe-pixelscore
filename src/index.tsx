@@ -71,7 +71,9 @@ root.render(
       <SecurityContextProvider>
         <DashboardContextProvider>
           <div className="dark">
-            <AppRoutes />
+            <div className="dark:bg-dark-bg">
+              <AppRoutes />
+            </div>
           </div>
         </DashboardContextProvider>
       </SecurityContextProvider>

@@ -6,6 +6,8 @@ module.exports = {
       bg: '#333333',
       text: '#EEEEEE',
       disabled: '#555555',
+      border: '#000',
+      card: '#444',
       gray: {
         100: '#555',
         200: '#666',
@@ -16,6 +18,8 @@ module.exports = {
       bg: '#FFFFFF',
       text: '#000000',
       disabled: '#555555',
+      card: '#FFFFFF',
+      border: '#aaa',
       gray: {
         100: '#F0F0F0',
         200: '#DEDEDE',
