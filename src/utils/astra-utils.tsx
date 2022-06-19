@@ -72,7 +72,7 @@ export const fetchCollections = async (query: string, cursor?: string): Promise<
 // ======================================================
 
 export const userNftsToCardData = (tokens: UserNft[]): NFTCard[] => {
-  const cardData = tokens.map((token) => {
+  let cardData = tokens.map((token) => {
     const result: NFTCard = {
       id: uuidv4(),
       name: token.metadata?.name,
@@ -100,14 +100,14 @@ export const userNftsToCardData = (tokens: UserNft[]): NFTCard[] => {
     return result;
   });
 
-  // remove any without tokenAddress (seeing bad NFTs in my profile)
-  // cardData = cardData.filter((x) => x.tokenAddress);
+  // remove any tokens without image (this happens for tokens where we have only the owner info from the blockchain listener)
+  cardData = cardData.filter((x) => x.image);
 
   return cardData;
 };
 
 export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
-  const cardData = tokens.map((token) => {
+  let cardData = tokens.map((token) => {
     const result: NFTCard = {
       id: uuidv4(),
       collectionName: token.collectionName,
@@ -138,8 +138,8 @@ export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
     return result;
   });
 
-  // remove any without tokenAddress (seeing bad NFTs in my profile)
-  // cardData = cardData.filter((x) => x.tokenAddress);
+  // remove any tokens without image (this happens for tokens where we have only the owner info from the blockchain listener)
+  cardData = cardData.filter((x) => x.image);
 
   return cardData;
 };
