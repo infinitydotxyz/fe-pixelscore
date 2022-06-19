@@ -66,3 +66,21 @@ mynfts under connect
 
 mynfts use header, say "no ranked nfts in your portfolio" portfolio score.
 some of your nfts are 10, or 9
+
+info dialog? anything in there?
+
+toast remove toast from useCardSelection
+
+removeRankInfo
+
+tokenInfo to carddata
+
+ownerfield
+
+homepage, responsive
+
+select collection change url
+
+dark mode
+
+connect button menu copy infinity

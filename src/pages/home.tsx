@@ -1,4 +1,4 @@
-import { LargeButton, LargeButtonNoClick, NextLink, PageBox, RoundButton, SVG } from 'components/common';
+import { LargeButton, NextLink, PageBox, RoundButton, SVG } from 'components/common';
 import { useNavigate } from 'react-router-dom';
 import { CardAnimation } from 'components/astra/card_animation/card_animation';
 import { iconButtonStyle } from 'utils/ui-constants';
@@ -27,11 +27,7 @@ export const HomePage = () => {
               <div className="mt-16">
                 <div className="space-x-14 ">
                   <LargeButton onClick={() => navigate('app')}>Rankings</LargeButton>
-                  <LargeButtonNoClick>
-                    <a href="/paper.pdf" target="_blank">
-                      Paper
-                    </a>
-                  </LargeButtonNoClick>
+                  <LargeButton onClick={() => navigate('paper')}>Paper</LargeButton>
                 </div>
               </div>
             </div>

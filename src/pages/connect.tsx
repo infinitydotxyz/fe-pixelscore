@@ -42,7 +42,7 @@ export const ConnectPage = () => {
   };
 
   return (
-    <PageBox extraScrollHeight={false} className="grid place-content-center">
+    <PageBox extraScrollHeight={false} pageClass="min-h-screen" className="grid place-content-center">
       <div className="flex flex-col gap-2 items-center">
         <div className="drop-shadow-2xl bg-white rounded-3xl flex flex-col items-center mx-0 my-4 p-8">
           <SVG.miniLogo className="h-16 w-16" />
