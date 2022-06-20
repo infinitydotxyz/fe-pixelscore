@@ -44,7 +44,7 @@ export const ConnectPage = () => {
   return (
     <PageBox extraScrollHeight={false} pageClass="min-h-screen" className="grid place-content-center">
       <div className="flex flex-col gap-2 items-center">
-        <div className="shadow-dark-blue shadow-sm border-dark-pink border-t border-b border-l border-r rounded-3xl flex flex-col items-center mx-0 my-4 p-8 text-dark-body">
+        <div className="shadow-dark-blue shadow-sm border-dark-pink border-t border-b border-l border-r rounded-3xl flex flex-col items-center mx-0 my-4 px-12 py-8 text-dark-body">
           <div className="text-center mt-2 mb-6 text-xl font-bold">Connect Wallet</div>
 
           <ConnectItem
@@ -84,7 +84,7 @@ interface Props {
 const ConnectItem = ({ title, icon, subtitle, onClick }: Props): JSX.Element => {
   return (
     <div
-      className="rounded-lg border-solid border cursor-pointer flex items-center mb-2 p-5 w-full hover:opacity-75"
+      className="rounded-lg border cursor-pointer flex items-center mb-4 px-5 py-3 w-full hover:opacity-75 dark:border-dark-border"
       onClick={onClick}
     >
       {icon}
@@ -92,7 +92,7 @@ const ConnectItem = ({ title, icon, subtitle, onClick }: Props): JSX.Element => 
         <p className="text-lg font-bold">{title}</p>
         <p className="text-gray">{subtitle}</p>
       </div>
-      <SVG.arrowImage className={twMerge(iconButtonStyle, 'ml-auto')} />
+      <SVG.arrowImage className={twMerge(iconButtonStyle, 'ml-auto dark:text-dark-body')} />
     </div>
   );
 };
