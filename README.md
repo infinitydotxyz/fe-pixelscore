@@ -8,5 +8,4 @@ TODO:
 6. Pending items is only showing 1 item even when multiple items exists in one order - bug Adi
 7. mynfts use header, say "no ranked nfts in your portfolio" portfolio score.
 8. password box should not appear on home screen
-
-select collection change url
+9. select collection change url

@@ -1,8 +1,19 @@
 import { SVG, TextInputBox } from 'components/common';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSecurityContext } from 'utils/context/SecurityContext';
 
 export const PasswordPage = () => {
-  const { password, setPassword } = useSecurityContext();
+  const { password, setPassword, allowed, ready } = useSecurityContext();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (allowed && ready) {
+      // not sure why, but 'all' didn't work here
+      navigate('/app/all');
+    }
+  }, [allowed, ready]);
 
   return (
     <div className="w-[100vw] h-[100vh] overflow-hidden grid place-content-center">

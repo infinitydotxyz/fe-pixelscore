@@ -5,23 +5,11 @@ import { GalleryAnimation } from 'components/home/card_animation/gallery-animati
 import { FAQ } from 'components/home/faq';
 import { WhatIsPr } from 'components/home/what-is-pr';
 import { HomeHeader } from 'components/home/home-header';
-import { useEffect, useState } from 'react';
-import { useResizeDetector } from 'react-resize-detector';
 
 export const HomePage = () => {
-  const [sliderWidth, setSliderWidth] = useState(0);
-
-  const { width, ref } = useResizeDetector();
-
-  console.log(sliderWidth);
-
-  useEffect(() => {
-    setSliderWidth(ref.current ? ref.current.offsetWidth : 0);
-  }, [width]);
-
   return (
     <PageBox footer={<Footer />} className="mr-0" customHeader={<></>}>
-      <div ref={ref} className="max-w-screen-2xl" />
+      <div className="max-w-screen-2xl" />
 
       <main className="max-w-screen-2xl mx-auto ">
         <HomeHeader />
