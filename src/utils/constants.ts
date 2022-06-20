@@ -1,5 +1,5 @@
-export const API_BASE = 'http://localhost:9090';
-export const SITE_HOST = 'http://localhost:3000';
+export const API_BASE = 'https://sv.pixelrank.xyz';
+export const SITE_HOST = 'https://pixelrank.xyz';
 
 // not sure why there are two of these.
 export const ITEMS_PER_PAGE = 10;
