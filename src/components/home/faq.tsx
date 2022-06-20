@@ -27,7 +27,7 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <div className="flex dark:text-dark-body text-6xl space-x-20">
+    <div className="flex flex-col dark:text-dark-body text-6xl gap-20 lg:flex-row">
       <div className="  ">
         Frequently
         <br />
@@ -45,7 +45,7 @@ export const FAQ = () => {
           >
             {({ open }) => (
               <>
-                <dt className=" ">
+                <dt className="">
                   <Disclosure.Button className="text-left p-10 w-full flex justify-between items-start text-blue-600">
                     <span className="font-medium text-3xl dark:text-dark-body">{faq.question}</span>
                     <span className="ml-6 h-7 flex items-center">
