@@ -14,6 +14,7 @@ TODO:
 21. Pending items is only showing 1 item even when multiple items exists in one order - bug Adi
 22. mynfts use header, say "no ranked nfts in your portfolio" portfolio score.
 23. password box should not appear on home screen
+24. center the dashboard menu items
 
 toast remove toast from useCardSelection
 
