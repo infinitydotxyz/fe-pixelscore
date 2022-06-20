@@ -3,15 +3,13 @@ import { twMerge } from 'tailwind-merge';
 import { AstraNavTab } from '../astra-navbar';
 import { useDashboardContext } from 'utils/context/DashboardContext';
 import { Spacer } from 'components/common';
-import { useState } from 'react';
 
 interface Props {
   route: AstraNavTab;
 }
 
 export const GridHeader = ({ route }: Props) => {
-  const { numTokens, userRecord } = useDashboardContext();
-  const [checked, setChecked] = useState<boolean>(false);
+  const { numTokens, userRecord, setShowUnrevealed, showUnrevealed } = useDashboardContext();
 
   let name = '';
   let scoreText = '';
@@ -59,8 +57,8 @@ export const GridHeader = ({ route }: Props) => {
       <>
         <div className="flex items-center ml-8 mt-4">
           <input
-            checked={checked}
-            onChange={(e) => setChecked(e.target.checked)}
+            checked={showUnrevealed}
+            onChange={(e) => setShowUnrevealed(e.target.checked)}
             id="checkbox"
             type="checkbox"
             className={twMerge(

@@ -26,6 +26,9 @@ export type DashboardContextType = {
   showCart: boolean;
   setShowCart: (value: boolean) => void;
 
+  showUnrevealed: boolean;
+  setShowUnrevealed: (value: boolean) => void;
+
   numTokens: number;
   setNumTokens: (value: number) => void;
 
@@ -60,6 +63,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const [collection, setCollection] = useState<CollectionInfo>();
   const [chainId, setChainId] = useState<string>();
   const [showCart, setShowCart] = useState(false);
+  const [showUnrevealed, setShowUnrevealed] = useState(false);
   const [numTokens, setNumTokens] = useState(0);
   const [tokenFetcher, setTokenFetcher] = useState<TokenFetcher | undefined>();
   const [orderFetcher, setOrderFetcher] = useState<RevealOrderFetcher | undefined>();
@@ -180,6 +184,9 @@ export const DashboardContextProvider = ({ children }: Props) => {
 
     numTokens,
     setNumTokens,
+
+    showUnrevealed,
+    setShowUnrevealed,
 
     tokenFetcher,
     setTokenFetcher,
