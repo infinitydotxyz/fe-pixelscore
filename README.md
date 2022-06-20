@@ -8,5 +8,4 @@ TODO:
 6. Pending items is only showing 1 item even when multiple items exists in one order - bug Adi
 7. mynfts use header, say "no ranked nfts in your portfolio" portfolio score.
 8. select collection change url
-9. On the pending tab cards, right arrow is skipping the last item; if there are 4 items, it goes 1/4,2/4, 3/4 and to 1/4 skipping 4/4. Left arrow works.
-10. Text on navbar looks small on mobile - not a big deal though
+9. Text on navbar looks small on mobile - not a big deal though (looks small on desktop too on linux at least)
