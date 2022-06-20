@@ -9,7 +9,7 @@ import { ConnectPage } from 'pages/connect';
 import { HomePage } from 'pages/home';
 import { PaperPage } from 'pages/paper';
 import { PasswordPage } from 'pages/password';
-import { SandboxPage } from 'pages/sandbox';
+// import { SandboxPage } from 'pages/sandbox';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
@@ -32,7 +32,7 @@ const AppRoutes = () => {
           <Route index element={<HomePage />} />
           <Route path="home" element={<HomePage />} />
           <Route path="connect" element={<ConnectPage />} />
-          <Route path="sandbox" element={<SandboxPage />} />
+          {/* <Route path="sandbox" element={<SandboxPage />} /> */}
           <Route path="paper" element={<PaperPage />} />
           <Route path="app" element={<DashboardPage />}>
             <Route index element={<DashboardAll />} />
