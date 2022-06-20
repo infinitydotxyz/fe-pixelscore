@@ -11,7 +11,7 @@ interface Props {
   speed?: number;
 }
 
-export const GalleryAnimation = ({ rtl = false, speed = 1000 }: Props) => {
+export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
   const [slider, setSlider] = useState<Slider | null>();
 
   const settings: Settings = {
