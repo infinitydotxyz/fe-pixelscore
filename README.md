@@ -13,6 +13,7 @@ TODO:
 20. Token id bubble on revealed cards, should be replaced with PRB; PRB should use the tooltip correctly
 21. Pending items is only showing 1 item even when multiple items exists in one order - bug Adi
 22. mynfts use header, say "no ranked nfts in your portfolio" portfolio score.
+23. password box should not appear on home screen
 
 toast remove toast from useCardSelection
 
