@@ -32,7 +32,7 @@ export const SecurityContextProvider = ({ children }: Props) => {
   const [didReadPassword, setDidReadPassword] = useState<boolean>(false);
 
   useEffect(() => {
-    if (password === 'gmwagmi') {
+    if (password.toLowerCase() === 'gmwagmi') {
       savePassword(password);
       setAllowed(true);
     }

@@ -139,6 +139,6 @@ export interface NftsQuery {
   cursor?: string;
   minRank?: number;
   maxRank?: number;
-  showOnlyVisible?: true;
-  showOnlyUnvisible?: true;
+  showOnlyVisible?: boolean;
+  showOnlyUnvisible?: boolean;
 }
