@@ -91,15 +91,15 @@ export class CollectionTokenCache {
     this.cache = new Map<string, TokenFetcher>();
   };
 
-  fetcher(collection: CollectionInfo, chainId: string): TokenFetcher {
-    const key = `${collection.address}:${chainId}`;
+  fetcher(collection: CollectionInfo, chainId: string, showOnlyUnvisible: boolean): TokenFetcher {
+    const key = `${collection.address}:${chainId}:${showOnlyUnvisible}`;
     const cached = this.cache.get(key);
 
     if (cached) {
       return cached;
     }
 
-    const result = new CollectionTokenFetcher(collection, chainId);
+    const result = new CollectionTokenFetcher(collection, chainId, showOnlyUnvisible);
     this.cache.set(key, result);
 
     return result;
@@ -111,12 +111,14 @@ export class CollectionTokenCache {
 class CollectionTokenFetcher extends TokenFetcher {
   private collection: CollectionInfo;
   private chainId: string;
+  private showOnlyUnvisible: boolean;
 
-  constructor(collection: CollectionInfo, chainId: string) {
+  constructor(collection: CollectionInfo, chainId: string, showOnlyUnvisible: boolean) {
     super();
 
     this.collection = collection;
     this.chainId = chainId;
+    this.showOnlyUnvisible = showOnlyUnvisible;
 
     // not sure if this is needed now days
     this.collectionName = collection.name ?? '';
@@ -124,7 +126,7 @@ class CollectionTokenFetcher extends TokenFetcher {
 
   // override
   protected doFetch = async (): Promise<ApiResponse> => {
-    return await fetchTokens(this.collection.address, this.chainId, this.cursor);
+    return await fetchTokens(this.collection.address, this.chainId, this.cursor, this.showOnlyUnvisible);
   };
 }
 
@@ -210,15 +212,15 @@ export class RankTokenCache {
     this.cache = new Map<string, TokenFetcher>();
   };
 
-  fetcher(minRank: number, maxRank: number): TokenFetcher {
-    const key = `${minRank}:${maxRank}`;
+  fetcher(minRank: number, maxRank: number, showOnlyUnvisible: boolean): TokenFetcher {
+    const key = `${minRank}:${maxRank}:${showOnlyUnvisible}`;
     const cached = this.cache.get(key);
 
     if (cached) {
       return cached;
     }
 
-    const result = new RankTokenFetcher(minRank, maxRank);
+    const result = new RankTokenFetcher(minRank, maxRank, showOnlyUnvisible);
     this.cache.set(key, result);
 
     return result;
@@ -230,18 +232,20 @@ export class RankTokenCache {
 class RankTokenFetcher extends TokenFetcher {
   private minRank: number;
   private maxRank: number;
+  private showOnlyUnvisible: boolean;
 
-  constructor(minRank: number, maxRank: number) {
+  constructor(minRank: number, maxRank: number, showOnlyUnvisible: boolean) {
     super();
 
     this.minRank = minRank;
     this.maxRank = maxRank;
+    this.showOnlyUnvisible = showOnlyUnvisible;
 
     this.collectionName = '';
   }
 
   // override
   protected doFetch = async (): Promise<ApiResponse> => {
-    return await fetchTokensByRank(this.minRank, this.maxRank, this.cursor);
+    return await fetchTokensByRank(this.minRank, this.maxRank, this.cursor, this.showOnlyUnvisible);
   };
 }
