@@ -2,7 +2,7 @@ import { inputBorderColor } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { AstraNavTab } from '../astra-navbar';
 import { useDashboardContext } from 'utils/context/DashboardContext';
-import { Checkbox, Spacer } from 'components/common';
+import { Spacer } from 'components/common';
 import { useState } from 'react';
 
 interface Props {
@@ -56,16 +56,23 @@ export const GridHeader = ({ route }: Props) => {
 
   if (showCheckbox) {
     return (
-      <div className="flex flex-col items-start">
-        <Checkbox
-          label="Checkbox on Right"
-          boxOnLeft={false}
-          checked={checked}
-          onChange={(isChecked) => {
-            setChecked(isChecked);
-          }}
-        />{' '}
-      </div>
+      <>
+        <div className="flex items-center ml-8 mt-4">
+          <input
+            checked={checked}
+            onChange={(e) => setChecked(e.target.checked)}
+            id="checkbox"
+            type="checkbox"
+            className={twMerge(
+              'w-6 h-6 focus-visible:ring focus:ring-0 text-gray-600  rounded',
+              '  dark:ring-offset-dark-bg   dark:bg-gray-600 dark:dark-blue'
+            )}
+          />
+          <label htmlFor="checkbox" className="ml-4 text-lg font-medium text-gray-900 dark:text-dark-body">
+            Show Unrevealed
+          </label>
+        </div>
+      </>
     );
   }
 

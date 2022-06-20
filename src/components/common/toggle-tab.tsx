@@ -64,7 +64,7 @@ export const ToggleTab = ({
 export const ToggleTabAlt = ({ options, onChange, selected, className = '', equalWidths = true }: Props) => {
   return (
     <div className={`flex ${className}`}>
-      <div className={twMerge('cursor-pointer flex gap-1 rounded-full items-center')}>
+      <div className={twMerge('cursor-pointer space-x-8 flex gap-1 rounded-full items-center')}>
         {options.map((option: string) => {
           return (
             <div
@@ -72,8 +72,8 @@ export const ToggleTabAlt = ({ options, onChange, selected, className = '', equa
               className={twMerge(
                 equalWidths ? 'min-w-[130px]' : '',
                 'flex select-none items-center justify-center text-center whitespace-nowrap rounded-full',
-                selected === option ? 'dark:text-dark-pink' : 'dark:text-dark-blue',
-                'mx-4 text-md'
+                selected === option ? 'dark:text-dark-pink font-bold' : 'dark:text-dark-blue',
+                '  text-md'
               )}
               onClick={() => onChange(option)}
             >
