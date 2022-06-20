@@ -29,8 +29,14 @@ export const AstraNavbar = () => {
   }, [location]);
 
   const tabBar = (
-    <div className={twMerge(inputBorderColor, 'absolute top-0 left-0 right-0 bottom-0 flex justify-center')}>
+    <div
+      className={twMerge(
+        inputBorderColor,
+        'absolute pointer-events-none top-0 left-0 right-0 bottom-0 flex justify-center'
+      )}
+    >
       <ToggleTabAlt
+        className="pointer-events-auto"
         options={options}
         selected={selected}
         onChange={(value) => {

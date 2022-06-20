@@ -17,7 +17,7 @@ export const CurrencyInput = ({ value, label, placeholder, onChange, autoFocus =
   return (
     <InputBox>
       <div className="flex-1">
-        <label className="block text-xs font-medium text-theme-light-800">{label}</label>
+        <label className="block text-xs font-medium dark:text-dark-body">{label}</label>
         <div className="flex">
           <div className="pr-2">{EthSymbol}</div>
           <input

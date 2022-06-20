@@ -38,6 +38,7 @@ export const DashboardBase = ({ route }: Props) => {
   switch (route) {
     case AstraNavTab.All:
       emptyMessage = 'Select a Collection';
+      showHeader = true;
       break;
     case AstraNavTab.Portfolio:
       showHeader = true;
@@ -56,6 +57,7 @@ export const DashboardBase = ({ route }: Props) => {
       }
       break;
     case AstraNavTab.Top5:
+      showHeader = true;
       emptyMessage = route;
       break;
   }
@@ -63,7 +65,7 @@ export const DashboardBase = ({ route }: Props) => {
   if (tokenFetcher && route !== AstraNavTab.Pending && route !== AstraNavTab.Revealed) {
     tokensGrid = (
       <div className="flex flex-col h-full w-full">
-        {showHeader && <GridHeader route={route} vertical={false} />}
+        {showHeader && <GridHeader route={route} />}
         <TokensGrid
           tokenFetcher={tokenFetcher}
           className="px-8 py-6"

@@ -1,14 +1,79 @@
 import { inputBorderColor } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
-import { BGImage, ReadMoreText, Spacer } from 'components/common';
 import { AstraNavTab } from '../astra-navbar';
 import { useDashboardContext } from 'utils/context/DashboardContext';
-import { BlueCheckBadge } from 'components/token-grid/pill-badge';
+import { Checkbox, Spacer } from 'components/common';
+import { useState } from 'react';
 
 interface Props {
   route: AstraNavTab;
-  vertical: boolean;
 }
+
+export const GridHeader = ({ route }: Props) => {
+  const { numTokens, userRecord } = useDashboardContext();
+  const [checked, setChecked] = useState<boolean>(false);
+
+  let name = '';
+  let scoreText = '';
+  let showCheckbox = false;
+
+  switch (route) {
+    case AstraNavTab.All:
+    case AstraNavTab.Top5:
+      showCheckbox = true;
+      break;
+    case AstraNavTab.Pending:
+    case AstraNavTab.Revealed:
+      break;
+    case AstraNavTab.Portfolio:
+      name = route;
+      if (userRecord && userRecord.portfolioScore !== -1) {
+        scoreText = `Portfolio Score: ${userRecord.portfolioScore}`;
+      }
+      break;
+  }
+
+  if (route === AstraNavTab.Portfolio) {
+    return (
+      <div
+        className={twMerge(
+          inputBorderColor,
+          'flex items-center bg-gray-100 dark:bg-dark-card border-b px-8 py-3 dark:text-dark-body'
+        )}
+      >
+        <div className="flex flex-col items-start">
+          <div className="tracking-tight font-bold text-xl text-center">{name}</div>
+        </div>
+        <Spacer />
+        <div className="flex flex-col items-end">
+          <div className="text-lg whitespace-nowrap ml-3">{numTokens} Nfts</div>
+
+          {scoreText && <div className="text-lg whitespace-nowrap ml-3">{scoreText}</div>}
+        </div>
+      </div>
+    );
+  }
+
+  if (showCheckbox) {
+    return (
+      <div className="flex flex-col items-start">
+        <Checkbox
+          label="Checkbox on Right"
+          boxOnLeft={false}
+          checked={checked}
+          onChange={(isChecked) => {
+            setChecked(isChecked);
+          }}
+        />{' '}
+      </div>
+    );
+  }
+
+  return <></>;
+};
+
+/* 
+
 
 export const GridHeader = ({ route, vertical }: Props) => {
   const { numTokens, userRecord, collection } = useDashboardContext();
@@ -58,7 +123,7 @@ export const GridHeader = ({ route, vertical }: Props) => {
             </div>
           )}
 
-          <div className="my-2 tracking-tight text-theme-light-800 font-bold text-xl text-center">{name}</div>
+          <div className="my-2 tracking-tight font-bold text-xl text-center">{name}</div>
 
           <div className="flex flex-col items-start">
             <div className="max-w-3xl">
@@ -77,7 +142,7 @@ export const GridHeader = ({ route, vertical }: Props) => {
       return (
         <div className={twMerge(inputBorderColor, 'flex-col items-center bg-gray-100 border-b px-8 py-3')}>
           <div className="flex flex-col items-start">
-            <div className="tracking-tight text-theme-light-800 font-bold text-xl text-center">{name}</div>
+            <div className="tracking-tight font-bold text-xl text-center">{name}</div>
             <div className="max-w-3xl">
               <ReadMoreText text={description} min={50} ideal={160} max={10000} />
             </div>
@@ -106,7 +171,7 @@ export const GridHeader = ({ route, vertical }: Props) => {
           )}
 
           <div className="flex flex-col items-start">
-            <div className="tracking-tight text-theme-light-800 font-bold text-xl text-center">{name}</div>
+            <div className="tracking-tight font-bold text-xl text-center">{name}</div>
             <div className="max-w-2xl">
               <ReadMoreText text={description} min={50} ideal={160} max={10000} />
             </div>
@@ -124,3 +189,6 @@ export const GridHeader = ({ route, vertical }: Props) => {
 
   return <></>;
 };
+
+
+      */
