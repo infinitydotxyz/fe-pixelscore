@@ -173,6 +173,8 @@ export const SandboxPage = () => {
         <SVGPreview svg={<SVG.walletconnect className={iconClass} />} name="walletconnect" />
         <SVGPreview svg={<SVG.walletconnectAlt className={iconClass} />} name="walletconnectAlt" />
         <SVGPreview svg={<SVG.arrowImage className={iconClass} />} name="arrowImage" />
+        <SVGPreview svg={<SVG.rightArrow className={iconClass} />} name="rightArrow" />
+        <SVGPreview svg={<SVG.leftArrow className={iconClass} />} name="rightArrow" />
         <SVGPreview
           svg={
             <SVG.spinner className={twMerge(iconClass, 'text-gray-200 animate-spin dark:text-gray-600 fill-black')} />

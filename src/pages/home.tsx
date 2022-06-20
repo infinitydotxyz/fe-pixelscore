@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { CardAnimation } from 'components/astra/card_animation/card_animation';
 import { iconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
+import { GalleryAnimation } from 'components/astra/card_animation/gallery-animation';
+import { FAQ } from 'components/astra/faq';
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -38,49 +40,10 @@ export const HomePage = () => {
           </div>
         </div>
 
-        <div className="mt-24">
-          <div className="block text-dark-scarlet font-bold text-7xl">What is Pixelrank?</div>
-          <div className="mt-6 max-w-xlg text-2xl text-dark-body">
-            Pixelrank is a novel method for estimating the global rarity of NFTs. It ranks NFTs by calculating how rare
-            an NFT's pixels are compared to all NFTs in existence.
-          </div>
-          <div className="mt-28 flex flex-wrap items-start gap-16">
-            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-dark-body ">
-              Ranking based on our unbiased PixelScore algorithm. See our methodology{' '}
-              <a href="/paper.pdf" target="_blank" className="underline">
-                here
-              </a>
-            </div>
-            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-dark-body ">
-              About 55,000 collections analyzed and 10M NFTs ranked. All but the top 5% NFTs are revealed by default.
-            </div>
-            <div className=" border-4 rounded-3xl p-40 border-pink-500  text-dark-body bg-opacity-25 bg-pink-400">
-              Global and within collection rank for each NFT. Portfolio score for NFTs owned by you.
-            </div>
-            <div className=" border-4 rounded-3xl p-40 border-fuchsia-300  text-dark-body bg-opacity-25 bg-pink-400">
-              Upcoming, free to mint 10k collection with global NFT ranks based on our PixelScore algorithm.
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-28">
-          <div className="block text-dark-body font-bold text-3xl">
-            NFT Gallery section from{' '}
-            <a href="https://nft-avatars.webflow.io/" className="underline">
-              {' '}
-              NFT Avatars
-            </a>
-          </div>
-        </div>
-
-        <div className="mt-28">
-          <div className="block text-dark-body font-bold text-3xl">
-            FAQ section from{' '}
-            <a href="https://nft-avatars.webflow.io/" className="underline">
-              {' '}
-              NFT Avatars
-            </a>
-          </div>
+        <div className="space-y-36">
+          <WhatIsPr />
+          <GalleryAnimation />
+          <FAQ />
         </div>
       </main>
     </PageBox>
@@ -218,6 +181,35 @@ export const HomeMenuButton = () => {
       >
         <SVG.hamburger className={twMerge('text-dark-body', iconButtonStyle)} />
       </RoundButton>
+    </div>
+  );
+};
+
+const WhatIsPr = () => {
+  return (
+    <div className="mt-24">
+      <div className="block text-dark-scarlet font-bold text-7xl">What is Pixelrank?</div>
+      <div className="mt-6 max-w-xlg text-2xl text-dark-body">
+        Pixelrank is a novel method for estimating the global rarity of NFTs. It ranks NFTs by calculating how rare an
+        NFT's pixels are compared to all NFTs in existence.
+      </div>
+      <div className="mt-28 flex flex-wrap items-start gap-16">
+        <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-dark-body ">
+          Ranking based on our unbiased PixelScore algorithm. See our methodology{' '}
+          <a href="/paper.pdf" target="_blank" className="underline">
+            here
+          </a>
+        </div>
+        <div className=" border-4 rounded-3xl p-40 border-fuchsia-300 bg-opacity-25 bg-pink-400 text-dark-body ">
+          About 55,000 collections analyzed and 10M NFTs ranked. All but the top 5% NFTs are revealed by default.
+        </div>
+        <div className=" border-4 rounded-3xl p-40 border-pink-500  text-dark-body bg-opacity-25 bg-pink-400">
+          Global and within collection rank for each NFT. Portfolio score for NFTs owned by you.
+        </div>
+        <div className=" border-4 rounded-3xl p-40 border-fuchsia-300  text-dark-body bg-opacity-25 bg-pink-400">
+          Upcoming, free to mint 10k collection with global NFT ranks based on our PixelScore algorithm.
+        </div>
+      </div>
     </div>
   );
 };
