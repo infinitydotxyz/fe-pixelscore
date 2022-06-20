@@ -15,9 +15,9 @@ const classes = {
   variant: {
     plain: '',
     ghost: 'rounded-full', // hover fill needs to be rounded
-    primary: 'border rounded-full border-gray-100 bg-black font-bold text-dark-body',
-    secondary: 'border rounded-full border-gray-100 bg-black  font-bold  text-dark-body',
-    outline: twMerge(inputBorderColor, 'border rounded-full font-bold  text-gray-900'),
+    primary: 'border rounded-full border-gray-100 bg-black font-bold dark:text-dark-body',
+    secondary: 'border rounded-full border-gray-100 bg-black  font-bold  dark:text-dark-body',
+    outline: twMerge(inputBorderColor, 'border rounded-full font-bold  text-gray-900 dark:text-dark-body'),
     round: 'rounded-full p-2' // use plain size
   }
 };
