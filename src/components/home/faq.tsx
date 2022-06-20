@@ -40,13 +40,13 @@ export const FAQ = () => {
           <Disclosure
             as="div"
             key={faq.question}
-            className=" bg-gray-100 bg-opacity-10  rounded-3xl border-2 hover:border-blue-600 border-transparent hover:bg-blue-600 hover:bg-opacity-10  "
+            className=" bg-gray-100 bg-opacity-10 rounded-3xl border-2 hover:border-blue-600 border-transparent hover:bg-blue-600 hover:bg-opacity-10  "
           >
             {({ open }) => (
               <>
                 <dt className="">
                   <Disclosure.Button className="text-left p-10 w-full flex justify-between items-start text-dark-blue">
-                    <span className="font-medium text-4xl lg:text-3xl dark:text-dark-body">{faq.question}</span>
+                    <span className="font-medium text-6xl lg:text-3xl dark:text-dark-body">{faq.question}</span>
                     <span className="ml-6 h-7 flex items-center">
                       <ChevronDownIcon
                         className={twMerge(open ? '-rotate-180' : 'rotate-0', 'h-10 w-10 transform ')}
@@ -56,7 +56,7 @@ export const FAQ = () => {
                   </Disclosure.Button>
                 </dt>
                 <Disclosure.Panel as="dd" className="p-10 pt-0 pr-12">
-                  <p className="text-3xl lg:text-2xl dark:text-dark-body">{faq.answer}</p>
+                  <p className="text-5xl lg:text-2xl dark:text-dark-body leading-normal">{faq.answer}</p>
                 </Disclosure.Panel>
               </>
             )}
