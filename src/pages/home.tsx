@@ -12,9 +12,9 @@ export const HomePage = () => {
       <main className=" max-w-screen-2xl mx-8 ">
         <div className="relative">
           <CardAnimation />
-          <div className="absolute bottom-0 top-0 left-0 w-full bg-gradient-to-r from-black" />
-          <div className="absolute bottom-0 right-0 left-0 h-96 bg-gradient-to-t from-black" />
-          <div className="absolute top-0 right-0 left-0 h-96 bg-gradient-to-b from-black" />
+          <div className="absolute bottom-0 top-0 left-0 w-full bg-gradient-to-r from-dark-bg" />
+          <div className="absolute bottom-0 right-0 left-0 h-96 bg-gradient-to-t from-dark-bg" />
+          <div className="absolute top-0 right-0 left-0 h-96 bg-gradient-to-b from-dark-bg" />
 
           <div className="absolute bottom-0 mt-44 top-0 left-0 right-0">
             {/* <HomePageLogo /> */}
