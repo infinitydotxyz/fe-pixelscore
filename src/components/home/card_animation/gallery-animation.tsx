@@ -45,7 +45,7 @@ export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
     ];
 
     const fcards = first.map((card) => {
-      return [<GallaryCard data={card} />];
+      return [<GalleryCard key={card} data={card} />];
     });
 
     const sec: string[] = [
@@ -60,10 +60,13 @@ export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
       'https://lh3.googleusercontent.com/Q47cZ2fW4dN5hkPY62r2zvnKSEkfQSOVtMG0Ckmime7QkNIMvDcnDdvRzRTId6hJsH-Owts4_YJNpTQzPol7D36y73ml3ERGT9Wn'
     ];
     const scards = sec.map((card) => {
-      return [<GallaryCard data={card} />];
+      return [<GalleryCard key={card} data={card} />];
     });
 
-    return [<GallaryCardRow>{fcards}</GallaryCardRow>, <GallaryCardRow>{scards}</GallaryCardRow>];
+    return [
+      <GalleryCardRow key={'gcr1'}>{fcards}</GalleryCardRow>,
+      <GalleryCardRow key={'gcr2'}>{scards}</GalleryCardRow>
+    ];
   };
 
   return (
@@ -90,7 +93,7 @@ interface Props2 {
   data: string;
 }
 
-export const GallaryCard = ({ data }: Props2): JSX.Element => {
+export const GalleryCard = ({ data }: Props2): JSX.Element => {
   return (
     <div className={twMerge('rounded-2xl overflow-clip aspect-square ')}>
       <BGImage src={data} className="hover:scale-110 transition-all" />
@@ -104,6 +107,6 @@ interface Props3 {
   children: ReactNode;
 }
 
-export const GallaryCardRow = ({ children }: Props3): JSX.Element => {
+export const GalleryCardRow = ({ children }: Props3): JSX.Element => {
   return <div className={twMerge('grid grid-cols-5 gap-4   ')}>{children}</div>;
 };

@@ -1,6 +1,6 @@
 import { BGImage } from '../common';
 import { TokenInfo } from 'utils/types/be-types';
-import { BlueCheckBadge, PillBadge } from 'components/token-grid/pill-badge';
+import { PillBadge } from 'components/token-grid/pill-badge';
 import { twMerge } from 'tailwind-merge';
 import { pixelRankBucketToolTip } from 'utils/astra-utils';
 
@@ -28,8 +28,6 @@ export const RevealedTokenImage = ({ token, className = 'flex-grow' }: Props) =>
           tooltip={pixelRankBucketToolTip(token.pixelRankBucket ?? 0)}
           className="top-2 right-2"
         />
-
-        <BlueCheckBadge val={token.hasBlueCheck} />
       </div>
     </div>
   );
