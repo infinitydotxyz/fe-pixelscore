@@ -1,14 +1,19 @@
 import { toastError, toastSuccess } from 'components/common';
 import { RevealOrderCache, RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
-import { CollectionTokenCache, TokenFetcher, UserTokenCache } from 'components/token-grid/token-fetcher';
-import React, { ReactNode, useContext, useState } from 'react';
+import {
+  CollectionTokenCache,
+  RankTokenCache,
+  TokenFetcher,
+  UserTokenCache
+} from 'components/token-grid/token-fetcher';
+import React, { ReactNode, useContext, useEffect, useState } from 'react';
 import { NFTCard, TokenInfo, UserRecord } from 'utils/types/be-types';
 import { utils } from 'ethers';
 import { useAppContext } from './AppContext';
 import { setReveals } from 'utils/astra-utils';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { CollectionInfo } from 'utils/types/collection-types';
-import { PIXELRANK_WALLET } from 'utils/constants';
+import { PIXELRANK_PRICE_PER_ITEM, PIXELRANK_WALLET } from 'utils/constants';
 
 export type DashboardContextType = {
   collection: CollectionInfo | undefined;
@@ -26,8 +31,8 @@ export type DashboardContextType = {
   showCart: boolean;
   setShowCart: (value: boolean) => void;
 
-  showUnrevealed: boolean;
-  setShowUnrevealed: (value: boolean) => void;
+  showOnlyUnvisible: boolean;
+  setShowOnlyUnvisible: (value: boolean) => void;
 
   numTokens: number;
   setNumTokens: (value: number) => void;
@@ -63,7 +68,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const [collection, setCollection] = useState<CollectionInfo>();
   const [chainId, setChainId] = useState<string>();
   const [showCart, setShowCart] = useState(false);
-  const [showUnrevealed, setShowUnrevealed] = useState(false);
+  const [showOnlyUnvisible, setShowOnlyUnvisible] = useState(false);
   const [numTokens, setNumTokens] = useState(0);
   const [tokenFetcher, setTokenFetcher] = useState<TokenFetcher | undefined>();
   const [orderFetcher, setOrderFetcher] = useState<RevealOrderFetcher | undefined>();
@@ -77,9 +82,9 @@ export const DashboardContextProvider = ({ children }: Props) => {
   const { isSelected, isSelectable, toggleSelection, clearSelection, selection, removeFromSelection } =
     useCardSelection();
 
-  // useEffect(() => {
-  //   setShowCart(selection.length > 0);
-  // }, [selection]);
+  useEffect(() => {
+    refreshData();
+  }, [showOnlyUnvisible]);
 
   const sendEth = async (userAddress: string, amountInEther: string): Promise<string | undefined> => {
     const receiverAddress = PIXELRANK_WALLET;
@@ -117,7 +122,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
 
   const handleCheckout = async (selection: NFTCard[]) => {
     if (user) {
-      const pricePerTokenInEther = 0.0001;
+      const pricePerTokenInEther = PIXELRANK_PRICE_PER_ITEM;
 
       const amountInEth = selection.length * pricePerTokenInEther;
       const txnHash = await sendEth(user?.address, amountInEth.toFixed(12).toString());
@@ -164,6 +169,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
     CollectionTokenCache.shared().refresh();
     UserTokenCache.shared().refresh();
     RevealOrderCache.shared().refresh();
+    RankTokenCache.shared().refresh();
 
     // updating fetchers triggers rebuild
     setRefreshTrigger(refreshTrigger + 1);
@@ -185,8 +191,8 @@ export const DashboardContextProvider = ({ children }: Props) => {
     numTokens,
     setNumTokens,
 
-    showUnrevealed,
-    setShowUnrevealed,
+    showOnlyUnvisible,
+    setShowOnlyUnvisible,
 
     tokenFetcher,
     setTokenFetcher,

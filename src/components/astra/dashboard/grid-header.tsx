@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const GridHeader = ({ route }: Props) => {
-  const { numTokens, userRecord, setShowUnrevealed, showUnrevealed } = useDashboardContext();
+  const { numTokens, userRecord, setShowOnlyUnvisible, showOnlyUnvisible } = useDashboardContext();
 
   let name = '';
   let scoreText = '';
@@ -57,8 +57,8 @@ export const GridHeader = ({ route }: Props) => {
       <>
         <div className="flex items-center ml-8 mt-4">
           <input
-            checked={showUnrevealed}
-            onChange={(e) => setShowUnrevealed(e.target.checked)}
+            checked={showOnlyUnvisible}
+            onChange={(e) => setShowOnlyUnvisible(e.target.checked)}
             id="checkbox"
             type="checkbox"
             className={twMerge(
@@ -66,7 +66,7 @@ export const GridHeader = ({ route }: Props) => {
               '  dark:ring-offset-dark-bg   dark:bg-gray-600 dark:dark-blue'
             )}
           />
-          <label htmlFor="checkbox" className="ml-4 text-lg font-medium text-gray-900 dark:text-dark-body">
+          <label htmlFor="checkbox" className="ml-4 text-xl lg:text-lg font-medium text-gray-900 dark:text-dark-body">
             Show Unrevealed
           </label>
         </div>

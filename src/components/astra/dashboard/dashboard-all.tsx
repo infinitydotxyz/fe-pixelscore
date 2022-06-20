@@ -5,11 +5,12 @@ import { AstraNavTab } from '../astra-navbar';
 import { DashboardBase } from './dashboard-base';
 
 export const DashboardAll = () => {
-  const { setTokenFetcher, collection, chainId, refreshTrigger, setDisplayName } = useDashboardContext();
+  const { setTokenFetcher, collection, chainId, refreshTrigger, setDisplayName, showOnlyUnvisible } =
+    useDashboardContext();
 
   useEffect(() => {
     if (collection && chainId) {
-      setTokenFetcher(CollectionTokenCache.shared().fetcher(collection, chainId));
+      setTokenFetcher(CollectionTokenCache.shared().fetcher(collection, chainId, showOnlyUnvisible));
 
       setDisplayName(collection?.name ?? '');
     }

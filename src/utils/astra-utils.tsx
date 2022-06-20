@@ -15,7 +15,8 @@ import { v4 as uuidv4 } from 'uuid';
 export const fetchTokens = async (
   collectionAddress: string,
   chainId: string,
-  cursor?: string
+  cursor?: string,
+  showOnlyUnvisible?: boolean
 ): Promise<ApiResponse> => {
   const query: NftsQuery = {
     limit: LARGE_LIMIT,
@@ -23,7 +24,8 @@ export const fetchTokens = async (
     minRank: 1,
     maxRank: 10,
     orderBy: NftsOrderBy.TokenId,
-    orderDirection: OrderDirection.Ascending
+    orderDirection: OrderDirection.Ascending,
+    showOnlyUnvisible: showOnlyUnvisible ?? false
   };
   const response = await httpGet(`/collections/${chainId}/${collectionAddress}/nfts`, query);
   return response;
@@ -31,14 +33,20 @@ export const fetchTokens = async (
 
 // ======================================================
 
-export const fetchTokensByRank = async (minRank: number, maxRank: number, cursor?: string): Promise<ApiResponse> => {
+export const fetchTokensByRank = async (
+  minRank: number,
+  maxRank: number,
+  cursor?: string,
+  showOnlyUnvisible?: boolean
+): Promise<ApiResponse> => {
   const query: NftsQuery = {
     limit: LARGE_LIMIT,
     cursor,
     minRank,
     maxRank,
     orderBy: NftsOrderBy.TokenId,
-    orderDirection: OrderDirection.Ascending
+    orderDirection: OrderDirection.Ascending,
+    showOnlyUnvisible: showOnlyUnvisible ?? false
   };
   const response = await httpGet(`/nfts`, query);
   return response;

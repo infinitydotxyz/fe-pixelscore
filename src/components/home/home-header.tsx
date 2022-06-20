@@ -17,16 +17,25 @@ export const HomeHeader = () => {
 
         <div className="mt-28">
           <div className="block dark:text-dark-scarlet font-bold text-9xl">Pixelrank</div>
-          <div className="mt-6 max-w-lg text-2xl dark:text-dark-body">
+          <div className="mt-6 max-w-lg text-4xl lg:text-2xl dark:text-dark-body">
             The world's only global NFT ranking. Pure Math. No bias.
           </div>
           <div className="mt-16">
             <div className="space-x-14 ">
-              <LargeButton onClick={() => navigate('app')} className="dark:text-dark-blue hover:opacity-75">
+              <LargeButton
+                onClick={() => navigate('app')}
+                className="dark:text-dark-body hover:opacity-75 text-4xl lg:text-2xl"
+              >
                 Rankings
               </LargeButton>
-              <LargeButton onClick={() => navigate('paper')} className="dark:text-dark-blue hover:opacity-75">
-                Paper
+              <LargeButton
+                onClick={() => ''}
+                propagateClick={true}
+                className="dark:text-dark-body hover:opacity-75 text-4xl lg:text-2xl"
+              >
+                <a href="./paper.pdf" target="_blank">
+                  Paper
+                </a>
               </LargeButton>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { ErrorOrLoading } from '../astra/error-or-loading';
 import { RevealOrder, TokenInfo } from 'utils/types/be-types';
 import { RevealedOrderCard } from './revealed-order-card';
 import { RevealOrderFetcher } from 'components/reveal-order-grid/reveal-order-fetcher';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Props {
   className?: string;
@@ -100,7 +101,7 @@ export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClic
                     }
                     setTokens(newTokens);
                   }}
-                  key={`${data.collectionAddress}:${data.tokenId}`}
+                  key={uuidv4()}
                   token={data}
                   selected={isSelected(data)}
                   onClick={(data) => {

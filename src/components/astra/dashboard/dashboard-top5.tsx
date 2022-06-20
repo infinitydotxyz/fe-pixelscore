@@ -5,10 +5,10 @@ import { AstraNavTab } from '../astra-navbar';
 import { DashboardBase } from './dashboard-base';
 
 export const DashboardTop5 = () => {
-  const { setTokenFetcher, refreshTrigger, setDisplayName } = useDashboardContext();
+  const { setTokenFetcher, refreshTrigger, setDisplayName, showOnlyUnvisible } = useDashboardContext();
 
   useEffect(() => {
-    setTokenFetcher(RankTokenCache.shared().fetcher(8, 10));
+    setTokenFetcher(RankTokenCache.shared().fetcher(8, 10, showOnlyUnvisible));
 
     setDisplayName('Top 1%');
   }, [refreshTrigger]);

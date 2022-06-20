@@ -72,8 +72,8 @@ export const ToggleTabAlt = ({ options, onChange, selected, className = '', equa
               className={twMerge(
                 equalWidths ? 'min-w-[130px]' : '',
                 'flex select-none items-center justify-center text-center whitespace-nowrap rounded-full',
-                selected === option ? 'dark:text-dark-pink font-bold' : 'dark:text-dark-blue',
-                '  text-md'
+                selected === option ? 'dark:text-dark-pink font-bold' : 'dark:text-dark-body',
+                'text-md'
               )}
               onClick={() => onChange(option)}
             >

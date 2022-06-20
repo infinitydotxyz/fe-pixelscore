@@ -1,4 +1,4 @@
-import { BGImage, Divider } from '../common';
+import { BGImage } from '../common';
 import { TokenInfo } from 'utils/types/be-types';
 import { BlueCheckBadge, PillBadge } from 'components/token-grid/pill-badge';
 import { twMerge } from 'tailwind-merge';
@@ -31,8 +31,6 @@ export const RevealedTokenImage = ({ token, className = 'flex-grow' }: Props) =>
 
         <BlueCheckBadge val={token.hasBlueCheck} />
       </div>
-
-      <Divider className="" />
     </div>
   );
 };

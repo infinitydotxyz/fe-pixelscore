@@ -33,15 +33,15 @@ export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
 
   const tokenCards = () => {
     const first: string[] = [
-      'https://lh3.googleusercontent.com/Jf_xtDTJyd8t0EqoPpAclkwafPcOtX5PaAEk5UQsnFxpxaSpMcnm9YLum3K92KhpghIIzPfLOyfHlAZoqNZS2iEbN_9lHsMpltMzcw',
+      'https://lh3.googleusercontent.com/KWgK5YzNYNTvXp4CAMBNXeJqGqFWa0VdOetSfXjub72ym5AfLmXfKWNxIdg3s-Tn79MNEaViiDYdigIOrryry9XgLbVg2Z7mrGHNW-o',
 
-      'https://lh3.googleusercontent.com/Q21eS9tBnD50VzdbXWQUHM3GgQ4qIgIoZL8yCLGj_3V0fL6yxkzN8ICZ_X7ISItbuXZLQ-GZGWGTPMkY51EIgFHrsGfF3MztO5Zn',
+      'https://lh3.googleusercontent.com/klaHZJTr_FDTSu_9EAyCJF5b28lKQMBVkYJ-V4YyyBkZxfZTfyydW-SPWY-IYLmD3KslTNGY4lP-XPb05-yr8hBSN412TMXxnfBpj5Y',
 
-      'https://lh3.googleusercontent.com/YMMvZZ3fie646C1zkJcn60O7rY6GUCDQfW0JUMpWiTPrJscWcBhpK5PtQ7eX4tckZxYmHxFJzgfzfPtM4B0SUSS2e2MkOYec_srW',
+      'https://lh3.googleusercontent.com/u5N34xTSVkOzAL8edkTR_j1Akfx0qx7z7uoDg_tL3sKgIKi-RrZFwlomfwNjFsiUg9eaU-6R8F0dl1a4Zgk8dG9pv9H47nuq2eRn',
 
-      'https://lh3.googleusercontent.com/0HqZ1QL3unovSgTHyLJS8lJswR4s2YYYj3K0dR9iufxj9bOWp_LXJLKO7fblhhxpYo5iwrVy8v9aBYCLMqYHhvhCz_bX5EHgoVqWiQ',
+      'https://lh3.googleusercontent.com/enz6ouKqA5TuoWHNoct5oWR_S3lD5IKPJv6ZReAsDhBBAjGJGe2YjymdF8mrgwaTRCxtmX06LxnGHDyAoP-C-djFWU-7wpyGaHYifA',
 
-      'https://lh3.googleusercontent.com/Q21eS9tBnD50VzdbXWQUHM3GgQ4qIgIoZL8yCLGj_3V0fL6yxkzN8ICZ_X7ISItbuXZLQ-GZGWGTPMkY51EIgFHrsGfF3MztO5Zn'
+      'https://lh3.googleusercontent.com/zmpX1Jd-zkGqw23axJLGdINaas_CY9gjdDmPZKUIG5wRrQfpEKtnp0AR_qqcV2upOZUtmvniuEeF9bK_CQUYBSdLfSWzYwTq36pQ'
     ];
 
     const fcards = first.map((card) => {
@@ -49,15 +49,15 @@ export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
     });
 
     const sec: string[] = [
-      'https://lh3.googleusercontent.com/Q21eS9tBnD50VzdbXWQUHM3GgQ4qIgIoZL8yCLGj_3V0fL6yxkzN8ICZ_X7ISItbuXZLQ-GZGWGTPMkY51EIgFHrsGfF3MztO5Zn',
+      'https://lh3.googleusercontent.com/RkXgUsHyjpMktcAQHziSDTODjQaj-qPvsin6_zLAjZaC5G8rrSwpRdmr2_70p9abXVxwwf_fCo_IJz4GRHGVTlGjeOZm2kSGgzMrZA',
 
-      'https://lh3.googleusercontent.com/0HqZ1QL3unovSgTHyLJS8lJswR4s2YYYj3K0dR9iufxj9bOWp_LXJLKO7fblhhxpYo5iwrVy8v9aBYCLMqYHhvhCz_bX5EHgoVqWiQ',
+      'https://lh3.googleusercontent.com/yFtnRNxGwwNITszT4xy4KRr6I2_D-QuMa8LmwhjeyUgtxbp_L41fAuNcGFI9MgxQAE_LCTnbuWryP7y8i8mHSuGM94u1kHlTxlvd',
 
-      'https://lh3.googleusercontent.com/Q21eS9tBnD50VzdbXWQUHM3GgQ4qIgIoZL8yCLGj_3V0fL6yxkzN8ICZ_X7ISItbuXZLQ-GZGWGTPMkY51EIgFHrsGfF3MztO5Zn',
+      'https://lh3.googleusercontent.com/AuQQdFnOhsN-7H2ANOr7pJ6Us7tzM5Fm8zCZ1pG5H0ZKfXFkYMUvbjtjekHizMwEuf8YYx6_dRODgdb6tZoJxf31qFi4HBVG71IT1w',
 
-      'https://lh3.googleusercontent.com/0HqZ1QL3unovSgTHyLJS8lJswR4s2YYYj3K0dR9iufxj9bOWp_LXJLKO7fblhhxpYo5iwrVy8v9aBYCLMqYHhvhCz_bX5EHgoVqWiQ',
+      'https://lh3.googleusercontent.com/jtgvaBtPxjbWBEbTJSXyiYV1jDzLOWjq29m7MCtCu31Yq8_G-f8hQ1ZTPhCVqXsgySE1kRhxm09D9WHjNrizpkA3lj-osH-14NzFydA',
 
-      'https://lh3.googleusercontent.com/Q21eS9tBnD50VzdbXWQUHM3GgQ4qIgIoZL8yCLGj_3V0fL6yxkzN8ICZ_X7ISItbuXZLQ-GZGWGTPMkY51EIgFHrsGfF3MztO5Zn'
+      'https://lh3.googleusercontent.com/Q47cZ2fW4dN5hkPY62r2zvnKSEkfQSOVtMG0Ckmime7QkNIMvDcnDdvRzRTId6hJsH-Owts4_YJNpTQzPol7D36y73ml3ERGT9Wn'
     ];
     const scards = sec.map((card) => {
       return [<GallaryCard data={card} />];
@@ -69,11 +69,11 @@ export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
   return (
     <div className="h-auto  text-3xl overflow-clip ">
       <div className="flex items-center mb-10">
-        <div className="dark:text-dark-body text-6xl">NFT Gallery</div>
+        <div className="dark:text-dark-body text-6xl">Some NFTs we analyzed</div>
         <Spacer />
         <div className="flex gap-6">
-          <IoIosArrowDropleft className={twMerge('h-20 w-20', 'text-blue-600')} onClick={() => slider?.slickPrev()} />
-          <IoIosArrowDropright className={twMerge('h-20 w-20', 'text-blue-600')} onClick={() => slider?.slickNext()} />
+          <IoIosArrowDropleft className={twMerge('h-12 w-12', 'text-dark-blue')} onClick={() => slider?.slickPrev()} />
+          <IoIosArrowDropright className={twMerge('h-12 w-12', 'text-dark-blue')} onClick={() => slider?.slickNext()} />
         </div>
       </div>
 
