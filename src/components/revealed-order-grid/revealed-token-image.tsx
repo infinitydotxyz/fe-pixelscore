@@ -2,6 +2,7 @@ import { BGImage, Divider } from '../common';
 import { TokenInfo } from 'utils/types/be-types';
 import { BlueCheckBadge, PillBadge } from 'components/token-grid/pill-badge';
 import { twMerge } from 'tailwind-merge';
+import { pixelRankBucketToolTip } from 'utils/astra-utils';
 
 interface Props {
   token: TokenInfo;
@@ -20,7 +21,14 @@ export const RevealedTokenImage = ({ token, className = 'flex-grow' }: Props) =>
 
         <PillBadge val={token.pixelRank} tooltip="Pixel rank" numberSign={true} />
         {/* <PillBadge val={token.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
-        <PillBadge val={token.tokenId} tooltip="Token id" className="top-2 right-2" />
+        {/* <PillBadge val={token.tokenId} tooltip="Token id" className="top-2 right-2" /> */}
+
+        <PillBadge
+          val={token.pixelRankBucket}
+          tooltip={pixelRankBucketToolTip(token.pixelRankBucket ?? 0)}
+          className="top-2 right-2"
+        />
+
         <BlueCheckBadge val={token.hasBlueCheck} />
       </div>
 
