@@ -1,4 +1,3 @@
-import { toastWarning } from 'components/common';
 import { useEffect, useState } from 'react';
 import { NFTCard } from 'utils/types/be-types';
 
@@ -27,9 +26,6 @@ export const useCardSelection = (): CardSelectionResult => {
         copy.set(value.id, value);
 
         setSelectionMap(copy);
-      } else {
-        // todo: when will this toast pop up?
-        toastWarning('This NFT has already been revealed', 'Pick another NFT');
       }
     } else {
       removeFromSelection(value);
