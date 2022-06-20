@@ -7,5 +7,4 @@ TODO:
 5. if connected to wrong network, show banner on top, disable checkout button
 6. Pending items is only showing 1 item even when multiple items exists in one order - bug Adi
 7. mynfts use header, say "no ranked nfts in your portfolio" portfolio score.
-8. password box should not appear on home screen
-9. select collection change url
+8. select collection change url
