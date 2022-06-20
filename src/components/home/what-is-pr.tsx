@@ -1,7 +1,10 @@
 import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 export const WhatIsPr = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="mt-24">
       <div className="block text-dark-scarlet font-bold text-7xl">What is Pixelrank?</div>
@@ -11,22 +14,22 @@ export const WhatIsPr = () => {
       </div>
 
       <div className={twMerge('mt-24 mx-12  grid gap-16 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2')}>
-        <WhatIsPrItem className="border-fuchsia-300 bg-pink-400">
+        <WhatIsPrItem>
           Ranking based on our unbiased PixelScore algorithm. See our methodology{' '}
-          <a href="/paper.pdf" target="_blank" className="underline">
+          <span onClick={() => navigate('paper')} className="underline cursor-pointer">
             here
-          </a>
+          </span>
         </WhatIsPrItem>
 
-        <WhatIsPrItem className="border-pink-500   bg-pink-400   ">
+        <WhatIsPrItem>
           About 55,000 collections analyzed and 10M NFTs ranked. All but the top 5% NFTs are revealed by default.
         </WhatIsPrItem>
 
-        <WhatIsPrItem className="border-pink-500 bg-pink-400">
+        <WhatIsPrItem>
           Global and within collection rank for each NFT. Portfolio score for NFTs owned by you.
         </WhatIsPrItem>
 
-        <WhatIsPrItem className="border-fuchsia-300 bg-pink-400">
+        <WhatIsPrItem>
           Upcoming, free to mint 10k collection with global NFT ranks based on our PixelScore algorithm.
         </WhatIsPrItem>
       </div>
@@ -39,10 +42,8 @@ interface Props2 {
   className?: string;
 }
 
-export const WhatIsPrItem = ({ children, className = 'border-fuchsia-300 bg-pink-400' }: Props2) => {
+export const WhatIsPrItem = ({ children, className = 'bg-gray-100 bg-opacity-10' }: Props2) => {
   return (
-    <div className={twMerge('text-3xl   border-4 rounded-3xl p-20  bg-opacity-25  text-dark-body ', className)}>
-      {children}
-    </div>
+    <div className={twMerge('text-3xl rounded-3xl p-20  bg-opacity-25  text-dark-body ', className)}>{children}</div>
   );
 };
