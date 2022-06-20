@@ -29,7 +29,7 @@ export const AstraNavbar = () => {
   }, [location]);
 
   const tabBar = (
-    <div className={twMerge(inputBorderColor, 'flex justify-center')}>
+    <div className={twMerge(inputBorderColor, 'absolute top-0 left-0 right-0 bottom-0 flex justify-center')}>
       <ToggleTabAlt
         options={options}
         selected={selected}
@@ -48,7 +48,9 @@ export const AstraNavbar = () => {
 
   return (
     // relative added to give it a different layer so shadow isn't wiped out by sidebar
-    <div className={twMerge('flex px-8 py-2 items-cente bg-dark-navbar border-b shadow-md relative', inputBorderColor)}>
+    <div
+      className={twMerge('flex px-8 py-2 items-center bg-dark-navbar border-b shadow-md relative', inputBorderColor)}
+    >
       <NextLink href="/" className="flex items-center">
         <div className="text-2xl font-bold dark:text-dark-scarlet">Pixelrank</div>
       </NextLink>
