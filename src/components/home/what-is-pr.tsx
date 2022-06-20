@@ -3,14 +3,14 @@ import { twMerge } from 'tailwind-merge';
 
 export const WhatIsPr = () => {
   return (
-    <div className="mt-24 ">
+    <div className="mt-24">
       <div className="block text-dark-scarlet font-bold text-7xl">What is Pixelrank?</div>
       <div className="mt-6 max-w-xlg text-2xl text-dark-body">
         Pixelrank is a novel method for estimating the global rarity of NFTs. It ranks NFTs by calculating how rare an
         NFT's pixels are compared to all NFTs in existence.
       </div>
 
-      <div className={twMerge('mt-24   grid gap-16 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2')}>
+      <div className={twMerge('mt-24 mx-12  grid gap-16 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2')}>
         <WhatIsPrItem className="border-fuchsia-300 bg-pink-400">
           Ranking based on our unbiased PixelScore algorithm. See our methodology{' '}
           <a href="/paper.pdf" target="_blank" className="underline">
@@ -18,7 +18,7 @@ export const WhatIsPr = () => {
           </a>
         </WhatIsPrItem>
 
-        <WhatIsPrItem className="border-fuchsia-300   bg-pink-400   ">
+        <WhatIsPrItem className="border-pink-500   bg-pink-400   ">
           About 55,000 collections analyzed and 10M NFTs ranked. All but the top 5% NFTs are revealed by default.
         </WhatIsPrItem>
 

@@ -21,7 +21,7 @@ export const PageBox = ({
 }: Props): JSX.Element => {
   return (
     <>
-      <div className={twMerge('w-full max-h-screen flex flex-col overflow-y-auto', pageClass)}>
+      <div className={twMerge('w-full max-h-screen flex flex-col overflow-y-auto overflow-x-hidden', pageClass)}>
         {customHeader ? customHeader : <Navbar />}
         <div className={twMerge('flex-1 mx-12', className)}>{children}</div>
 

@@ -1,47 +1,31 @@
-import { LargeButton, NextLink, PageBox, RoundButton, SVG } from 'components/common';
-import { useNavigate } from 'react-router-dom';
-import { CardAnimation } from 'components/home/card_animation/card_animation';
+import { NextLink, PageBox, RoundButton, SVG } from 'components/common';
 import { iconButtonStyle } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { GalleryAnimation } from 'components/home/card_animation/gallery-animation';
 import { FAQ } from 'components/home/faq';
 import { WhatIsPr } from 'components/home/what-is-pr';
+import { HomeHeader } from 'components/home/home-header';
+import { useEffect, useState } from 'react';
+import { useResizeDetector } from 'react-resize-detector';
 
 export const HomePage = () => {
-  const navigate = useNavigate();
+  const [sliderWidth, setSliderWidth] = useState(0);
+
+  const { width, ref } = useResizeDetector();
+
+  console.log(sliderWidth);
+
+  useEffect(() => {
+    setSliderWidth(ref.current ? ref.current.offsetWidth : 0);
+  }, [width]);
 
   return (
-    <PageBox footer={<Footer />} className="mx-auto" customHeader={<></>}>
-      <main className=" max-w-screen-2xl mx-8 ">
-        <div className="relative">
-          <CardAnimation />
-          <div className="absolute bottom-0 top-0 left-0 w-full bg-gradient-to-r from-dark-bg" />
-          <div className="absolute bottom-0 right-0 left-0 h-96 bg-gradient-to-t from-dark-bg" />
-          <div className="absolute top-0 right-0 left-0 h-96 bg-gradient-to-b from-dark-bg" />
+    <PageBox footer={<Footer />} className="mr-0" customHeader={<></>}>
+      <div ref={ref} className="max-w-screen-2xl" />
 
-          <div className="absolute bottom-0 mt-44 top-0 left-0 right-0">
-            {/* <HomePageLogo /> */}
-
-            <div className="mt-28">
-              <div className="block dark:text-dark-scarlet font-bold text-9xl">Pixelrank</div>
-              <div className="mt-6 max-w-lg text-2xl dark:text-dark-body">
-                The world's only global NFT ranking. Pure Math. No bias.
-              </div>
-              <div className="mt-16">
-                <div className="space-x-14 ">
-                  <LargeButton onClick={() => navigate('app')} className="dark:text-dark-blue hover:opacity-75">
-                    Rankings
-                  </LargeButton>
-                  <LargeButton onClick={() => navigate('paper')} className="dark:text-dark-blue hover:opacity-75">
-                    Paper
-                  </LargeButton>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-36">
+      <main className="max-w-screen-2xl mx-auto ">
+        <HomeHeader />
+        <div className="space-y-36 mr-12">
           <WhatIsPr />
           <GalleryAnimation />
           <FAQ />
