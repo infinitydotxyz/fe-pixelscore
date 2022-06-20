@@ -58,7 +58,7 @@ export const AstraNavbar = () => {
       className={twMerge('flex px-8 py-2 items-center bg-dark-navbar border-b shadow-md relative', inputBorderColor)}
     >
       <NextLink href="/" className="flex items-center">
-        <div className="text-2xl font-bold dark:text-dark-scarlet">Pixelrank</div>
+        <div className="text-4xl lg:text-2xl font-bold dark:text-dark-scarlet">Pixelrank</div>
       </NextLink>
       <Spacer />
 

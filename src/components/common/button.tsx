@@ -30,6 +30,7 @@ export interface Props {
   disabled?: boolean;
   className?: string;
   showBackground?: boolean;
+  propagateClick?: boolean;
 }
 
 export const Button = ({
@@ -58,15 +59,16 @@ export interface BaseProps {
   children: ReactNode;
   disabled?: boolean;
   className?: string;
+  propagateClick?: boolean;
 }
 
-export interface BasePropsNoClick {
-  children: ReactNode;
-  disabled?: boolean;
-  className?: string;
-}
-
-const ButtonBase = ({ disabled = false, children, className = '', onClick }: BaseProps): JSX.Element => {
+const ButtonBase = ({
+  disabled = false,
+  children,
+  className = '',
+  onClick,
+  propagateClick
+}: BaseProps): JSX.Element => {
   const disabledClass = 'opacity-30 cursor-not-allowed';
   // focus ring appears on keyboard tab key navigation for accessibility, not on clicks
   const base =
@@ -79,8 +81,10 @@ const ButtonBase = ({ disabled = false, children, className = '', onClick }: Bas
       // disabled={disabled}
       className={twMerge(base, disabled ? disabledClass : '', className)}
       onClick={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
+        if (!propagateClick) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
 
         if (!disabled) {
           onClick(e);
@@ -113,7 +117,13 @@ export const RoundButton = ({
 
 // ======================================================
 
-export const LargeButton = ({ disabled = false, children, className = '', onClick }: Props): JSX.Element => {
+export const LargeButton = ({
+  disabled = false,
+  children,
+  className = '',
+  onClick,
+  propagateClick
+}: Props): JSX.Element => {
   return (
     <ButtonBase
       disabled={disabled}
@@ -122,6 +132,7 @@ export const LargeButton = ({ disabled = false, children, className = '', onClic
         className
       )}
       onClick={onClick}
+      propagateClick={propagateClick}
     >
       {children}
     </ButtonBase>

@@ -38,7 +38,7 @@ const ModalImage = ({ src, className = '' }: Props2) => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  // todo: src.replace hack to handle changed opensea image url
+  // src.replace hack to handle changed opensea image url
   src = src?.replace('storage.opensea.io', 'openseauserdata.com');
 
   useEffect(() => {

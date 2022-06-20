@@ -66,7 +66,7 @@ export const GridHeader = ({ route }: Props) => {
               '  dark:ring-offset-dark-bg   dark:bg-gray-600 dark:dark-blue'
             )}
           />
-          <label htmlFor="checkbox" className="ml-4 text-lg font-medium text-gray-900 dark:text-dark-body">
+          <label htmlFor="checkbox" className="ml-4 text-xl lg:text-lg font-medium text-gray-900 dark:text-dark-body">
             Show Unrevealed
           </label>
         </div>

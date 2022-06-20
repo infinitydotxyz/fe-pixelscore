@@ -25,5 +25,4 @@ export const MAX_PIXELRANKBUCKET_PUBLICLY_VISIBLE = 7;
 
 export const PIXELRANK_WALLET = '0xb01ab20314e743b62836ca7060fc56ab69157bc1';
 
-// todo: change price
-export const PIXELRANK_PRICE_PER_ITEM = 0.0001;
+export const PIXELRANK_PRICE_PER_ITEM = 0.1;

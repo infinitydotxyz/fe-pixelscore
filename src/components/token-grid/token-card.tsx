@@ -41,7 +41,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
       }}
       onAnimationEnd={() => setNotSelectable(false)}
     >
-      <div className="h-full flex flex-col">
+      <div className="h-full flex flex-col text-2xl lg:text-sm">
         <div className="relative flex-1">
           {/* we can't overflow clip the whole card or the tooltips get clipped
           so we do this absolute image below the pillbadges */}

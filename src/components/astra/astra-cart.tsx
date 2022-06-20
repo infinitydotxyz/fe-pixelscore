@@ -60,8 +60,8 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
       <div className="mb-2">
         {/* <GridHeader route={route} vertical={true} /> */}
 
-        <div className="text-3xl font-bold text-dark-body m-4">My Cart</div>
-        <div className=" text-dark-body ml-4 mr-4 leading-5">
+        <div className="text-4xl lg:text-3xl font-bold text-dark-body m-4">My Cart</div>
+        <div className=" text-dark-body ml-4 mr-4 leading-5 text-lg lg:text-md">
           Add NFTs you want to reveal ranks for. Each NFT costs ${PIXELRANK_PRICE_PER_ITEM} ETH
         </div>
       </div>

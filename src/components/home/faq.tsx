@@ -4,36 +4,35 @@ import { twMerge } from 'tailwind-merge';
 
 const faqs = [
   {
-    question: 'How we rank NFTs',
+    question: 'How are the ranks calculated?',
     answer:
-      'You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.'
+      'Each NFT is decomposed into a 224x224 matrix of pixels. Then each pixel is assigned a score based on how rarely it occurs in the entire dataset. All the scores for each pixel in the NFT are added up to arrive at the rarity/rank of the NFT.'
   },
   {
-    question: 'Benefits',
+    question: 'Why is this ranking method better?',
     answer:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.'
+      'Our ranking method is the only one that can rank NFTs globally. The rarity score is based on a clear mathematical formula and bare-bones NFT data, which makes it free from biases, market trends and community sentiment created by influencers, forums, discord groups, and creators.'
   },
   {
-    question: 'How do you make money selling NFTs?',
-    answer:
-      'You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.'
+    question: 'How many NFTs are ranked?',
+    answer: 'We ranked around 10M NFTs after analyzing a total of 55,000 collections'
   },
   {
-    question: 'How do you scam old people?',
+    question: 'Can Pixelrank be used to rank new NFTs?',
     answer:
-      'You boil the hell out of it. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.'
+      'Absolutely. Our goal is to rank every NFT in existence. The algorithm scales linearly and can be easily extended to rank previously unseen NFTs.'
   }
 ];
 
 export const FAQ = () => {
   return (
-    <div className="flex flex-col dark:text-dark-body text-6xl gap-20 lg:flex-row">
+    <div className="flex flex-col dark:text-dark-body text-7xl gap-20 lg:flex-row">
       <div className="  ">
         Frequently
         <br />
         Asked
         <br />
-        <span className="text-blue-600">Questions</span>
+        <span className="text-dark-blue">Questions</span>
       </div>
 
       <div className="w-full  space-y-6 ">
@@ -46,8 +45,8 @@ export const FAQ = () => {
             {({ open }) => (
               <>
                 <dt className="">
-                  <Disclosure.Button className="text-left p-10 w-full flex justify-between items-start text-blue-600">
-                    <span className="font-medium text-3xl dark:text-dark-body">{faq.question}</span>
+                  <Disclosure.Button className="text-left p-10 w-full flex justify-between items-start text-dark-blue">
+                    <span className="font-medium text-4xl lg:text-3xl dark:text-dark-body">{faq.question}</span>
                     <span className="ml-6 h-7 flex items-center">
                       <ChevronDownIcon
                         className={twMerge(open ? '-rotate-180' : 'rotate-0', 'h-10 w-10 transform ')}
@@ -57,7 +56,7 @@ export const FAQ = () => {
                   </Disclosure.Button>
                 </dt>
                 <Disclosure.Panel as="dd" className="p-10 pt-0 pr-12">
-                  <p className="text-2xl dark:text-dark-body">{faq.answer}</p>
+                  <p className="text-3xl lg:text-2xl dark:text-dark-body">{faq.answer}</p>
                 </Disclosure.Panel>
               </>
             )}

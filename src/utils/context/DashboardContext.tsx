@@ -13,7 +13,7 @@ import { useAppContext } from './AppContext';
 import { setReveals } from 'utils/astra-utils';
 import { useCardSelection } from 'components/astra/useCardSelection';
 import { CollectionInfo } from 'utils/types/collection-types';
-import { PIXELRANK_WALLET } from 'utils/constants';
+import { PIXELRANK_PRICE_PER_ITEM, PIXELRANK_WALLET } from 'utils/constants';
 
 export type DashboardContextType = {
   collection: CollectionInfo | undefined;
@@ -122,7 +122,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
 
   const handleCheckout = async (selection: NFTCard[]) => {
     if (user) {
-      const pricePerTokenInEther = 0.0001;
+      const pricePerTokenInEther = PIXELRANK_PRICE_PER_ITEM;
 
       const amountInEth = selection.length * pricePerTokenInEther;
       const txnHash = await sendEth(user?.address, amountInEth.toFixed(12).toString());
