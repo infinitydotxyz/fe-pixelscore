@@ -37,9 +37,9 @@ export const CollectionListItem = ({ collection, onClick, selected }: Props2) =>
           >
             <BGImage src={avatarUrl} />
 
-            <div className="absolute top-2 left-2 bottom-2 right-2 flex flex-col items-center justify-center">
-              <div className=" text-center tracking-tight leading-6 text-2xl font-bold text-white text-shadow">
-                {collection.name}
+            <div className="absolute rounded-lg top-0 left-0 bottom-0 right-0 flex flex-col items-center justify-center bg-black bg-opacity-60">
+              <div className="p-1 text-center tracking-tight leading-6 text-xl font-bold text-white text-shadow">
+                {truncateStr(collection.name, 40)}
               </div>
             </div>
 

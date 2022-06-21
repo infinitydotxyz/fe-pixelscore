@@ -43,7 +43,7 @@ export const TokenSwiper = ({ tokens, className = 'flex-grow' }: Props) => {
           disabled={len < 2}
           onClick={() => {
             let nextIndex = index + 1;
-            if (nextIndex >= len - 1) {
+            if (nextIndex >= len) {
               nextIndex = 0;
             }
             setIndex(nextIndex);

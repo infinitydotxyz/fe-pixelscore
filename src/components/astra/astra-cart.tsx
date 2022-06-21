@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 import { NFTCard } from 'utils/types/be-types';
 import { BiTrash } from 'react-icons/bi';
 import { PIXELRANK_PRICE_PER_ITEM } from 'utils';
+import { useAppContext } from 'utils/context/AppContext';
 
 interface Props {
   cardData: NFTCard[];
@@ -14,6 +15,7 @@ interface Props {
 
 export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
   const map = new Map<string, NFTCard[]>();
+  const { user, chainId } = useAppContext();
 
   for (const token of cardData) {
     const tkns = map.get(token.tokenAddress ?? '') ?? [];
@@ -44,11 +46,16 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
 
     // min-w-0 is important. otherwise text doesn't truncate
     listComponent = (
-      <div className="min-w-0 flex p-6 flex-col space-y-2 items-start flex-1 text-dark-body">{divList}</div>
+      <div className="min-w-0 flex p-6 flex-col space-y-2 items-start flex-1 dark:text-dark-body text-light-body">
+        {divList}
+      </div>
     );
   } else {
     listComponent = (
-      <div key={Math.random()} className="flex items-center justify-center text-dark-body uppercase flex-1">
+      <div
+        key={Math.random()}
+        className="flex items-center justify-center dark:text-dark-body text-light-body uppercase flex-1"
+      >
         <div>Cart empty</div>
       </div>
     );
@@ -60,8 +67,8 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
       <div className="mb-2">
         {/* <GridHeader route={route} vertical={true} /> */}
 
-        <div className="text-4xl lg:text-3xl font-bold text-dark-body m-4">My Cart</div>
-        <div className=" text-dark-body ml-4 mr-4 leading-5 text-lg lg:text-md">
+        <div className="text-4xl lg:text-3xl font-bold dark:text-dark-body text-light-body m-4">My Cart</div>
+        <div className=" dark:text-dark-body text-light-body ml-4 mr-4 leading-6 text-lg lg:text-md">
           Add NFTs you want to reveal ranks for. Each NFT costs ${PIXELRANK_PRICE_PER_ITEM} ETH
         </div>
       </div>
@@ -69,7 +76,11 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
       {listComponent}
 
       <div className="m-4 flex flex-col">
-        <Button disabled={cardData.length === 0} onClick={onCheckout}>
+        <Button
+          disabled={!user || chainId !== '1' || cardData.length === 0}
+          onClick={onCheckout}
+          className="bg-light-gray-100 dark:bg-dark-bg"
+        >
           Checkout
         </Button>
       </div>
@@ -99,7 +110,7 @@ export const AstraCartItem = ({ token, index, onRemove }: Props2) => {
           onRemove(token);
         }}
       >
-        <BiTrash className={twMerge(smallIconButtonStyle, 'opacity-75 text-dark-body')} />
+        <BiTrash className={twMerge(smallIconButtonStyle, 'opacity-75 dark:text-dark-body text-light-body')} />
       </Button>
     </div>
   );

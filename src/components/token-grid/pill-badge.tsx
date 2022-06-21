@@ -41,8 +41,8 @@ export const BlueCheckBadge = ({ val, tooltip = 'Blue check verified', className
     return (
       <div className={twMerge(className, 'absolute')}>
         <HelpTip content={tooltip}>
-          <div className="bg-white opacity-70 bg-opacity-80 rounded-full">
-            <SVG.blueCheck className={'h-5 w-5'} />
+          <div className="   rounded-full">
+            <SVG.blueCheck className={'  h-5 w-5 '} />
           </div>
         </HelpTip>
       </div>
@@ -63,7 +63,7 @@ export const EyeBadge = ({ onClick, className = 'bottom-0 right-1' }: Props3) =>
   return (
     <div className={twMerge(className, 'absolute')}>
       <RoundButton onClick={onClick}>
-        <IoMdEye className={'h-8 w-8 text-dark-body opacity-50 hover:opacity-100'} />
+        <IoMdEye className={'h-8 w-8 dark:text-dark-body text-light-body opacity-50 hover:opacity-100'} />
       </RoundButton>
     </div>
   );

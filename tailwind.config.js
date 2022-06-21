@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        crimson: ['Crimson Pro', 'sans-serif']
+        pixel: ['Pixel', 'sans-serif']
       },
       keyframes: {
         wiggle: {

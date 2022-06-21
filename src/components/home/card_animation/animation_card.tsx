@@ -21,7 +21,7 @@ export const AnimationCard = ({ data, height, onClick, selected, className = '' 
     <div className={twMerge(className)}>
       <div
         className={twMerge(
-          'rounded-2xl w-full bg-zinc-800 relative flex flex-col',
+          'rounded-2xl w-full dark:bg-zinc-800 bg-light-gray-100 relative flex flex-col',
           'my-4',
           selected ? selectionOutline : '',
           className
@@ -38,7 +38,7 @@ export const AnimationCard = ({ data, height, onClick, selected, className = '' 
             </div>
           </div>
 
-          <div className="my-5 text-dark-body   mx-4">
+          <div className="my-5 dark:text-dark-body text-light-body mx-4">
             <div className="font-bold truncate text-lg">{title}</div>
             <div className="text-secondary font-heading truncate text-sm mt-1">#{tokenId}</div>
           </div>

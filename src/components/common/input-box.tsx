@@ -25,7 +25,12 @@ export const InputBox = ({ tooltip, label, children, icon, renderRightIcon, isFu
         {icon && <span className="pr-8">{icon}</span>}
         <div className="w-full">
           {label && (
-            <label className={twMerge('block font-normal font-heading text-sm dark:text-dark-body', labelClassname)}>
+            <label
+              className={twMerge(
+                'block font-normal font-heading text-sm dark:text-dark-body text-light-body',
+                labelClassname
+              )}
+            >
               {label}
             </label>
           )}

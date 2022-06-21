@@ -1,4 +1,4 @@
-import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
+import { selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { BGImage, Spacer, SVG } from '../common';
 import { NFTCard } from 'utils/types/be-types';
@@ -24,9 +24,9 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
   return (
     <div
       className={twMerge(
-        'border',
-        inputBorderColor,
-        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card',
+        // 'border',
+        // inputBorderColor,
+        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card bg-light-card shadow-[0_5px_5px_1px_rgba(0,0,0,0.1)] hover:shadow-[0_5px_5px_1px_rgba(0,0,0,0.15)] transition-all duration-300',
         selected ? selectionOutline : '',
         notSelectable ? 'animate-wiggle' : ''
       )}
@@ -65,7 +65,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           />
         </div>
 
-        <div className="mt-3 mb-4 mx-3 dark:text-dark-body">
+        <div className="mt-3 mb-4 mx-3 dark:text-dark-body text-light-body">
           <div className="flex items-center">
             <div className="font-bold truncate flex-1">{title}</div>
             {hasBlueCheck ? <SVG.blueCheck className={'h-5 w-5'} /> : ''}

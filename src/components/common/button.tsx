@@ -15,9 +15,12 @@ const classes = {
   variant: {
     plain: '',
     ghost: 'rounded-full', // hover fill needs to be rounded
-    primary: 'border rounded-full border-gray-100 bg-black font-bold dark:text-dark-body',
-    secondary: 'border rounded-full border-gray-100 bg-black  font-bold  dark:text-dark-body',
-    outline: twMerge(inputBorderColor, 'border rounded-full font-bold  text-gray-900 dark:text-dark-body'),
+    primary: 'border rounded-full border-gray-100 bg-black font-bold dark:text-dark-body text-light-body',
+    secondary: 'border rounded-full border-gray-100 bg-black  font-bold  dark:text-dark-body text-light-body',
+    outline: twMerge(
+      inputBorderColor,
+      'border rounded-full font-bold  text-gray-900 dark:text-dark-body text-light-body'
+    ),
     round: 'rounded-full p-2' // use plain size
   }
 };
@@ -72,7 +75,7 @@ const ButtonBase = ({
   const disabledClass = 'opacity-30 cursor-not-allowed';
   // focus ring appears on keyboard tab key navigation for accessibility, not on clicks
   const base =
-    'active:bg-gray-900 active:text-dark-body select-none transition ease-in-out duration-300 focus:outline-none focus-visible:ring focus:ring-black focus:ring-opacity-50';
+    'active:dark:bg-gray-900 active:bg-light-bg active:dark:text-dark-body active:text-light-body select-none transition ease-in-out duration-300 focus:outline-none focus-visible:ring focus:ring-black focus:ring-opacity-50';
 
   return (
     <button
@@ -128,7 +131,7 @@ export const LargeButton = ({
     <ButtonBase
       disabled={disabled}
       className={twMerge(
-        'text-xl px-8 text-dark-body py-6 lg:py-3 rounded-2xl border-t border-r border-l border-b border-dark-violet',
+        'text-xl px-8 dark:text-dark-body text-light-body py-6 lg:py-3 rounded-2xl border-2 dark:border-dark-blue border-light-blue',
         className
       )}
       onClick={onClick}

@@ -70,13 +70,19 @@ export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
   };
 
   return (
-    <div className="h-auto  text-3xl overflow-clip ">
+    <div className="h-auto text-3xl overflow-clip ">
       <div className="flex items-center mb-10">
-        <div className="dark:text-dark-body text-6xl">Some NFTs we analyzed</div>
+        <div className="dark:text-dark-body text-light-body text-6xl">Some NFTs we analyzed</div>
         <Spacer />
         <div className="flex gap-6">
-          <IoIosArrowDropleft className={twMerge('h-12 w-12', 'text-dark-blue')} onClick={() => slider?.slickPrev()} />
-          <IoIosArrowDropright className={twMerge('h-12 w-12', 'text-dark-blue')} onClick={() => slider?.slickNext()} />
+          <IoIosArrowDropleft
+            className={twMerge('h-12 w-12', 'dark:text-dark-body text-light-body')}
+            onClick={() => slider?.slickPrev()}
+          />
+          <IoIosArrowDropright
+            className={twMerge('h-12 w-12', 'dark:text-dark-body text-light-body')}
+            onClick={() => slider?.slickNext()}
+          />
         </div>
       </div>
 

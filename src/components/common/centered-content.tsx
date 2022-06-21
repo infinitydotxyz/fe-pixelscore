@@ -5,5 +5,9 @@ interface Props {
 }
 
 export const CenteredContent = ({ children }: Props) => {
-  return <div className="h-full w-full flex justify-center items-center dark:text-dark-body text-xl">{children}</div>;
+  return (
+    <div className="h-full w-full flex justify-center items-center dark:text-dark-body text-light-body text-xl">
+      {children}
+    </div>
+  );
 };

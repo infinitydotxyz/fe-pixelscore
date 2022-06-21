@@ -3,30 +3,38 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Crimson Pro';
+  font-family: 'Circular Std';
   font-style: normal;
   font-weight: 200;
-  src: url('./fonts/crimson-light.woff2') format('woff2');
+  src: url('./fonts/CircularStd-Book.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Crimson Pro';
+  font-family: 'Circular Std';
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/crimson-regular.woff2') format('woff2');
+  src: url('./fonts/CircularStd-Book.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Crimson Pro';
+  font-family: 'Circular Std';
   font-style: normal;
   font-weight: 600;
-  src: url('./fonts/crimson-bold.woff2') format('woff2');
+  src: url('./fonts/CircularStd-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pixel';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/pexico.woff2') format('woff2');
 }
 
 body {
   margin: 0;
   overflow: hidden;
-  font-family: 'Crimson Pro', 'Helvetica Neue', sans-serif;
+  font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-feature-settings: "ss03", "ss02", "ss01", "liga" 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -35,24 +43,23 @@ body {
 // custom scrollbars
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 2px;
   cursor: pointer;
 }
 
 ::-webkit-scrollbar-track {
   // background-color: rgba(20, 20, 20, 0.27);
   // border-left: solid 4px white;
-
-  background-color: #555;
-  border-left: solid 3px #08080d;
-
+  // this doesn't look great on dark mode
+  background-color: #444;
+  border-left: solid 4px #aaa;
   cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
   cursor: pointer;
-  // background-color: #5e5e5e;
-  background-color: #c7d2fecc;
+  background-color: #5e5e5e;
+  // background-color: #1c63f2;
   border-radius: 100px;
 }
 

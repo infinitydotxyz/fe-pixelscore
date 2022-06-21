@@ -3,18 +3,13 @@ const colors = require('tailwindcss/colors');
 module.exports = {
   colors: {
     dark: {
-      bg: '#08080d',
-      scarlet: '#ff2400',
-      heading: '#FFFFFF',
+      bg: '#111',
       body: '#fff',
-      purple: '#d8b4fe',
-      pink: '#fecaca',
       blue: '#1c63f2',
-      violet: '#a5b4fc99',
-      disabled: '#555555',
-      border: '#444',
-      card: '#08080d',
-      navbar: '#08080d',
+      disabled: '#777',
+      border: '#454545',
+      card: '#222',
+      navbar: '#111',
       gray: {
         100: '#555',
         200: '#666',
@@ -22,13 +17,15 @@ module.exports = {
       }
     },
     light: {
-      bg: '#FFFFFF',
-      text: '#000000',
+      bg: '#FFF',
+      body: '#000000',
+      blue: '#1c63f2',
       disabled: '#555555',
-      card: '#FFFFFF',
+      card: '#f3f4f6',
       border: '#aaa',
       navbar: '#FFF',
       gray: {
+        50: '#fafafa',
         100: '#F0F0F0',
         200: '#DEDEDE',
         300: '#BEBEBE'
