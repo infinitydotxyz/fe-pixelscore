@@ -85,7 +85,7 @@ export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClic
 
       contents = (
         <>
-          <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
+          <div className={twMerge('grid gap-10')} style={{ gridTemplateColumns: gridColumns }}>
             {tokens.map((data) => {
               return (
                 <RevealedOrderCard

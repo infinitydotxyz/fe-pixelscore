@@ -68,7 +68,7 @@ export const TokensGrid = ({
     contents = <ErrorOrLoading error={error} noData={noData} />;
   } else {
     if (wrapWidth > 0) {
-      let divisor = wrapWidth < 1500 ? 400 : 280;
+      let divisor = wrapWidth < 1500 ? 500 : 380;
       divisor = wrapWidth < 950 ? 700 : divisor;
 
       const cols = Math.round(wrapWidth / divisor);
@@ -76,7 +76,7 @@ export const TokensGrid = ({
 
       contents = (
         <>
-          <div className={twMerge('grid gap-8')} style={{ gridTemplateColumns: gridColumns }}>
+          <div className={twMerge('grid gap-10')} style={{ gridTemplateColumns: gridColumns }}>
             {cardData.map((data) => {
               return (
                 <TokenCard
