@@ -22,13 +22,16 @@ export const HomeHeader = () => {
           </div>
           <div className="mt-16">
             <div className="space-x-14 ">
-              <LargeButton onClick={() => navigate('app')} className="dark:text-dark-body hover:opacity-75 text-2xl  ">
+              <LargeButton
+                onClick={() => navigate('app')}
+                className="dark:text-dark-body hover:opacity-75 text-3xl lg:text-2xl  "
+              >
                 Rankings
               </LargeButton>
               <LargeButton
                 onClick={() => ''}
                 propagateClick={true}
-                className="dark:text-dark-body hover:opacity-75 text-2xl"
+                className="dark:text-dark-body hover:opacity-75 text-3xl lg:text-2xl"
               >
                 <a href="./paper.pdf" target="_blank">
                   Paper

@@ -47,6 +47,8 @@ interface Props2 {
 
 export const WhatIsPrItem = ({ children, className = 'bg-gray-100 bg-opacity-10' }: Props2) => {
   return (
-    <div className={twMerge('text-2xl rounded-3xl p-16  bg-opacity-25 text-dark-body ', className)}>{children}</div>
+    <div className={twMerge('text-3xl lg:text-2xl rounded-3xl p-16  bg-opacity-25 text-dark-body ', className)}>
+      {children}
+    </div>
   );
 };
