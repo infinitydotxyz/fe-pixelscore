@@ -62,12 +62,12 @@ export const GridHeader = ({ route }: Props) => {
             id="checkbox"
             type="checkbox"
             className={twMerge(
-              'w-6 h-6 focus-visible:ring focus:ring-0 text-gray-600 rounded',
-              'dark:ring-offset-dark-bg ring-offset-light-bg dark:bg-gray-600 bg-gray-300 dark:dark-blue light-blue'
+              'w-6 h-6 focus-visible:ring focus:ring-0 dark:text-gray-600 text-light-blue rounded',
+              'dark:ring-offset-dark-bg ring-offset-light-bg dark:bg-gray-600 bg-light-bg dark:dark-blue light-blue'
             )}
           />
           <label htmlFor="checkbox" className="ml-4 text-xl lg:text-lg font-medium dark:text-dark-body text-light-body">
-            Show Unrevealed
+            Unrevealed only
           </label>
         </div>
       </>

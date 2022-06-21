@@ -26,7 +26,7 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <div className="flex flex-col dark:text-dark-body text-light-body text-7xl gap-20 lg:flex-row">
+    <div className="flex flex-col dark:text-dark-body text-light-body text-6xl gap-20 lg:flex-row">
       <div className="  ">
         Frequently
         <br />
@@ -58,7 +58,7 @@ export const FAQ = () => {
                   </Disclosure.Button>
                 </dt>
                 <Disclosure.Panel as="dd" className="p-10 pt-0 pr-12">
-                  <p className="text-3xl lg:text-2xl dark:text-dark-body text-light-body">{faq.answer}</p>
+                  <p className="text-4xl lg:text-2xl dark:text-dark-body text-light-body">{faq.answer}</p>
                 </Disclosure.Panel>
               </>
             )}

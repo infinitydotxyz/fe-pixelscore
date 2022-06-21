@@ -70,7 +70,7 @@ export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
   };
 
   return (
-    <div className="h-auto  text-3xl overflow-clip ">
+    <div className="h-auto text-3xl overflow-clip ">
       <div className="flex items-center mb-10">
         <div className="dark:text-dark-body text-light-body text-6xl">Some NFTs we analyzed</div>
         <Spacer />
