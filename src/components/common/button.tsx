@@ -128,7 +128,7 @@ export const LargeButton = ({
     <ButtonBase
       disabled={disabled}
       className={twMerge(
-        'text-xl px-8 text-dark-body py-6 lg:py-3 rounded-2xl border-t border-r border-l border-b border-dark-violet',
+        'text-xl px-8 text-dark-body py-6 lg:py-3 rounded-2xl border-t border-r border-2 border-b border-dark-blue',
         className
       )}
       onClick={onClick}
