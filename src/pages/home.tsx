@@ -110,7 +110,7 @@ const Footer = () => {
             </div>
           ))}
         </nav> */}
-        <div className="mt-8 flex justify-center space-x-6">
+        <div className="mt-8 flex justify-center space-x-6 text-dark-blue">
           {navigation.social.map((item) => (
             <a key={item.name} href={item.href} target="_blank">
               <span className="sr-only">{item.name}</span>
@@ -118,7 +118,7 @@ const Footer = () => {
             </a>
           ))}
         </div>
-        {<p className="mt-8 text-center text-base">&copy; All rights reserved</p>}
+        {<p className="mt-8 text-center text-base">&copy;2022 All rights reserved</p>}
       </div>
     </footer>
   );
