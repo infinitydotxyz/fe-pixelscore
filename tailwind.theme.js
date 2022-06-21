@@ -4,12 +4,9 @@ module.exports = {
   colors: {
     dark: {
       bg: '#111',
-      scarlet: '#ff2400',
       heading: '#FFFFFF',
       body: '#fff',
-      pink: '#fecaca',
       blue: '#1c63f2',
-      violet: '#a5b4fc99',
       disabled: '#777',
       border: '#454545',
       card: '#222',
