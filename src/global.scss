@@ -23,10 +23,32 @@
   src: url('./fonts/crimson-bold.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'Circular Std';
+  font-style: normal;
+  font-weight: 200;
+  src: url('./fonts/CircularStd-Book.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Circular Std';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/CircularStd-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Circular Std';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./fonts/CircularStd-Bold.woff2') format('woff2');
+}
+
 body {
   margin: 0;
   overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-feature-settings: "ss03", "ss02", "ss01", "liga" 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
