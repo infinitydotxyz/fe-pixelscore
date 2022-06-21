@@ -9,7 +9,7 @@ export const WhatIsPr = () => {
       <div className="block dark:text-dark-body text-light-body font-bold text-7xl">
         What is <span className="dark:text-dark-blue text-light-blue font-pixel">Pixelrank</span>?
       </div>
-      <div className="mt-6 max-w-xlg text-3xl dark:text-dark-body text-light-body">
+      <div className="mt-6 max-w-xlg text-4xl lg:text-3xl dark:text-dark-body text-light-body">
         Pixelrank is a novel method for estimating the global rarity of NFTs. It ranks NFTs by calculating how rare an
         NFT's pixels are compared to all NFTs in existence.
       </div>
@@ -48,7 +48,10 @@ interface Props2 {
 export const WhatIsPrItem = ({ children, className = 'bg-gray-100 bg-opacity-10' }: Props2) => {
   return (
     <div
-      className={twMerge('text-2xl rounded-3xl p-16  bg-opacity-25 dark:text-dark-body text-light-body ', className)}
+      className={twMerge(
+        'text-3xl lg:text-2xl rounded-3xl p-16  bg-opacity-25 dark:text-dark-body text-light-body ',
+        className
+      )}
     >
       {children}
     </div>

@@ -6,12 +6,14 @@ import { useResizeDetector } from 'react-resize-detector';
 import { gridTemplate } from 'components/astra/dashboard/grid-template';
 import { useDashboardContext } from 'utils/context/DashboardContext';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { XIcon } from '@heroicons/react/solid';
+import { MdErrorOutline } from 'react-icons/md';
+import { useAppContext } from 'utils/context/AppContext';
 
 export const DashboardPage = () => {
   const {
     collection,
     setCollection,
-    setChainId,
     setGridWidth,
     showCart,
     handleCheckout,
@@ -20,6 +22,8 @@ export const DashboardPage = () => {
     removeFromSelection,
     setShowCart
   } = useDashboardContext();
+
+  const { chainId } = useAppContext();
 
   const gridRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -70,7 +74,6 @@ export const DashboardPage = () => {
         // avoid clicking if already selected (avoids a network fetch)
         if (value.address !== collection?.address) {
           setCollection(value);
-          setChainId(value.chainId);
         }
 
         navigate('all');
@@ -78,7 +81,6 @@ export const DashboardPage = () => {
       onLoad={(value) => {
         if (value.address !== collection?.address) {
           setCollection(value);
-          setChainId(value.chainId);
         }
       }}
     />
@@ -101,6 +103,42 @@ export const DashboardPage = () => {
   const footer = <></>; // <AstraFooter name={displayName} numTokens={numTokens} onRefresh={refreshData} />;
 
   const contents = gridTemplate(navBar, sidebar, <Outlet />, cart, footer, gridRef, containerRef, showCart);
+  return (
+    <div className="relative">
+      <div>{contents}</div>
 
-  return <div>{contents}</div>;
+      {chainId && chainId !== '1' && <WarningBanner message="You are not on Ethereum network" />}
+    </div>
+  );
 };
+
+// =======================================================
+
+interface Props2 {
+  message: string;
+}
+export default function WarningBanner({ message }: Props2) {
+  return (
+    <div className="  absolute bottom-6 left-2 right-2 flex justify-center">
+      <div className="rounded-md max-w-lg bg-red-600 p-4  ">
+        <div className="flex items-center">
+          <div className="flex-shrink-0">
+            <MdErrorOutline className="h-6 w-6 text-white" aria-hidden="true" />
+          </div>
+          <div className="ml-3">
+            <p className="text-md font-medium text-white">{message}</p>
+          </div>
+          <div className="ml-6 ">
+            <button
+              type="button"
+              className="inline-flex bg-red-600 rounded-md p-2 text-white hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-50 focus:ring-red-600"
+            >
+              <span className="sr-only">Dismiss</span>
+              <XIcon className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -75,7 +75,7 @@ export const ToggleTabAlt = ({ options, onChange, selected, className = '', equa
                 selected === option
                   ? 'dark:text-dark-blue text-light-blue font-bold'
                   : 'dark:text-dark-disabled text-light-disabled',
-                'sm:text-md lg:text-lg'
+                'text-lg'
               )}
               onClick={() => onChange(option)}
             >

@@ -46,7 +46,9 @@ export const FAQ = () => {
               <>
                 <dt className="">
                   <Disclosure.Button className="text-left p-10 w-full flex justify-between items-start dark:text-dark-blue text-light-blue">
-                    <span className="font-medium text-3xl dark:text-dark-body text-light-body">{faq.question}</span>
+                    <span className="font-medium text-4xl lg:text-3xl dark:text-dark-body text-light-body">
+                      {faq.question}
+                    </span>
                     <span className="ml-6 h-7 flex items-center">
                       <ChevronDownIcon
                         className={twMerge(open ? '-rotate-180' : 'rotate-0', 'h-10 w-10 transform ')}
@@ -56,7 +58,7 @@ export const FAQ = () => {
                   </Disclosure.Button>
                 </dt>
                 <Disclosure.Panel as="dd" className="p-10 pt-0 pr-12">
-                  <p className="text-2xl dark:text-dark-body text-light-body">{faq.answer}</p>
+                  <p className="text-3xl lg:text-2xl dark:text-dark-body text-light-body">{faq.answer}</p>
                 </Disclosure.Panel>
               </>
             )}

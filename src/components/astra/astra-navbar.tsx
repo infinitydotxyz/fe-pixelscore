@@ -61,7 +61,9 @@ export const AstraNavbar = () => {
       )}
     >
       <NextLink href="/" className="flex items-center">
-        <div className="text-5xl lg:text-3xl font-bold dark:text-dark-blue text-light-blue font-pixel">Pixelrank</div>
+        <div className="text-4xl lg:text-3xl font-bold dark:text-dark-blue text-light-blue height font-pixel">
+          Pixelrank
+        </div>
       </NextLink>
       <Spacer />
 

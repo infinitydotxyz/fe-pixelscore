@@ -15,7 +15,7 @@ interface Props {
 
 export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
   const map = new Map<string, NFTCard[]>();
-  const { user } = useAppContext();
+  const { user, chainId } = useAppContext();
 
   for (const token of cardData) {
     const tkns = map.get(token.tokenAddress ?? '') ?? [];
@@ -76,7 +76,7 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
       {listComponent}
 
       <div className="m-4 flex flex-col">
-        <Button disabled={!user || cardData.length === 0} onClick={onCheckout}>
+        <Button disabled={!user || chainId !== '1' || cardData.length === 0} onClick={onCheckout}>
           Checkout
         </Button>
       </div>

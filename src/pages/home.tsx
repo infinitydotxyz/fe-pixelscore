@@ -118,7 +118,7 @@ const Footer = () => {
             </a>
           ))}
         </div>
-        {<p className="mt-8 text-center text-base">&copy;2022 All rights reserved</p>}
+        {<p className="mt-8 text-2xl lg:text-xl text-center">&copy;2022 All rights reserved</p>}
       </div>
     </footer>
   );
