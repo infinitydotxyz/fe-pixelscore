@@ -76,7 +76,11 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
       {listComponent}
 
       <div className="m-4 flex flex-col">
-        <Button disabled={!user || chainId !== '1' || cardData.length === 0} onClick={onCheckout}>
+        <Button
+          disabled={!user || chainId !== '1' || cardData.length === 0}
+          onClick={onCheckout}
+          className="bg-light-gray-100 dark:bg-dark-bg"
+        >
           Checkout
         </Button>
       </div>

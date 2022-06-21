@@ -75,7 +75,7 @@ const ButtonBase = ({
   const disabledClass = 'opacity-30 cursor-not-allowed';
   // focus ring appears on keyboard tab key navigation for accessibility, not on clicks
   const base =
-    'active:bg-gray-900 active:dark:text-dark-body text-light-body select-none transition ease-in-out duration-300 focus:outline-none focus-visible:ring focus:ring-black focus:ring-opacity-50';
+    'active:dark:bg-gray-900 active:bg-light-bg active:dark:text-dark-body active:text-light-body select-none transition ease-in-out duration-300 focus:outline-none focus-visible:ring focus:ring-black focus:ring-opacity-50';
 
   return (
     <button

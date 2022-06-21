@@ -26,7 +26,7 @@ type TooltipProps = PropsWithChildren<{
   arrow?: boolean;
 }>;
 
-export const Toltip: FC<TooltipProps> = ({
+export const Tooltip: FC<TooltipProps> = ({
   animation = 'duration-300',
   arrow = true,
   children,
@@ -85,7 +85,7 @@ export const Toltip: FC<TooltipProps> = ({
             animation !== false && `transition-opacity ${animation}`,
             {
               'invisible opacity-0': !open,
-              'bg-gray-900 dark:text-dark-body text-light-body dark:bg-gray-700': style === 'dark',
+              'bg-gray-200 dark:text-dark-body text-light-body dark:bg-gray-800': style === 'dark',
               'border border-gray-200 bg-white text-gray-900': style === 'light',
               'border border-gray-200 bg-white text-gray-900 dark:border-none dark:bg-gray-700 dark:text-dark-body text-light-body':
                 style === 'auto'
@@ -105,7 +105,7 @@ export const Toltip: FC<TooltipProps> = ({
         {arrow && (
           <div
             className={classNames('absolute z-10 h-2 w-2 rotate-45', {
-              'bg-gray-900 dark:bg-gray-700': style === 'dark',
+              'bg-gray-200 dark:bg-gray-800': style === 'dark',
               'bg-white': style === 'light',
               'bg-white dark:bg-gray-700': style === 'auto'
             })}
