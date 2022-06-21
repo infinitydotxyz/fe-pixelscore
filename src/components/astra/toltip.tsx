@@ -85,9 +85,9 @@ export const Toltip: FC<TooltipProps> = ({
             animation !== false && `transition-opacity ${animation}`,
             {
               'invisible opacity-0': !open,
-              'bg-gray-900 text-dark-body dark:bg-gray-700': style === 'dark',
+              'bg-gray-900 dark:text-dark-body text-light-body dark:bg-gray-700': style === 'dark',
               'border border-gray-200 bg-white text-gray-900': style === 'light',
-              'border border-gray-200 bg-white text-gray-900 dark:border-none dark:bg-gray-700 dark:text-dark-body':
+              'border border-gray-200 bg-white text-gray-900 dark:border-none dark:bg-gray-700 dark:text-dark-body text-light-body':
                 style === 'auto'
             },
             className

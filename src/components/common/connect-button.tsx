@@ -26,7 +26,7 @@ export const ConnectButton = () => {
       {connected && <Dropdown label={`${ellipsisAddress(address)}`} items={menuItems} />}
       {!connected && (
         <Button
-          className="border-t border-l border-b border-r border-dark-border"
+          className="border-t border-l border-b border-r dark:border-dark-border border-light-border"
           onClick={() => navigate('/connect', { state: { fromPath: location.pathname } })}
         >
           Connect

@@ -48,7 +48,7 @@ export const RevealedOrderCard = ({ token, onClick, onRefreshToken, selected }: 
   return (
     <div
       className={twMerge(
-        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card',
+        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card bg-light-card',
         selected ? selectionOutline : ''
       )}
       style={{ aspectRatio: '4/5' }}
@@ -57,8 +57,8 @@ export const RevealedOrderCard = ({ token, onClick, onRefreshToken, selected }: 
       <div className="h-full flex flex-col ">
         <RevealedTokenImage token={token} />
 
-        <div className="mt-1 mb-4 mx-5 flex flex-col dark:text-dark-body ">
-          <div className="mt-3 mb-4 mx-3 dark:text-dark-body">
+        <div className="mt-1 mb-4 mx-5 flex flex-col dark:text-dark-body text-light-body ">
+          <div className="mt-3 mb-4 mx-3 dark:text-dark-body text-light-body">
             <div className="flex items-center">
               <div className="font-bold truncate flex-1">{token.collectionName}</div>
               {token.hasBlueCheck ? <SVG.blueCheck className={'h-5 w-5'} /> : ''}

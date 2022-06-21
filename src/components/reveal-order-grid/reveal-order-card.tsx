@@ -47,13 +47,13 @@ export const RevealOrderCard = ({ userAddress, revealOrder: inOrder, onClick, se
   return (
     <div
       className={twMerge(
-        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card',
+        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card bg-light-card',
         selected ? selectionOutline : ''
       )}
       style={{ aspectRatio: '4/5' }}
       onClick={() => onClick(revealOrder)}
     >
-      <div className="h-full flex flex-col dark:text-dark-body">
+      <div className="h-full flex flex-col dark:text-dark-body text-light-body">
         <TokenSwiper tokens={revealOrder.revealItems} />
 
         <div className="mt-3 mb-4 mx-5 flex flex-col ">

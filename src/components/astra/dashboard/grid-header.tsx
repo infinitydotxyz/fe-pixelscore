@@ -36,7 +36,7 @@ export const GridHeader = ({ route }: Props) => {
       <div
         className={twMerge(
           inputBorderColor,
-          'flex items-center bg-gray-100 dark:bg-dark-card border-b px-8 py-3 dark:text-dark-body'
+          'flex items-cente dark:bg-dark-card bg-light-card border-b px-8 py-3 dark:text-dark-body text-light-body'
         )}
       >
         <div className="flex flex-col items-start">
@@ -62,11 +62,11 @@ export const GridHeader = ({ route }: Props) => {
             id="checkbox"
             type="checkbox"
             className={twMerge(
-              'w-6 h-6 focus-visible:ring focus:ring-0 text-gray-600  rounded',
-              '  dark:ring-offset-dark-bg   dark:bg-gray-600 dark:dark-blue'
+              'w-6 h-6 focus-visible:ring focus:ring-0 text-gray-600 rounded',
+              'dark:ring-offset-dark-bg ring-offset-light-bg dark:bg-gray-600 bg-gray-300 dark:dark-blue light-blue'
             )}
           />
-          <label htmlFor="checkbox" className="ml-4 text-xl lg:text-lg font-medium text-gray-900 dark:text-dark-body">
+          <label htmlFor="checkbox" className="ml-4 text-xl lg:text-lg font-medium dark:text-dark-body text-light-body">
             Show Unrevealed
           </label>
         </div>
@@ -165,7 +165,7 @@ export const GridHeader = ({ route, vertical }: Props) => {
         <div
           className={twMerge(
             inputBorderColor,
-            'flex items-center bg-gray-100 dark:bg-dark-card border-b px-8 py-3 dark:text-dark-body'
+            'flex items-center dark:bg-dark-card bg-light-card border-b px-8 py-3 dark:text-dark-body text-light-body'
           )}
         >
           {showCollectionImage && (

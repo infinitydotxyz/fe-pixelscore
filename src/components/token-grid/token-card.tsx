@@ -26,7 +26,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
       className={twMerge(
         // 'border',
         // inputBorderColor,
-        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card',
+        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card bg-light-card',
         selected ? selectionOutline : '',
         notSelectable ? 'animate-wiggle' : ''
       )}
@@ -65,7 +65,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           />
         </div>
 
-        <div className="mt-3 mb-4 mx-3 dark:text-dark-body">
+        <div className="mt-3 mb-4 mx-3 dark:text-dark-body text-light-body">
           <div className="flex items-center">
             <div className="font-bold truncate flex-1">{title}</div>
             {hasBlueCheck ? <SVG.blueCheck className={'h-5 w-5'} /> : ''}

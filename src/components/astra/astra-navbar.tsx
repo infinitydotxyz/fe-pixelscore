@@ -55,10 +55,13 @@ export const AstraNavbar = () => {
   return (
     // relative added to give it a different layer so shadow isn't wiped out by sidebar
     <div
-      className={twMerge('flex px-8 py-2 items-center bg-dark-navbar border-b shadow-md relative', inputBorderColor)}
+      className={twMerge(
+        'flex px-8 py-2 items-center dark:bg-dark-navbar bg-light-navbar border-b shadow-md relative',
+        inputBorderColor
+      )}
     >
       <NextLink href="/" className="flex items-center">
-        <div className="text-5xl lg:text-3xl font-bold dark:text-dark-blue font-pixel">Pixelrank</div>
+        <div className="text-5xl lg:text-3xl font-bold dark:text-dark-blue text-light-blue font-pixel">Pixelrank</div>
       </NextLink>
       <Spacer />
 
@@ -71,7 +74,7 @@ export const AstraNavbar = () => {
           setShowCart(!showCart);
         }}
       >
-        <SVG.cart className={twMerge('dark:text-dark-blue', largeIconButtonStyle)} />
+        <SVG.cart className={twMerge('dark:text-dark-blue text-light-blue', largeIconButtonStyle)} />
       </RoundButton>
     </div>
   );

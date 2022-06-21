@@ -8,6 +8,12 @@ interface Props {
 
 export const Spinner = ({ className }: Props) => {
   return (
-    <SVG.spinner className={twMerge(largeIconButtonStyle, 'text-gray-600 animate-spin fill-dark-card', className)} />
+    <SVG.spinner
+      className={twMerge(
+        largeIconButtonStyle,
+        'text-gray-600 animate-spin dark:fill-dark-card fill-light-card',
+        className
+      )}
+    />
   );
 };

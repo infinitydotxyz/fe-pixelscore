@@ -100,7 +100,7 @@ const navigation = {
 const Footer = () => {
   return (
     <footer className="">
-      <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8 dark:text-dark-body">
+      <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8 dark:text-dark-body text-light-body">
         {/* <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="px-5 py-2">
@@ -110,7 +110,7 @@ const Footer = () => {
             </div>
           ))}
         </nav> */}
-        <div className="mt-8 flex justify-center space-x-6 text-dark-blue">
+        <div className="mt-8 flex justify-center space-x-6 dark:text-dark-blue text-light-blue">
           {navigation.social.map((item) => (
             <a key={item.name} href={item.href} target="_blank">
               <span className="sr-only">{item.name}</span>
@@ -132,7 +132,7 @@ export const HomePageLogo = () => {
   return (
     <div className=" max-w-screen-2xl flex items-center  ">
       <NextLink href="/" className="flex items-center ">
-        <SVG.miniLogo className="h-16 w-16 text-dark-body" logoColor="#000" />
+        <SVG.miniLogo className="h-16 w-16 dark:text-dark-body text-light-body" logoColor="#000" />
       </NextLink>
 
       <HomeMenuButton />
@@ -152,7 +152,7 @@ export const HomeMenuButton = () => {
           // setShowCart(!showCart);
         }}
       >
-        <SVG.hamburger className={twMerge('text-dark-body', iconButtonStyle)} />
+        <SVG.hamburger className={twMerge('dark:text-dark-body text-light-body', iconButtonStyle)} />
       </RoundButton>
     </div>
   );

@@ -4,7 +4,6 @@ module.exports = {
   colors: {
     dark: {
       bg: '#111',
-      heading: '#FFFFFF',
       body: '#fff',
       blue: '#1c63f2',
       disabled: '#777',
@@ -18,10 +17,11 @@ module.exports = {
       }
     },
     light: {
-      bg: '#FFFFFF',
-      text: '#000000',
+      bg: '#FFF',
+      body: '#000000',
+      blue: '#1c63f2',
       disabled: '#555555',
-      card: '#FFFFFF',
+      card: '#FFF',
       border: '#aaa',
       navbar: '#FFF',
       gray: {
