@@ -7,7 +7,7 @@ export const WhatIsPr = () => {
   return (
     <div className="mt-24">
       <div className="block text-dark-body font-bold text-7xl">
-        What is <span className="text-dark-blue">Pixelrank</span>?
+        What is <span className="text-dark-blue font-pixel">Pixelrank</span>?
       </div>
       <div className="mt-6 max-w-xlg text-3xl text-dark-body">
         Pixelrank is a novel method for estimating the global rarity of NFTs. It ranks NFTs by calculating how rare an
