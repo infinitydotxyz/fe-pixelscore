@@ -26,7 +26,7 @@ export const GridHeader = ({ route }: Props) => {
     case AstraNavTab.Portfolio:
       name = route;
       if (userRecord && userRecord.portfolioScore !== -1) {
-        scoreText = `Portfolio Score: ${userRecord.portfolioScore}`;
+        scoreText = `Portfolio Score: ${userRecord.portfolioScore.toFixed(4)}`;
       }
       break;
   }
