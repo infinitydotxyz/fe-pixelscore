@@ -22,9 +22,6 @@ export type DashboardContextType = {
   gridWidth: number;
   setGridWidth: (value: number) => void;
 
-  chainId: string | undefined;
-  setChainId: (value: string | undefined) => void;
-
   displayName: string;
   setDisplayName: (value: string) => void;
 
@@ -66,7 +63,6 @@ interface Props {
 
 export const DashboardContextProvider = ({ children }: Props) => {
   const [collection, setCollection] = useState<CollectionInfo>();
-  const [chainId, setChainId] = useState<string>();
   const [showCart, setShowCart] = useState(false);
   const [showOnlyUnvisible, setShowOnlyUnvisible] = useState(false);
   const [numTokens, setNumTokens] = useState(0);
@@ -78,7 +74,7 @@ export const DashboardContextProvider = ({ children }: Props) => {
 
   const [displayName, setDisplayName] = useState<string>('');
 
-  const { user, providerManager } = useAppContext();
+  const { user, chainId, providerManager } = useAppContext();
   const { isSelected, isSelectable, toggleSelection, clearSelection, selection, removeFromSelection } =
     useCardSelection();
 
@@ -181,9 +177,6 @@ export const DashboardContextProvider = ({ children }: Props) => {
 
     gridWidth,
     setGridWidth,
-
-    chainId,
-    setChainId,
 
     showCart,
     setShowCart,
