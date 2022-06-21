@@ -27,4 +27,4 @@ export const thirtyDaySeconds = secondsPerDay * 30;
 // used for outline buttons, input boxes etc.
 export const inputBorderColor = 'border-gray-300 dark:border-dark-border';
 
-export const selectionOutline = 'border-0 outline-1 outline-dark-border outline-offset-0 outline';
+export const selectionOutline = 'border-1 outline-3 outline-dark-blue outline-offset-0 outline';

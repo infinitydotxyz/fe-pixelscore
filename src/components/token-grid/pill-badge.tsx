@@ -41,8 +41,8 @@ export const BlueCheckBadge = ({ val, tooltip = 'Blue check verified', className
     return (
       <div className={twMerge(className, 'absolute')}>
         <HelpTip content={tooltip}>
-          <div className="bg-white opacity-70 bg-opacity-80 rounded-full">
-            <SVG.blueCheck className={'h-5 w-5'} />
+          <div className="   rounded-full">
+            <SVG.blueCheck className={'  h-5 w-5 '} />
           </div>
         </HelpTip>
       </div>
