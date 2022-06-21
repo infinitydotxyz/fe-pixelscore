@@ -18,7 +18,7 @@ export const HomeHeader = () => {
         <div className="mt-28">
           <div className="block dark:text-dark-blue font-bold text-9xl">Pixelrank</div>
           <div className="mt-6 max-w-lg text-3xl dark:text-dark-body">
-            The world's only global NFT ranking. Pure Math. No bias.
+            The world's only global NFT ranking. Pure math. No bias.
           </div>
           <div className="mt-16">
             <div className="space-x-14 ">
