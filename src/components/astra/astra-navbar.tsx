@@ -71,7 +71,7 @@ export const AstraNavbar = () => {
           setShowCart(!showCart);
         }}
       >
-        <SVG.cart className={twMerge('dark:text-dark-body', largeIconButtonStyle)} />
+        <SVG.cart className={twMerge('dark:text-dark-blue', largeIconButtonStyle)} />
       </RoundButton>
     </div>
   );

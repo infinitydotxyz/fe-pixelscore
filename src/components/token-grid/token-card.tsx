@@ -1,4 +1,4 @@
-import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
+import { selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { BGImage, Spacer, SVG } from '../common';
 import { NFTCard } from 'utils/types/be-types';
@@ -24,8 +24,8 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
   return (
     <div
       className={twMerge(
-        'border',
-        inputBorderColor,
+        // 'border',
+        // inputBorderColor,
         'rounded-2xl w-full relative flex flex-col dark:bg-dark-card',
         selected ? selectionOutline : '',
         notSelectable ? 'animate-wiggle' : ''

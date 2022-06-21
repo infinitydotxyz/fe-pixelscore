@@ -35,7 +35,7 @@ body {
 // custom scrollbars
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 5px;
   cursor: pointer;
 }
 
@@ -43,8 +43,8 @@ body {
   // background-color: rgba(20, 20, 20, 0.27);
   // border-left: solid 4px white;
 
-  background-color: #555;
-  border-left: solid 3px #08080d;
+  background-color: #444;
+  border-left: solid 4px #111;
 
   cursor: pointer;
 }
@@ -52,7 +52,7 @@ body {
 ::-webkit-scrollbar-thumb {
   cursor: pointer;
   // background-color: #5e5e5e;
-  background-color: #c7d2fecc;
+  background-color: #1c63f2;
   border-radius: 100px;
 }
 

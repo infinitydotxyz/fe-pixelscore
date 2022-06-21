@@ -1,4 +1,4 @@
-import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
+import { selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { Button, SimpleTable, SimpleTableItem, Spacer, toastError, toastSuccess } from '../common';
 import { RevealOrder } from 'utils/types/be-types';
@@ -47,8 +47,6 @@ export const RevealOrderCard = ({ userAddress, revealOrder: inOrder, onClick, se
   return (
     <div
       className={twMerge(
-        'border shadow-md',
-        inputBorderColor,
         'rounded-2xl w-full relative flex flex-col dark:bg-dark-card',
         selected ? selectionOutline : ''
       )}
@@ -64,7 +62,9 @@ export const RevealOrderCard = ({ userAddress, revealOrder: inOrder, onClick, se
           <Spacer />
 
           <div className="mx-3 mt-4 flex flex-col ">
-            <Button onClick={refreshClick}>Refresh</Button>
+            <Button variant="outline" onClick={refreshClick}>
+              Refresh
+            </Button>
           </div>
         </div>
       </div>

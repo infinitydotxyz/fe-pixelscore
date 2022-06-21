@@ -11,7 +11,7 @@ module.exports = {
       blue: '#1c63f2',
       violet: '#a5b4fc99',
       disabled: '#777',
-      border: '#444',
+      border: '#454545',
       card: '#222',
       navbar: '#111',
       gray: {

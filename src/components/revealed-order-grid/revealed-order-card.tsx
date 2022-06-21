@@ -1,4 +1,4 @@
-import { inputBorderColor, selectionOutline } from 'utils/ui-constants';
+import { selectionOutline } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
 import { Button, Spacer, SVG, toastError } from '../common';
 import { TokenInfo } from 'utils/types/be-types';
@@ -48,8 +48,6 @@ export const RevealedOrderCard = ({ token, onClick, onRefreshToken, selected }: 
   return (
     <div
       className={twMerge(
-        'border',
-        inputBorderColor,
         'rounded-2xl w-full relative flex flex-col dark:bg-dark-card',
         selected ? selectionOutline : ''
       )}
