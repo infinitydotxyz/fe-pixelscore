@@ -21,10 +21,11 @@ module.exports = {
       body: '#000000',
       blue: '#1c63f2',
       disabled: '#555555',
-      card: '#FFF',
+      card: '#f3f4f6',
       border: '#aaa',
       navbar: '#FFF',
       gray: {
+        50: '#fafafa',
         100: '#F0F0F0',
         200: '#DEDEDE',
         300: '#BEBEBE'
