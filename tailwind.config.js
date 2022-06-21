@@ -6,7 +6,7 @@ module.exports = {
     './node_modules/flowbite/**/*.js',
     './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
-  darkMode: 'none',
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
