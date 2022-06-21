@@ -52,8 +52,8 @@ export const Dropdown = ({
 
         <Menu.Items
           className={twMerge(
-            `absolute mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-3xl z-50
-            border border-gray-200 bg-white dark:bg-dark-bg shadow-2xl dark:text-dark-body outline-none ${
+            `absolute mt-2 w-40 origin-top-right divide-y divide-gray-100 rounded-xl z-50
+            border border-gray-700 bg-white dark:bg-dark-bg shadow-2xl dark:text-dark-body outline-none ${
               contentClassName ?? ''
             }`
           )}
