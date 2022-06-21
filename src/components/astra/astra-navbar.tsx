@@ -61,7 +61,7 @@ export const AstraNavbar = () => {
       )}
     >
       <NextLink href="/" className="flex items-center">
-        <div className="text-4xl lg:text-3xl font-bold dark:text-dark-blue text-light-blue height font-pixel">
+        <div className="text-4xl lg:text-3xl font-bold dark:text-dark-body text-light-body height font-pixel">
           Pixelrank
         </div>
       </NextLink>
@@ -76,7 +76,7 @@ export const AstraNavbar = () => {
           setShowCart(!showCart);
         }}
       >
-        <SVG.cart className={twMerge('dark:text-dark-blue text-light-blue', largeIconButtonStyle)} />
+        <SVG.cart className={twMerge('dark:text-dark-body text-light-body', largeIconButtonStyle)} />
       </RoundButton>
     </div>
   );

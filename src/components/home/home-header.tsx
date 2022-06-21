@@ -16,7 +16,7 @@ export const HomeHeader = () => {
         {/* <HomePageLogo /> */}
 
         <div className="mt-28">
-          <div className="block dark:text-dark-blue text-light-blue font-bold text-9xl font-pixel">Pixelrank</div>
+          <div className="block dark:text-dark-body text-light-body font-bold text-9xl font-pixel">Pixelrank</div>
           <div className="mt-6 max-w-lg text-6xl lg:text-2xl dark:text-dark-body text-light-body leading-normal">
             The world's only global NFT ranking. Pure math. No bias.
           </div>

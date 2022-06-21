@@ -43,24 +43,23 @@ body {
 // custom scrollbars
 
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 2px;
   cursor: pointer;
 }
 
 ::-webkit-scrollbar-track {
   // background-color: rgba(20, 20, 20, 0.27);
   // border-left: solid 4px white;
-
+  // this doesn't look great on dark mode
   background-color: #444;
-  border-left: solid 4px #ccc;
-
+  border-left: solid 4px #aaa;
   cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
   cursor: pointer;
-  // background-color: #5e5e5e;
-  background-color: #1c63f2;
+  background-color: #5e5e5e;
+  // background-color: #1c63f2;
   border-radius: 100px;
 }
 

@@ -110,7 +110,7 @@ const Footer = () => {
             </div>
           ))}
         </nav> */}
-        <div className="mt-8 flex justify-center space-x-6 dark:text-dark-blue text-light-blue">
+        <div className="mt-8 flex justify-center space-x-6 dark:text-dark-body text-light-body">
           {navigation.social.map((item) => (
             <a key={item.name} href={item.href} target="_blank">
               <span className="sr-only">{item.name}</span>

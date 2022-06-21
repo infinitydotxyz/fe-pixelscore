@@ -76,11 +76,11 @@ export const GalleryAnimation = ({ rtl = false, speed = 400 }: Props) => {
         <Spacer />
         <div className="flex gap-6">
           <IoIosArrowDropleft
-            className={twMerge('h-12 w-12', 'dark:text-dark-blue text-light-blue')}
+            className={twMerge('h-12 w-12', 'dark:text-dark-body text-light-body')}
             onClick={() => slider?.slickPrev()}
           />
           <IoIosArrowDropright
-            className={twMerge('h-12 w-12', 'dark:text-dark-blue text-light-blue')}
+            className={twMerge('h-12 w-12', 'dark:text-dark-body text-light-body')}
             onClick={() => slider?.slickNext()}
           />
         </div>
