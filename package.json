@@ -40,7 +40,7 @@
     "build": "react-app-rewired build",
     "eject": "react-scripts eject",
     "lint": "eslint . --fix",
-    "deploy": "gcloud app deploy -q --project=pixelscore-9ec2a"
+    "deploy": "npm run build && gcloud app deploy -q --project=pixelscore-9ec2a"
   },
   "eslintConfig": {
     "extends": [
