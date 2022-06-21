@@ -13,7 +13,7 @@
   font-family: 'Circular Std';
   font-style: normal;
   font-weight: 400;
-  src: url('./fonts/CircularStd-Medium.woff2') format('woff2');
+  src: url('./fonts/CircularStd-Book.woff2') format('woff2');
 }
 
 @font-face {
@@ -21,6 +21,13 @@
   font-style: normal;
   font-weight: 600;
   src: url('./fonts/CircularStd-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Pixel';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/pexico.woff2') format('woff2');
 }
 
 body {
