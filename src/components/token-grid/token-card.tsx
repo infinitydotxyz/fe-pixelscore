@@ -26,7 +26,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
       className={twMerge(
         // 'border',
         // inputBorderColor,
-        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card bg-light-card shadow-[0_5px_5px_1px_rgba(0,0,0,0.1)] hover:shadow-[0_5px_5px_1px_rgba(0,0,0,0.15)] transition-all duration-300',
+        'rounded-2xl w-full relative flex flex-col dark:bg-dark-card bg-light-card shadow-[0_20px_20px_1px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_20px_1px_rgba(0,0,0,0.15)] transition-all duration-300',
         selected ? selectionOutline : '',
         notSelectable ? 'animate-wiggle' : ''
       )}
