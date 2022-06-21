@@ -69,7 +69,7 @@ export const AstraCart = ({ cardData, onRemove, onCheckout }: Props) => {
 
         <div className="text-4xl lg:text-3xl font-bold dark:text-dark-body text-light-body m-4">My Cart</div>
         <div className=" dark:text-dark-body text-light-body ml-4 mr-4 leading-6 text-lg lg:text-md">
-          Add NFTs you want to reveal ranks for. Each NFT costs ${PIXELRANK_PRICE_PER_ITEM} ETH
+          Add NFTs you want to reveal ranks for. Each reveal costs {PIXELRANK_PRICE_PER_ITEM} ETH
         </div>
       </div>
 
