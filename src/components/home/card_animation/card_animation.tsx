@@ -73,7 +73,7 @@ export const ScrollingCards = ({ rtl = false, speed = 4000 }: Props) => {
     ];
 
     return cards.map((card) => {
-      return [<AnimationCard data={card} height={330} selected={false} onClick={() => console.log('dl')} />];
+      return [<AnimationCard data={card} height={330} selected={false} onClick={() => ''} />];
     });
   };
 

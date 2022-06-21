@@ -35,7 +35,7 @@ export const FAQ = () => {
         <span className="dark:text-dark-blue text-light-blue">Questions</span>
       </div>
 
-      <div className="w-full  space-y-6 ">
+      <div className="w-full space-y-6 ">
         {faqs.map((faq) => (
           <Disclosure
             as="div"
@@ -46,7 +46,7 @@ export const FAQ = () => {
               <>
                 <dt className="">
                   <Disclosure.Button className="text-left p-10 w-full flex justify-between items-start dark:text-dark-blue text-light-blue">
-                    <span className="font-medium text-4xl lg:text-3xl dark:text-dark-body text-light-body">
+                    <span className="font-medium text-5xl lg:text-2xl dark:text-dark-body text-light-body">
                       {faq.question}
                     </span>
                     <span className="ml-6 h-7 flex items-center">
@@ -58,7 +58,9 @@ export const FAQ = () => {
                   </Disclosure.Button>
                 </dt>
                 <Disclosure.Panel as="dd" className="p-10 pt-0 pr-12">
-                  <p className="text-4xl lg:text-2xl dark:text-dark-body text-light-body">{faq.answer}</p>
+                  <p className="text-5xl lg:text-2xl dark:text-dark-body text-light-body leading-normal">
+                    {faq.answer}
+                  </p>
                 </Disclosure.Panel>
               </>
             )}
