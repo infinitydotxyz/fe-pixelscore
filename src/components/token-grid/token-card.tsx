@@ -52,7 +52,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           {/* <PillBadge val={data.pixelRank} tooltip="Pixel rank" numberSign={true} /> */}
           {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
           <PillBadge
-            val={data.pixelRankBucket}
+            val={pixelRankBucketToolTip(data.pixelRankBucket ?? 0)}
             tooltip={pixelRankBucketToolTip(data.pixelRankBucket ?? 0)}
             className="top-2 right-2"
           />
@@ -72,7 +72,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
           </div>
 
           <div className="flex items-center">
-            <div className="truncate">{tokenId}</div>
+            <div className="truncate">Id: {tokenId}</div>
             <Spacer />
           </div>
         </div>

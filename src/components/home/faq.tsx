@@ -21,6 +21,16 @@ const faqs = [
     question: 'Can Pixelrank be used to rank new NFTs?',
     answer:
       'Absolutely. Our goal is to rank every NFT in existence. The algorithm scales linearly and can be easily extended to rank previously unseen NFTs.'
+  },
+  {
+    question: 'What is PixelScore?',
+    answer:
+      'PixelScore is the name of our algorithm that derives Pixelranks. It is a real number between 0 and 1. Higher score, the rarer the NFT.'
+  },
+  {
+    question: 'What is Portfolio score?',
+    answer:
+      'Portfolio score is the average of the PixelScores of all the NFTs in a wallet. It is scaled between 0 and 1. Higher the portfolio score, the rarer your NFTs are.'
   }
 ];
 
@@ -58,9 +68,7 @@ export const FAQ = () => {
                   </Disclosure.Button>
                 </dt>
                 <Disclosure.Panel as="dd" className="p-10 pt-0 pr-12">
-                  <p className="text-5xl lg:text-2xl dark:text-dark-body text-light-body leading-normal">
-                    {faq.answer}
-                  </p>
+                  <p className="text-4xl lg:text-xl dark:text-dark-body text-light-body leading-normal">{faq.answer}</p>
                 </Disclosure.Panel>
               </>
             )}
