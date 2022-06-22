@@ -100,7 +100,7 @@ export const RevealedOrderGrid = ({ orderFetcher, className = '', onLoad, onClic
                     }
                     setTokens(newTokens);
                   }}
-                  key={data.tokenId + data.collectionAddress}
+                  key={`${data.collectionAddress}:${data.tokenId}`}
                   token={data}
                   selected={isSelected(data)}
                   onClick={(data) => {
