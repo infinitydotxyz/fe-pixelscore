@@ -65,7 +65,7 @@ export const RevealedOrderCard = ({ token, onClick, onRefreshToken, selected }: 
             </div>
 
             <div className="flex items-center">
-              <div className="truncate">{token.tokenId}</div>
+              <div className="truncate">Id: {token.tokenId}</div>
               <Spacer />
             </div>
           </div>

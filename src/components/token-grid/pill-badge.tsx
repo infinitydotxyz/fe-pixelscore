@@ -16,7 +16,7 @@ export const PillBadge = ({ val, tooltip, className = 'top-2 left-2', numberSign
     return (
       <div className={twMerge(className, 'absolute')}>
         <HelpTip content={tooltip}>
-          <div className="bg-white  rounded-full px-3 shadow-lg">
+          <div className="bg-white rounded-full px-3 py-1 shadow-lg">
             {numberSign && <div className="inline-block text-gray-500">#</div>}
             <div className="inline-block font-bold">{numberWithCommas(val)}</div>
           </div>

@@ -24,7 +24,7 @@ export const RevealedTokenImage = ({ token, className = 'flex-grow' }: Props) =>
         {/* <PillBadge val={token.tokenId} tooltip="Token id" className="top-2 right-2" /> */}
 
         <PillBadge
-          val={token.pixelRankBucket}
+          val={pixelRankBucketToolTip(token.pixelRankBucket ?? 0)}
           tooltip={pixelRankBucketToolTip(token.pixelRankBucket ?? 0)}
           className="top-2 right-2"
         />

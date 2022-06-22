@@ -35,10 +35,10 @@ export const RevealOrderCard = ({ userAddress, revealOrder: inOrder, onClick, se
   };
 
   const tableItems: SimpleTableItem[] = [];
-  tableItems.push({ title: 'txnHash', value: <div className="font-bold">{ellipsisString(revealOrder.txnHash)}</div> });
-  tableItems.push({ title: 'txnStatus', value: <div className="font-bold">{revealOrder.txnStatus}</div> });
-  tableItems.push({ title: 'numItems', value: <div className="font-bold">{revealOrder.numItems}</div> });
-  tableItems.push({ title: 'totalPrice', value: <div className="font-bold">{revealOrder.totalPrice}</div> });
+  tableItems.push({ title: 'Txn Hash', value: <div className="font-bold">{ellipsisString(revealOrder.txnHash)}</div> });
+  tableItems.push({ title: 'Status', value: <div className="font-bold">{revealOrder.txnStatus}</div> });
+  tableItems.push({ title: 'Num Items', value: <div className="font-bold">{revealOrder.numItems}</div> });
+  tableItems.push({ title: 'Total Price', value: <div className="font-bold">{revealOrder.totalPrice}</div> });
   tableItems.push({
     title: 'Date',
     value: <div className="font-bold">{shortDateWithTime(new Date(revealOrder.timestamp))}</div>
