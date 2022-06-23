@@ -30,15 +30,15 @@ export const ConnectPage = () => {
   }, [user]);
 
   const connectCoinbase = async () => {
-    await connectWallet?.(WalletType.WalletLink);
+    await connectWallet(WalletType.WalletLink);
   };
 
   const connectMetaMask = async () => {
-    await connectWallet?.(WalletType.MetaMask);
+    await connectWallet(WalletType.MetaMask);
   };
 
   const connectWalletConnect = async () => {
-    await connectWallet?.(WalletType.WalletConnect);
+    await connectWallet(WalletType.WalletConnect);
   };
 
   return (
