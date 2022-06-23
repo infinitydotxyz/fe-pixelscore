@@ -15,7 +15,7 @@ export enum AstraNavTab {
 
 export const AstraNavbar = () => {
   const [currentTab, setCurrentTab] = useState(AstraNavTab.All);
-  const { setTokenFetcher, setOrderFetcher, showCart, setShowCart } = useDashboardContext();
+  const { setTokenFetcher, setOrderFetcher, showCart, setShowCart, collection } = useDashboardContext();
 
   const { options, selected } = useToggleTab(
     [AstraNavTab.All, AstraNavTab.Top5, AstraNavTab.Portfolio, AstraNavTab.Revealed, AstraNavTab.Pending],
@@ -40,11 +40,22 @@ export const AstraNavbar = () => {
         options={options}
         selected={selected}
         onChange={(value) => {
-          // clear out on click so cards will be blank before loading
-          setTokenFetcher(undefined);
-          setOrderFetcher(undefined);
+          // don't allow clicking twice on tab, don't switch if already loaded
+          const current = TabUtils.routeToTab(location.pathname);
 
-          navigate(TabUtils.tabToRoute(value as AstraNavTab));
+          if (current !== value) {
+            // clear out on click so cards will be blank before loading
+            setTokenFetcher(undefined);
+            setOrderFetcher(undefined);
+
+            const newTab = value as AstraNavTab;
+            let params = '';
+            if (newTab === AstraNavTab.All) {
+              params = `?col=${collection?.address}`;
+            }
+
+            navigate(`${TabUtils.tabToRoute(newTab)}${params}`);
+          }
         }}
         altStyle={true}
         equalWidths={false}
