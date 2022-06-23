@@ -6,6 +6,7 @@ import { TokenCard } from './token-card';
 import { TokenFetcher } from './token-fetcher';
 import { ErrorOrLoading } from '../astra/error-or-loading';
 import { NFTCard } from 'utils/types/be-types';
+import { AstraNavTab } from 'components/astra/astra-navbar';
 
 interface Props {
   tokenFetcher: TokenFetcher;
@@ -15,6 +16,7 @@ interface Props {
   isSelected: (data: NFTCard) => boolean;
   isSelectable: (data: NFTCard) => boolean;
   onLoad: (numItems: number) => void;
+  route?: AstraNavTab;
 }
 
 export const TokensGrid = ({
@@ -24,7 +26,8 @@ export const TokensGrid = ({
   onClick,
   isSelected,
   isSelectable,
-  wrapWidth = 0
+  wrapWidth = 0,
+  route
 }: Props) => {
   const [cardData, setCardData] = useState<NFTCard[]>([]);
   const [error, setError] = useState(false);
@@ -65,7 +68,13 @@ export const TokensGrid = ({
   let contents;
 
   if (error || loading || noData) {
-    contents = <ErrorOrLoading error={error} noData={noData} />;
+    contents = (
+      <ErrorOrLoading
+        error={error}
+        noData={noData}
+        message={route === AstraNavTab.Portfolio ? 'No ranked nfts in your portfolio' : undefined}
+      />
+    );
   } else {
     if (wrapWidth > 0) {
       let divisor = wrapWidth < 1500 ? 500 : 380;

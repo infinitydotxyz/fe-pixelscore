@@ -3,16 +3,17 @@ import { CenteredContent, Spinner } from 'components/common';
 interface Props2 {
   error: boolean;
   noData: boolean;
+  message?: string;
 }
 
-export const ErrorOrLoading = ({ error, noData }: Props2) => {
+export const ErrorOrLoading = ({ error, noData, message = 'Nothing found' }: Props2) => {
   let contents;
 
   if (error) {
     contents = <div>Unable to load data</div>;
   } else {
     if (noData) {
-      contents = <div>Nothing found</div>;
+      contents = <div>{message}</div>;
     } else {
       contents = <Spinner />;
     }
