@@ -11,6 +11,7 @@ import {
   NftsOrderBy
 } from './types/be-types';
 import { v4 as uuidv4 } from 'uuid';
+import { CollectionInfo } from './types/collection-types';
 
 export const fetchTokens = async (
   collectionAddress: string,
@@ -269,6 +270,15 @@ export const getUserRecord = async (user: string): Promise<UserRecord> => {
     portfolioScoreUpdatedAt: -1,
     totalNftsOwned: -1
   };
+};
+
+export const getCollection = async (collectionAddress: string): Promise<CollectionInfo | undefined> => {
+  const chainId = '1';
+  const response = await httpGet(`/collection/${chainId}/${collectionAddress}`, {});
+
+  if (response.result) {
+    return response.result as CollectionInfo;
+  }
 };
 
 export const pixelRankBucketToolTip = (pixelRankBucket: number): string => {

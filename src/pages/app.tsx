@@ -76,7 +76,7 @@ export const DashboardPage = () => {
           setCollection(value);
         }
 
-        navigate(`all?col=${collection?.address}`);
+        navigate(`all?col=${value.address}`);
       }}
       onLoad={(value) => {
         if (value.address !== collection?.address) {
