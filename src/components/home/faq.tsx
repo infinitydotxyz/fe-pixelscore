@@ -25,7 +25,7 @@ const faqs = [
   {
     question: 'What is PixelScore?',
     answer:
-      'PixelScore is the name of our algorithm that derives Pixelranks. It is a real number between 0 and 1. Higher score, the rarer the NFT.'
+      'PixelScore is the name of our algorithm that derives Pixelranks. The score itself is a real number between 0 and 1. Higher the score, the rarer the NFT.'
   },
   {
     question: 'What is Portfolio score?',
