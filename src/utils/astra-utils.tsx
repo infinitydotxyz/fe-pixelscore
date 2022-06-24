@@ -103,7 +103,14 @@ export const userNftsToCardData = (tokens: UserNft[]): NFTCard[] => {
       inCollectionPixelRank: token.inCollectionPixelRank,
       pixelRank: token.pixelRank,
       pixelRankBucket: token.pixelRankBucket,
-      pixelScore: token.pixelScore
+      pixelScore: token.pixelScore,
+
+      rarityScore: token.rarityScore,
+      inCollectionPixelScore: token.inCollectionPixelScore,
+      pixelRankRevealed: token.pixelRankRevealed,
+      pixelRankVisible: token.pixelRankVisible,
+      pixelRankRevealer: token.pixelRankRevealer,
+      pixelRankRevealedAt: token.pixelRankRevealedAt
     };
 
     return result;
