@@ -59,8 +59,9 @@ export const fetchUserTokens = async (userAddress: string, cursor?: string): Pro
   const response = await httpGet(`/u/${userAddress}/nfts`, {
     limit: LARGE_LIMIT,
     minRank: 1,
-    maxRank: 10, // todo: remove hard coded ranks
-    cursor
+    maxRank: 10_000_000, // these are pixleRanks; pixelRanks are natural numbers between 1 and 10,000,000 so far
+    cursor,
+    orderDirection: OrderDirection.Ascending
   });
 
   return response;
