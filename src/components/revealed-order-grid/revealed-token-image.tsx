@@ -19,13 +19,18 @@ export const RevealedTokenImage = ({ token, className = 'flex-grow' }: Props) =>
           <BGImage src={token.imageUrl} className="hover:scale-110 transition-all  " />
         </div>
 
-        <PillBadge val={token.pixelRank} tooltip="Pixel rank" numberSign={true} />
-        {/* <PillBadge val={token.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
+        <PillBadge val={token.pixelRank} tooltip="Global rank" numberSign={true} />
+        <PillBadge
+          val={token.inCollectionPixelRank}
+          tooltip="Collection rank"
+          className="bottom-2 left-2"
+          numberSign={true}
+        />
         {/* <PillBadge val={token.tokenId} tooltip="Token id" className="top-2 right-2" /> */}
 
         <PillBadge
           val={pixelRankBucketToolTip(token.pixelRankBucket ?? 0)}
-          tooltip={pixelRankBucketToolTip(token.pixelRankBucket ?? 0)}
+          tooltip="Global percentile"
           className="top-2 right-2"
         />
       </div>

@@ -67,6 +67,7 @@ export const DashboardBase = ({ route }: Props) => {
       <div className="flex flex-col h-full w-full">
         {showHeader && <GridHeader route={route} />}
         <TokensGrid
+          route={route}
           tokenFetcher={tokenFetcher}
           className="px-8 py-6"
           onClick={onCardClick}

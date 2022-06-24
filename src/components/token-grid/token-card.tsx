@@ -49,11 +49,16 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
             <BGImage src={data?.image} className="hover:scale-110 transition-all" />
           </div>
 
-          {/* <PillBadge val={data.pixelRank} tooltip="Pixel rank" numberSign={true} /> */}
-          {/* <PillBadge val={data.pixelScore} tooltip="Pixel score" className="bottom-2 left-2" /> */}
+          <PillBadge val={data.pixelRank} tooltip="Global rank" numberSign={true} />
+          <PillBadge
+            val={data.inCollectionPixelRank}
+            tooltip="Collection rank"
+            className="bottom-2 left-2"
+            numberSign={true}
+          />
           <PillBadge
             val={pixelRankBucketToolTip(data.pixelRankBucket ?? 0)}
-            tooltip={pixelRankBucketToolTip(data.pixelRankBucket ?? 0)}
+            tooltip="Global percentile"
             className="top-2 right-2"
           />
           {/*<PillBadge val={data.rarityRank} tooltip="Pixel rarity rank" className="top-10 left-2" numberSign={true} /> */}

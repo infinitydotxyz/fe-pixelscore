@@ -4,6 +4,10 @@ import { DebouncedTextField } from 'components/common';
 import { CollectionInfo } from 'utils/types/collection-types';
 import { inputBorderColor } from 'utils/ui-constants';
 import { twMerge } from 'tailwind-merge';
+import { useLocation } from 'react-router';
+import queryString from 'query-string';
+import { getCollection } from 'utils/astra-utils';
+import { useDashboardContext } from 'utils/context/DashboardContext';
 
 interface Props {
   onClick: (value: CollectionInfo) => void;
@@ -13,6 +17,11 @@ interface Props {
 
 export const AstraSidebar = ({ onClick, onLoad, selectedCollection }: Props) => {
   const [query, setQuery] = useState('');
+  const location = useLocation();
+
+  const { collection } = useDashboardContext();
+
+  const parsedQs = queryString.parse(location.search);
 
   const handleClick = async (collection: CollectionInfo, sendOnLoad: boolean) => {
     if (sendOnLoad) {
@@ -27,10 +36,23 @@ export const AstraSidebar = ({ onClick, onLoad, selectedCollection }: Props) => 
       query={query}
       selectedCollection={selectedCollection}
       onClick={(c) => handleClick(c, false)}
-      onLoad={(collections) => {
+      onLoad={async (collections) => {
         // select first collection
-        if (collections.length > 0) {
-          handleClick(collections[0], true);
+        if (collections.length > 0 && !collection) {
+          let handled = false;
+
+          if (parsedQs.col) {
+            const collect = await getCollection(parsedQs.col as string);
+
+            if (collect) {
+              handleClick(collect, true);
+              handled = true;
+            }
+          }
+
+          if (!handled) {
+            handleClick(collections[0], true);
+          }
         }
       }}
     />
