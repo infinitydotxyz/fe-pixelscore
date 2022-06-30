@@ -9,13 +9,19 @@ const faqs = [
       'Each NFT is decomposed into a 224x224 matrix of pixels. Then each pixel is assigned a score based on how rarely it occurs in the entire dataset. All the scores for each pixel in the NFT are added up to arrive at the rarity/rank of the NFT.'
   },
   {
+    question: 'How many NFTs are ranked?',
+    answer:
+      'We ranked around 10M NFTs after analyzing a total of 55,000 collections. Each NFT has a rank between 1 and 10M. Lower the rank, the more rare the NFT. NFT with rank 1 is the rarest and NFT with rank 10M is the least rare.'
+  },
+  {
+    question: 'What do the numbers on cards mean?',
+    answer:
+      'There are 3 numbers (in bubbles) shown on each revealed card. You can hover over them to see a description. On top left is the global rank of the NFT out of 10M. On top right is the global percentile. On bottom left is the rank of the NFT within the collection.'
+  },
+  {
     question: 'Why is this ranking method better?',
     answer:
       'Our ranking method is the only one that can rank NFTs globally. The rarity score is based on a clear mathematical formula and bare-bones NFT data, which makes it free from biases, market trends and community sentiment created by influencers, forums, discord groups, and creators.'
-  },
-  {
-    question: 'How many NFTs are ranked?',
-    answer: 'We ranked around 10M NFTs after analyzing a total of 55,000 collections'
   },
   {
     question: 'Can Pixelrank be used to rank new NFTs?',
