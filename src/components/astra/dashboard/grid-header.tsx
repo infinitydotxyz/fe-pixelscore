@@ -9,10 +9,10 @@ interface Props {
 }
 
 export const GridHeader = ({ route }: Props) => {
-  const { numTokens, userRecord, setShowOnlyUnvisible, showOnlyUnvisible } = useDashboardContext();
+  const { numTokens, setShowOnlyUnvisible, showOnlyUnvisible } = useDashboardContext();
 
   let name = '';
-  let scoreText = '';
+  // let scoreText = '';
   let showCheckbox = false;
 
   switch (route) {
@@ -25,9 +25,9 @@ export const GridHeader = ({ route }: Props) => {
       break;
     case AstraNavTab.Portfolio:
       name = route;
-      if (userRecord && userRecord.portfolioScore !== -1) {
-        scoreText = `Portfolio Score: ${userRecord.portfolioScore.toFixed(4)}`;
-      }
+      // if (userRecord && userRecord.portfolioScore !== -1) {
+      //   scoreText = `Portfolio Score: ${userRecord.portfolioScore.toFixed(4)}`;
+      // }
       break;
   }
 
@@ -46,7 +46,7 @@ export const GridHeader = ({ route }: Props) => {
         <div className="flex flex-col items-end">
           <div className="text-lg whitespace-nowrap ml-3">{numTokens} Nfts</div>
 
-          {scoreText && <div className="text-lg whitespace-nowrap ml-3">{scoreText}</div>}
+          {/* {scoreText && <div className="text-lg whitespace-nowrap ml-3">{scoreText}</div>} */}
         </div>
       </div>
     );
