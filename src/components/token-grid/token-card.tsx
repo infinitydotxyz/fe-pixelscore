@@ -17,8 +17,8 @@ interface Props {
 export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX.Element => {
   const [notSelectable, setNotSelectable] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const title = data?.title || 'Hidden';
-  const tokenId = data?.tokenId || 'Reveal';
+  const title = data?.isPixelRanked ? data?.title || 'Hidden' : data?.title;
+  const tokenId = data?.isPixelRanked ? data?.tokenId || 'Reveal' : data?.tokenId;
   const hasBlueCheck = data?.hasBlueCheck ?? false;
 
   return (
@@ -49,7 +49,7 @@ export const TokenCard = ({ data, onClick, selected, isSelectable }: Props): JSX
             <BGImage src={data?.image} className="hover:scale-110 transition-all" />
           </div>
 
-          <PillBadge val={data.pixelRank} tooltip="Global rank" numberSign={true} />
+          <PillBadge val={data.isPixelRanked ? data.pixelRank : 'Unranked'} tooltip="Global rank" numberSign={true} />
           <PillBadge
             val={data.inCollectionPixelRank}
             tooltip="Collection rank"

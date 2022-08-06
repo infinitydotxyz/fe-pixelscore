@@ -88,6 +88,7 @@ export interface UserNft {
   state?: NftStateDto;
   tokenStandard: TokenStandard;
   owner?: string;
+  isPixelRanked?: boolean;
   rarityScore?: number;
   rarityRank?: number;
   inCollectionPixelScore?: number;
@@ -106,6 +107,7 @@ export interface NFTCard extends CardData {
   collectionProfileImage?: string;
   hasBlueCheck?: boolean;
 
+  isPixelRanked?: boolean;
   rarityScore?: number;
   rarityRank?: number;
   inCollectionPixelScore?: number;
