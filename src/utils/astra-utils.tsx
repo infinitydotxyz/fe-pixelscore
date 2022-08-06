@@ -100,6 +100,7 @@ export const userNftsToCardData = (tokens: UserNft[]): NFTCard[] => {
       hasBlueCheck: token.hasBlueCheck,
       address: token.collectionAddress,
 
+      isPixelRanked: token.isPixelRanked,
       rarityRank: token.rarityRank,
       inCollectionPixelRank: token.inCollectionPixelRank,
       pixelRank: token.pixelRank,
@@ -139,6 +140,7 @@ export const tokenInfosToCardData = (tokens: TokenInfo[]): NFTCard[] => {
       collectionBannerImage: token.collectionBannerImage,
       collectionProfileImage: token.collectionProfileImage,
 
+      isPixelRanked: true,
       rarityScore: token.rarityScore,
       rarityRank: token.rarityRank,
       inCollectionPixelScore: token.inCollectionPixelScore,

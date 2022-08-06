@@ -33,7 +33,7 @@ export const useCardSelection = (): CardSelectionResult => {
   };
 
   const isSelectable = (value: NFTCard): boolean => {
-    return value.pixelRankVisible !== true;
+    return (value.isPixelRanked ?? false) && value.pixelRankVisible !== true;
   };
 
   const removeFromSelection = (value: NFTCard) => {
