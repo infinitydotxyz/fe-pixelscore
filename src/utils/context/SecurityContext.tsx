@@ -26,10 +26,10 @@ interface Props {
 }
 
 export const SecurityContextProvider = ({ children }: Props) => {
-  const [password, setPassword] = useState<string>('');
+  const [password, setPassword] = useState<string>('gmwagmi');
   const [allowed, setAllowed] = useState<boolean>(false);
   const [ready, setReady] = useState<boolean>(false);
-  const [didReadPassword, setDidReadPassword] = useState<boolean>(false);
+  const [didReadPassword, setDidReadPassword] = useState<boolean>(true);
 
   useEffect(() => {
     if (password.toLowerCase() === 'gmwagmi') {
